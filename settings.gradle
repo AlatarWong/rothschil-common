@@ -14,7 +14,5 @@ include 'pippin-service:service-thumbnailator'
 include 'pippin-service:service-oauth2:oauth2-resource'
 include 'pippin-service:service-oauth2:oauth2-server'
 
-include 'pippin-sandbox:sandbox-alipay'
 include 'pippin-service:service-alipay'
-findProject(':pippin-service:service-alipay')?.name = 'service-alipay'
 

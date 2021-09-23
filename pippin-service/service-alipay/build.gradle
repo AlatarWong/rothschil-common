@@ -3,10 +3,25 @@ archivesBaseName = 'service-alipay'
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
+
     implementation('commons-lang:commons-lang:2.6')
     implementation('commons-configuration:commons-configuration:1.10')
     implementation('commons-logging:commons-logging:1.1.1')
+    implementation('commons-codec:commons-codec:1.10')
+    implementation('com.google.zxing:core:2.1')
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation('org.hamcrest:hamcrest-core:1.3')
     implementation('net.sourceforge.nekohtml:nekohtml:1.9.22')
-//    implementation('com.alipay.sdk:alipay-sdk-java:4.10.97.ALL')
     implementation('com.alipay.sdk:alipay-sdk-java:4.10.97.ALL')
+
+    implementation('com.aliyun.oss:aliyun-sdk-oss:3.9.1')
+//    implementation('org.apache.httpcomponents:httpclient:4.4.1')
+//    implementation('org.jdom:jdom2:2.0.6')
+//    implementation('org.codehaus.jettison:jettison:1.1')
+//    implementation('com.aliyun:aliyun-java-sdk-ram:3.1.0')
+//    implementation('com.aliyun:aliyun-java-sdk-kms:2.11.0')
+//    implementation('org.bouncycastle:bcprov-jdk15on:1.67')
+//    implementation('com.aliyun:aliyun-java-sdk-core:4.5.10'){
+//        exclude group:'org.json',module:'json'
+//    }
 }

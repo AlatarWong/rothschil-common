@@ -50,10 +50,10 @@ subprojects {
     }
 
     repositories {
-        maven {
-            allowInsecureProtocol true
-            url 'http://localhost:8081/repository/maven-public/'
-        }
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:8081/repository/maven-public/'
+//        }
         mavenLocal()
         mavenCentral()
 
