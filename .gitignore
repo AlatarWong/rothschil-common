@@ -3,6 +3,8 @@
 ### Example user template
 
 **/auto-generate-code/
+~$*.alioss.*
+
 # IntelliJ project files
 .idea
 *.iml
