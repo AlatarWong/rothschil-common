@@ -18,7 +18,7 @@ dependencies {
         exclude(group:'org.apache.httpcomponents',module:'httpclient')
         exclude(group:'com.google.code.gson',module:'gson')
     }
-
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     implementation('com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4')
 }

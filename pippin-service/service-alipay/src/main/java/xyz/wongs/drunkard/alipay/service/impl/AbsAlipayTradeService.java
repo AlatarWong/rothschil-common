@@ -8,7 +8,6 @@ import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.*;
 import xyz.wongs.drunkard.alipay.config.Configs;
-import xyz.wongs.drunkard.alipay.config.Constants;
 import xyz.wongs.drunkard.alipay.model.TradeStatus;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradeCancelRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePrecreateRequestBuilder;
@@ -19,6 +18,7 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FQueryResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FRefundResult;
 import xyz.wongs.drunkard.alipay.service.AlipayTradeService;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.Utils;
 
 import java.util.concurrent.ExecutorService;

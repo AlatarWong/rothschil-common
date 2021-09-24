@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import xyz.wongs.drunkard.alipay.config.Configs;
 import xyz.wongs.drunkard.alipay.service.AliPayService;
+import xyz.wongs.drunkard.base.property.PropertiesListenerConfig;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

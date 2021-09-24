@@ -4,14 +4,13 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePayRequest;
 import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
-
 import org.apache.commons.lang.StringUtils;
 import xyz.wongs.drunkard.alipay.config.Configs;
-import xyz.wongs.drunkard.alipay.config.Constants;
 import xyz.wongs.drunkard.alipay.model.TradeStatus;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePayRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradeQueryRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPayResult;
+import xyz.wongs.drunkard.base.constant.Constants;
 
 
 /** 当面付2.0具体实现（不提供交易保障接口的集成）

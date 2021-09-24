@@ -5,6 +5,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+/**
+ * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @github <a>https://github.com/rothschil</a>
+ * @date 2021/9/24 - 21:31
+ * @version 1.0.0
+ */
 @Validated
 @Component
 @ConfigurationProperties(prefix="pay")

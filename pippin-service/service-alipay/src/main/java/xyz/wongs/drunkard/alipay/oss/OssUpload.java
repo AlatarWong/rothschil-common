@@ -9,9 +9,10 @@ import com.aliyun.oss.model.ObjectListing;
 import com.aliyun.oss.model.PutObjectResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.wongs.drunkard.alipay.config.Constants;
 import xyz.wongs.drunkard.alipay.pojo.OssBed;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.DateUtils;
+import xyz.wongs.drunkard.base.utils.file.FileUtil;
 
 import java.io.*;
 import java.util.List;

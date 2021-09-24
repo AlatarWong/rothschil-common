@@ -8,13 +8,14 @@ import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import org.apache.commons.lang.StringUtils;
 import xyz.wongs.drunkard.alipay.config.Configs;
-import xyz.wongs.drunkard.alipay.config.Constants;
 import xyz.wongs.drunkard.alipay.model.TradeStatus;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePayRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradeQueryRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPayResult;
 import xyz.wongs.drunkard.alipay.service.impl.hb.HbListener;
 import xyz.wongs.drunkard.alipay.service.impl.hb.TradeListener;
+import xyz.wongs.drunkard.base.constant.Constants;
+
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;
 import java.net.SocketException;
