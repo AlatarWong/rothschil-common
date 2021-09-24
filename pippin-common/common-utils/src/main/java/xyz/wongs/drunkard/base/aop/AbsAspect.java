@@ -4,12 +4,8 @@ import cn.hutool.core.util.URLUtil;
 import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,49 +22,21 @@ import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.Date;
 
-/**
- * @Description 应用全局日志APO 异步日志，正常下执行次序是：@Around @Before ${METHOD} @Around @After @AfterReturning；异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
- * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
- * @date 20/12/2 10:23
- * @Version 1.0.0
-*/
-@Aspect
-@Component
-public class ApplicationLogAop {
-
-    private final ThreadLocal<OperationLog> threadLocal = new ThreadLocal<>();
+/** AOP处理基类，定义队列和方法
+ * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @github <a>https://github.com/rothschil</a>
+ * @date 2021/9/24 - 16:31
+ * @version 1.0.0
+ */
+public abstract class AbsAspect {
 
     @Autowired
-    private QueueTaskHandler queueTaskHandler;
+    protected QueueTaskHandler queueTaskHandler;
 
     @Autowired
-    private AppLogQueue appLogQueue;
+    protected AppLogQueue appLogQueue;
 
-    @Pointcut(value = "@annotation(xyz.wongs.drunkard.base.aop.annotion.ApplicationLog)")
-    public void cutService() {}
-
-    @Before(value = "cutService()")
-    public void before(JoinPoint joinPoint) throws InterruptedException{
-        ApplicationLog applicationLog = getApplicationLog(joinPoint);
-        if(null==applicationLog){
-            return ;
-        }
-        OperationLog operationLog = getOperationLog(applicationLog,joinPoint);
-        threadLocal.set(operationLog);
-    }
-
-    @AfterReturning(returning = "ret",pointcut = "cutService()")
-    public void afterReturning(Object ret){
-        doFinal(ret,null);
-    }
-
-    @AfterThrowing(value ="cutService()", throwing = "e")
-    public void afterThrowing(Exception e) {
-        doFinal(null,e);
-    }
-
-    protected void doFinal(Object ret, Exception e){
+    protected void doFinal(ThreadLocal<OperationLog> threadLocal,Object ret, Exception e){
         int success = 0;
         Date endTime = Date.from(Instant.now());
         OperationLog operationLog = threadLocal.get();
@@ -87,7 +55,13 @@ public class ApplicationLogAop {
         appLogQueue.addQueue(queueTaskHandler);
     }
 
+
     protected OperationLog getOperationLog(ApplicationLog applicationLog, JoinPoint joinPoint){
+        return getOperationLog(joinPoint,applicationLog.value(),applicationLog.key());
+    }
+
+
+    protected OperationLog getOperationLog(JoinPoint joinPoint,String businessName,String key){
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) requestAttributes;
         Assert.notNull(sra,"The ServletRequestAttributes must not be null");
@@ -95,8 +69,6 @@ public class ApplicationLogAop {
         //获取拦截的方法名
         Date beginTime = Date.from(Instant.now());
         String methodName = joinPoint.getSignature().getName();
-        String businessName = applicationLog.value();
-        String key = applicationLog.key();
         // 类名
         String className =joinPoint.getTarget().getClass().getName();
         // 参数
@@ -110,8 +82,13 @@ public class ApplicationLogAop {
         return opt.build();
     }
 
-
-    private static ApplicationLog getApplicationLog(JoinPoint joinPoint){
+    /** 获取 ApplicationLog 注解
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-16:22
+     * @param joinPoint
+     * @return ApplicationLog
+     **/
+    protected static ApplicationLog getApplicationLog(JoinPoint joinPoint){
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
@@ -120,5 +97,4 @@ public class ApplicationLogAop {
         }
         return null;
     }
-
 }

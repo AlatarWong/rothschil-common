@@ -15,9 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-/**
+/**请求的拦截器
  * @author WCNGS@QQ.COM
- * @Description 请求的拦截器
  * @Github <a>https://github.com/rothschil</a>
  * @date 20/10/30 22:08
  * @Version 1.0.0

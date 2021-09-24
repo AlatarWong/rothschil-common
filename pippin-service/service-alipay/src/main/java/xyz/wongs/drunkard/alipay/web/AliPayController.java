@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import xyz.wongs.drunkard.alipay.config.Configs;
-import xyz.wongs.drunkard.alipay.pojo.OssPorperty;
 import xyz.wongs.drunkard.alipay.service.AliPayService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +28,7 @@ import java.util.Map;
  * @date 2021/9/23 - 12:29
  * @version 1.0.0
  */
+
 @Controller
 public class AliPayController {
 

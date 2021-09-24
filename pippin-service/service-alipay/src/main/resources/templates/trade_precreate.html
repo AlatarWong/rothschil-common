@@ -158,7 +158,7 @@
             <li class="last">3、确认完成</li>
         </ol>
     </div>
-    <form name=alipayment action="" method=post target="_blank">
+    <form name=alipayment action="#" th:action="@{/pay-ment}" method=post target="_blank">
         <div id="body" style="clear:left">
             <dl class="content">
                 <dt>商户订单号：</dt>
@@ -184,7 +184,7 @@
                 <dt>不可打折金额：</dt>
                 <dd>
                     <span class="null-star">*</span>
-                    <input size="30" name="undiscountableAmount" />
+                    <input size="30" name="unAmount" />
                     <span>可填,用于标识不可打折金额，单位为元，精确到小数点后2位</span>
                 </dd>
 
