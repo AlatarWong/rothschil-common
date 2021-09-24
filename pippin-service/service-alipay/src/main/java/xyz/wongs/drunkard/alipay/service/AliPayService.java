@@ -7,17 +7,15 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import xyz.wongs.drunkard.alipay.config.Configs;
-import xyz.wongs.drunkard.alipay.config.Constants;
 import xyz.wongs.drunkard.alipay.model.ExtendParams;
 import xyz.wongs.drunkard.alipay.model.GoodsDetail;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePrecreateRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
 import xyz.wongs.drunkard.alipay.oss.OssUpload;
 import xyz.wongs.drunkard.alipay.pojo.Order;
+import xyz.wongs.drunkard.alipay.pojo.OssBed;
 import xyz.wongs.drunkard.alipay.service.impl.AlipayTradeServiceImpl;
 import xyz.wongs.drunkard.alipay.util.FileUtil;
 import xyz.wongs.drunkard.alipay.util.ZxingUtils;
@@ -40,12 +38,8 @@ public class AliPayService {
 
     private static final Logger logger = LoggerFactory.getLogger(AliPayService.class);
 
-    @Value("${alipay.callback.url}")
-    private String alipayCallbackUrl;
-
     @Autowired
-    @Qualifier("aliossMap")
-    protected Map<String, String> aliossMap;
+    private OssBed ossBed;
 
     /** 支付宝生成二维码
      * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -87,13 +81,12 @@ public class AliPayService {
      **/
     private String uploadOss(AlipayTradePrecreateResponse response){
         String qrPath = String.format("/qr-%s.png", response.getOutTradeNo());
-        String foldPath = aliossMap.get(Constants.OSS_TEMP_DIRECTORY)+qrPath;
+        String foldPath = ossBed.getDirectory()+qrPath;
         FileUtil.existsFolder(foldPath);
-        File  folder = new File(foldPath);
-        ZxingUtils.getQRCodeImge(response.getQrCode(), 256, folder.getPath());
+        File folder = new File(foldPath);
         ZxingUtils.getQRCodeImge(response.getQrCode(), 256, folder.getPath());
         // 将生成的二维码上传到阿里云OSS，然后将二维码url地址返回给前端展示
-        return OssUpload.upload(aliossMap,folder.getPath());
+        return OssUpload.upload(ossBed,folder.getPath());
     }
 
     /** 打印应答
@@ -223,7 +216,7 @@ public class AliPayService {
                 .setOperatorId(operatorId).setStoreId(storeId).setExtendParams(extendParams)
                 .setTimeoutExpress(timeoutExpress)
                 //支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
-                .setNotifyUrl(alipayCallbackUrl)
+                .setNotifyUrl(ossBed.getAlipayCallbackUrl())
                 .setGoodsDetailList(goodsDetailList);
                 return builder;
     }

@@ -10,12 +10,12 @@ import com.aliyun.oss.model.PutObjectResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.wongs.drunkard.alipay.config.Constants;
+import xyz.wongs.drunkard.alipay.pojo.OssBed;
 import xyz.wongs.drunkard.alipay.util.DateUtil;
 import xyz.wongs.drunkard.alipay.util.FileUtil;
 
 import java.io.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -32,20 +32,20 @@ public class OssUpload {
     /** 上传OSS服务器
      * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
      * @date 2021/9/23-9:31
-     * @param aliossMap 配置文件
+     * @param ossBed 配置文件
      * @param local 本地路径
      * @return String   OSS资源地址
      **/
-    public static String upload(Map<String, String> aliossMap, String local) {
+    public static String upload(OssBed ossBed, String local) {
 
         File file = new File(local);
         if(!file.exists()){
             throw new SecurityException("本地文件夹不存在");
         }
-        OSS ossClient = OssClientFactory.INSTANCE.singletonInstance(aliossMap);
+        OSS ossClient = OssClientFactory.INSTANCE.singletonInstance(ossBed);
         String responseUrl = null;
         if(!file.isDirectory()){
-            responseUrl = putFile(aliossMap.get(Constants.OSS_BUCKET_NAME),ossClient,file);
+            responseUrl = putFile(ossBed.getBucketname(),ossClient,file);
         } else {
             throw new SecurityException("这是一个文件夹");
 //            File[] files = new File(local).listFiles();
@@ -57,8 +57,8 @@ public class OssUpload {
 //            }
         }
         OssClientFactory.INSTANCE.shutDown();
-        responseUrl = aliossMap.get(Constants.OSS_ENDPOINT)+"/"+responseUrl;
-        return getRespUrl(aliossMap.get(Constants.OSS_BUCKET_NAME),responseUrl);
+        responseUrl = ossBed.getEndpoint()+"/"+responseUrl;
+        return getRespUrl(ossBed.getBucketname(),responseUrl);
     }
 
     private static String putFile(String bucketName, OSS ossClient,File file){
@@ -90,15 +90,15 @@ public class OssUpload {
     /**
      * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
      * @date 2021/9/23-14:39
-     * @param aliossMap 配置文件
+     * @param ossBed 配置文件
      * @param local 文件存放路径
      * @param prefix    文件前缀，如 xx/xx等
      * @return
      **/
-    public static void downLoad(Map<String, String> aliossMap, String local,String prefix) {
+    public static void downLoad(OssBed ossBed, String local,String prefix) {
 
-        OSS ossClient = OssClientFactory.INSTANCE.singletonInstance(aliossMap);
-        ObjectListing objectListing = ossClient.listObjects(aliossMap.get(Constants.OSS_BUCKET_NAME), prefix);
+        OSS ossClient = OssClientFactory.INSTANCE.singletonInstance(ossBed);
+        ObjectListing objectListing = ossClient.listObjects(ossBed.getBucketname(), prefix);
         List<OSSObjectSummary> summaryList = objectListing.getObjectSummaries();
         if (summaryList.isEmpty()) {
             return;
@@ -110,7 +110,7 @@ public class OssUpload {
 
         // 枚举文件夹
         for (OSSObjectSummary ossObjectSummary : summaryList) {
-            ossObject = ossClient.getObject(aliossMap.get(Constants.OSS_BUCKET_NAME), ossObjectSummary.getKey());
+            ossObject = ossClient.getObject(ossBed.getBucketname(), ossObjectSummary.getKey());
             is = ossObject.getObjectContent();
             if (null == is) {
                 continue;

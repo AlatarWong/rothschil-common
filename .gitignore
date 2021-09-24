@@ -3,7 +3,7 @@
 ### Example user template
 
 **/auto-generate-code/
-~$*.alioss.*
+**/resources/alioss.properties
 
 # IntelliJ project files
 .idea
@@ -705,4 +705,3 @@ tags
 ### TortoiseGit template
 # Project-level settings
 /.tgitconfig
-

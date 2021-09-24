@@ -1,5 +1,6 @@
 package xyz.wongs.drunkard.war3.web.moon.controller;
 
+import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
@@ -9,7 +10,6 @@ import xyz.wongs.drunkard.base.message.annoation.ResponseResult;
 import xyz.wongs.drunkard.war3.domain.entity.Location;
 import xyz.wongs.drunkard.war3.domain.service.LocationService;
 
-import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +66,7 @@ public class LocationController{
      **/
     @ApplicationLog
     @GetMapping("/valid")
-    public Map<String, Object> testValidator(@NotNull(message = "userId不能为空") Integer userId) {
+    public Map<String, Object> testValidator( Integer userId) {
         HashMap<String, Object> data = new HashMap<>(3);
         data.put("info", "测试成功 [userId]="+userId);
         return data;

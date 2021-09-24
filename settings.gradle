@@ -3,16 +3,17 @@ rootProject.name = 'pippin'
 include 'groovy-demo'
 
 include 'pippin-common:common-utils'
+include 'pippin-common:common-jasypt'
 include 'pippin-common:common-persistence:persistence-jpa'
 include 'pippin-common:common-persistence:persistence-mybatis'
 include 'pippin-service:service-image'
 include 'pippin-service:service-jwt'
-include 'pippin-service:service-location:location-jpa'
-include 'pippin-service:service-location:location-mybatis'
+//include 'pippin-service:service-location:location-jpa'
+//include 'pippin-service:service-location:location-mybatis'
 include 'pippin-service:service-thumbnailator'
 
-include 'pippin-service:service-oauth2:oauth2-resource'
-include 'pippin-service:service-oauth2:oauth2-server'
+//include 'pippin-service:service-oauth2:oauth2-resource'
+//include 'pippin-service:service-oauth2:oauth2-server'
 
 include 'pippin-service:service-alipay'
 

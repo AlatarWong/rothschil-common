@@ -2,9 +2,7 @@ package xyz.wongs.drunkard.alipay.oss;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import xyz.wongs.drunkard.alipay.config.Constants;
-
-import java.util.Map;
+import xyz.wongs.drunkard.alipay.pojo.OssBed;
 
 /**
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -25,13 +23,13 @@ public enum OssClientFactory {
     /** 获取单例
      * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
      * @date 2021/9/23-10:01
-     * @param aliossMap
+     * @param ossBed
      * @return OSS
      **/
-    public OSS singletonInstance(Map<String, String> aliossMap){
+    public OSS singletonInstance(OssBed ossBed){
 
         if(null==CLIENT){
-            CLIENT = new OSSClientBuilder().build(aliossMap.get(Constants.OSS_ENDPOINT), aliossMap.get(Constants.OSS_ACCESS_KEY_ID), aliossMap.get(Constants.OSS_ACCESS_KEY_SECRET));
+            CLIENT = new OSSClientBuilder().build(ossBed.getEndpoint(), ossBed.getKey(), ossBed.getSecret());
         }
         return CLIENT;
     }
