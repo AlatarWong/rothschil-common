@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import xyz.wongs.drunkard.alipay.pojo.OssBed;
-import xyz.wongs.drunkard.alipay.pojo.OssPorperty;
+import xyz.wongs.drunkard.alipay.pojo.OssSdk;
 
 /**
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -23,7 +23,7 @@ public class OssPropertiesClassLoader {
     private static final Logger LOG = LoggerFactory.getLogger(OssPropertiesClassLoader.class);
 
     @Autowired
-    private OssPorperty ossPorperty;
+    private OssSdk ossSdk;
 
     @Autowired
     private OssBed ossBed;
@@ -32,13 +32,13 @@ public class OssPropertiesClassLoader {
     public StringEncryptor stringEncryptor() {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-        config.setPassword(ossPorperty.getStorehouse());
-        config.setKeyObtentionIterations(ossPorperty.getIterations());
-        config.setPoolSize(ossPorperty.getSize());
-        config.setProviderName(ossPorperty.getProviderName());
-        config.setSaltGeneratorClassName(ossPorperty.getSaltGeneratorClassName());
-        config.setIvGeneratorClassName(ossPorperty.getLvGeneratorClassName());
-        config.setStringOutputType(ossPorperty.getStringOutputType());
+        config.setPassword(ossSdk.getStorehouse());
+        config.setKeyObtentionIterations(ossSdk.getIterations());
+        config.setPoolSize(ossSdk.getSize());
+        config.setProviderName(ossSdk.getProviderName());
+        config.setSaltGeneratorClassName(ossSdk.getSaltGeneratorClassName());
+        config.setIvGeneratorClassName(ossSdk.getLvGeneratorClassName());
+        config.setStringOutputType(ossSdk.getStringOutputType());
         encryptor.setConfig(config);
         return encryptor;
     }

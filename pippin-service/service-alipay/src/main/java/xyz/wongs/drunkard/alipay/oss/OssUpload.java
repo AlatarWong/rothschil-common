@@ -11,8 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.wongs.drunkard.alipay.config.Constants;
 import xyz.wongs.drunkard.alipay.pojo.OssBed;
-import xyz.wongs.drunkard.alipay.util.DateUtil;
-import xyz.wongs.drunkard.alipay.util.FileUtil;
+import xyz.wongs.drunkard.base.utils.DateUtils;
 
 import java.io.*;
 import java.util.List;
@@ -62,7 +61,7 @@ public class OssUpload {
     }
 
     private static String putFile(String bucketName, OSS ossClient,File file){
-        String filePath = FOLDER + DateUtil.getTransId() + FileUtil.suffix(file.getName());
+        String filePath = FOLDER + DateUtils.getTransId() + FileUtil.suffix(file.getName());
         try {
             FileInputStream fis = new FileInputStream(file);
             PutObjectResult result = ossClient.putObject(bucketName, filePath, fis);

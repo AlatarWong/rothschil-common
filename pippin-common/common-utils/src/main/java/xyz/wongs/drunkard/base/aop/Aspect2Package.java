@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
 
 /**
- * 应用全局日志APO 异步日志，正常下执行次序是：@Around @Before ${METHOD} @Around @After @AfterReturning；异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
+ * 应用全局日志APO 异步日志：
+ * 1、正常下执行次序是：@Around @Before ${METHOD} @Around @After @AfterReturning；
+ * 2、异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
  * 处理 全局Controller下面的public 方法
  * @author WCNGS@QQ.COM
  * @Github <a>https://github.com/rothschil</a>
@@ -25,8 +27,13 @@ public class Aspect2Package extends AbsAspect {
 
     protected final ThreadLocal<OperationLog> threadLocal = new ThreadLocal<>();
 
+    /** 切面
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-16:39
+     **/
     @Pointcut("execution(public * xyz.wongs..*.web.*Controller.*(..))")
     public void cutService() {
+
     }
 
     @Before(value = "cutService()")
@@ -37,12 +44,12 @@ public class Aspect2Package extends AbsAspect {
 
     @AfterReturning(returning = "ret", pointcut = "cutService()")
     public void afterReturning(Object ret) {
-        doFinal(threadLocal, ret, null);
+        send2Queue(threadLocal, ret, null);
     }
 
     @AfterThrowing(value = "cutService()", throwing = "e")
     public void afterThrowing(Exception e) {
-        doFinal(threadLocal, null, e);
+        send2Queue(threadLocal, null, e);
     }
 
 

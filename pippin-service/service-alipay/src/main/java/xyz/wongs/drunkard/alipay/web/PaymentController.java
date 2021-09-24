@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import xyz.wongs.drunkard.alipay.pojo.form.Payment;
-import xyz.wongs.drunkard.alipay.service.AliPayService;
+import xyz.wongs.drunkard.alipay.service.PaymentService;
 
 /**
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -21,11 +21,14 @@ public class PaymentController {
     private static final Logger LOG = LoggerFactory.getLogger(PaymentController.class);
 
     @Autowired
-    private AliPayService aliPayService;
+    private PaymentService paymentService;
 
     @PostMapping("/pay-ment")
     public String payment(@ModelAttribute Payment payment) {
-        System.out.println(payment.toString());
+        LOG.info(payment.toString());
+
+
+
         return "index";
     }
 

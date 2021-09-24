@@ -6,12 +6,15 @@ package xyz.wongs.drunkard.base.utils;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
-import xyz.wongs.drunkard.base.constant.Constant;
+import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.common.text.StrFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -33,6 +36,124 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     private static final char SEPARATOR = '_';
     private static final String CHARSET_NAME = "UTF-8";
     private static final String PARR = "<([a-zA-Z]+)[^<>]*>";
+
+    /** 获取UUID
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-20:45
+     * @param
+     * @return String
+     **/
+    public static String getUuid(){
+        return UUID.randomUUID().toString().replaceAll("-","");
+    }
+
+    /** 字符转换为Unicode
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-20:45
+     * @param input
+     * @return String
+     **/
+    public static String convert(String input) {
+
+        input = (input == null ? "" : input);
+        String tmp;
+        StringBuffer sb = new StringBuffer(1000);
+        char c;
+        int i, j;
+        sb.setLength(0);
+        for (i = 0; i < input.length(); i++) {
+            c = input.charAt(i);
+            sb.append("\\u");
+            //取出高8位
+            j = (c >>> 8);
+            tmp = Integer.toHexString(j);
+            if (tmp.length() == 1) {
+                sb.append("0");
+            }
+            sb.append(tmp);
+            //取出低8位
+            j = (c & 0xFF);
+            tmp = Integer.toHexString(j);
+            if (tmp.length() == 1) {
+                sb.append("0");
+            }
+            sb.append(tmp);
+
+        }
+        return (new String(sb));
+    }
+
+    /** Unicode 换为 字符转
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-20:45
+     * @param input
+     * @return String
+     **/
+    public static String revert(String input) {
+        input = (input == null ? "" : input);
+        //如果不是unicode码则原样返回
+        if (input.indexOf("\\u") == -1) {
+            return input;
+
+        }
+        StringBuffer sb = new StringBuffer(1000);
+
+        for (int i = 0; i < input.length() - 6; ) {
+            String strTemp = input.substring(i, i + 6);
+            String value = strTemp.substring(2);
+            int c = 0;
+            for (int j = 0; j < value.length(); j++) {
+                char tempChar = value.charAt(j);
+                int t = 0;
+                switch (tempChar) {
+                    case 'a':
+                        t = 10;
+                        break;
+                    case 'b':
+                        t = 11;
+                        break;
+                    case 'c':
+                        t = 12;
+                        break;
+                    case 'd':
+                        t = 13;
+                        break;
+                    case 'e':
+                        t = 14;
+                        break;
+                    case 'f':
+                        t = 15;
+                        break;
+                    default:
+                        t = tempChar - 48;
+                        break;
+                }
+                c += t * ((int) Math.pow(16, (value.length() - j - 1)));
+            }
+            sb.append((char) c);
+            i = i + 6;
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-20:46
+     * @param totalAmount
+     * @param unAmount
+     * @return String
+     **/
+    public static String toPrice(int totalAmount, float unAmount) {
+
+        float amout = totalAmount/1000;
+        if((amout-unAmount)<0){
+            throw new DrunkardException(ResultCode.PAY_ACTUAL_PRICE);
+        }
+        //构造方法的字符格式这里如果小数不足2位,会以0补足.
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        return decimalFormat.format(amout-unAmount);
+    }
 
     @SuppressWarnings("unchecked")
     public static <T> T cast(Object obj) {
@@ -59,10 +180,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return StrFormatter.format(template, params);
     }
 
-    public static String getUuid() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
-    }
-
 	/** 随机反馈字符串
 	 * @Description
 	 * @param length
@@ -76,7 +193,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		StringBuffer sb=new StringBuffer();
 		for(int i=0;i<length;i++){
 			int number=random.nextInt(62);
-			sb.append(Constant.RANDOM_STR.charAt(number));
+			sb.append(Constants.RANDOM_STR.charAt(number));
 		}
 		return sb.toString();
 	}
@@ -602,12 +719,12 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         if (name == null || name.isEmpty()) {
             // 没必要转换
             return "";
-        } else if (!name.contains(Constant.UNDERSCORE)) {
+        } else if (!name.contains(Constants.UNDERSCORE)) {
             // 不含下划线，仅将首字母大写
             return name.substring(0, 1).toUpperCase() + name.substring(1);
         }
         // 用下划线将原始字符串分割
-        String[] camels = name.split(Constant.UNDERSCORE);
+        String[] camels = name.split(Constants.UNDERSCORE);
         for (String camel : camels) {
             // 跳过原始字符串中开头、结尾的下换线或双重下划线
             if (camel.isEmpty()) {

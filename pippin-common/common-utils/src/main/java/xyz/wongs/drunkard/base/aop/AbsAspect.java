@@ -36,7 +36,7 @@ public abstract class AbsAspect {
     @Autowired
     protected AppLogQueue appLogQueue;
 
-    protected void doFinal(ThreadLocal<OperationLog> threadLocal,Object ret, Exception e){
+    protected void send2Queue(ThreadLocal<OperationLog> threadLocal, Object ret, Exception e){
         int success = 0;
         Date endTime = Date.from(Instant.now());
         OperationLog operationLog = threadLocal.get();

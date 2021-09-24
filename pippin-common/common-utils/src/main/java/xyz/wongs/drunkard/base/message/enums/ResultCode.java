@@ -97,7 +97,9 @@ public enum ResultCode {
     SYNC_LOCK_FAILURE(4001, "获取锁失败"),
     SYNC_LOCK_SUCCESS(4002, "获取锁成功"),
     SYNC_LOCK_MANY_REQ(4003, "请求太多"),
-    SYNC_LOCK_NOT_ENOUGH_STOCK(4004, "库存不够");
+    SYNC_LOCK_NOT_ENOUGH_STOCK(4004, "库存不够"),
+
+    PAY_ACTUAL_PRICE(5010, "The discount amount is greater than the actual price");
 
     /**
      *

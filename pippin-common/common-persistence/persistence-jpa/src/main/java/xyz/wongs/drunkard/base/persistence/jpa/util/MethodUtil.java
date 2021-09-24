@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.base.persistence.jpa.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
-import xyz.wongs.drunkard.base.constant.Constant;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
 import xyz.wongs.drunkard.base.utils.DateUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
@@ -74,17 +74,17 @@ public class MethodUtil {
                 String fieldType = field.getType().getSimpleName();
                 String value = o.toString();
                 switch (fieldType) {
-                    case Constant.BASIC_TYPE_INTEGER:
-                    case Constant.BASIC_TYPE_INT:
+                    case Constants.BASIC_TYPE_INTEGER:
+                    case Constants.BASIC_TYPE_INT:
                         predicate = doInteger(cb, root, field, value);
                         break;
-                    case Constant.BASIC_TYPE_BIG_DECIMAL:
+                    case Constants.BASIC_TYPE_BIG_DECIMAL:
                         predicate = cb.equal(root.get(field.getName()).as(BigDecimal.class), new BigDecimal(value));
                         break;
-                    case Constant.BASIC_TYPE_LONG:
+                    case Constants.BASIC_TYPE_LONG:
                         predicate = cb.equal(root.get(field.getName()).as(Long.class), Long.valueOf(value));
                         break;
-                    case Constant.BASIC_TYPE_DATE:
+                    case Constants.BASIC_TYPE_DATE:
                         predicate = cb.equal(root.get(field.getName()).as(Date.class), DateUtils.parseDate(value));
                         break;
                     default:

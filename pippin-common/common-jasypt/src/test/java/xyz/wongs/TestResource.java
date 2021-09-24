@@ -19,12 +19,12 @@ public class TestResource {
         encryptor.setConfig(config);
 
 
-        String key = "LTAI4FrEbUa8Baxc9H9hzXE6";
+        String key = "x";
         String encrypt =encryptor.encrypt(key);
         System.out.println("[加密1]"+encrypt);
         System.out.println("[解密1]"+encryptor.decrypt(encrypt));
 
-        String key2 = "NxKeFzbWICnBmHCHz6Tg2uTlh0dzuq";
+        String key2 = "x";
         String encrypt2 =encryptor.encrypt(key2);
         System.out.println("[加密2]"+encrypt2);
         System.out.println("[解密2]"+encryptor.decrypt(encrypt2));

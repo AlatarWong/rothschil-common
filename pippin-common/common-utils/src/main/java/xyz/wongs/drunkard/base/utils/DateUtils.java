@@ -7,6 +7,8 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,6 +32,19 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     public static Date getNowDate() {
         return new Date();
+    }
+
+
+    /** 返回 yyyyMMddHHmmss 时间格式加上 6位随机数字
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/24-20:47
+     * @param
+     * @return String
+     **/
+    public static String getTransId(){
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern(YYYYMMDDHHMMSS);
+        return dtf2.format(dateTime);
     }
 
     /**

@@ -68,6 +68,10 @@ dependencies {
 //    }
 
     compileOnly(libraries.'spring-tx')
+//    api(libraries.'spring-boot-configuration-processor'){
+//        exclude group:'commons-io', module: 'commons-io'
+//    }
+
 
     api group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
     api group: 'org.hyperic', name: 'sigar', version: '1.6.4'

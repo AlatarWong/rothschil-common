@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.alipay.model;
 
 
-import xyz.wongs.drunkard.alipay.util.Utils;
+import xyz.wongs.drunkard.base.utils.Utils;
 import com.google.gson.annotations.SerializedName;
 
 /** 商品明细
@@ -68,6 +68,26 @@ public class GoodsDetail {
         return info;
     }
 
+    /** 创建一个商品信息，参数含义分别为商品id（使用国标）、商品名称、商品价格（单位为分）、商品数量
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @description //TODO
+     * @date 2021/9/23-9:59
+     * @param goodsId
+     * @param goodsName
+     * @param price
+     * @param quantity
+     * @return GoodsDetail
+     **/
+    public static GoodsDetail newInstance(String goodsId, String goodsName, String price, int quantity) {
+
+        GoodsDetail info = new GoodsDetail();
+        info.setGoodsId(goodsId);
+        info.setGoodsName(goodsName);
+        info.setPrice(price);
+        info.setQuantity(quantity);
+        return info;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("GoodsDetail{");
@@ -124,6 +144,11 @@ public class GoodsDetail {
 
     public GoodsDetail setPrice(long price) {
         this.price = Utils.toAmount(price);
+        return this;
+    }
+
+    public GoodsDetail setPrice(String price) {
+        this.price = price;
         return this;
     }
 

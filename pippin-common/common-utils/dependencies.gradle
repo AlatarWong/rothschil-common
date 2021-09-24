@@ -41,6 +41,9 @@ ext.libraries = [
         'spring-boot-starter-aop':"org.springframework.boot:spring-boot-starter-aop:${versions.springBootVersion}",
         'spring-boot-starter-logging':"org.springframework.boot:spring-boot-starter-logging:${versions.springBootVersion}",
         'spring-boot-starter-thymeleaf':"org.springframework.boot:spring-boot-starter-thymeleaf:${versions.springBootVersion}",
+        'spring-boot-configuration-processor':"org.springframework.boot:spring-boot-configuration-processor:${versions.springBootVersion}",
+
+
         'thymeleaf':"org.thymeleaf:thymeleaf:${versions.thymeleafVersion}",
 
         'fastjson':"com.alibaba:fastjson:${versions.fastjsonVersion}",

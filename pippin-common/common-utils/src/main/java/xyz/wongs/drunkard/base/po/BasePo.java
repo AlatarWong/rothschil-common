@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.base.po;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import xyz.wongs.drunkard.base.config.Global;
-import xyz.wongs.drunkard.base.constant.Constant;
+import xyz.wongs.drunkard.base.constant.Constants;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -63,7 +63,7 @@ public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> {
     private Map<String, Object> params;
 
     public String getDbType() {
-        return Global.getConfig(Constant.DB_TYPE);
+        return Global.getConfig(Constants.DB_TYPE);
     }
 
     public Map<String, Object> getParams() {

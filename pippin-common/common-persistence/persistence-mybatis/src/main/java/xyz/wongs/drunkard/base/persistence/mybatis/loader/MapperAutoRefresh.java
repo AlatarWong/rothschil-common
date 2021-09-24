@@ -14,7 +14,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
-import xyz.wongs.drunkard.base.constant.Constant;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.thread.ThreadPoolUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 
@@ -359,7 +359,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
             if (containsKey(key)) {
                 throw new IllegalArgumentException(name + " already contains value for " + key);
             }
-            if (key.contains(Constant.POINT)) {
+            if (key.contains(Constants.POINT)) {
                 final String shortKey = getShortName(key);
                 if (super.get(shortKey) == null) {
                     super.put(shortKey, value);

@@ -14,8 +14,8 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @Component
 @ConfigurationProperties(prefix="oss")
-@PropertySource(value = "classpath:aliyun-sdk.properties")
-public class OssPorperty {
+@PropertySource(value = "classpath:oss-sdk.properties")
+public class OssSdk {
 
     private String storehouse;
     private String iterations;

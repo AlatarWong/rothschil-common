@@ -19,7 +19,7 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FQueryResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FRefundResult;
 import xyz.wongs.drunkard.alipay.service.AlipayTradeService;
-import xyz.wongs.drunkard.alipay.util.Utils;
+import xyz.wongs.drunkard.base.utils.Utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

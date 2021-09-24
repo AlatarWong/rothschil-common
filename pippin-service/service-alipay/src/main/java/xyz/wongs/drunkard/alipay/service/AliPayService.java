@@ -17,8 +17,8 @@ import xyz.wongs.drunkard.alipay.oss.OssUpload;
 import xyz.wongs.drunkard.alipay.pojo.Order;
 import xyz.wongs.drunkard.alipay.pojo.OssBed;
 import xyz.wongs.drunkard.alipay.service.impl.AlipayTradeServiceImpl;
-import xyz.wongs.drunkard.alipay.util.FileUtil;
 import xyz.wongs.drunkard.alipay.util.ZxingUtils;
+import xyz.wongs.drunkard.base.utils.file.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;

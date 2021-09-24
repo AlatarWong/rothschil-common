@@ -8,7 +8,10 @@ package xyz.wongs.drunkard.base.constant;
  * @date 2020/9/9 15:00
  * @Version 1.0.0
 */
-public class Constant {
+public class Constants {
+
+    private Constants() {
+    }
 
     public static String DB_TYPE ="db.type";
 
@@ -48,6 +51,11 @@ public class Constant {
      */
     public static final String SLASH="/";
 
+    /**
+     * 双斜杠
+     */
+    public static final String DOUL_SLASH="//";
+
 
     public static final String STATUS_EFF = "Y";
 
@@ -66,11 +74,6 @@ public class Constant {
 
     public static final String ISO_8859 = "ISO-8859-1";
 
-
-    /**
-     * 通用成功标识
-     */
-    public static final String SUCCESS = "0";
 
     /**
      * 通用失败标识
@@ -199,4 +202,22 @@ public class Constant {
 
     public static final String RESULT="result";
     public static final String SECKILL="恭喜您，秒杀成功。";
+
+    /**
+     * 成功
+     */
+    public static final String SUCCESS = "10000";
+    /**
+     * 用户支付中
+     */
+    public static final String PAYING  = "10003";
+    /**
+     * 失败
+     */
+
+    public static final String FAILED  = "40004";
+    /**
+     * 系统异常
+     */
+    public static final String ERROR   = "20000";
 }
