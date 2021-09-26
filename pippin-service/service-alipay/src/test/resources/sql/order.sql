@@ -3,7 +3,7 @@ CREATE TABLE `mmall_order` (
 `order_no` bigint(20) DEFAULT NULL COMMENT '订单号',
 `user_id` int(11) DEFAULT NULL COMMENT '用户id',
 `shipping_id` int(11) DEFAULT NULL,
-`payment` decimal(20,2) DEFAULT NULL COMMENT '实际付款金额,单位是元,保留两位小数',
+`orderInfo` decimal(20,2) DEFAULT NULL COMMENT '实际付款金额,单位是元,保留两位小数',
 `payment_type` int(4) DEFAULT NULL COMMENT '支付类型,1-在线支付',
 `postage` int(10) DEFAULT NULL COMMENT '运费,单位是元',
 `status` int(10) DEFAULT NULL COMMENT '订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭',

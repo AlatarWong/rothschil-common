@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xyz.wongs.drunkard.alipay.pojo.OssBed;
 import xyz.wongs.drunkard.alipay.pojo.OssSdk;
 
 /**
@@ -24,9 +23,6 @@ public class OssPropertiesClassLoader {
 
     @Autowired
     private OssSdk ossSdk;
-
-    @Autowired
-    private OssBed ossBed;
 
     @Bean("jasyptStringEncryptor")
     public StringEncryptor stringEncryptor() {

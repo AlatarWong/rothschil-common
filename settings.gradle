@@ -1,6 +1,6 @@
 rootProject.name = 'pippin'
 
-include 'groovy-demo'
+//include 'groovy-demo'
 
 include 'pippin-common:common-utils'
 include 'pippin-common:common-jasypt'

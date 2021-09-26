@@ -19,7 +19,10 @@ import java.util.concurrent.BlockingQueue;
 public class HbQueue {
     private static Log log = LogFactory.getLog(HbQueue.class);
 
-    public static final int QUEUE_SIZE = 300;   // 最多同时保存300条交易记录
+    /**
+     * 最多同时保存300条交易记录
+      */
+    public static final int QUEUE_SIZE = 300;
     private static final BlockingQueue<SysTradeInfo> queue = new ArrayBlockingQueue<SysTradeInfo>(QUEUE_SIZE);
 
     public synchronized static void offer(SysTradeInfo info) {

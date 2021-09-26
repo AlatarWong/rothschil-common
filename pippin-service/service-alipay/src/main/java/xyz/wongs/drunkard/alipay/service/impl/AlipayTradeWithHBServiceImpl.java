@@ -7,7 +7,7 @@ import com.alipay.api.request.AlipayTradePayRequest;
 import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import org.apache.commons.lang.StringUtils;
-import xyz.wongs.drunkard.alipay.config.Configs;
+import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.model.TradeStatus;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePayRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradeQueryRequestBuilder;
@@ -15,6 +15,7 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPayResult;
 import xyz.wongs.drunkard.alipay.service.impl.hb.HbListener;
 import xyz.wongs.drunkard.alipay.service.impl.hb.TradeListener;
 import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.property.PropConfig;
 
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;
@@ -43,13 +44,13 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
 
         public AlipayTradeWithHBServiceImpl build() {
             if (StringUtils.isEmpty(gatewayUrl)) {
-                gatewayUrl = Configs.getOpenApiDomain(); // 与mcloudmonitor网关地址不同
+                gatewayUrl =  PropConfig.getProperty(PayConst.API_OPEN);
             }
             if (StringUtils.isEmpty(appid)) {
-                appid = Configs.getAppid();
+                appid = PropConfig.getProperty(PayConst.APPID);
             }
             if (StringUtils.isEmpty(privateKey)) {
-                privateKey = Configs.getPrivateKey();
+                privateKey = PropConfig.getProperty(PayConst.PRI_KEY);
             }
             if (StringUtils.isEmpty(format)) {
                 format = "json";
@@ -58,10 +59,10 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
                 charset = "utf-8";
             }
             if (StringUtils.isEmpty(alipayPublicKey)) {
-                alipayPublicKey = Configs.getAlipayPublicKey();
+                alipayPublicKey = PropConfig.getProperty(PayConst.ALI_PUB_KEY);
             }
             if (StringUtils.isEmpty(signType)) {
-                signType = Configs.getSignType();
+                signType = PropConfig.getProperty(PayConst.SIGN_TYPE);
             }
             if (listener == null) {
                 listener = new HbListener();  // 默认监听器

@@ -7,6 +7,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,7 +20,6 @@ import java.util.Map;
 
 /** 使用了zxing库进行二维码的生成
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @description //TODO
  * @github <a>https://github.com/rothschil</a>
  * @date 2021/9/23 - 10:16
  * @version 1.0.0
@@ -48,14 +49,29 @@ public class ZxingUtils {
         }
     }
 
+
     /** 将内容contents生成长宽均为width的图片，图片路径由imgPath指定
-     */
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/26-10:36
+     * @param contents  图片内容
+     * @param width 图片宽度
+     * @param imgPath   图片保存路径
+     * @return File
+     **/
     public static File getQRCodeImge(String contents, int width, String imgPath) {
         return getQRCodeImge(contents, width, width, imgPath);
     }
 
+
     /** 将内容contents生成长为width，宽为width的图片，图片路径由imgPath指定
-     */
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/26-10:37
+     * @param contents 内容
+     * @param width 宽度
+     * @param height    高度
+     * @param imgPath   图片保存路径
+     * @return File
+     **/
 	public static File getQRCodeImge(String contents, int width, int height, String imgPath) {
 		try {
             Map<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
@@ -66,12 +82,10 @@ public class ZxingUtils {
 
             File imageFile = new File(imgPath);
 			writeToFile(bitMatrix, "png", imageFile);
-
             return imageFile;
-
 		} catch (Exception e) {
 			log.error("create QR code error!", e);
-            return null;
+            throw new DrunkardException(ResultCode.QR_CODE_ERR);
 		}
 	}
 }

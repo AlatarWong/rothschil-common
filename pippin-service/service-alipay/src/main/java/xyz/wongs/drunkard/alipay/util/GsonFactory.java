@@ -18,17 +18,17 @@ import java.util.List;
 public class GsonFactory {
 
     private static class GsonHolder {
-        private static Type exceptionListType = new TypeToken<List<ExceptionInfo>>(){}.getType();
-        private static Type tradeInfoListType = new TypeToken<List<TradeInfo>>(){}.getType();
+        private static final Type EXCEPTION_LIST_TYPE = new TypeToken<List<ExceptionInfo>>(){}.getType();
+        private static final Type TRADE_INFO_LIST_TYPE = new TypeToken<List<TradeInfo>>(){}.getType();
 
-        private static Gson gson = new GsonBuilder()
-                                .registerTypeAdapter(exceptionListType, new ExceptionInfoAdapter())
-                                .registerTypeAdapter(tradeInfoListType, new TradeInfoAdapter())
+        private static Gson GSON = new GsonBuilder()
+                                .registerTypeAdapter(EXCEPTION_LIST_TYPE, new ExceptionInfoAdapter())
+                                .registerTypeAdapter(TRADE_INFO_LIST_TYPE, new TradeInfoAdapter())
                                 .registerTypeAdapter(EquipStatus.class, new EquipStatusAdapter())
                                 .create();
     }
 
     public static Gson getGson() {
-        return GsonHolder.gson;
+        return GsonHolder.GSON;
     }
 }

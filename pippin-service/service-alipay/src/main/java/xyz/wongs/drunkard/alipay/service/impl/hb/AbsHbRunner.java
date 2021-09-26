@@ -4,9 +4,12 @@ import com.alipay.api.response.MonitorHeartbeatSynResponse;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import xyz.wongs.drunkard.alipay.config.Configs;
+import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayHeartbeatSynRequestBuilder;
 import xyz.wongs.drunkard.alipay.service.AlipayMonitorService;
+import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.base.property.PropConfig;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -58,11 +61,15 @@ public abstract class AbsHbRunner implements Runnable {
     }
 
     public void schedule() {
-        if (delay == 0) {
-            delay = Configs.getHeartbeatDelay();
-        }
-        if (duration == 0) {
-            duration = Configs.getCancelDuration();
+        try {
+            if (delay == 0) {
+                delay = Integer.parseInt(PropConfig.getProperty(PayConst.HEART_DELAY));
+            }
+            if (duration == 0) {
+                duration = Integer.parseInt(PropConfig.getProperty(PayConst.CANCEL_DURATION));
+            }
+        } catch (NumberFormatException e) {
+            throw new DrunkardException(ResultCode.NUMBER_FORMAT);
         }
         scheduledService.scheduleAtFixedRate(this, delay, duration, TimeUnit.SECONDS);
     }

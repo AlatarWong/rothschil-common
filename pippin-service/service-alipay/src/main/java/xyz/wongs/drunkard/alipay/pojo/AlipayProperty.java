@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties(prefix="pay")
 @PropertySource(value = "classpath:oss-pay.properties")
 public class AlipayProperty {
+
     private String providerId;
     private String callback;
     private String timeoutExpress;

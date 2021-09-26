@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import xyz.wongs.drunkard.alipay.config.Configs;
+import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.service.AliPayService;
-import xyz.wongs.drunkard.base.property.PropertiesListenerConfig;
+import xyz.wongs.drunkard.base.property.PropConfig;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,11 +19,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- *  支付宝当面付：
- *  比较重要的一个逻辑：
- *  1.生成支付二维码，供用户扫码支付
- *  2.当用户支付成功后，会回调我们后台更新订单状态，减少库存等操作
- *  3.前端轮询查询订单状态，成功返回首页，失败则跳到失败页面等操作
+ *  支付宝当面付，比较重要的一个逻辑 <br>
+ *  1.生成支付二维码，供用户扫码支付 <br>
+ *  2.当用户支付成功后，会回调我们后台更新订单状态，减少库存等操作 <br>
+ *  3.前端轮询查询订单状态，成功返回首页，失败则跳到失败页面等操作 <br>
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
  * @github <a>https://github.com/rothschil</a>
  * @date 2021/9/23 - 12:29
@@ -69,7 +68,7 @@ public class AliPayController {
     }
 
     /**
-     * 1.支付生成二维码，供用户扫码支付
+     * 支付生成二维码，供用户扫码支付
      * @param orderNo   待支付订单号
      * @return String
      */
@@ -104,7 +103,7 @@ public class AliPayController {
         //非常重要,验证回调的正确性,是不是支付宝发的.并且呢还要避免重复通知.
         params.remove("sign_type");
         try {
-            boolean alipayRSACheckedV2 = AlipaySignature.rsaCheckV2(params, Configs.getAlipayPublicKey(), "utf-8", Configs.getSignType());
+            boolean alipayRSACheckedV2 = AlipaySignature.rsaCheckV2(params, PropConfig.getProperty(PayConst.ALI_PUB_KEY), "utf-8", PropConfig.getProperty(PayConst.SIGN_TYPE));
             if (!alipayRSACheckedV2) {
                 LOG.error("非法请求,验证不通过,再恶意请求我就报警找网警了");
             }

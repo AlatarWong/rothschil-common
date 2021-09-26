@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.base.property.listener;
 
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
-import xyz.wongs.drunkard.base.property.PropertiesListenerConfig;
+import xyz.wongs.drunkard.base.property.PropConfig;
 
 /** 配置文件监听器，用来加载自定义配置文件
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -20,6 +20,6 @@ public class PropertiesListener implements ApplicationListener<ApplicationStarte
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
-        PropertiesListenerConfig.loadAllProperties(propertyFileName);
+        PropConfig.loadAllProperties(propertyFileName);
     }
 }

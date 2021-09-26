@@ -1,10 +1,10 @@
 package xyz.wongs.drunkard.alipay.model.builder;
 
 
+import com.alipay.api.domain.GoodsDetail;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.StringUtils;
 import xyz.wongs.drunkard.alipay.model.ExtendParams;
-import xyz.wongs.drunkard.alipay.model.GoodsDetail;
 
 import java.util.List;
 import java.util.regex.Pattern;

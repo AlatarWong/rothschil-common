@@ -19,9 +19,9 @@ import java.util.Properties;
  * @date 2021/9/24 - 21:42
  * @version 1.0.0
  */
-public class PropertiesListenerConfig {
+public class PropConfig {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PropertiesListenerConfig.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PropConfig.class);
 
     public static Map<String, String> propertiesMap;
 
@@ -32,7 +32,7 @@ public class PropertiesListenerConfig {
             try {
                 // PropertiesLoaderUtils的默认编码是ISO-8859-1,在这里转码一下
                 String value = new String(props.getProperty(key).getBytes("ISO-8859-1"), Constants.UTF8);
-                LOG.info("[key] {} \t [value] {}",key,value);
+                LOG.debug("[key] {} \t [value] {}",key,value);
                 propertiesMap.put(key, value);
             } catch (UnsupportedEncodingException | DrunkardException e) {
                 LOG.error("[key]={}, [errMsg]={}",key,e.getMessage());

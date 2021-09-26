@@ -7,7 +7,7 @@ import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.*;
-import xyz.wongs.drunkard.alipay.config.Configs;
+import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.model.TradeStatus;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradeCancelRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePrecreateRequestBuilder;
@@ -19,6 +19,9 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FQueryResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FRefundResult;
 import xyz.wongs.drunkard.alipay.service.AlipayTradeService;
 import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.base.property.PropConfig;
 import xyz.wongs.drunkard.base.utils.Utils;
 
 import java.util.concurrent.ExecutorService;
@@ -183,9 +186,13 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
     // 轮询查询订单支付结果
     protected AlipayTradeQueryResponse loopQueryResult(AlipayTradeQueryRequestBuilder builder) {
         AlipayTradeQueryResponse queryResult = null;
-        for (int i = 0; i < Configs.getMaxQueryRetry(); i++) {
-            Utils.sleep(Configs.getQueryDuration());
-
+        Integer queryRetry = Integer.parseInt(PropConfig.getProperty(PayConst.QUERY_RETRY));
+        for (int i = 0; i < queryRetry; i++) {
+            try {
+                Utils.sleep(Long.parseLong(PayConst.DURATION));
+            } catch (NumberFormatException e) {
+                throw new DrunkardException(ResultCode.NUMBER_FORMAT);
+            }
             AlipayTradeQueryResponse response = tradeQuery(builder);
             if (response != null) {
                 if (stopQuery(response)) {
@@ -232,9 +239,13 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
         executorService.submit(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < Configs.getMaxCancelRetry(); i++) {
-                    Utils.sleep(Configs.getCancelDuration());
-
+                Integer queryRetry = Integer.parseInt(PropConfig.getProperty(PayConst.QUERY_RETRY));
+                for (int i = 0; i < queryRetry; i++) {
+                    try {
+                        Utils.sleep(Long.parseLong(PayConst.DURATION));
+                    } catch (NumberFormatException e) {
+                        throw new DrunkardException(ResultCode.NUMBER_FORMAT);
+                    }
                     AlipayTradeCancelResponse response = tradeCancel(builder);
                     if (cancelSuccess(response) ||
                             !needRetry(response)) {

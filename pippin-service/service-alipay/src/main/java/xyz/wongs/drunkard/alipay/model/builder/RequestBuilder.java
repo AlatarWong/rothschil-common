@@ -4,7 +4,6 @@ import xyz.wongs.drunkard.alipay.util.GsonFactory;
 
 /** 请求抽象类
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @description //TODO
  * @github <a>https://github.com/rothschil</a>
  * @date 2021/9/23 - 10:21
  * @version 1.0.0
@@ -13,34 +12,30 @@ public abstract class RequestBuilder {
     private String appAuthToken;
     private String notifyUrl;
 
-    // 验证请求对象
+    /**
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/26-10:42
+     * @param
+     * @return boolean
+     **/
     public abstract boolean validate();
 
-    // 获取bizContent对象，用于下一步转换为json字符串
+    /** 获取bizContent对象，用于下一步转换为json字符串
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/26-10:42
+     * @param
+     * @return Object
+     **/
     public abstract Object getBizContent();
 
-    // 将bizContent对象转换为json字符串
+    /** 将bizContent对象转换为json字符串
+     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @date 2021/9/26-10:42
+     * @param
+     * @return String
+     **/
     public String toJsonString() {
         // 使用gson将对象转换为json字符串
-        /**
-         * See https://sites.google.com/site/gson/gson-user-guide#TOC-Using-Gson
-         * Object Examples
-
-         class BagOfPrimitives {
-         private int value1 = 1;
-         private String value2 = "abc";
-         private transient int value3 = 3;
-         BagOfPrimitives() {
-         // no-args constructor
-         }
-         }
-
-         (Serialization)
-         BagOfPrimitives obj = new BagOfPrimitives();
-         Gson gson = new Gson();
-         String json = gson.toJson(obj);
-         ==> json is {"value1":1,"value2":"abc"}
-         */
         return GsonFactory.getGson().toJson(this.getBizContent());
     }
 

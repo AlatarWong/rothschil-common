@@ -5,9 +5,11 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.MonitorHeartbeatSynRequest;
 import com.alipay.api.response.MonitorHeartbeatSynResponse;
 import org.apache.commons.lang.StringUtils;
-import xyz.wongs.drunkard.alipay.config.Configs;
+import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayHeartbeatSynRequestBuilder;
 import xyz.wongs.drunkard.alipay.service.AlipayMonitorService;
+import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.property.PropConfig;
 
 /** 提供交易保障服务
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -29,22 +31,23 @@ public class AlipayMonitorServiceImpl extends AbsAlipayService implements Alipay
 
         public AlipayMonitorServiceImpl build() {
             if (StringUtils.isEmpty(gatewayUrl)) {
-                gatewayUrl = Configs.getMcloudApiDomain(); // 与openapi网关地址不同
+                // 与openapi网关地址不同
+                gatewayUrl = PropConfig.getProperty(PayConst.API_MC);
             }
             if (StringUtils.isEmpty(appid)) {
-                appid = Configs.getAppid();
+                appid = PropConfig.getProperty(PayConst.APPID);
             }
             if (StringUtils.isEmpty(privateKey)) {
-                privateKey = Configs.getPrivateKey();
+                privateKey = PropConfig.getProperty(PayConst.PRI_KEY);
             }
             if (StringUtils.isEmpty(format)) {
                 format = "json";
             }
             if (StringUtils.isEmpty(charset)) {
-                charset = "utf-8";
+                charset = Constants.UTF8;
             }
             if (StringUtils.isEmpty(signType)) {
-                signType = Configs.getSignType();
+                signType = PropConfig.getProperty(PayConst.SIGN_TYPE);
             }
             return new AlipayMonitorServiceImpl(this);
         }

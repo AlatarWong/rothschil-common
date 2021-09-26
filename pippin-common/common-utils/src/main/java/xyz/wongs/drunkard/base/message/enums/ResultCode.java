@@ -30,7 +30,9 @@ public enum ResultCode {
     PARAMS_IS_BANK(1002,"参数为空"),
     PARAMS_TYPE_BIND_ERROR(1003,"参数类型错误"),
     PARAMS_NOT_COMPLETE(1004,"参数缺失"),
-
+    NUMBER_FORMAT(1005,"[The Character to number failed]"),
+    QR_CODE_ERR(1006,"[The QR CODE Generation failed]"),
+    LIST_EMPTY(1007,"[The List Empty]"),
     /**
      * 2000～2999 区间表示用户错误
      */

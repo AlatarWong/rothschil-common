@@ -20,6 +20,7 @@ public class AlipayTradeRefundRequestBuilder extends RequestBuilder {
 
     @Override
     public boolean validate() {
+
         if (StringUtils.isEmpty(bizContent.outTradeNo) &&
                 StringUtils.isEmpty(bizContent.tradeNo)) {
             throw new NullPointerException("out_trade_no and trade_no should not both be NULL!");

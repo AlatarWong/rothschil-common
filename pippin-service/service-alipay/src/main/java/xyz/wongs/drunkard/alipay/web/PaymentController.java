@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import xyz.wongs.drunkard.alipay.pojo.form.Payment;
+import org.springframework.web.servlet.ModelAndView;
+import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 import xyz.wongs.drunkard.alipay.service.PaymentService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
@@ -24,12 +28,11 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/pay-ment")
-    public String payment(@ModelAttribute Payment payment) {
-        LOG.info(payment.toString());
-
-
-
-        return "index";
+    public ModelAndView payment(@ModelAttribute OrderInfo orderInfo) {
+        String qrPath = paymentService.pay(orderInfo);
+        Map<String,String> repMap = new HashMap<String,String>(2);
+        repMap.put("qrPath", qrPath);
+        return new ModelAndView("pay",repMap);
     }
 
 

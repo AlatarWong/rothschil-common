@@ -1,5 +1,6 @@
 bootJar.enabled = true
 archivesBaseName = 'service-alipay'
+
 dependencies {
     implementation(project(':pippin-common:common-utils')){
         exclude group:'com.alibaba', module: 'druid-spring-boot-starter'
@@ -22,3 +23,9 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     implementation('com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4')
 }
+
+task copyTask(type: Copy) {
+    from "${projectDir}/build/resources/main/"
+    into "${projectDir}/build/classes/java/main/"
+}
+build.finalizedBy(copyTask)

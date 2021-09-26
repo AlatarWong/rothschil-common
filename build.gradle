@@ -63,12 +63,12 @@ subprojects {
         annotationProcessor('org.projectlombok:lombok:1.18.20')
         testImplementation('org.projectlombok:lombok:1.18.20')
         testAnnotationProcessor('org.projectlombok:lombok:1.18.20')
-        testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion"){
-            exclude group:'org.junit.vintage',module:'junit-vintage-engine'
-            exclude group:'org.junit.jupiter',module:'junit-jupiter-api'
-            exclude group:'net.minidev',module:'json-smart'
-            exclude group:'net.bytebuddy',module:'byte-buddy'
-            exclude group:'net.bytebuddy',module:'byte-buddy-agent'
+        testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion") {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+            exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
+            exclude group: 'net.minidev', module: 'json-smart'
+            exclude group: 'net.bytebuddy', module: 'byte-buddy'
+            exclude group: 'net.bytebuddy', module: 'byte-buddy-agent'
         }
         implementation('org.projectlombok:lombok:1.18.20')
     }
@@ -88,6 +88,7 @@ subprojects {
         enabled = false
     }
 
+
     def env = System.getProperty('env') ?: 'dev'
     sourceSets {
         main {
@@ -100,20 +101,30 @@ subprojects {
         }
     }
 
+
+    // 删除所有输出目录
+    task cleanBuildDir(type: Delete) {
+        delete "${projectDir}/build"
+        delete "${projectDir}/out"
+    }
+
     task javaDoc(type: Javadoc) {
         //  delete("javadoc/")
-        options.encoding = 'UTF-8'
-        options.charSet = 'UTF-8'
+        options.encoding = "UTF-8"
+        options.charSet = "UTF-8"
         //保留 public 的方法
-        options.memberLevel = JavadocMemberLevel.PUBLIC
+        options.memberLevel = JavadocMemberLevel.PRIVATE
         options.linkSource = true
         options.links("http://docs.oracle.com/javase/8/docs/api/")
         //是否保留作者
-        options.author = false
+        options.author = true
         //是否生成树状结构
         options.noTree = true
         options.noIndex = true
         options.noNavBar = true
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
         //定义所有Java源代码
         source = sourceSets.main.allJava
         // destinationDir = file("javadoc/") //生成 javadoc 的目标目录
@@ -123,18 +134,20 @@ subprojects {
 
     task javaDocJar(type: Jar, dependsOn: javaDoc) {
         // 文件标记
-        archiveClassifier="javadoc"
+        archiveClassifier = "javadoc"
         // 通过javaDocTask 找到目标路径
         from javaDoc.destinationDir
     }
 
     //自定义打包任务，继承Jar，并且依赖classes，最终编译才打包 dependsOn: [classes]
-    task sourceTask(type: Jar,dependsOn: [classes]) {
+    task sourceTask(type: Jar, dependsOn: [classes]) {
         //所有源码读取类型
         from sourceSets.main.allSource
         //定义文件后缀类型
         classifier('sources')
     }
+
+
     //最终打包任务操作，将所有任务放入build
     artifacts {
         archives(sourceTask)
@@ -144,8 +157,8 @@ subprojects {
     publishing {
         publications {
             myMaven(MavenPublication) {
-                groupId= "$project.group"
-                artifactId="$project.name"
+                groupId = "$project.group"
+                artifactId = "$project.name"
                 version = "$project.version"
                 from components.java
                 artifact sourceTask
@@ -218,7 +231,7 @@ task1.doLast {
 }
 
 // 2、任务属性创建
-def task2 = task([description: ' Is My Task2', group: 'xyz.wongs'],task2)
+def task2 = task([description: ' Is My Task2', group: 'xyz.wongs'], task2)
 task2.doLast {
     println '【2、任务属性创建】最后执行'
 }
@@ -265,16 +278,16 @@ task taskPro {
 task funExcu {
     group('xyz.wongs.gradle')
     doLast {
-        fileList('./groovy-demo/src/gvy01').each{
+        fileList('./groovy-demo/src/gvy01').each {
             File file ->
-            ant.checksum(file: file, property: "cs_$file.name")
-            println "$file.name Checksum: ${ant.properties["cs_$file.name"]}"
+                ant.checksum(file: file, property: "cs_$file.name")
+                println "$file.name Checksum: ${ant.properties["cs_$file.name"]}"
         }
     }
 }
 
-File[] fileList(String path){
-    file(path).listFiles({ file -> file.isFile()} as FileFilter).sort()
+File[] fileList(String path) {
+    file(path).listFiles({ file -> file.isFile() } as FileFilter).sort()
 }
 
 
@@ -298,7 +311,6 @@ tasks.named('taskAaddAction') {
         println '【1、Adding behaviour】 doLast 追加的动作'
     }
 }
-
 
 
 // 二、控制
@@ -554,18 +566,19 @@ apply plugin: WorkPlugin
 
 abstract class WorkPluginExtension {
     abstract Property<String> getMessage()
+
     WorkPluginExtension() {
         message.convention('Hello from GreetingPlugin')
     }
 }
 
-class WorkPlugin implements Plugin<Project>{
+class WorkPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         // 添加 属性扩展类
-        def extension = project.extensions.create('work',WorkPluginExtension)
+        def extension = project.extensions.create('work', WorkPluginExtension)
 
-        project.task('sayWorld'){
+        project.task('sayWorld') {
             doLast {
                 println extension.message.get()
             }

@@ -1,19 +1,39 @@
 package xyz.wongs.drunkard.alipay.pojo.form;
 
 import java.io.Serializable;
+import java.util.List;
 
-/**
+/** 订单信息
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
  * @github <a>https://github.com/rothschil</a>
  * @date 2021/9/24 - 14:49
  * @version 1.0.0
  */
-public class Payment implements Serializable {
+public class OrderInfo implements Serializable {
 
+    /**
+     * 订单编号
+     */
     private String outTradeNo;
+    /**
+     * 订单名称
+     */
     private String subject;
+
+    /**
+     * 付款金额
+     */
     private int totalAmount;
+
+    /**
+     * 不可打折金额
+     */
     private float unAmount;
+
+    /**
+     * 统一商品编号
+     */
+    private List<String> alipayGoodsIds;
 
     public String getOutTradeNo() {
         return outTradeNo;
@@ -47,13 +67,11 @@ public class Payment implements Serializable {
         this.unAmount = unAmount;
     }
 
-    @Override
-    public String toString() {
-        return "Payment{" +
-                "outTradeNo='" + outTradeNo + '\'' +
-                ", subject='" + subject + '\'' +
-                ", totalAmount=" + totalAmount +
-                ", unAmount=" + unAmount +
-                '}';
+    public List<String> getAlipayGoodsIds() {
+        return alipayGoodsIds;
+    }
+
+    public void setAlipayGoodsIds(List<String> alipayGoodsIds) {
+        this.alipayGoodsIds = alipayGoodsIds;
     }
 }
