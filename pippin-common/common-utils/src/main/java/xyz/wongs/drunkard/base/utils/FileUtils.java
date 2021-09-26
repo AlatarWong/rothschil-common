@@ -11,7 +11,9 @@ import java.nio.charset.StandardCharsets;
 /**
  * 文件处理工具类
  *
- * @author ruoyi
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @version 1.0.0
+ * @date 2021/9/26 - 17:47
  */
 public class FileUtils extends org.apache.commons.io.FileUtils {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";

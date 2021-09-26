@@ -1,13 +1,11 @@
 package xyz.wongs.drunkard.common.enums;
 
 /**
- * 定制系统基本信息包括JDK版本以及当前路径等
- * @author WCNGS@QQ.COM
- * @ClassName SysProperty$
- * @Description
- * 
- * @date 21/3/26$ 09:35$
- * @Version 1.0.0
+ * 通过 System.getProperty("") 获取环境变量内容
+ *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @version 1.0.0
+ * @date 2021/9/26 - 17:43
  */
 public enum SysProperty {
 
@@ -23,7 +21,7 @@ public enum SysProperty {
     USER_HOME("user.home"),
     USER_DIR("user.dir");
 
-    SysProperty(String code){
+    SysProperty(String code) {
         this.code = code;
     }
 

@@ -6,14 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-/**
- * @ClassName IpUtils
- * @Description 获取IP方法
+/** 获取IP方法
  * @author WCNGS@QQ.COM
- *
  * @date 2020/6/19 18:12
  * @Version 1.0.0
-*/
+ */
 public class IpUtils {
     public static String getIpAddr(HttpServletRequest request) {
         if (request == null) {

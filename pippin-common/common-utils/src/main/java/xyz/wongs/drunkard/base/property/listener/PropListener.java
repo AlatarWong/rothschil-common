@@ -9,11 +9,11 @@ import xyz.wongs.drunkard.base.property.PropConfig;
  * @date 2021/9/24 - 21:58
  * @version 1.0.0
  */
-public class PropertiesListener implements ApplicationListener<ApplicationStartedEvent> {
+public class PropListener implements ApplicationListener<ApplicationStartedEvent> {
 
     private String propertyFileName;
 
-    public PropertiesListener(String propertyFileName) {
+    public PropListener(String propertyFileName) {
         this.propertyFileName = propertyFileName;
     }
 

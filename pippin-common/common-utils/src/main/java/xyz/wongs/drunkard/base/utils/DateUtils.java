@@ -13,8 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 日期工具类, 继承org.apache.commons.lang.time.DateUtils类
- *
+ * 日期工具类, 继承 {@link org.apache.commons.lang.time.DateUtils }类
  * @author WCNGS@QQ.COM
  * @version 2014-4-15
  */

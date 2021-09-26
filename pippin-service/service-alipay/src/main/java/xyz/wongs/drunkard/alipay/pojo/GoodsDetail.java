@@ -49,8 +49,17 @@ public class GoodsDetail {
      */
     private String body;
 
-    // 创建一个商品信息，参数含义分别为商品id（使用国标）、商品名称、商品价格（单位为分）、商品数量
+    /** 创建一个商品信息，参数含义分别为商品id（使用国标）、商品名称、商品价格（单位为分）、商品数量
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/9/26-17:33
+     * @param goodsId
+     * @param goodsName
+     * @param price
+     * @param quantity
+     * @return GoodsDetail
+     **/
     public static GoodsDetail newInstance(String goodsId, String goodsName, long price, int quantity) {
+
         GoodsDetail info = new GoodsDetail();
         info.setGoodsId(goodsId);
         info.setGoodsName(goodsName);

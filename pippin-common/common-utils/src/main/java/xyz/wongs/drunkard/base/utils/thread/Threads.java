@@ -6,16 +6,16 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.*;
 
 /**
- * @author WCNGS@QQ.COM
- * @ClassName Threads
- * @Description 线程相关工具类.
+ * 线程相关工具类.
  *
+ * @author WCNGS@QQ.COM
  * @date 2020/6/19 17:31
  * @Version 1.0.0
  */
 public class Threads {
 
     private static final Logger log = LoggerFactory.getLogger(Threads.class);
+
     /**
      * sleep等待,单位为毫秒
      */

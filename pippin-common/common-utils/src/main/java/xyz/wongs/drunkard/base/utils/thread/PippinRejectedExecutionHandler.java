@@ -5,15 +5,11 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /** 线程池的自定义策略
- * @ClassName CoustomRejectedExecutionHandler
- * @Description 
  * @author WCNGS@QQ.COM
- *
  * @date 20/11/19 16:20
  * @Version 1.0.0
 */
 public class PippinRejectedExecutionHandler implements RejectedExecutionHandler {
-
 
     @Override
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {

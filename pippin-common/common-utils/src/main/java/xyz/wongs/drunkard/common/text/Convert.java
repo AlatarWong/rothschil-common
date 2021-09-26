@@ -13,7 +13,9 @@ import java.util.Set;
 /**
  * 类型转换器
  *
- * @author ruoyi
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @version 1.0.0
+ * @date 2021/9/26 - 17:45
  */
 public class Convert {
     /**

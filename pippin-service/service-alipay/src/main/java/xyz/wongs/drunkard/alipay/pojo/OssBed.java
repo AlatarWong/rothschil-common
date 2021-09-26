@@ -3,9 +3,8 @@ package xyz.wongs.drunkard.alipay.pojo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-/** 图床配置信息
+/** 图床配置信息 主要利用阿里云的OSS存储支付过程中生成二维码，可以参考 <a href="https://www.aliyun.com/product/oss">https://www.aliyun.com/product/oss</a>
  * @author <a href="https://github.com/rothschil">Sam</a>
- *
  * @date 2021/9/24 - 11:02
  * @version 1.0.0
  */

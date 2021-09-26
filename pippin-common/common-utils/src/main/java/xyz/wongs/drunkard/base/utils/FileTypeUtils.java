@@ -4,25 +4,22 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 
-/**
- * 文件类型工具类
- *
- * @author ruoyi
+/** 文件类型工具类
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/9/26 - 17:47
+ * @version 1.0.0
  */
-public class FileTypeUtils
-{
+public class FileTypeUtils {
     /**
      * 获取文件类型
      * <p>
      * 例如: ruoyi.txt, 返回: txt
-     * 
+     *
      * @param file 文件名
      * @return 后缀（不含".")
      */
-    public static String getFileType(File file)
-    {
-        if (null == file)
-        {
+    public static String getFileType(File file) {
+        if (null == file) {
             return StringUtils.EMPTY;
         }
         return getFileType(file.getName());
@@ -36,11 +33,9 @@ public class FileTypeUtils
      * @param fileName 文件名
      * @return 后缀（不含".")
      */
-    public static String getFileType(String fileName)
-    {
+    public static String getFileType(String fileName) {
         int separatorIndex = fileName.lastIndexOf(".");
-        if (separatorIndex < 0)
-        {
+        if (separatorIndex < 0) {
             return "";
         }
         return fileName.substring(separatorIndex + 1).toLowerCase();

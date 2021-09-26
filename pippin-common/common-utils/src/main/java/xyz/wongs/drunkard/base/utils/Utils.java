@@ -5,12 +5,12 @@ import org.apache.commons.lang.StringUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-/** 杂物工具类
- * @author <a href="https://github.com/rothschil">Sam</a>
- * @description //TODO
+/**
+ * 其他工具类
  *
- * @date 2021/9/23 - 10:16
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @version 1.0.0
+ * @date 2021/9/23 - 10:16
  */
 public class Utils {
 

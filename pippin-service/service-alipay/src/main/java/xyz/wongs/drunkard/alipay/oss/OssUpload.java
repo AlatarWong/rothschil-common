@@ -17,9 +17,8 @@ import xyz.wongs.drunkard.base.utils.file.FileUtil;
 import java.io.*;
 import java.util.List;
 
-/**
+/** 上传图片至OSS图床
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/22 - 16:59
  * @version 1.0.0
  */
@@ -27,6 +26,9 @@ public class OssUpload {
 
     private static final Logger LOG = LoggerFactory.getLogger(OssUpload.class);
 
+    /**
+     * 路径前缀，这里固定值，实际上需要在配置项中获取
+     */
     private static String FOLDER = "pay/";
 
     /** 上传OSS服务器
@@ -45,7 +47,7 @@ public class OssUpload {
         OSS ossClient = OssClientFactory.INSTANCE.singletonInstance(ossBed);
         String responseUrl = null;
         if(!file.isDirectory()){
-            responseUrl = putFile(ossBed.getBucketname(),ossClient,file);
+            responseUrl = push(ossBed.getBucketname(),ossClient,file);
         } else {
             throw new SecurityException("这是一个文件夹");
 //            File[] files = new File(local).listFiles();
@@ -61,8 +63,9 @@ public class OssUpload {
         return getRespUrl(ossBed.getBucketname(),responseUrl);
     }
 
-    private static String putFile(String bucketName, OSS ossClient,File file){
+    private static String push(String bucketName, OSS ossClient, File file){
         String filePath = FOLDER + DateUtils.getTransId() + FileUtil.suffix(file.getName());
+        // 上传过程中，是否需要在OSS中校验路径，暂未验证
         try {
             FileInputStream fis = new FileInputStream(file);
             PutObjectResult result = ossClient.putObject(bucketName, filePath, fis);
@@ -96,7 +99,6 @@ public class OssUpload {
      * @return
      **/
     public static void downLoad(OssBed ossBed, String local,String prefix) {
-
         OSS ossClient = OssClientFactory.INSTANCE.singletonInstance(ossBed);
         ObjectListing objectListing = ossClient.listObjects(ossBed.getBucketname(), prefix);
         List<OSSObjectSummary> summaryList = objectListing.getObjectSummaries();
@@ -106,8 +108,6 @@ public class OssUpload {
         InputStream is = null;
         OSSObject ossObject = null;
         OutputStream outputStream = null;
-
-
         // 枚举文件夹
         for (OSSObjectSummary ossObjectSummary : summaryList) {
             ossObject = ossClient.getObject(ossBed.getBucketname(), ossObjectSummary.getKey());
@@ -124,8 +124,6 @@ public class OssUpload {
                 while ((len = is.read(read)) != -1) {
                     outputStream.write(read, 0, len);
                 }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

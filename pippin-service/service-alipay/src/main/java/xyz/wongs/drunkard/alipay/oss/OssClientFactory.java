@@ -4,9 +4,8 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import xyz.wongs.drunkard.alipay.pojo.OssBed;
 
-/**
+/** OSS Client工厂类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/22 - 15:09
  * @version 1.0.0
  */
@@ -23,11 +22,10 @@ public enum OssClientFactory {
     /** 获取单例
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-10:01
-     * @param ossBed
+     * @param ossBed 图床信息
      * @return OSS
      **/
     public OSS singletonInstance(OssBed ossBed){
-
         if(null==CLIENT){
             CLIENT = new OSSClientBuilder().build(ossBed.getEndpoint(), ossBed.getKey(), ossBed.getSecret());
         }
