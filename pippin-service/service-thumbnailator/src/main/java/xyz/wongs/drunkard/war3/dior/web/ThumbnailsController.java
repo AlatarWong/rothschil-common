@@ -16,7 +16,7 @@ import java.io.OutputStream;
  * @author WCNGS@QQ.COM
  * @ClassName ThumbnailsController$
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 21/1/6$ 16:16$
  * @Version 1.0.0
  */

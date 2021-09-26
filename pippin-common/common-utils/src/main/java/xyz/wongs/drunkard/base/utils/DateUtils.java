@@ -36,7 +36,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 
     /** 返回 yyyyMMddHHmmss 时间格式加上 6位随机数字
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-20:47
      * @param
      * @return String

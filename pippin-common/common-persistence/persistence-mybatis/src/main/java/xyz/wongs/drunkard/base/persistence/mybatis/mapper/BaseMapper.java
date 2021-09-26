@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @ClassName BaseMapper
  * @Description 通用Mapper
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2019/11/21 17:40
  * @Version 1.0.0
 */

@@ -7,7 +7,7 @@ import java.math.RoundingMode;
  * @ClassName Arith
  * @Description 精确的浮点数运算
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/6/20 21:36
  * @Version 1.0.0
 */

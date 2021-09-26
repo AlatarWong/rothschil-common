@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.base.utils.file.FileUtil;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolUtils;
+import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
 import xyz.wongs.drunkard.moon.entity.ImageInfo;
 import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
 import xyz.wongs.drunkard.task.queue.ImageInfoQueue;
@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @ClassName RunFileTask
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/30 12:58
  * @Version 1.0.0
 */
@@ -35,7 +35,7 @@ public class RunFileTask {
     @Autowired
     private ImageInfoHandler imageInfoHandler;
 
-    private ThreadPoolExecutor executor = ThreadPoolUtils.doCreate(3,5,THREAD_NAME);
+    private ThreadPoolExecutor executor = ThreadPoolsUtil.doCreate(3,5,THREAD_NAME);
 
     public void run(String path){
         File file = new File(path);

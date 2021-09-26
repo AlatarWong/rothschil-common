@@ -18,8 +18,8 @@ import java.io.*;
 import java.util.List;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * 
  * @date 2021/9/22 - 16:59
  * @version 1.0.0
  */
@@ -30,7 +30,7 @@ public class OssUpload {
     private static String FOLDER = "pay/";
 
     /** 上传OSS服务器
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-9:31
      * @param ossBed 配置文件
      * @param local 本地路径
@@ -88,7 +88,7 @@ public class OssUpload {
     }
 
     /**
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-14:39
      * @param ossBed 配置文件
      * @param local 文件存放路径

@@ -9,9 +9,7 @@ import xyz.wongs.drunkard.base.aop.service.OperationLogService;
 import xyz.wongs.drunkard.base.handler.IQueueTaskHandler;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/11/18 11:04
  * @Version 1.0.0
 */
@@ -26,7 +24,7 @@ public class QueueTaskHandler implements IQueueTaskHandler {
     private OperationLog operationLog;
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 这里也就是我们实现QueueTaskHandler的处理接口
      * @Date 20/11/13 16:32
      * @Param

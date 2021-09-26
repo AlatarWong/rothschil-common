@@ -15,7 +15,7 @@
 // * @ClassName ServletUtils
 // * @Description 客户端工具类
 // * @author WCNGS@QQ.COM
-// * @Github <a>https://github.com/rothschil</a>
+// *
 // * @date 2020/6/19 17:21
 // * @Version 1.0.0
 //*/

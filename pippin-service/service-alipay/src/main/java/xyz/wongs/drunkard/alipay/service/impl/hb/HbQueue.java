@@ -10,9 +10,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /** 保存交易数据的队列，添加队列每次只加入1条交易，读取队列每次尽量读满30条交易
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/9/23 - 10:14
  * @version 1.0.0
  */

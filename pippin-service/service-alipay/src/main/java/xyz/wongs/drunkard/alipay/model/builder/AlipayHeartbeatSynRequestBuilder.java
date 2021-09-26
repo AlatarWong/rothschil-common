@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 /** 服务保障接口请求bizContent结构体
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/23 - 10:22
  * @version 1.0.0
  */

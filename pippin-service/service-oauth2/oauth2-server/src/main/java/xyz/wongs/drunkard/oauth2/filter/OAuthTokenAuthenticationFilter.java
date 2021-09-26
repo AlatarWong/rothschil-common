@@ -19,7 +19,7 @@ import java.io.IOException;
  * @ClassName OAuthTokenAuthenticationFilter
  * @Description token端点过滤器
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 14:59
  * @Version 1.0.0
 */

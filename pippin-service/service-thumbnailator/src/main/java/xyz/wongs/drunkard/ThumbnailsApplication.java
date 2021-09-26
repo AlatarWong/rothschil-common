@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author WCNGS@QQ.COM
  * @ClassName ThumbnailsApplication$
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 21/1/6$ 16:45$
  * @Version 1.0.0
  */

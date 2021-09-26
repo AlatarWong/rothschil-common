@@ -23,9 +23,8 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 /** 当面付2.0具体实现（集成了交易保障逻辑）
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * 
  * @date 2021/9/23 - 10:12
  * @version 1.0.0
  */
@@ -223,7 +222,7 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
     }
 
     /** 商户可以直接使用的pay方法，并且集成了监控代码
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
      * @date 2021/9/23-9:43
      * @param builder

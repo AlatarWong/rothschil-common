@@ -17,9 +17,9 @@ import java.util.Date;
  * 子类只需要在类头上加 @SequenceGenerator(name="seq", sequenceName="你的sequence名字")
  * <p/>
  * <p/>
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/8 - 13:54
  * @Version 1.0.0
  */

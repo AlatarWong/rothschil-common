@@ -83,7 +83,7 @@ spring:
           connection-connect-before-log-enabled: true
           connection-log-error-enabled: true
           data-source-log-enabled: true
-          result-set-log-enabled: true
+          r-set-log-enabled: true
           statement-log-enabled: true
         wall:
           enabled: true

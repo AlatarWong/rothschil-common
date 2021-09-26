@@ -10,7 +10,7 @@ import org.springframework.security.core.AuthenticationException;
  * @ClassName UserAuthenticationEventPublisher
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 17:10
  * @Version 1.0.0
 */

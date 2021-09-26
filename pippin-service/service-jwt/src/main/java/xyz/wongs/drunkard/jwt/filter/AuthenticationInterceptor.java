@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.jwt.annotation.IgnoreTokenCheck;
 import xyz.wongs.drunkard.jwt.annotation.LoginToken;
@@ -20,13 +20,12 @@ import xyz.wongs.drunkard.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description 拦截器，获取 Token，并验证 Token合法性
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/6 - 10:25
  * @Version 1.0.0
  */
@@ -60,24 +59,24 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (loginToken.required()) {
             String token = request.getHeader(TOKEN);
             if (StringUtils.isEmpty(token)) {
-                throw new DrunkardException(ResultCode.USER_NOT_LOGGED_IN);
+                throw new DrunkardException(Status.USER_NOT_LOGGED_IN);
             }
             String id;
             try {
                 id = JWT.decode(token).getAudience().get(0);
             } catch (JWTDecodeException e) {
-                throw new DrunkardException(ResultCode.TOKEN_EXPIRED);
+                throw new DrunkardException(Status.TOKEN_EXPIRED);
             }
             User user = userService.getUserById(id);
             if (null == user) {
-                throw new DrunkardException(ResultCode.USER_NOT_LOGIN_ERROR);
+                throw new DrunkardException(Status.USER_NOT_LOGIN_ERROR);
             }
             // 验证 token
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getName())).build();
             try {
                 jwtVerifier.verify(token);
             } catch (JWTVerificationException e) {
-                throw new DrunkardException(ResultCode.USER_SIGN_VERIFY_NOT_COMPLIANT);
+                throw new DrunkardException(Status.USER_SIGN_VERIFY_NOT_COMPLIANT);
             }
             return true;
         }

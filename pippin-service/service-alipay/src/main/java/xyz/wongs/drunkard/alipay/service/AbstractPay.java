@@ -1,7 +1,6 @@
 package xyz.wongs.drunkard.alipay.service;
 
 import com.alipay.api.AlipayResponse;
-import com.alipay.api.domain.GoodsDetail;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,7 @@ import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePrecreateRequestBuilde
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
 import xyz.wongs.drunkard.alipay.oss.OssUpload;
 import xyz.wongs.drunkard.alipay.pojo.AlipayProperty;
-import xyz.wongs.drunkard.alipay.pojo.Order;
+import xyz.wongs.drunkard.alipay.pojo.GoodsDetail;
 import xyz.wongs.drunkard.alipay.pojo.OssBed;
 import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 import xyz.wongs.drunkard.alipay.service.impl.AlipayTradeServiceImpl;
@@ -23,11 +22,10 @@ import xyz.wongs.drunkard.base.utils.file.FileUtil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * 
  * @date 2021/9/26 - 11:08
  * @version 1.0.0
  */
@@ -43,6 +41,9 @@ public abstract class AbstractPay {
 
     protected String pretreatment(Long orderNo) {
         OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setOutTradeNo(orderNo+"");
+        orderInfo.setSubject(StringUtils.getRandomString(4));
+        orderInfo.setTotalAmount(23424);
         return pretreatment(orderInfo);
     }
 
@@ -51,6 +52,7 @@ public abstract class AbstractPay {
         String orderNo = orderInfo.getOutTradeNo();
         AlipayTradePrecreateRequestBuilder builder = createRequestBuilder(orderInfo);
         AlipayTradeService tradeService = new AlipayTradeServiceImpl.ClientBuilder().build();
+        // 支付交互响应
         AlipayF2FPrecreateResult result = tradeService.tradePrecreate(builder);
         switch (result.getTradeStatus()) {
             case SUCCESS:
@@ -74,12 +76,12 @@ public abstract class AbstractPay {
 
     protected AlipayTradePrecreateRequestBuilder createRequestBuilder(OrderInfo orderInfo) {
         String totalAmount = orderInfo.getTotalAmount() + "";
-        String subject = new StringBuilder().append("[Alipay scan payment],Order: ").append(orderInfo.getOutTradeNo()).toString();
+        String subject = "订单号" + orderInfo.getOutTradeNo();
         String unAmount = orderInfo.getUnAmount() + "";
-        String body = new StringBuilder().append("[Order]:").append(orderInfo.getOutTradeNo()).append(",[Total price]:").append(totalAmount).toString();
+        String body = "订单号" + orderInfo.getOutTradeNo() + ",[Total price]:" + totalAmount;
         String sellerId = "";
-        String operatorId = DateUtils.getTransId();
-        String storeId = StringUtils.getUuid();
+        String operatorId = "test_operator_id";
+        String storeId = "test_store_id";
         ExtendParams extendParams = new ExtendParams();
         extendParams.setSysServiceProviderId(alipayProperty.getProviderId());
 
@@ -89,14 +91,14 @@ public abstract class AbstractPay {
                 .setOperatorId(operatorId).setStoreId(storeId).setExtendParams(extendParams)
                 .setTimeoutExpress(alipayProperty.getTimeoutExpress())
                 //支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
-                .setNotifyUrl(ossBed.getAlipayCallbackUrl())
+                .setNotifyUrl(alipayProperty.getCallback())
                 .setGoodsDetailList(details(orderInfo));
     }
 
 
 
     /** 根据订单中商品列表 拼装商品支付明细
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/26-10:59
      * @param orderInfo 订单
      * @return GoodsDetail>
@@ -104,16 +106,9 @@ public abstract class AbstractPay {
     protected List<GoodsDetail> details(OrderInfo orderInfo) {
         List<String> alipayGoodsIds = orderInfo.getAlipayGoodsIds();
         List<GoodsDetail> goodsDetailList = new ArrayList<>(alipayGoodsIds.size());
-        for (String goodsId : alipayGoodsIds) {
-            GoodsDetail detail = new GoodsDetail();
-            String transId = DateUtils.getTransId();
-            detail.setAlipayGoodsId(goodsId);
-            detail.setGoodsId(transId);
-            detail.setGoodsName(orderInfo.getSubject());
-            detail.setPrice(StringUtils.toPrice(orderInfo.getTotalAmount(), orderInfo.getUnAmount()));
-            detail.setQuantity(1L);
-            goodsDetailList.add(detail);
-        }
+        String transId = DateUtils.getTransId();
+        GoodsDetail detail = xyz.wongs.drunkard.alipay.pojo.GoodsDetail.newInstance(transId,"goods_id001",1000,1);
+        goodsDetailList.add(detail);
         return goodsDetailList;
     }
 
@@ -122,7 +117,7 @@ public abstract class AbstractPay {
      *
      * @param response 响应实体
      * @return String 远程图床的路径
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-15:57
      **/
     protected String uploadOss(AlipayTradePrecreateResponse response) {
@@ -137,10 +132,8 @@ public abstract class AbstractPay {
 
     /**
      * 打印应答
-     *
      * @param response 响应实体
-     * @return void
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-14:54
      **/
     protected void dumpResponse(AlipayResponse response) {
@@ -155,34 +148,28 @@ public abstract class AbstractPay {
     }
 
     /** 回调
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-14:54
-     * @param params
+     * @param params 订单等参数
      * @return boolean
      **/
-    public boolean aliCallback(Map<String, String> params) {
-        Long orderNo = Long.parseLong(params.get("out_trade_no"));
-        String tradeNo = params.get("trade_no");
-        String tradeStatus = params.get("trade_status");
-        logger.info("============支付宝回调日志：============ orderNo: {}, tradeNo: {}, tradeStatus: {}.", orderNo, tradeNo, tradeStatus);
-        // 查询数据库订单
-        // Order order = orderMapper.selectByOrderNo(orderNo);
-        // 这个自定义的状态，主要用于下面测试
-        Order dbOrder = new Order();
-        dbOrder.setStatus(10);
-        // 如果订单为空，忽略
-        if (dbOrder == null) {
-            return false;
-        }
-        // 如果>=已付款状态的，都表示重复回调了
-        if (dbOrder.getStatus() >= 20) {
-            return false;
-        }
-        // 校验通过，则更新订单时间和支付状态
-        if ("TRADE_SUCCESS".equals(tradeStatus)) {
-            dbOrder.setStatus(20);
-        }
-
-        return true;
-    }
+//    public boolean aliCallback(Map<String, String> params) {
+//        Long orderNo = Long.parseLong(params.get("out_trade_no"));
+//        String tradeNo = params.get("trade_no");
+//        String tradeStatus = params.get("trade_status");
+//        logger.info("============支付宝回调日志：============ orderNo: {}, tradeNo: {}, tradeStatus: {}.", orderNo, tradeNo, tradeStatus);
+//        // 查询数据库订单
+//        // 这个自定义的状态，主要用于下面测试
+//        Order dbOrder = new Order();
+//        dbOrder.setStatus(10);
+//        // 如果>=已付款状态的，都表示重复回调了
+//        if (dbOrder.getStatus() >= 20) {
+//            return false;
+//        }
+//        // 校验通过，则更新订单时间和支付状态
+//        if (PayConst.TRADE_SUCCESS.equalsIgnoreCase(tradeStatus)) {
+//            dbOrder.setStatus(20);
+//        }
+//        return true;
+//    }
 }

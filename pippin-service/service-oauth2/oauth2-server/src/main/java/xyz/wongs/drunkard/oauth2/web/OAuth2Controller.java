@@ -32,7 +32,7 @@ import java.util.*;
  * @ClassName OAuth2Controller
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 15:26
  * @Version 1.0.0
 */

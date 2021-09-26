@@ -3,12 +3,12 @@
 <mapper namespace="xyz.wongs.drunkard.war3.domain.repository.LocationMapper">
   <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.war3.domain.entity.Location">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="flag" jdbcType="VARCHAR" property="flag" />
-    <result column="local_code" jdbcType="VARCHAR" property="localCode" />
-    <result column="local_name" jdbcType="VARCHAR" property="localName" />
-    <result column="lv" jdbcType="INTEGER" property="lv" />
-    <result column="sup_local_code" jdbcType="VARCHAR" property="supLocalCode" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
+    <r column="flag" jdbcType="VARCHAR" property="flag" />
+    <r column="local_code" jdbcType="VARCHAR" property="localCode" />
+    <r column="local_name" jdbcType="VARCHAR" property="localName" />
+    <r column="lv" jdbcType="INTEGER" property="lv" />
+    <r column="sup_local_code" jdbcType="VARCHAR" property="supLocalCode" />
+    <r column="url" jdbcType="VARCHAR" property="url" />
   </resultMap>
   <sql id="Base_Column_List">
     id, flag, local_code, local_name, lv, sup_local_code, url

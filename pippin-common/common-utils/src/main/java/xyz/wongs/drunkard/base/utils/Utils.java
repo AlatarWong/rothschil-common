@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /** 杂物工具类
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/23 - 10:16
  * @version 1.0.0
  */

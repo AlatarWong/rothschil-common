@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.base.utils.uuid;
  * @author WCNGS@QQ.COM
  * @ClassName IdUtils
  * @Description ID生成器工具类
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/9 15:51
  * @Version 1.0.0
  */

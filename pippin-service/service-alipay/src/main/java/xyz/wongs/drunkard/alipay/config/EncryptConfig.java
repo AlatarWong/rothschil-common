@@ -8,33 +8,33 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xyz.wongs.drunkard.alipay.pojo.OssSdk;
+import xyz.wongs.drunkard.alipay.pojo.EncryptSdk;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * 
  * @date 2021/9/23 - 15:18
  * @version 1.0.0
  */
 @Configuration
-public class OssPropertiesClassLoader {
+public class EncryptConfig {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OssPropertiesClassLoader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EncryptConfig.class);
 
     @Autowired
-    private OssSdk ossSdk;
+    private EncryptSdk encryptSdk;
 
     @Bean("jasyptStringEncryptor")
     public StringEncryptor stringEncryptor() {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-        config.setPassword(ossSdk.getStorehouse());
-        config.setKeyObtentionIterations(ossSdk.getIterations());
-        config.setPoolSize(ossSdk.getSize());
-        config.setProviderName(ossSdk.getProviderName());
-        config.setSaltGeneratorClassName(ossSdk.getSaltGeneratorClassName());
-        config.setIvGeneratorClassName(ossSdk.getLvGeneratorClassName());
-        config.setStringOutputType(ossSdk.getStringOutputType());
+        config.setPassword(encryptSdk.getStorehouse());
+        config.setKeyObtentionIterations(encryptSdk.getIterations());
+        config.setPoolSize(encryptSdk.getSize());
+        config.setProviderName(encryptSdk.getProviderName());
+        config.setSaltGeneratorClassName(encryptSdk.getSaltGeneratorClassName());
+        config.setIvGeneratorClassName(encryptSdk.getLvGeneratorClassName());
+        config.setStringOutputType(encryptSdk.getStringOutputType());
         encryptor.setConfig(config);
         return encryptor;
     }

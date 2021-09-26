@@ -3,10 +3,10 @@ package xyz.wongs.drunkard.base.utils;
 import cn.hutool.core.math.MathUtil;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @ClassName MathUtil2
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 21/4/13 15:30
  * @Version 1.0.0
  */

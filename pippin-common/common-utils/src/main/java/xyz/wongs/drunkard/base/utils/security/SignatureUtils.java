@@ -23,7 +23,7 @@ import java.util.UUID;
  * @author WCNGS@QQ.COM
  * @ClassName Md5Utils
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2020/8/15 22:50
  * @Version 1.0.0
  */

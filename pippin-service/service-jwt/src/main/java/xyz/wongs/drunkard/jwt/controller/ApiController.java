@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.jwt.controller;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import xyz.wongs.drunkard.base.message.annoation.ResponseResult;
+import xyz.wongs.drunkard.base.message.annoation.Body;
 import xyz.wongs.drunkard.jwt.annotation.IgnoreTokenCheck;
 import xyz.wongs.drunkard.jwt.annotation.LoginToken;
 import xyz.wongs.drunkard.jwt.po.User;
@@ -13,9 +13,9 @@ import xyz.wongs.drunkard.service.UserService;
 import java.util.ArrayList;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/7 - 19:19
  * @Version 1.0.0
  */
@@ -28,7 +28,7 @@ public class ApiController {
     @Autowired
     private JwtService jwtService;
 
-    @ResponseResult
+    @Body
     @PostMapping("/login")
     public Object login(@RequestBody User user){
         JSONObject jsonObject=new JSONObject();
@@ -48,14 +48,14 @@ public class ApiController {
     }
 
 
-    @ResponseResult
+    @Body
     @LoginToken
     @GetMapping("/getMessage")
     public String getMessage(){
         return "你已通过验证";
     }
 
-    @ResponseResult
+    @Body
     @RequestMapping(value = "/users")
     @IgnoreTokenCheck
     public ArrayList usersList() {

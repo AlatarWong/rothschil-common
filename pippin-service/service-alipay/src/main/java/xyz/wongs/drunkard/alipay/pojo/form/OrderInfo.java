@@ -1,11 +1,13 @@
 package xyz.wongs.drunkard.alipay.pojo.form;
 
+import xyz.wongs.drunkard.base.utils.StringUtils;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /** 订单信息
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 14:49
  * @version 1.0.0
  */
@@ -68,6 +70,12 @@ public class OrderInfo implements Serializable {
     }
 
     public List<String> getAlipayGoodsIds() {
+        if(null ==alipayGoodsIds ){
+            alipayGoodsIds = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                alipayGoodsIds.add(StringUtils.getRandomString(4));
+            }
+        }
         return alipayGoodsIds;
     }
 

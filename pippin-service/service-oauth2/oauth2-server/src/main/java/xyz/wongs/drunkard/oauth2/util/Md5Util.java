@@ -6,7 +6,7 @@ import java.security.MessageDigest;
  * @ClassName MD5Util
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/2 16:14
  * @Version 1.0.0
 */

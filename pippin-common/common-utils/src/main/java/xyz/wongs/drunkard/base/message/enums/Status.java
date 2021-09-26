@@ -2,13 +2,16 @@ package xyz.wongs.drunkard.base.message.enums;
 
 /**
  * 定义的接口状态码
- * @Description     1000～1999 区间表示参数错误；000～2999 区间表示用户错误；3000～3999 区间表示接口异常
+ * <ul>
+ * <li> 1000～1999 区间表示参数错误</li>
+ * <li> 2000～2999 区间表示用户错误</li>
+ * <li> 3000～3999 区间表示接口异常</li>
+ * </ul>
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 2020/8/2 13:31
  * @Version 1.0.0
 */
-public enum ResultCode {
+public enum Status {
 
     /** 成功 **/
     SUCCESS(0,"SUCCESS"),
@@ -113,7 +116,7 @@ public enum ResultCode {
      */
     private String msg;
 
-    ResultCode(Integer status, String msg) {
+    Status(Integer status, String msg) {
         this.status = status;
         this.msg = msg;
     }

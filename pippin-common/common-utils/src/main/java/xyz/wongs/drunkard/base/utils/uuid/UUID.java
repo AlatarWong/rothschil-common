@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author WCNGS@QQ.COM
  * @ClassName UUID
  * @Description 提供通用唯一识别码（universally unique identifier）（UUID）实现
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/9 15:50
  * @Version 1.0.0
  */

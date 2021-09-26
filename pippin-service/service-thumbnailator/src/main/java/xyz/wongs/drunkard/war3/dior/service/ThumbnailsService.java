@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author WCNGS@QQ.COM
  * @ClassName ThumbnailsService$
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 21/1/6$ 16:24$
  * @Version 1.0.0
  */

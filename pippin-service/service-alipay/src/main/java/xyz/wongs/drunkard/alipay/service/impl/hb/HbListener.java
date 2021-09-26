@@ -6,9 +6,9 @@ import xyz.wongs.drunkard.alipay.model.hb.HbStatus;
 import xyz.wongs.drunkard.alipay.model.hb.SysTradeInfo;
 
 /** 交易保障监听器实现，每当交易完成后，将交易耗时写入队列
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/23 - 10:14
  * @version 1.0.0
  */
@@ -29,7 +29,7 @@ public class HbListener implements TradeListener {
     }
 
     /** 支付成功
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
      * @date 2021/9/23-10:14
      * @param outTradeNo

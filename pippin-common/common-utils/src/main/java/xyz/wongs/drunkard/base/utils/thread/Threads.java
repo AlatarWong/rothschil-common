@@ -9,7 +9,7 @@ import java.util.concurrent.*;
  * @author WCNGS@QQ.COM
  * @ClassName Threads
  * @Description 线程相关工具类.
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/6/19 17:31
  * @Version 1.0.0
  */

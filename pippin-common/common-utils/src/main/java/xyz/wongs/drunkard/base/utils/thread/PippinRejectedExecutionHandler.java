@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @ClassName CoustomRejectedExecutionHandler
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/11/19 16:20
  * @Version 1.0.0
 */

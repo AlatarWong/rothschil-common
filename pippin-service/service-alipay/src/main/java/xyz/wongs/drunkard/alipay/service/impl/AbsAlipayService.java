@@ -8,21 +8,19 @@ import xyz.wongs.drunkard.alipay.model.builder.RequestBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/** 服务实现类抽象类，所有的服务实现类的父类
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @description //TODO
- * @github <a>https://github.com/rothschil</a>
- * @date 2021/9/23 - 10:13
+
+/**服务实现类抽象类，所有的服务实现类的父类
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/9/26 - 13:56
  * @version 1.0.0
  */
 abstract class AbsAlipayService {
-    protected Log log = LogFactory.getLog(getClass());
+    Log log = LogFactory.getLog(getClass());
 
     /** 验证bizContent对象
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
-     * @description //TODO
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/22-10:51
-     * @param builder
+     * @param builder 请求抽象类
      * @return
      **/
     protected void validateBuilder(RequestBuilder builder) {
@@ -36,12 +34,11 @@ abstract class AbsAlipayService {
         }
     }
 
-    /** 调用AlipayClient的execute方法，进行远程调用
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
-     * @description //TODO
+    /** 调用 {@link com.alipay.api.AlipayClient } 的 execute 方法，进行远程调用
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/22-10:51
-     * @param client
-     * @param request
+     * @param client 请求客户端
+     * @param request 请求接口
      * @return AlipayResponse
      **/
     @SuppressWarnings({ "rawtypes", "unchecked" })

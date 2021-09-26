@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @author WCNGS@QQ.COM
  * @ClassName AuthorizationServerConfig
  * @Description 配置认证服务中心
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 11:03
  * @Version 1.0.0
  */

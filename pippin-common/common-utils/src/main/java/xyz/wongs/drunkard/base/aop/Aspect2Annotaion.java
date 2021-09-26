@@ -13,7 +13,7 @@ import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
  * 2、异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
  * 之处理 在方法上有注解
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/12/2 10:23
  * @Version 1.0.0
 */
@@ -25,7 +25,7 @@ public class Aspect2Annotaion extends AbsAspect{
     private final ThreadLocal<OperationLog> threadLocal = new ThreadLocal<>();
 
     /** 切面
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-16:39
      **/
     @Pointcut(value = "@annotation(xyz.wongs.drunkard.base.aop.annotion.ApplicationLog)")

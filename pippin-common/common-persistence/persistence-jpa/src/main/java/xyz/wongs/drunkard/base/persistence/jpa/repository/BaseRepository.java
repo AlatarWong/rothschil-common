@@ -16,9 +16,9 @@ import java.util.List;
  * 想要使用该接口需要在spring配置文件的jpa:repositories中添加
  * <p/>
  * <p>泛型 ： M 表示实体类型；ID表示主键类型
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/8 - 13:59
  * @Version 1.0.0
  */
@@ -32,7 +32,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     void delete(ID[] ids);
 
     /** 根据SQL，查询结果，获取结果列表
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql
@@ -41,7 +41,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     List listBySql(String sql);
 
     /** 根据HQL，查询结果，获取结果列表
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param hql HQL语句
@@ -49,7 +49,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     List listByHql(String hql);
 
     /** 根据SQL语句获取目标
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql
@@ -58,7 +58,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     Object getTarget(String sql);
 
     /** 按照SQL执行修改命令
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql 原生SQL语句
@@ -67,7 +67,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     void updateBySql(String sql,Object...args);
 
     /** 按照HQL执行修改命令
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param hql HQL语句
@@ -76,7 +76,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     void updateByHql(String hql,Object...args);
 
     /** 根据实体信息查询
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 利用实体结合 Specification 默认设置进行分页
      * @Date 2021/7/8-14:35
      * @Param t 实体类
@@ -86,7 +86,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     Page find(T t, Pageable pageable);
 
     /** 根据实体信息查询
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 利用Specification 默认设置进行分页
      * @Date 2021/7/8-14:35
      * @Param spec  条件
@@ -107,7 +107,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     Page findByCriteriaQuery(T t, Pageable pageable,List<Predicate> list);
 
     /** 以SQL方式，执行批量插入
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql 原生SQL语句
@@ -116,7 +116,7 @@ public interface BaseRepository<T extends AbstractPo, ID extends Serializable> e
     int batchInsert(String sql);
 
     /** 以list方式，执行批量插入
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param list 实体集合

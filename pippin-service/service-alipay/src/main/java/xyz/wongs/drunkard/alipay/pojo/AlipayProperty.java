@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ *
  * @date 2021/9/24 - 21:31
  * @version 1.0.0
  */
@@ -17,8 +17,19 @@ import org.springframework.validation.annotation.Validated;
 @PropertySource(value = "classpath:oss-pay.properties")
 public class AlipayProperty {
 
+    /**
+     * 系统商编号
+     */
     private String providerId;
+
+    /**
+     * 回调地址
+     */
     private String callback;
+
+    /**
+     * 定义支付超时时间，如5m
+     */
     private String timeoutExpress;
 
     public String getProviderId() {

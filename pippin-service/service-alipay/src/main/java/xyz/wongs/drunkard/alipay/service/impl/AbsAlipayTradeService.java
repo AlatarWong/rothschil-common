@@ -19,7 +19,7 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FQueryResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FRefundResult;
 import xyz.wongs.drunkard.alipay.service.AlipayTradeService;
 import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.property.PropConfig;
 import xyz.wongs.drunkard.base.utils.Utils;
@@ -28,18 +28,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /** 当面付服务实现类抽象类，包含了当面付2.0预下单、查询、退货交易的封装
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/23 - 10:13
  * @version 1.0.0
  */
 abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayTradeService {
+
+
     protected static ExecutorService executorService = Executors.newCachedThreadPool();
+
     protected AlipayClient client;
 
     /**
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
      * @date 2021/9/23-9:43
      * @param builder
@@ -77,7 +80,7 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
     }
 
     /**
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
      * @date 2021/9/23-9:43
      * @param builder
@@ -113,7 +116,7 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
 
 
     /**
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
      * @date 2021/9/23-9:43
      * @param builder
@@ -191,7 +194,7 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
             try {
                 Utils.sleep(Long.parseLong(PayConst.DURATION));
             } catch (NumberFormatException e) {
-                throw new DrunkardException(ResultCode.NUMBER_FORMAT);
+                throw new DrunkardException(Status.NUMBER_FORMAT);
             }
             AlipayTradeQueryResponse response = tradeQuery(builder);
             if (response != null) {
@@ -244,7 +247,7 @@ abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayT
                     try {
                         Utils.sleep(Long.parseLong(PayConst.DURATION));
                     } catch (NumberFormatException e) {
-                        throw new DrunkardException(ResultCode.NUMBER_FORMAT);
+                        throw new DrunkardException(Status.NUMBER_FORMAT);
                     }
                     AlipayTradeCancelResponse response = tradeCancel(builder);
                     if (cancelSuccess(response) ||

@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayHeartbeatSynRequestBuilder;
 import xyz.wongs.drunkard.alipay.service.AlipayMonitorService;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.property.PropConfig;
 
@@ -16,9 +16,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /** 抽象的交易保障数据收集器，系统商创建自己的子类用于自定义收集数据,参考DemoHbRunner
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/23 - 10:13
  * @version 1.0.0
  */
@@ -69,7 +69,7 @@ public abstract class AbsHbRunner implements Runnable {
                 duration = Integer.parseInt(PropConfig.getProperty(PayConst.CANCEL_DURATION));
             }
         } catch (NumberFormatException e) {
-            throw new DrunkardException(ResultCode.NUMBER_FORMAT);
+            throw new DrunkardException(Status.NUMBER_FORMAT);
         }
         scheduledService.scheduleAtFixedRate(this, delay, duration, TimeUnit.SECONDS);
     }

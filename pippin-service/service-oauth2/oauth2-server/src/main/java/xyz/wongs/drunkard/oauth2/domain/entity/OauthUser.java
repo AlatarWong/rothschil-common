@@ -10,7 +10,7 @@ import xyz.wongs.drunkard.base.po.BasePo;
  * @ClassName OauthUser
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/12/2 16:18
  * @Version 1.0.0
 */

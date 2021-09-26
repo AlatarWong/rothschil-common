@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.base.handler.IQueueTaskHandler;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolUtils;
+import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -14,9 +14,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Description 异步处理日志的队列，将需要存储的日志放入这个队列中
+ * 异步处理日志的队列，将需要存储的日志放入这个队列中
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/11/13 16:14
  * @Version 1.0.0
 */
@@ -91,9 +90,8 @@ public class AppLogQueue {
         return queue.isEmpty();
     }
 
-
     private ThreadPoolExecutor getThread(){
-        return ThreadPoolUtils.doCreate(1,1,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),this.getClass().getName());
+        return ThreadPoolsUtil.doCreate(1,1,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),this.getClass().getName());
     }
 
 }

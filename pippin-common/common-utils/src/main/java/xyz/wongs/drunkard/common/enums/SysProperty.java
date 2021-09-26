@@ -5,7 +5,7 @@ package xyz.wongs.drunkard.common.enums;
  * @author WCNGS@QQ.COM
  * @ClassName SysProperty$
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 21/3/26$ 09:35$
  * @Version 1.0.0
  */

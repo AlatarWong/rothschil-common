@@ -17,7 +17,7 @@ import xyz.wongs.drunkard.war3.domain.service.LocationService;
 /**
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/11/18 11:04
  * @Version 1.0.0
 */
@@ -31,7 +31,7 @@ public class HtmlController {
     private LocationService locationService;
 
     /** idx
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Date 2021/7/8-14:57
      * @Param
@@ -43,7 +43,7 @@ public class HtmlController {
     }
 
     /** 查询列表
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Date 2021/7/8-14:58
      * @Param model MODEL

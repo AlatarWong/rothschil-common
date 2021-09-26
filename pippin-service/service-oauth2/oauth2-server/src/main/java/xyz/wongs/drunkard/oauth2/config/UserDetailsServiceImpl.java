@@ -23,7 +23,7 @@ import java.util.List;
  * @ClassName UserDetailsServiceImpl
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/26 17:41
  * @Version 1.0.0
 */

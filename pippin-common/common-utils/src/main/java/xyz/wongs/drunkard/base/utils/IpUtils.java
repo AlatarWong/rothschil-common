@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
  * @ClassName IpUtils
  * @Description 获取IP方法
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/6/19 18:12
  * @Version 1.0.0
 */

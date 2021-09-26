@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @ClassName LoginController
  * @Description 登录测试接口
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 15:11
  * @Version 1.0.0
 */

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.StringUtils;
 
 /** 当面付2.0退款请求bizContent结构体
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/9/23 - 10:21
  * @version 1.0.0
  */

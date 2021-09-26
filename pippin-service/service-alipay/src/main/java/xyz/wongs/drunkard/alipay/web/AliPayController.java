@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.service.AliPayService;
+import xyz.wongs.drunkard.base.config.Global;
 import xyz.wongs.drunkard.base.property.PropConfig;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +20,14 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- *  支付宝当面付，比较重要的一个逻辑 <br>
- *  1.生成支付二维码，供用户扫码支付 <br>
- *  2.当用户支付成功后，会回调我们后台更新订单状态，减少库存等操作 <br>
- *  3.前端轮询查询订单状态，成功返回首页，失败则跳到失败页面等操作 <br>
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ *  支付宝当面付，核心逻辑 <br>
+ *  <ur>
+ *  <li> 1.生成支付二维码，供用户扫码支付 </li>
+ *  <li> 2.当用户支付成功后，会回调我们后台更新订单状态，减少库存等操作 </li>
+ *  <li> 3.前端轮询查询订单状态，成功返回首页，失败则跳到失败页面等操作 </li>
+ *  </ur>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * 
  * @date 2021/9/23 - 12:29
  * @version 1.0.0
  */
@@ -39,6 +42,7 @@ public class AliPayController {
 
     @RequestMapping("/")
     public String index() {
+        Global.getConfig("key1");
         return "index";
     }
 
@@ -69,8 +73,8 @@ public class AliPayController {
 
     /**
      * 支付生成二维码，供用户扫码支付
-     * @param orderNo   待支付订单号
-     * @return String
+     * @param orderNo   支付订单号
+     * @return String   支付成功后跳转界面
      */
     @RequestMapping("/alipay")
     public String alipay(Long orderNo, Model model) {
@@ -80,7 +84,7 @@ public class AliPayController {
     }
 
     /**
-     * 2.支付宝回调方法，当用户扫码并支付成功后，会回调到后台，告诉后台用户付款成功，可以更新订单状态了。
+     * 支付宝回调方法，当用户扫码并支付成功后，会回调到后台，告诉后台用户付款成功，可以更新订单状态
      * @param request
      * @return String
      */
@@ -114,11 +118,11 @@ public class AliPayController {
         //todo 验证各种数据
 
         // 回调业务处理
-        boolean aliCallback = aliPayService.aliCallback(params);
-        if (aliCallback) {
-            // 如果回调成功，并且我们将订单状态都更改成功后，务必一定要给支付宝返回 success 这7个字符，否则支付宝按照一定规则一直重复调用
-            // return "success";
-        }
+//        boolean aliCallback = aliPayService.aliCallback(params);
+//        if (aliCallback) {
+//            // 如果回调成功，并且我们将订单状态都更改成功后，务必一定要给支付宝返回 success 这7个字符，否则支付宝按照一定规则一直重复调用
+//            // return "success";
+//        }
         // 如果回调过程中有异常，返回 failed 则表示回调处理失败，需支付宝重新调用回调方法继续处理
         // return "failed";
         return "pay";

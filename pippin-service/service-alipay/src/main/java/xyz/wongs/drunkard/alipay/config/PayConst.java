@@ -1,8 +1,8 @@
 package xyz.wongs.drunkard.alipay.config;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ *
  * @date 2021/9/26 - 10:17
  * @version 1.0.0
  */
@@ -22,5 +22,7 @@ package xyz.wongs.drunkard.alipay.config;
     public static String CANCEL_DURATION ="pay2.cancelDuration";
     public static String HEART_DELAY ="pay2.heartbeatDelay";
     public static String HEART_DURATION ="pay2.heartbeatDuration";
+   public static String TRADE_SUCCESS = "TRADE_SUCCESS";
+
 
 }

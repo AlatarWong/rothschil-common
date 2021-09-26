@@ -1,16 +1,16 @@
 package xyz.wongs.drunkard.alipay.model.builder;
 
-import com.alipay.api.domain.GoodsDetail;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.StringUtils;
 import xyz.wongs.drunkard.alipay.model.ExtendParams;
+import xyz.wongs.drunkard.alipay.pojo.GoodsDetail;
 
 import java.util.List;
 
 /** 扫码支付(产生二维码)请求bizContent结构体
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/9/23 - 10:21
  * @version 1.0.0
  */

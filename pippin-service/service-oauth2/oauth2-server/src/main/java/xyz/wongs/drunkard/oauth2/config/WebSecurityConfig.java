@@ -21,7 +21,7 @@ import xyz.wongs.drunkard.oauth2.util.Md5Util;
  * @ClassName WebSecurityConfig
  * @Description  访问控制交给资源服务器，只保留 /oauth/**,/login/**,/logout/**
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/11/27 15:18
  * @Version 1.0.0
 */

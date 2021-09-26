@@ -128,11 +128,11 @@ public interface FileInfoMapper extends BaseMapper<FileInfo,Long> {
 <mapper namespace="FileInfoMapper" >
   <resultMap id="BaseResultMap" type="FileInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
-    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
-    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
-    <result column="suffix_name" property="suffixName" jdbcType="VARCHAR" />
-    <result column="md5" property="md5" jdbcType="VARCHAR" />
+    <r column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <r column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <r column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <r column="suffix_name" property="suffixName" jdbcType="VARCHAR" />
+    <r column="md5" property="md5" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, file_name, file_path, file_size, suffix_name, md5
@@ -263,7 +263,7 @@ import java.util.List;
  * @ClassName FileInfoService
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2020/9/9 16:11
  * @Version 1.0.0
 */
@@ -316,7 +316,7 @@ import java.util.List;
  * @author WCNGS@QQ.COM
  * @ClassName ResultCode 定义的接口状态码
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2020/12/28 17:21
  * @Version 1.0.0
  */
@@ -466,7 +466,7 @@ import java.util.concurrent.*;
  * @ClassName FileInfoQueue
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/13 16:14
  * @Version 1.0.0
 */
@@ -586,7 +586,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @ClassName RunFileTask
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/30 12:58
  * @Version 1.0.0
 */
@@ -668,7 +668,7 @@ import java.util.concurrent.Callable;
  * @ClassName FileSizeThread
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/30 13:16
  * @Version 1.0.0
 */
@@ -707,7 +707,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.base.utils.file.FileUtil;
 import xyz.wongs.drunkard.base.utils.security.Md5Utils;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolUtils;
+import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
 import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
 import xyz.wongs.drunkard.task.queue.FileInfoQueue;
 import xyz.wongs.drunkard.task.thread.FileSizeThread;
@@ -730,7 +730,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @ClassName RunFileTask
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/30 12:58
  * @Version 1.0.0
 */
@@ -772,13 +772,13 @@ public class RunFileTask {
                 continue;
             }
             
-            Future<String> result = executor.submit(new FileSizeThread(fl));
+            Future<String> r = executor.submit(new FileSizeThread(fl));
             String fileName = FileUtil.getName(fl);
             long size = fl.length();
             String filePath = FileUtil.getAbsolutePath(fl);
             try {
                 FileInfo imageInfo = FileInfo.builder().fileName(fileName).filePath(filePath).fileSize(size).suffixName(suffixName)
-                        .md5(result.get()).build();
+                        .md5(r.get()).build();
                 lists.add(imageInfo);
             } catch (InterruptedException e){
                 e.printStackTrace();

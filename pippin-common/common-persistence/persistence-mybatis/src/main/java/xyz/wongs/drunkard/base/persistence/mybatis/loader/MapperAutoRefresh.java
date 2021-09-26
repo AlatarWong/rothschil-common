@@ -15,7 +15,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolUtils;
+import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * @ClassName MapperAutoRefresh
  * @Description Mybatis的mapper文件中的sql语句被修改后, 只能重启服务器才能被加载, 非常耗时,所以就写了一个自动加载的类,
  * 配置后检查xml文件更改,如果发生变化,重新加载xml里面的内容.
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/17 10:29
  * @Version 1.0.0
  */
@@ -206,7 +206,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
             // 启动刷新线程
             final MapperAutoRefresh runnable = this;
 
-            ExecutorService es = ThreadPoolUtils.doCreate(1,1,"Mybatis-Refresh");
+            ExecutorService es = ThreadPoolsUtil.doCreate(1,1,"Mybatis-Refresh");
             MyBatisThreadRefresh mtr = new MyBatisThreadRefresh(this);
             es.execute(mtr);
         }

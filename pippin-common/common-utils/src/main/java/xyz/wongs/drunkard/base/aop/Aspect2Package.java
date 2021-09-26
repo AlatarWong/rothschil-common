@@ -14,7 +14,7 @@ import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
  * 2、异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
  * 处理 全局Controller下面的public 方法
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/2 10:23
  * @Version 1.0.0
  */
@@ -28,7 +28,7 @@ public class Aspect2Package extends AbsAspect {
     protected final ThreadLocal<OperationLog> threadLocal = new ThreadLocal<>();
 
     /** 切面
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-16:39
      **/
     @Pointcut("execution(public * xyz.wongs..*.web.*Controller.*(..))")

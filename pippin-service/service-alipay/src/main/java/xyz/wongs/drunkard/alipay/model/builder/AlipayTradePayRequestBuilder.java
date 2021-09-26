@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /** 条码支付请求bizContent结构体
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/23 - 10:23
  * @version 1.0.0
  */

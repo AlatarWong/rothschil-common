@@ -22,9 +22,8 @@ import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.Date;
 
-/** AOP处理基类，定义队列和方法
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+/** 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 16:31
  * @version 1.0.0
  */
@@ -42,13 +41,13 @@ public abstract class AbsAspect {
         OperationLog operationLog = threadLocal.get();
         if(null!=e){
             success=-1;
-            operationLog.setErrMsg(e.getMessage());
+            operationLog.setErr(e.getMessage());
         }
         if(null!=ret){
             operationLog.setRespContent(JSON.toJSONString(ret));
         }
         operationLog.setEndTime(endTime);
-        operationLog.setIsSuccess(success);
+        operationLog.setSucceed(success);
         operationLog.setCost(DateUtils.getMills(operationLog.getBeginTime(),endTime));
         threadLocal.remove();
         queueTaskHandler.setOperationLog(operationLog);
@@ -75,15 +74,15 @@ public abstract class AbsAspect {
         Object[] params = joinPoint.getArgs();
         OperationLog.OperationLogBuilder opt = OperationLog.builder();
 
-        opt.className(className).methodName(methodName).logName(businessName).logType(key)
+        opt.className(className).methodName(methodName).logName(businessName).type(key)
                 .ipAddress(IpUtils.getIpAddr(request)).actionUrl(URLUtil.getPath(request.getRequestURI()))
-                .requestMethod(request.getMethod()).userAgent(request.getHeader("user-agent"))
+                .httpMethod(request.getMethod()).userAgent(request.getHeader("user-agent"))
                 .beginTime(beginTime).reqContent(JSON.toJSONString(params));
         return opt.build();
     }
 
     /** 获取 ApplicationLog 注解
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-16:22
      * @param joinPoint
      * @return ApplicationLog

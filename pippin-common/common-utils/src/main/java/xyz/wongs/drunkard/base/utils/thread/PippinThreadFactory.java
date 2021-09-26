@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @ClassName CoustomThreadFactory
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/19 16:36
  * @Version 1.0.0
 */

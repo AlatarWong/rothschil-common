@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 10:08
  * @version 1.0.0
  */
@@ -15,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 @Component
 @ConfigurationProperties(prefix="oss")
 @PropertySource(value = "classpath:oss-sdk.properties")
-public class OssSdk {
+public class EncryptSdk {
 
     private String storehouse;
     private String iterations;

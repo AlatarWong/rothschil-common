@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @author WCNGS@QQ.COM
  * @ClassName ProcessServiceImplTest
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/9/9 15:26
  * @Version 1.0.0
  */

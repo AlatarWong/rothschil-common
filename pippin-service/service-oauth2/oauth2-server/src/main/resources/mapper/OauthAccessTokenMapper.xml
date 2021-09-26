@@ -3,14 +3,14 @@
 <mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.OauthAccessTokenMapper" >
   <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
     <id column="authentication_id" property="authenticationId" jdbcType="VARCHAR" />
-    <result column="token_id" property="tokenId" jdbcType="VARCHAR" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="client_id" property="clientId" jdbcType="VARCHAR" />
-    <result column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
+    <r column="token_id" property="tokenId" jdbcType="VARCHAR" />
+    <r column="user_name" property="userName" jdbcType="VARCHAR" />
+    <r column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <r column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" extends="BaseResultMap" >
-    <result column="token" property="token" jdbcType="LONGVARBINARY" />
-    <result column="authentication" property="authentication" jdbcType="LONGVARBINARY" />
+    <r column="token" property="token" jdbcType="LONGVARBINARY" />
+    <r column="authentication" property="authentication" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
     authentication_id, token_id, user_name, client_id, refresh_token

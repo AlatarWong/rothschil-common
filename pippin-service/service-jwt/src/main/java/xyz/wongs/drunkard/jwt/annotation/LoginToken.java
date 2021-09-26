@@ -6,9 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description 登录表明身份注解
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/6 - 10:16
  * @Version 1.0.0
  */

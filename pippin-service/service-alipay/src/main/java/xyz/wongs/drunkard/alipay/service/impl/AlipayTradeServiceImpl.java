@@ -15,9 +15,8 @@ import xyz.wongs.drunkard.base.property.PropConfig;
 
 
 /** 当面付2.0具体实现（不提供交易保障接口的集成）
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ *
  * @date 2021/9/23 - 10:11
  * @version 1.0.0
  */
@@ -151,7 +150,7 @@ public class AlipayTradeServiceImpl extends AbsAlipayTradeService {
     }
 
     /** 商户可以直接使用的pay方法
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
      * @date 2021/9/23-9:43
      * @param builder

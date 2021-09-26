@@ -9,9 +9,9 @@ import xyz.wongs.drunkard.task.hadler.IntfImageInfoHandler;
 import java.util.List;
 
 /** 异步处理图像信息接口
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/17 - 15:41
  * @version 1.0.0
  */

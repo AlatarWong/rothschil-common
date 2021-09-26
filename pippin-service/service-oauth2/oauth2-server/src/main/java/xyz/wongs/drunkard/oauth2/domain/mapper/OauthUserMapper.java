@@ -11,7 +11,7 @@ import java.util.List;
  * @ClassName OauthUserMapper
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/12/2 16:58
  * @Version 1.0.0
 */

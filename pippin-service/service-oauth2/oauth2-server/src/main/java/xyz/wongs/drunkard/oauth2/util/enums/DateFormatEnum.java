@@ -6,7 +6,7 @@ import org.apache.commons.lang3.ArrayUtils;
  * @ClassName DateFormatEnum
  * @Description 日期格式
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/11/27 15:30
  * @Version 1.0.0
 */

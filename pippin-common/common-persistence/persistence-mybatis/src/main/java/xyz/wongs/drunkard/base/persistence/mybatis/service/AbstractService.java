@@ -13,7 +13,7 @@ import java.util.List;
  *  抽象的Service类，实现超级Service的超类
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2020/8/2 13:34
  * @Version 1.0.0
  */
@@ -21,7 +21,7 @@ import java.util.List;
 public abstract class AbstractService<T extends BasePo,ID extends Serializable> implements DefineService<T,ID> {
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-12:53
      * @Param

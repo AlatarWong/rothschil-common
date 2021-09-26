@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.base.stas;
  * @ClassName
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2020/8/2 13:31
  * @Version 1.0.0
  */

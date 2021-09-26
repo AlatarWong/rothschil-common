@@ -9,8 +9,8 @@ import xyz.wongs.drunkard.alipay.pojo.OssBed;
 import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ *
  * @date 2021/9/25 - 20:49
  * @version 1.0.0
  */

@@ -3,10 +3,10 @@
 <mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.SysPermissionMapper" >
   <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.SysPermission" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="perm_name" property="permName" jdbcType="VARCHAR" />
-    <result column="descritpion" property="descritpion" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <r column="perm_name" property="permName" jdbcType="VARCHAR" />
+    <r column="descritpion" property="descritpion" jdbcType="VARCHAR" />
+    <r column="url" property="url" jdbcType="VARCHAR" />
+    <r column="pid" property="pid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, perm_name, descritpion, url, pid

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @ClassName AuthencationFailureListener
  * @Description 用户认证失败监听器事件
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 17:01
  * @Version 1.0.0
 */

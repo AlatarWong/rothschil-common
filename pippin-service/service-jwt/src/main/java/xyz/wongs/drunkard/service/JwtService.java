@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.jwt.po.User;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/6 - 10:24
  * @Version 1.0.0
  */
@@ -17,7 +17,7 @@ public class JwtService {
 
     /**
      * @return String
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/6-10:24
      * @Param user

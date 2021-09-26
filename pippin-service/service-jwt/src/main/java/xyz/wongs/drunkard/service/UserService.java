@@ -9,9 +9,9 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/7/6 - 10:39
  * @Version 1.0.0
  */

@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ *
  * @date 2021/9/23 - 12:29
  * @version 1.0.0
  */

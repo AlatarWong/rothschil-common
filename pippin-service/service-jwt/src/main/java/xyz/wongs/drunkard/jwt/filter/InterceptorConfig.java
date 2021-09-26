@@ -1,9 +1,9 @@
 package xyz.wongs.drunkard.jwt.filter;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/6 - 10:49
  * @Version 1.0.0
  */

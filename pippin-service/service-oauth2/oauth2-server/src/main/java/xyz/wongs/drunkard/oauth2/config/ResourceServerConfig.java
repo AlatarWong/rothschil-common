@@ -9,7 +9,7 @@
 // * @author WCNGS@QQ.COM
 // * @ClassName ResourceServerConfig
 // * @Description 配置资源服务中心 这个类表明了此应用是OAuth2 的资源服务器，此处主要指定了受资源服务器保护的资源链接
-// * @Github <a>https://github.com/rothschil</a>
+// * 
 // * @date 20/11/27 11:14
 // * @Version 1.0.0
 // */

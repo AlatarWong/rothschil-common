@@ -19,9 +19,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/7/8 - 14:41
  * @Version 1.0.0
  */
@@ -35,7 +35,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 按照主键的数组，批量删除
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param ids 主键数组
@@ -46,7 +46,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 根据SQL语句获取目标
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql 原生SQL语句
@@ -59,7 +59,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 按照SQL执行修改命令
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql 原生SQL语句
@@ -76,7 +76,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 按照HQL执行修改命令
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param hql HQL语句
@@ -93,7 +93,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 根据SQL，查询结果，获取结果列表
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql 原生SQL语句
@@ -105,7 +105,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 根据HQL，查询结果，获取结果列表
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param hql HQL语句
@@ -116,7 +116,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 以SQL方式，执行批量插入
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param sql 原生SQL语句
@@ -129,7 +129,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 以list方式，执行批量插入
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:42
      * @Param list 列表集合
@@ -150,7 +150,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 利用Specification 默认设置进行分页
      * @Date 2021/7/8-14:35
      * @Param spec  条件
@@ -163,7 +163,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 利用实体结合 Specification 默认设置进行分页
      * @Date 2021/7/8-14:35
      * @Param t 实体类
@@ -231,7 +231,7 @@ public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> e
     }
 
     /** 获取数量
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:37
      * @Param query 查询CriteriaQuery

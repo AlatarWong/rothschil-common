@@ -11,9 +11,8 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @Description 线程池任务配置
+ * 线程池任务配置
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 2020/8/2 15:19
  * @Version 1.0.0
 */

@@ -9,7 +9,7 @@ import java.io.File;
  * @author WCNGS@QQ.COM
  * @ClassName IThumbnailsService$
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 21/1/6$ 16:22$
  * @Version 1.0.0
  */

@@ -1,13 +1,13 @@
 package xyz.wongs.drunkard.base.message.exception;
 
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.enums.Status;
 
 
 /**
  * @ClassName DrunkardException
  * @Description 自定义异常
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2019/9/21 10:07
  * @Version 1.0.0
 */
@@ -29,16 +29,16 @@ public class DrunkardException extends RuntimeException{
         super();
     }
 
-    public DrunkardException(ResultCode resultCode) {
-        super(resultCode.getMsg());
-        this.status = resultCode.getStatus();
-        this.message = resultCode.getMsg();
+    public DrunkardException(Status status) {
+        super(status.getMsg());
+        this.status = status.getStatus();
+        this.message = status.getMsg();
     }
 
-    public DrunkardException(ResultCode resultCode, Throwable cause) {
-        super(resultCode.getMsg(), cause);
-        this.status = resultCode.getStatus();
-        this.message = resultCode.getMsg();
+    public DrunkardException(Status status, Throwable cause) {
+        super(status.getMsg(), cause);
+        this.status = status.getStatus();
+        this.message = status.getMsg();
     }
 
     public DrunkardException(String message, Throwable e) {

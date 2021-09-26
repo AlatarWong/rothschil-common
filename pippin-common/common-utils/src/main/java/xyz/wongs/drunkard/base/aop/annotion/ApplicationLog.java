@@ -3,9 +3,8 @@ package xyz.wongs.drunkard.base.aop.annotion;
 import java.lang.annotation.*;
 
 /**
- * @Description 应用全局日志APO
+ * 应用全局日志APO
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 2019/10/29 16:50
  * @Version 1.0.0
 */

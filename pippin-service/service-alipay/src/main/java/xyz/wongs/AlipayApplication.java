@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import xyz.wongs.drunkard.base.property.listener.PropertiesListener;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
- * @github <a>https://github.com/rothschil</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 10:16
  * @version 1.0.0
  */

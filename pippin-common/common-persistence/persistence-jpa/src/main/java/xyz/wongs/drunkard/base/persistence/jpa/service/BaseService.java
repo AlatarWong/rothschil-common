@@ -12,7 +12,7 @@ import java.util.List;
 /** Service基类
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 20/12/18 11:05
  * @Version 1.0.0
 */
@@ -28,7 +28,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     public abstract void setJpaRepository(JpaRepository<T, ID> jpaRepository);
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:16
      * @Param t 实体信息
@@ -39,7 +39,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:16
      * @Param t 实体信息
@@ -53,7 +53,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:16
      * @Param t 实体信息
@@ -70,7 +70,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 保存单个实体
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param t 实体
@@ -82,7 +82,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 保存
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param t 实体
@@ -96,7 +96,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 根据主键删除相应实体
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param id 主键
@@ -107,7 +107,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 删除实体
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param t              实体
@@ -118,7 +118,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 按照主键查询
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param id                id 主键
@@ -129,7 +129,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 实体是否存在
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param id                id 主键
@@ -140,7 +140,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 统计实体总数
      * @Date 2018/7/3 22:07
      * @return List<T>
@@ -150,7 +150,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 查询所有实体
      * @Date 2018/7/3 22:07
      * @return List<T>
@@ -160,7 +160,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /** 按照顺序查询所有实体
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:02
      * @Param sort
@@ -171,7 +171,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 分页及排序查询实体
      * @Date 2021/7/8-14:02
      * @Param pageable  分页及排序数据
@@ -182,7 +182,7 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description 分页
      * @Date 2021/7/8-14:02
      * @Param page  页数

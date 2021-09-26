@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.base.constant;
  * @ClassName Constants
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/9/9 15:00
  * @Version 1.0.0
 */
@@ -220,4 +220,6 @@ public class Constants {
      * 系统异常
      */
     public static final String ERROR   = "20000";
+
+    public static final String RESPONSE_RESULT_ANN = "RESPONSE-RESULT-ANN";
 }

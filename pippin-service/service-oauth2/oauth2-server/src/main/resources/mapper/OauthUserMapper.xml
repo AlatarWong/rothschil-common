@@ -3,8 +3,8 @@
 <mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.OauthUserMapper" >
   <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.OauthUser" >
     <id column="u_id" property="id" jdbcType="BIGINT" />
-    <result column="u_name" property="uName" jdbcType="VARCHAR" />
-    <result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+    <r column="u_name" property="uName" jdbcType="VARCHAR" />
+    <r column="pass_word" property="passWord" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     u_id, u_name, pass_word

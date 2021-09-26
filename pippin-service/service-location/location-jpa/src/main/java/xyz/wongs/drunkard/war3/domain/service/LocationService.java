@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/9/9 16:11
  * @Version 1.0.0
 */
@@ -48,7 +48,7 @@ public class LocationService extends BaseService<Location, Long> {
 	}
 
 	/** 根据SQL，查询结果，获取结果列表
-	 * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+	 * @Author <a href="https://github.com/rothschil">Sam</a>
 	 * @Description //TODO
 	 * @Date 2021/7/8-14:42
 	 * @Param sql 原生SQL语句
@@ -59,7 +59,7 @@ public class LocationService extends BaseService<Location, Long> {
 	}
 
 	/** 根据hql，查询结果，获取结果列表
-	 * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+	 * @Author <a href="https://github.com/rothschil">Sam</a>
 	 * @Description //TODO
 	 * @Date 2021/7/8-14:42
 	 * @Param hql

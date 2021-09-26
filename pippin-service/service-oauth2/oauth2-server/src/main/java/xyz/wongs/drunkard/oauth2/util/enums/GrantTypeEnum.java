@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.oauth2.util.enums;
  * @ClassName GrantTypeEnum
  * @Description 认证模式枚举类
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/27 15:45
  * @Version 1.0.0
 */

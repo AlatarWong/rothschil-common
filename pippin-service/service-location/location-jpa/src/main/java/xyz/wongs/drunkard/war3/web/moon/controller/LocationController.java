@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/11/18 11:04
  * @Version 1.0.0
 */
@@ -32,7 +32,7 @@ public class LocationController{
     private LocationService locationService;
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:59
      * @Param lv 层级
@@ -44,7 +44,7 @@ public class LocationController{
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:59
      * @return Map
@@ -58,7 +58,7 @@ public class LocationController{
     }
 
     /**
-     * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @Author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
      * @Date 2021/7/8-14:59
      * @Param userId id

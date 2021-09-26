@@ -13,9 +13,9 @@ import org.springframework.util.Assert;
 
 /**
  * 提供调用getter/setter方法, 访问私有变量, 调用私有方法, 获取泛型类型Class, 被AOP过的真实类等工具函数.
- * @Author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @Author <a href="https://github.com/rothschil">Sam</a>
  * @Description 反射工具类.
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2021/9/14 - 17:51
  * @Version 1.0.0
  */

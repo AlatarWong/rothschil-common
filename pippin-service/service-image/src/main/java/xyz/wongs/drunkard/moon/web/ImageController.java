@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import xyz.wongs.drunkard.task.RunFileTask;
 
 /**
- * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
- * @github <a>https://github.com/rothschil</a>
+ *
  * @date 2021/9/18 - 10:29
  * @version 1.0.0
  */

@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.common.text.StrFormatter;
 
@@ -38,7 +38,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     private static final String PARR = "<([a-zA-Z]+)[^<>]*>";
 
     /** 获取UUID
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-20:45
      * @param
      * @return String
@@ -48,7 +48,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     }
 
     /** 字符转换为Unicode
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-20:45
      * @param input
      * @return String
@@ -84,7 +84,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     }
 
     /** Unicode 换为 字符转
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-20:45
      * @param input
      * @return String
@@ -138,7 +138,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
 
     /**
-     * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-20:46
      * @param totalAmount
      * @param unAmount
@@ -148,7 +148,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
         float amout = totalAmount/1000;
         if((amout-unAmount)<0){
-            throw new DrunkardException(ResultCode.PAY_ACTUAL_PRICE);
+            throw new DrunkardException(Status.PAY_ACTUAL_PRICE);
         }
         //构造方法的字符格式这里如果小数不足2位,会以0补足.
         DecimalFormat decimalFormat = new DecimalFormat("0.00");

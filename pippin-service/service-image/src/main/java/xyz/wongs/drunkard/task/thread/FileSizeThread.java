@@ -11,7 +11,7 @@ import java.util.concurrent.Callable;
  * @ClassName FileSizeThread
  * @Description
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 20/12/30 13:16
  * @Version 1.0.0
 */

@@ -7,7 +7,7 @@ import java.util.List;
  * @author WCNGS@QQ.COM
  * @ClassName ResultCode 定义的接口状态码
  * @Description
- * @Github <a>https://github.com/rothschil</a>
+ *
  * @date 2020/12/29 14:16
  * @Version 1.0.0
  */

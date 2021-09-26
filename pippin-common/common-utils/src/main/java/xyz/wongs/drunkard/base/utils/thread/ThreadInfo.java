@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  * @ClassName ThreadInfo
  * @Description 
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
+ * 
  * @date 2020/8/2 14:51
  * @Version 1.0.0
 */
