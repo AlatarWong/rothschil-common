@@ -1,12 +1,9 @@
 package xyz.wongs.drunkard.war3.web.moon.controller;
 
-import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
-import xyz.wongs.drunkard.base.message.annoation.ResponseResult;
 import xyz.wongs.drunkard.war3.domain.entity.Location;
 import xyz.wongs.drunkard.war3.domain.service.LocationService;
 
@@ -22,7 +19,6 @@ import java.util.Map;
  * @Version 1.0.0
 */
 @Validated
-@ResponseResult
 @RestController
 @RequestMapping(value = "/area")
 public class LocationController{
@@ -49,7 +45,6 @@ public class LocationController{
      * @Date 2021/7/8-14:59
      * @return Map
      **/
-    @ApplicationLog
     @GetMapping("/test")
     public Map<String, Object> test() {
         HashMap<String, Object> data = new HashMap<>(3);
@@ -64,7 +59,6 @@ public class LocationController{
      * @Param userId id
      * @return Map
      **/
-    @ApplicationLog
     @GetMapping("/valid")
     public Map<String, Object> testValidator( Integer userId) {
         HashMap<String, Object> data = new HashMap<>(3);

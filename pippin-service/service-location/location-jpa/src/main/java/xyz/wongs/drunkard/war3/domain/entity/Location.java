@@ -8,10 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/** 行政区域实体类
- * @Description
+/**
+ * 行政区域实体类
  * @author WCNGS@QQ.COM
- *
  * @date 2020/9/9 15:27
  * @Version 1.0.0
 */

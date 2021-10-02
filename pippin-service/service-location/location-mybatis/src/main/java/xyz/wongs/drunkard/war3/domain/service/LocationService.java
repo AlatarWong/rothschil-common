@@ -15,10 +15,7 @@ import xyz.wongs.drunkard.war3.domain.repository.LocationMapper;
 import java.util.List;
 
 /**
- * @ClassName LocationService
- * @Description 
  * @author WCNGS@QQ.COM
- * 
  * @date 2020/9/9 16:11
  * @Version 1.0.0
 */

@@ -17,9 +17,7 @@ import xyz.wongs.drunkard.war3.domain.repository.LocationRepository;
 import java.util.List;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- *
  * @date 2020/9/9 16:11
  * @Version 1.0.0
 */

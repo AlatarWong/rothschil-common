@@ -5,9 +5,6 @@ import java.util.Random;
 /**
  * @author WCNGS@QQ.CO
  * @version V1.0
- * @Title:
- * @Package spring-cloud xyz.wongs.tools.zonecode
- * @Description: TODO
  * @date 2018/7/1 1:03
  **/
 public class AreaCodeStringUtils {
@@ -36,7 +33,6 @@ public class AreaCodeStringUtils {
 
     /**
      * 方法实现说明
-     * @method      getUrlStrByLocationCode
      * @author      WCNGS@QQ.COM
      * @version
      * @see

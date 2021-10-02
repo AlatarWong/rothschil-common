@@ -6,9 +6,7 @@ import xyz.wongs.drunkard.war3.domain.entity.Location;
 import java.util.List;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- *
  * @date 2020/9/9 15:12
  * @Version 1.0.0
 */

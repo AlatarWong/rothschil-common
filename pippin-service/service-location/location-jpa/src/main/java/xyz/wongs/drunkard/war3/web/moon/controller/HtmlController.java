@@ -10,19 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
-import xyz.wongs.drunkard.base.message.annoation.ResponseResult;
 import xyz.wongs.drunkard.war3.domain.entity.Location;
 import xyz.wongs.drunkard.war3.domain.service.LocationService;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- *
  * @date 20/11/18 11:04
  * @Version 1.0.0
 */
 @Validated
-@ResponseResult
 @Controller
 public class HtmlController {
 
@@ -30,9 +26,8 @@ public class HtmlController {
     @Qualifier("locationService")
     private LocationService locationService;
 
-    /** idx
+    /** idx 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Date 2021/7/8-14:57
      * @Param
      * @return String
@@ -42,9 +37,8 @@ public class HtmlController {
         return "redirect:/list";
     }
 
-    /** 查询列表
+    /** 查询列表 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Date 2021/7/8-14:58
      * @Param model MODEL
      * @param pageNum   页数

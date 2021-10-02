@@ -6,27 +6,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
-import xyz.wongs.drunkard.base.message.annoation.ResponseResult;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.war3.domain.entity.Location;
 import xyz.wongs.drunkard.war3.domain.service.LocationService;
 
-import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName LocationController
- * @Description 
  * @author WCNGS@QQ.COM
- *
  * @date 20/11/18 11:04
  * @Version 1.0.0
 */
 @Validated
 @Api(value = "areas")
-@ResponseResult
 @RestController
 @RequestMapping(value = "/areas")
 public class LocationController{
@@ -36,9 +30,9 @@ public class LocationController{
     private LocationService locationService;
 
     /**
-     *
+     * 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
      * @Title: getLocationListByLevel
-     * @Description: 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
+     * @Description:
      * @param lv
      * @return  List<LocationEntity>
      */
@@ -77,7 +71,7 @@ public class LocationController{
 
     @ApplicationLog
     @GetMapping("/vali")
-    public Map<String, Object> testValidator(@NotNull(message = "userId不能为空") Integer userId) {
+    public Map<String, Object> testValidator(Integer userId) {
         HashMap<String, Object> data = new HashMap<>(3);
         data.put("info", "测试成功");
         return data;
