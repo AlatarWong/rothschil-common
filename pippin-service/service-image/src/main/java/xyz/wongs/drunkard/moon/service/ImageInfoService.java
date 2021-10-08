@@ -15,7 +15,7 @@ import java.util.List;
  * @author WCNGS@QQ.COM
  *
  * @date 2020/9/9 16:11
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Service(value= "imageInfoService")
 @Transactional(readOnly = true)

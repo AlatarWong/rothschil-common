@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/30 13:16
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class FileSizeThread implements Callable<String> {
 

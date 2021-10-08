@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
  * @author WCNGS@QQ.COM
  *
  * @date 20/11/27 15:30
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @SuppressWarnings("all")
 public enum DateFormatEnum {

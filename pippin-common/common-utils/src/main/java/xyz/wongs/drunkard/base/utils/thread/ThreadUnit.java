@@ -4,21 +4,20 @@ package xyz.wongs.drunkard.base.utils.thread;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
-/**
-
+/** 定义线程的基本单元
  * @author WCNGS@QQ.COM
  * @date 2020/8/2 14:51
- * @Version 1.0.0
+ * @since 1.0.0
 */
-public class ThreadInfo implements Runnable{
+public class ThreadUnit implements Runnable{
 
     private String value;
 
-    public ThreadInfo(){
+    public ThreadUnit(){
 
     }
 
-    public ThreadInfo(String value){
+    public ThreadUnit(String value){
         this.value=value;
     }
 

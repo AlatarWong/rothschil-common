@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Description
  * 
  * @date 21/1/6$ 16:24$
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Component("")
 public class ThumbnailsService implements IThumbnailsService {

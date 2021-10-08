@@ -5,7 +5,7 @@ import cn.hutool.core.math.MathUtil;
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 21/4/13 15:30
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class MathUtil2 extends MathUtil {
 

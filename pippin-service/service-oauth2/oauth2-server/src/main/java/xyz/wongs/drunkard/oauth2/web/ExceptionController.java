@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @Description: Description
  * @ProjectName: spring-parent
- * @Version: 1.0
+ * @since: 1.0
  */
 @Slf4j
 @RestController

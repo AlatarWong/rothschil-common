@@ -32,7 +32,7 @@ import java.util.concurrent.Executors;
  * @description //TODO
  *
  * @date 2021/9/23 - 10:13
- * @version 1.0.0
+ * @since 1.0.0
  */
 abstract class AbsAlipayTradeService extends AbsAlipayService implements AlipayTradeService {
 

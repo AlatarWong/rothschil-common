@@ -12,10 +12,8 @@ import java.util.Map;
 
 /**
  * @author WCNGS@QQ.COM
- * @Description
- *
  * @date 2020/8/2 13:32
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> {
 

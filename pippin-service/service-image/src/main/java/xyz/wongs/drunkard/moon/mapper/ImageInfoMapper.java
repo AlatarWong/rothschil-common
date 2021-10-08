@@ -11,7 +11,7 @@ import java.util.List;
  * @Description //TODO
  * 
  * @date 2021/7/13 - 9:41
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public interface ImageInfoMapper extends BaseMapper<ImageInfo,Long> {
     @Override

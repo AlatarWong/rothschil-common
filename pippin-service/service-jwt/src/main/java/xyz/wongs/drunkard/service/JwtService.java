@@ -10,7 +10,7 @@ import xyz.wongs.drunkard.jwt.po.User;
  * @Description //TODO
  * 
  * @date 2021/7/6 - 10:24
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Component
 public class JwtService {

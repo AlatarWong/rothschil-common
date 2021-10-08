@@ -11,7 +11,7 @@ import java.io.File;
  * @Description
  * 
  * @date 21/1/6$ 16:22$
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public interface IThumbnailsService {
 

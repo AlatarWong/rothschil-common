@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
-/** 定义统一响应内容的拦截器
+/** 定义统一响应内容的拦截器，为内容进行设置 {@link Constants.RESPONSE_RESULT_ANN }，可以识别和兼容 方法 和 类的 Annotation 注解
  * @author WCNGS@QQ.COM
  * @date 20/10/30 22:08
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Component
 public class ResponseBodyInterceptor implements HandlerInterceptor {

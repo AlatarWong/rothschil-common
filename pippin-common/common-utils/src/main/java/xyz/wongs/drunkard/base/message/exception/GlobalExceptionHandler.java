@@ -13,10 +13,9 @@ import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.response.ErR;
 
 
-/** 全局异常处理Handler
+/** 全局异常处理 Handler
  * @author WCNGS@QQ.COM
  * @date 2019/9/23 15:03
- * @Version 1.0.0
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {

@@ -31,7 +31,7 @@ import java.nio.channels.FileChannel;
  * @Description 
  * @author WCNGS@QQ.COM
  * @date 2018/8/31 16:37
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class FileUtil extends cn.hutool.core.io.FileUtil {
 

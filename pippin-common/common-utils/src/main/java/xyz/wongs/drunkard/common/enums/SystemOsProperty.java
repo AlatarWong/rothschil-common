@@ -2,13 +2,15 @@ package xyz.wongs.drunkard.common.enums;
 
 /**
  * 通过 System.getProperty("") 获取环境变量内容
- *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @version 1.0.0
+ * @since 1.0.0
  * @date 2021/9/26 - 17:43
  */
-public enum SysProperty {
+public enum SystemOsProperty {
 
+    /**
+     * 定义的字典信息
+     */
     SSL("ssl"),
     JAVA_VM_VERSION("java.vm.version"),
     JAVA_VENDOR("java.vendor"),
@@ -21,7 +23,7 @@ public enum SysProperty {
     USER_HOME("user.home"),
     USER_DIR("user.dir");
 
-    SysProperty(String code) {
+    SystemOsProperty(String code) {
         this.code = code;
     }
 

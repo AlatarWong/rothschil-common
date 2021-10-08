@@ -16,10 +16,9 @@ import java.util.function.Consumer;
 
 
 /**
- * Properties文件载入工具类. 可载入多个properties文件, 相同的属性在最后载入的文件中的值将会覆盖之前的值，但以System的Property优先.
- *
+ * Properties文件载入工具类. 可载入多个 properties文件, 相同的属性在最后载入的文件中的值将会覆盖之前的值，但以System的Property优先.
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @version 1.0.0
+ * @since 1.0.0
  * @date 2021/9/26 - 17:48
  */
 public class PropertiesLoader {
@@ -103,7 +102,12 @@ public class PropertiesLoader {
 
     /**
      * 取出Double类型的Property，但以System的Property优先.如果都为Null则返回Default值，如果内容错误则抛出异常
-     */
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:50
+     * @param key KEY
+     * @param defaultValue 默认值
+     * @return Boolean
+     **/
     public Double getDouble(String key, Integer defaultValue) {
         String value = getValue(key);
         return value != null ? Double.valueOf(value) : defaultValue;
@@ -111,7 +115,11 @@ public class PropertiesLoader {
 
     /**
      * 取出Boolean类型的Property，但以System的Property优先.如果都为Null抛出异常,如果内容不是true/false则返回false.
-     */
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:50
+     * @param key KEY
+     * @return Boolean
+     **/
     public Boolean getBoolean(String key) {
         String value = getValue(key);
         if (value == null) {
@@ -122,16 +130,26 @@ public class PropertiesLoader {
 
     /**
      * 取出Boolean类型的Property，但以System的Property优先.如果都为Null则返回Default值,如果内容不为true/false则返回false.
-     */
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:50
+     * @param key KEY
+     * @param defaultValue 默认值
+     * @return Boolean
+     **/
     public Boolean getBoolean(String key, boolean defaultValue) {
         String value = getValue(key);
         return value != null ? Boolean.valueOf(value) : defaultValue;
     }
 
-    /**
-     * 载入多个文件, 文件路径使用Spring Resource格式.
-     */
+
+    /** 载入多个文件, 文件路径使用Spring Resource格式.
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:50
+     * @param resourcesPaths
+     * @return Properties
+     **/
     private Properties loadProperties(String... resourcesPaths) {
+
         Properties props = new Properties();
 
         for (String location : resourcesPaths) {

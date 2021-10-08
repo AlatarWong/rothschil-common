@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 /** 加密工具实体，定义加密属性值，属性 参考 {@link org.jasypt.encryption.pbe.PooledPBEStringEncryptor}
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 10:08
- * @version 1.0.0
+ * @since 1.0.0
  */
 @Validated
 @Component

@@ -13,7 +13,7 @@ import java.util.List;
  * @description //TODO
  *
  * @date 2021/9/17 - 15:41
- * @version 1.0.0
+ * @since 1.0.0
  */
 @Component
 public class ImageInfoHandler implements IntfImageInfoHandler {

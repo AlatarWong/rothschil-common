@@ -23,7 +23,7 @@ import java.util.List;
  * @Description //TODO
  * 
  * @date 2021/7/8 - 14:41
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class BaseRepositoryImpl<T extends AbstractPo, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 

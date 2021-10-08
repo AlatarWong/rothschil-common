@@ -10,7 +10,7 @@ import xyz.wongs.drunkard.alipay.model.hb.SysTradeInfo;
  * @description //TODO
  *
  * @date 2021/9/23 - 10:14
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class HbListener implements TradeListener {
     private static Log log = LogFactory.getLog(HbListener.class);

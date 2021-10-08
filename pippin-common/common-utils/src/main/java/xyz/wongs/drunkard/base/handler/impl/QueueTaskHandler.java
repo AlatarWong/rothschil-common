@@ -4,14 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
+import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 import xyz.wongs.drunkard.base.aop.service.OperationLogService;
 import xyz.wongs.drunkard.base.handler.IQueueTaskHandler;
 
 /**
  * @author WCNGS@QQ.COM
  * @date 20/11/18 11:04
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Component
 public class QueueTaskHandler implements IQueueTaskHandler {
@@ -21,7 +21,7 @@ public class QueueTaskHandler implements IQueueTaskHandler {
     @Autowired
     private OperationLogService operationLogService;
 
-    private OperationLog operationLog;
+    private AppLog appLog;
 
     /**
      * @Author <a href="https://github.com/rothschil">Sam</a>
@@ -31,15 +31,15 @@ public class QueueTaskHandler implements IQueueTaskHandler {
      **/
     @Override
     public void processData() {
-        operationLogService.insert(operationLog);
+        operationLogService.insert(appLog);
         // 可以加上自己的事后处理逻辑....
     }
 
-    public OperationLog getOperationLog() {
-        return operationLog;
+    public AppLog getOperationLog() {
+        return appLog;
     }
 
-    public void setOperationLog(OperationLog operationLog) {
-        this.operationLog = operationLog;
+    public void setOperationLog(AppLog appLog) {
+        this.appLog = appLog;
     }
 }

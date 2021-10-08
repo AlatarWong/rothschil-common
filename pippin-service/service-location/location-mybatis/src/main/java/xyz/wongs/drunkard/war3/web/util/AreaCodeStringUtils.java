@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * @author WCNGS@QQ.CO
- * @version V1.0
+ * @since V1.0
  * @date 2018/7/1 1:03
  **/
 public class AreaCodeStringUtils {
@@ -17,7 +17,7 @@ public class AreaCodeStringUtils {
      * 方法实现说明
      * @method      interceptionStringByLastIndexOf
      * @author      WCNGS@QQ.COM
-     * @version
+     * @since
      * @see
      * @param str
      * @param suffix
@@ -34,7 +34,7 @@ public class AreaCodeStringUtils {
     /**
      * 方法实现说明
      * @author      WCNGS@QQ.COM
-     * @version
+     * @since
      * @see
      * @param locationCode
      * @param level

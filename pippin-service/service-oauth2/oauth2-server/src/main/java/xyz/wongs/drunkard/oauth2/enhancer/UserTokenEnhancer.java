@@ -16,13 +16,13 @@ import java.util.UUID;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.oauth2.enhancer.UserTokenEnhancer
  * @Date: 2019/7/9 19:43
- * @Version: 1.0
+ * @since: 1.0
  */
 public class UserTokenEnhancer implements TokenEnhancer {
     /**
      * @Description 重新定义令牌token
      * @Date 2019/7/9 19:56
-     * @Version  1.0
+     * @since  1.0
      */
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
@@ -46,7 +46,7 @@ public class UserTokenEnhancer implements TokenEnhancer {
     /**
      * @Description 生成自定义token
      * @Date 2019/7/9 19:50
-     * @Version  1.0
+     * @since  1.0
      */
     private String getToken(){
         return StringUtils.join(UUID.randomUUID().toString().replace("-", ""));

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author WCNGS@QQ.COM
  * @date 2020/9/9 14:50
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class ThreadLocalMap {
 

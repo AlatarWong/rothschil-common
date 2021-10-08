@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 /** 获取IP方法
  * @author WCNGS@QQ.COM
  * @date 2020/6/19 18:12
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class IpUtils {
     public static String getIpAddr(HttpServletRequest request) {
@@ -78,7 +78,6 @@ public class IpUtils {
 
     /**
      * 将IPv4地址转换成字节
-     *
      * @param text IPv4地址
      * @return byte 字节
      */
@@ -157,19 +156,29 @@ public class IpUtils {
         return bytes;
     }
 
+    /** 获取IP 地址
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:47
+     * @return String
+     **/
     public static String getHostIp() {
         try {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
+            return Constants.IP_LOCAL;
         }
-        return "127.0.0.1";
     }
 
+    /** 获取 HOST 名称
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:47
+     * @return String
+     **/
     public static String getHostName() {
         try {
             return InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
+            return Constants.IP_LOCAL_ADDREE;
         }
-        return "未知";
     }
 }

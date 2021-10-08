@@ -14,7 +14,7 @@ import xyz.wongs.drunkard.alipay.pojo.EncryptSdk;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * 
  * @date 2021/9/23 - 15:18
- * @version 1.0.0
+ * @since 1.0.0
  */
 @Configuration
 public class EncryptConfig {

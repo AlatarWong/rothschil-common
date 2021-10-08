@@ -11,7 +11,8 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
-import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
+import xyz.wongs.drunkard.base.aop.pojo.AppLog;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler;
 import xyz.wongs.drunkard.base.queue.AppLogQueue;
 import xyz.wongs.drunkard.base.utils.DateUtils;
@@ -25,7 +26,7 @@ import java.util.Date;
 /** 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 16:31
- * @version 1.0.0
+ * @since 1.0.0
  */
 public abstract class AbsAspect {
 
@@ -35,32 +36,32 @@ public abstract class AbsAspect {
     @Autowired
     protected AppLogQueue appLogQueue;
 
-    protected void send2Queue(ThreadLocal<OperationLog> threadLocal, Object ret, Exception e){
+    protected void send2Queue(ThreadLocal<AppLog> threadLocal, Object ret, Exception e){
         int success = 0;
         Date endTime = Date.from(Instant.now());
-        OperationLog operationLog = threadLocal.get();
+        AppLog appLog = threadLocal.get();
         if(null!=e){
             success=-1;
-            operationLog.setErr(e.getMessage());
+            appLog.setErr(e.getMessage());
         }
         if(null!=ret){
-            operationLog.setRespContent(JSON.toJSONString(ret));
+            appLog.setRespContent(JSON.toJSONString(ret));
         }
-        operationLog.setEndTime(endTime);
-        operationLog.setSucceed(success);
-        operationLog.setCost(DateUtils.getMills(operationLog.getBeginTime(),endTime));
+        appLog.setEndTime(endTime);
+        appLog.setSucceed(success);
+        appLog.setCost(DateUtils.getMills(appLog.getBeginTime(),endTime));
         threadLocal.remove();
-        queueTaskHandler.setOperationLog(operationLog);
+        queueTaskHandler.setOperationLog(appLog);
         appLogQueue.addQueue(queueTaskHandler);
     }
 
 
-    protected OperationLog getOperationLog(ApplicationLog applicationLog, JoinPoint joinPoint){
+    protected AppLog getOperationLog(ApplicationLog applicationLog, JoinPoint joinPoint){
         return getOperationLog(joinPoint,applicationLog.value(),applicationLog.key());
     }
 
 
-    protected OperationLog getOperationLog(JoinPoint joinPoint,String businessName,String key){
+    protected AppLog getOperationLog(JoinPoint joinPoint, String businessName, String key){
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) requestAttributes;
         Assert.notNull(sra,"The ServletRequestAttributes must not be null");
@@ -72,11 +73,11 @@ public abstract class AbsAspect {
         String className =joinPoint.getTarget().getClass().getName();
         // 参数
         Object[] params = joinPoint.getArgs();
-        OperationLog.OperationLogBuilder opt = OperationLog.builder();
+        AppLog.AppLogBuilder opt = AppLog.builder();
 
-        opt.className(className).methodName(methodName).logName(businessName).type(key)
-                .ipAddress(IpUtils.getIpAddr(request)).actionUrl(URLUtil.getPath(request.getRequestURI()))
-                .httpMethod(request.getMethod()).userAgent(request.getHeader("user-agent"))
+        opt.clazz(className).methodName(methodName).logName(businessName).type(key)
+                .ipAddress(IpUtils.getIpAddr(request)).url(URLUtil.getPath(request.getRequestURI()))
+                .httpType(request.getMethod()).userAgent(request.getHeader(Constants.USER_TYPE))
                 .beginTime(beginTime).reqContent(JSON.toJSONString(params));
         return opt.build();
     }
@@ -84,7 +85,7 @@ public abstract class AbsAspect {
     /** 获取 ApplicationLog 注解
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-16:22
-     * @param joinPoint
+     * @param joinPoint 切点
      * @return ApplicationLog
      **/
     protected static ApplicationLog getApplicationLog(JoinPoint joinPoint){

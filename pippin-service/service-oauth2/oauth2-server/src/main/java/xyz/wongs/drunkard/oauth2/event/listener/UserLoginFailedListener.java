@@ -11,7 +11,7 @@ import xyz.wongs.drunkard.oauth2.event.event.UserLoginFailedEvent;
  * @author WCNGS@QQ.COM
  *
  * @date 20/11/27 17:01
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Slf4j
 @Component

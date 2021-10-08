@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.oauth2.event.event.UserLoginFailedEvent
  * @Date: 2019/7/31 10:46
- * @Version: 1.0
+ * @since: 1.0
  */
 public class UserLoginFailedEvent extends ApplicationEvent {
     public UserLoginFailedEvent(Authentication authentication) {

@@ -14,7 +14,7 @@ import java.util.Map;
  * @description //TODO
  *
  * @date 2021/9/23 - 10:22
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class AlipayHeartbeatSynRequestBuilder extends RequestBuilder {
 

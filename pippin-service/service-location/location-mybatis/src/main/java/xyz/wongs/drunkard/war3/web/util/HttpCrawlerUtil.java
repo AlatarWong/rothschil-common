@@ -11,7 +11,7 @@
 //
 ///**
 // * @author WCNGS@QQ.CO
-// * @version V1.0
+// * @since V1.0
 // * @Title:
 // * @Package spring-cloud xyz.wongs.tools.utils
 // * @Description: TODO
@@ -49,7 +49,7 @@
 //     * 方法实现说明
 //     * @method      getWebClient
 //     * @author      WCNGS@QQ.COM
-//     * @version
+//     * @since
 //     * @see
 //     * @param ipport  ipport格式类型为{IP:PORT}
 //     * @return      com.gargoylesoftware.htmlunit.WebClient
@@ -82,7 +82,7 @@
 //     * 根据IP列表设置代理ip地址
 //     * @method      proxyIpAddress
 //     * @author      WCNGS@QQ.COM
-//     * @version
+//     * @since
 //     * @see
 //     * @param ipport
 //     * @param client

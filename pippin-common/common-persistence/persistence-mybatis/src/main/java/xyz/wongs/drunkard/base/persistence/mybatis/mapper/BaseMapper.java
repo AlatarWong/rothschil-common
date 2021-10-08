@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author WCNGS@QQ.COM
  * 
  * @date 2019/11/21 17:40
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public interface BaseMapper<T extends BasePo,ID extends Serializable> extends DefineMapper<T,ID> {
 

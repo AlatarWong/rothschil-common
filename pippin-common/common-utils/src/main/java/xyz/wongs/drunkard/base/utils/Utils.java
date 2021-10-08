@@ -9,7 +9,7 @@ import java.util.List;
  * 其他工具类
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @version 1.0.0
+ * @since 1.0.0
  * @date 2021/9/23 - 10:16
  */
 public class Utils {

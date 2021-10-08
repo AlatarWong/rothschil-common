@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
+import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 
 /**
  * 应用全局日志APO 异步日志：
@@ -16,7 +16,7 @@ import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/2 10:23
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Order(2)
 @Aspect
@@ -25,7 +25,7 @@ public class Aspect2Package extends AbsAspect {
 
     private static final Logger LOG = LoggerFactory.getLogger(Aspect2Package.class);
 
-    protected final ThreadLocal<OperationLog> threadLocal = new ThreadLocal<>();
+    protected final ThreadLocal<AppLog> threadLocal = new ThreadLocal<>();
 
     /** 切面
      * @author <a href="https://github.com/rothschil">Sam</a>
@@ -38,8 +38,8 @@ public class Aspect2Package extends AbsAspect {
 
     @Before(value = "cutService()")
     public void before(JoinPoint joinPoint) {
-        OperationLog operationLog = getOperationLog(joinPoint,null,null);
-        threadLocal.set(operationLog);
+        AppLog appLog = getOperationLog(joinPoint,null,null);
+        threadLocal.set(appLog);
     }
 
     @AfterReturning(returning = "ret", pointcut = "cutService()")

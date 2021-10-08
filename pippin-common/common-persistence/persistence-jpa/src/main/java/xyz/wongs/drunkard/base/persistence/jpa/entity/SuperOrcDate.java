@@ -21,7 +21,7 @@ import java.util.Date;
  * @Description //TODO
  * 
  * @date 2021/7/8 - 13:54
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @MappedSuperclass
 public abstract class SuperOrcDate<PK extends Serializable> extends AbstractPo<PK> {

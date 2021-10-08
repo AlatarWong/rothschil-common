@@ -265,7 +265,7 @@ import java.util.List;
  * @author WCNGS@QQ.COM
  * 
  * @date 2020/9/9 16:11
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Service(value="fileInfoService")
 @Transactional(readOnly = true)
@@ -318,7 +318,7 @@ import java.util.List;
  * @Description
  * 
  * @date 2020/12/28 17:21
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Component
 @Slf4j
@@ -401,7 +401,7 @@ public class RunFileTask {
 ~~~java
 package xyz.wongs.drunkard.task.hadler;
 
-import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
+import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 import FileInfo;
 import java.security.PrivateKey;
 import java.util.List;
@@ -468,7 +468,7 @@ import java.util.concurrent.*;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/13 16:14
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Slf4j
 @Component
@@ -588,7 +588,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/30 12:58
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Component
 @Slf4j
@@ -670,7 +670,7 @@ import java.util.concurrent.Callable;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/30 13:16
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class FileSizeThread implements Callable<String> {
 
@@ -732,7 +732,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/30 12:58
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Component
 @Slf4j

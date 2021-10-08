@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * 异步处理日志的队列，将需要存储的日志放入这个队列中
  * @author WCNGS@QQ.COM
  * @date 20/11/13 16:14
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Component
 public class AppLogQueue {

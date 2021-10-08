@@ -34,7 +34,7 @@ import java.util.*;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/27 15:26
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Slf4j
 @RestController
@@ -50,7 +50,7 @@ public class OAuth2Controller {
     /**
      * @Description /oauth/token(令牌端点) 获取用户token信息
      * @Date 2019/7/22 15:59
-     * @Version  1.0
+     * @since  1.0
      */
     @PostMapping(value = "/token")
     public Map<String, Object> getToken(@RequestParam String username, @RequestParam String password){
@@ -92,7 +92,7 @@ public class OAuth2Controller {
     /**
      * @Description /oauth/token（令牌端点）刷新token信息
      * @Date 2019/7/25 16:13
-     * @Version  1.0
+     * @since  1.0
      */
     @PostMapping(value = "refresh_token")
     public Map<String, Object> refreshToken(@RequestParam String refresh_token){
@@ -130,7 +130,7 @@ public class OAuth2Controller {
     /**
      * @Description oauth/check_token（端点校验）token有效性
      * @Date 2019/7/25 16:22
-     * @Version  1.0
+     * @since  1.0
      */
     @PostMapping(value = "check_token")
     public Map<String, Object> checkToken(@RequestParam String access_token){
@@ -152,7 +152,7 @@ public class OAuth2Controller {
     /**
      * @Description 账号退出
      * @Date 2019/7/25 17:47
-     * @Version  1.0
+     * @since  1.0
      */
     @PostMapping(value = "logout")
     public Map<String, Object> logOut(@RequestParam String access_token){

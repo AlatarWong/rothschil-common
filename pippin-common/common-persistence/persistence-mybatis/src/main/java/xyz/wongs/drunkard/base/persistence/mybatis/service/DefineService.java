@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author WCNGS@QQ.COM
  * 
  * @date 2020/8/19 20:58
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public interface DefineService<T extends BasePo,ID extends Serializable> {
 

@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
  * @Description 拦截器，获取 Token，并验证 Token合法性
  * 
  * @date 2021/7/6 - 10:25
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
 

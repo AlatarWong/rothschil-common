@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @author WCNGS@QQ.COM
  * @date 20/11/18 11:04
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Validated
 @Api(value = "areas")

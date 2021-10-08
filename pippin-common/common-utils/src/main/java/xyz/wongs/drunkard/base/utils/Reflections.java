@@ -17,7 +17,7 @@ import org.springframework.util.Assert;
  * @Description 反射工具类.
  * 
  * @date 2021/9/14 - 17:51
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @SuppressWarnings("rawtypes")
 public class Reflections {
@@ -447,7 +447,7 @@ public class Reflections {
 	 * 方法实现说明
 	 * @method      getFieldValueMap
 	 * @author      WCNGS@QQ.COM
-	 * @version
+	 * @since
 	 * @see
 	 * @param s
 	 * @param bean

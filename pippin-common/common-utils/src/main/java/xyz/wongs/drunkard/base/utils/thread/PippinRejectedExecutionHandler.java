@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /** 线程池的自定义策略
  * @author WCNGS@QQ.COM
  * @date 20/11/19 16:20
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class PippinRejectedExecutionHandler implements RejectedExecutionHandler {
 

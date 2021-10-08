@@ -17,7 +17,7 @@ import java.util.Properties;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * 
  * @date 2021/9/24 - 21:42
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class PropConfig {
 

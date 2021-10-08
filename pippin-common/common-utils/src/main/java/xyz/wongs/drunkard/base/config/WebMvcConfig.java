@@ -24,7 +24,7 @@ import java.util.List;
  * </ul>
  * @author WCNGS@QQ.COM
  * @date 20/11/18 11:13
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -35,12 +35,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     /** 自定义消息转换器
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/26-17:07
-     * @param converters
-     * @return
+     * @param converters 转换器
      **/
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-
         // 清除默认 Json 转换器
         converters.removeIf(converter -> converter instanceof MappingJackson2HttpMessageConverter);
         // 配置 FastJson

@@ -15,7 +15,7 @@ import java.util.List;
  * @description //TODO
  * 
  * @date 2021/9/23 - 10:16
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class ExceptionInfoAdapter implements JsonSerializer<List<ExceptionInfo>> {
     @Override

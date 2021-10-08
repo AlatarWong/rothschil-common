@@ -8,7 +8,7 @@ import java.security.MessageDigest;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/2 16:14
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class Md5Util {
 

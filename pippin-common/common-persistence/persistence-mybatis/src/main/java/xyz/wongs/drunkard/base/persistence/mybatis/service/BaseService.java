@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author WCNGS@QQ.COM
  * 
  * @date 2020/8/2 13:34
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Transactional(readOnly = true)
 public abstract class BaseService<T extends BasePo,ID extends Serializable> extends AbstractService<T,ID> {

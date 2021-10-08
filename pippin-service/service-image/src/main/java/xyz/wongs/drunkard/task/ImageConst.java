@@ -9,7 +9,7 @@ import java.util.List;
  * @Description
  *
  * @date 2020/12/29 14:16
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class ImageConst {
     //public static List<String> LIST_SUFFIX = Arrays.asList("JPG","PNG","JPEG","BMP","NEF","CR2","GIF","PSD","TIFF","SVG");

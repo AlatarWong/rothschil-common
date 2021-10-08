@@ -9,14 +9,14 @@ import java.util.Date;
  * 操作日志实体，可用于持久化
  * @author WCNGS@QQ.COM
  * @date 2019/12/3 15:06
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @EqualsAndHashCode(callSuper=false)
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OperationLog extends BasePo<Long> {
+public class AppLog extends BasePo<Long> {
     /**
      * 实例化ID
      */
@@ -40,17 +40,17 @@ public class OperationLog extends BasePo<Long> {
     /**
      * 动作URL
      */
-    private String actionUrl;
+    private String url;
 
     /**
-     * 账号信息
+     * 操作人信息
      */
     private String operator;
 
     /**
      * 请求方法类型
      */
-    private String httpMethod;
+    private String httpType;
 
     /**
      * 请求头信息 user-Agent
@@ -60,7 +60,7 @@ public class OperationLog extends BasePo<Long> {
     /**
      * 类信息
      */
-    private String className;
+    private String clazz;
 
     /**
      * 方法
@@ -76,7 +76,6 @@ public class OperationLog extends BasePo<Long> {
      * 方法描述
      */
     private String desc;
-
 
     /**
      * 开始时间

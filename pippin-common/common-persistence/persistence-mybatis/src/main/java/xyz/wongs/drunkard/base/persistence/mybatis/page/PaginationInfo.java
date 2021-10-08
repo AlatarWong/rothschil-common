@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author WCNGS@QQ.COM
  * 
  * @date 2020/8/2 13:48
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @ToString
 @AllArgsConstructor

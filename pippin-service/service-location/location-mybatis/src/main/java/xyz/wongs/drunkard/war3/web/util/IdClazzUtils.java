@@ -9,7 +9,7 @@ import xyz.wongs.drunkard.base.persistence.mybatis.service.RedisUidService;
  * @author WCNGS@QQ.COM
  *
  * @date 2020/9/9 15:28
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class IdClazzUtils {
 

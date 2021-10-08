@@ -15,7 +15,7 @@ import java.util.Date;
 /**
  * 日期工具类, 继承 {@link org.apache.commons.lang.time.DateUtils }类
  * @author WCNGS@QQ.COM
- * @version 2014-4-15
+ * @since 2014-4-15
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
@@ -403,7 +403,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @throws
      * @method getDatebystr
      * @author WCNGS@QQ.COM
-     * @version
+     * @since
      * @date 2018/4/12 19:55
      * @see
      */
@@ -429,7 +429,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @throws
      * @method dateVali
      * @author WCNGS@QQ.COM
-     * @version
+     * @since
      * @date 2018/4/12 19:53
      * @see
      */

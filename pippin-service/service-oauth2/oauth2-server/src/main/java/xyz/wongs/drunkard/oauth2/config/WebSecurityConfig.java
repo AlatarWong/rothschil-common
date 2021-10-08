@@ -23,7 +23,7 @@ import xyz.wongs.drunkard.oauth2.util.Md5Util;
  * @author WCNGS@QQ.COM
  *
  * @date 20/11/27 15:18
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Configuration
 @EnableWebSecurity
@@ -80,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * @Description Spring security认证Bean
      * @Date 2019/7/4 17:39
-     * @Version  1.0
+     * @since  1.0
      */
     @Bean
     public AuthenticationProvider authenticationProvider(){

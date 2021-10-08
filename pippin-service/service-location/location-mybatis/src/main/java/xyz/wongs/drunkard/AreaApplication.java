@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/18 11:03
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @EnableCaching
 @MapperScan(basePackages = {"xyz.wongs.drunkard.**.mapper"})

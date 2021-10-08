@@ -7,11 +7,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import xyz.wongs.drunkard.base.persistence.jpa.repository.factory.BaseRepositoryFactoryBean;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- *
  * @date 20/11/18 11:03
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @EnableJpaAuditing
 @SpringBootApplication

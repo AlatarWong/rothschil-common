@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
-import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
+import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 
 /**
  * 应用全局日志APO 异步日志：
@@ -15,14 +15,14 @@ import xyz.wongs.drunkard.base.aop.pojo.OperationLog;
  * @author WCNGS@QQ.COM
  *
  * @date 20/12/2 10:23
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Order(1)
 @Aspect
 @Component
 public class Aspect2Annotaion extends AbsAspect{
 
-    private final ThreadLocal<OperationLog> threadLocal = new ThreadLocal<>();
+    private final ThreadLocal<AppLog> threadLocal = new ThreadLocal<>();
 
     /** 切面
      * @author <a href="https://github.com/rothschil">Sam</a>
@@ -37,8 +37,8 @@ public class Aspect2Annotaion extends AbsAspect{
         if(null==applicationLog){
             return ;
         }
-        OperationLog operationLog = getOperationLog(applicationLog,joinPoint);
-        threadLocal.set(operationLog);
+        AppLog appLog = getOperationLog(applicationLog,joinPoint);
+        threadLocal.set(appLog);
     }
 
     @AfterReturning(returning = "ret",pointcut = "cutService()")

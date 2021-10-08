@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @Description //TODO
  *
  * @date `2021/7/6` - 10:22
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class User implements Serializable {
     private String id;

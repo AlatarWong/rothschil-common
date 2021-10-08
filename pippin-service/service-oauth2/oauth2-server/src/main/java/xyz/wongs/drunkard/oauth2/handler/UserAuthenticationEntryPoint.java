@@ -16,7 +16,7 @@ import java.io.IOException;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.handler.AjaxAuthenticationEntryPoint
  * @Date: 2019/7/1 15:36
- * @Version: 1.0
+ * @since: 1.0
  */
 @Component
 public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {

@@ -16,7 +16,7 @@ import java.util.Map;
  * @Description: Description
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.oauth2.api.GrantController
- * @Version: 1.0
+ * @since: 1.0
  */
 @Slf4j
 @Controller

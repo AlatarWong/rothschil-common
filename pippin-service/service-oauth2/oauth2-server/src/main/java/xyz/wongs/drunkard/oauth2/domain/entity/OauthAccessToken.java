@@ -8,7 +8,7 @@ import lombok.Data;
  * @author WCNGS@QQ.COM
  *
  * @date 20/12/2 16:19
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Data
 public class OauthAccessToken {

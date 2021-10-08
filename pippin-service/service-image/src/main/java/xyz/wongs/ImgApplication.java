@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/18 11:03
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @MapperScan(basePackages = {"xyz.wongs.**.mapper"})
 @SpringBootApplication

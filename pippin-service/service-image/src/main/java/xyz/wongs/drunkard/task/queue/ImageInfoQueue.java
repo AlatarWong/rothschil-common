@@ -14,7 +14,7 @@ import java.util.concurrent.*;
  * @author WCNGS@QQ.COM
  *
  * @date 20/11/13 16:14
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Slf4j
 @Component

@@ -20,7 +20,7 @@ import java.util.List;
 /** 上传图片至OSS图床
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/22 - 16:59
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class OssUpload {
 

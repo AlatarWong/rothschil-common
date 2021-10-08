@@ -1,12 +1,9 @@
 package xyz.wongs.drunkard.base.constant;
 
 /** 通用常量信息
- * @ClassName Constants
- * @Description
  * @author WCNGS@QQ.COM
- *
  * @date 2020/9/9 15:00
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class Constants {
 
@@ -15,9 +12,13 @@ public class Constants {
 
     public static String DB_TYPE ="db.type";
 
+    public static String USER_TYPE ="user-Agent";
+
     public static final String RANDOM_STR="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+    public static final String IP_LOCAL = "127.0.0.1";
     public static final String IP_LOCAL_ADDREE = "unknown";
+
     public static final String UNKNOWN = "unknown";
     public static final String HEADER_X_FORWARDED_FOR ="x-forwarded-for";
 

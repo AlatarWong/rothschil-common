@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/27 14:59
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Component
 public class OAuthTokenAuthenticationFilter extends GenericFilterBean {

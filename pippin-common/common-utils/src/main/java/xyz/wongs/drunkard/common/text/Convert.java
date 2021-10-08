@@ -12,9 +12,8 @@ import java.util.Set;
 
 /**
  * 类型转换器
- *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @version 1.0.0
+ * @since 1.0.0
  * @date 2021/9/26 - 17:45
  */
 public class Convert {
@@ -22,7 +21,6 @@ public class Convert {
      * 转换为字符串<br>
      * 如果给定的值为null，或者转换失败，返回默认值<br>
      * 转换失败不会报错
-     *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
      * @return 结果
@@ -41,7 +39,6 @@ public class Convert {
      * 转换为字符串<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
      * 转换失败不会报错
-     *
      * @param value 被转换的值
      * @return 结果
      */
@@ -53,7 +50,6 @@ public class Convert {
      * 转换为字符<br>
      * 如果给定的值为null，或者转换失败，返回默认值<br>
      * 转换失败不会报错
-     *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
      * @return 结果
@@ -74,7 +70,6 @@ public class Convert {
      * 转换为字符<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
      * 转换失败不会报错
-     *
      * @param value 被转换的值
      * @return 结果
      */
@@ -86,7 +81,6 @@ public class Convert {
      * 转换为byte<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<br>
      * 转换失败不会报错
-     *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
      * @return 结果
@@ -116,7 +110,6 @@ public class Convert {
      * 转换为byte<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
      * 转换失败不会报错
-     *
      * @param value 被转换的值
      * @return 结果
      */

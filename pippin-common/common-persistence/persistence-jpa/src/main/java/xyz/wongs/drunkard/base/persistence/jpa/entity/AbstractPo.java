@@ -10,7 +10,7 @@ import java.io.Serializable;
 /** 抽象实体基类，如果主键是数据库端自动生成 请使用 {@link xyz.wongs.drunkard.base.po.BasePo} ，如果是Oracle 请使用 {@link xyz.wongs.drunkard.base.persistence.jpa.entity.SuperOrcPo}
  * @author WCNGS@QQ.COM
  * @date 20/12/18 10:53
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @MappedSuperclass
 public abstract class AbstractPo<ID extends Serializable> extends BasePo<ID> implements Persistable<ID> {

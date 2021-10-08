@@ -8,7 +8,7 @@ import xyz.wongs.drunkard.alipay.model.TradeStatus;
  * @description //TODO
  * 
  * @date 2021/9/23 - 10:09
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class AlipayF2FQueryResult implements Result {
     private TradeStatus tradeStatus;

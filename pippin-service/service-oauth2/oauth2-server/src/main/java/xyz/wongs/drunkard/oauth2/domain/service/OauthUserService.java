@@ -15,7 +15,7 @@ import xyz.wongs.drunkard.oauth2.domain.mapper.OauthUserMapper;
  * @author WCNGS@QQ.COM
  *
  * @date 20/12/2 16:58
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Service
 @Transactional(readOnly = true)

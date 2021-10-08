@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 /**
  * @Description: JSON工具类
  * @ProjectName: spring-parent
- * @Version: 1.0
+ * @since: 1.0
  */
 @SuppressWarnings("all")
 public class JSONUtils {
@@ -42,7 +42,7 @@ public class JSONUtils {
 
     /**
      * @Description 对象转换为json字符串, 支持List、Map、Collection、字符串
-     * @Version 1.0
+     * @since 1.0
      */
     public static <T> String toJSONString(T o) {
         return toJSONString(o, Include.ALWAYS);
@@ -58,7 +58,7 @@ public class JSONUtils {
      *                CUSTOM:自定义，根据过滤器等
      *                USE_DEFAULTS：...
      * @Description 对象转换为json字符串, 支持List、Map、Collection、字符串
-     * @Version 1.0
+     * @since 1.0
      */
     public static <T> String toJSONString(T o, Include include) {
         try {
@@ -74,7 +74,7 @@ public class JSONUtils {
 
     /**
      * @Description 带格式化， 对象转换为json字符串,支持List、Map、Collection、字符串
-     * @Version 1.0
+     * @since 1.0
      */
     public static <T> String toJSONPrettyString(T o) {
         return toJSONPrettyString(o, Include.ALWAYS);
@@ -90,7 +90,7 @@ public class JSONUtils {
      *                CUSTOM:自定义，根据过滤器等
      *                USE_DEFAULTS：...
      * @Description 带格式化， 对象转换为json字符串,支持List、Map、Collection、字符串
-     * @Version 1.0
+     * @since 1.0
      */
     public static <T> String toJSONPrettyString(T o, Include include) {
         try {
@@ -106,7 +106,7 @@ public class JSONUtils {
 
     /**
      * @Description JSON字符串转换为java对象, 支持List、Map、Collection、字符串
-     * @Version 1.0
+     * @since 1.0
      */
     public static <T> T toJavaBean(File file, Class<T> responseType) {
         try {
@@ -122,7 +122,7 @@ public class JSONUtils {
 
     /**
      * @Description JSON字符串转换为java对象, 支持List、Map、Collection、字符串
-     * @Version 1.0
+     * @since 1.0
      */
     public static <T> T toJavaBean(String jsonString, Class<T> responseType) {
         try {
@@ -237,7 +237,7 @@ public class JSONUtils {
 
     /**
      * @Description 将对象写入文件
-     * @Version 1.0
+     * @since 1.0
      */
     public static void writeToFile(File file, Object o) {
         try {
@@ -253,7 +253,7 @@ public class JSONUtils {
 
     /**
      * @Description 格式化，将对象写入文件
-     * @Version 1.0
+     * @since 1.0
      */
     public static void writeToFilePretty(File file, Object o) {
         try {

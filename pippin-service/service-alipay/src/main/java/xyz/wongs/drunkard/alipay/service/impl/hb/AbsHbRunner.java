@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @description //TODO
  *
  * @date 2021/9/23 - 10:13
- * @version 1.0.0
+ * @since 1.0.0
  */
 public abstract class AbsHbRunner implements Runnable {
     protected Log log = LogFactory.getLog(getClass());

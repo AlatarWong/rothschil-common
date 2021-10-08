@@ -19,7 +19,7 @@ import java.util.List;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.po.User
  * @Date: 2019/6/28 17:37
- * @Version: 1.0
+ * @since: 1.0
  */
 @Component
 public class UserAuthDetailsService implements UserDetailsService {
@@ -28,7 +28,7 @@ public class UserAuthDetailsService implements UserDetailsService {
     /**
      * @Description 根据用户名查询用户角色、权限等信息
      * @Date 2019/7/1 14:50
-     * @Version  1.0
+     * @since  1.0
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

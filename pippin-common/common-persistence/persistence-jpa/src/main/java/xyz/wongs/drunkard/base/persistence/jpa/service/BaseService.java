@@ -14,7 +14,7 @@ import java.util.List;
  * @author WCNGS@QQ.COM
  *
  * @date 20/12/18 11:05
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Transactional(readOnly = true,rollbackFor = Exception.class)
 public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializable> {

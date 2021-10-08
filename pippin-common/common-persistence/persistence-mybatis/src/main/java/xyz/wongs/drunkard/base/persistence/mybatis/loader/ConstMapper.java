@@ -6,7 +6,7 @@ package xyz.wongs.drunkard.base.persistence.mybatis.loader;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/18 10:42
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class ConstMapper {
 

@@ -6,7 +6,7 @@ import xyz.wongs.drunkard.alipay.util.GsonFactory;
  * @author <a href="https://github.com/rothschil">Sam</a>
  *
  * @date 2021/9/23 - 10:21
- * @version 1.0.0
+ * @since 1.0.0
  */
 public abstract class RequestBuilder {
     private String appAuthToken;

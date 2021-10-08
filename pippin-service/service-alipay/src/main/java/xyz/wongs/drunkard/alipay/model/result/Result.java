@@ -5,7 +5,7 @@ package xyz.wongs.drunkard.alipay.model.result;
  * @description //TODO
  * 
  * @date 2021/9/23 - 10:09
- * @version 1.0.0
+ * @since 1.0.0
  */
 public interface Result {
 

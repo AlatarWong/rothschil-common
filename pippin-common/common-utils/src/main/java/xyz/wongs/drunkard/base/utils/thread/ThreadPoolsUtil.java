@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 /** 手工创建线程池
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/26 - 17:29
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class ThreadPoolsUtil {
 
@@ -16,7 +16,6 @@ public class ThreadPoolsUtil {
      * @param maximumPoolSize   允许并行最大核心线程数
      * @param theadName 指定线程名字
      * @return java.util.concurrent.ExecutorService
-     * @throws
      * @date 20/11/19 16:23
      */
     public static ThreadPoolExecutor doCreate(int corePoolSize,int maximumPoolSize, String theadName){
@@ -29,7 +28,6 @@ public class ThreadPoolsUtil {
      * @param queueSize 有界队列的大小
      * @param theadName 指定线程名字
      * @return java.util.concurrent.ExecutorService
-     * @throws
      * @date 20/11/19 16:23
      */
     public static ThreadPoolExecutor doCreate(int corePoolSize,int maximumPoolSize,
@@ -46,7 +44,6 @@ public class ThreadPoolsUtil {
      * @param queueSize 有界队列的大小
      * @param theadName 指定线程名字
      * @return java.util.concurrent.ExecutorService
-     * @throws
      * @date 20/11/19 16:23
      */
     public static ThreadPoolExecutor doCreate(int corePoolSize,int maximumPoolSize,int keepAliveTime,TimeUnit unit,
@@ -54,12 +51,9 @@ public class ThreadPoolsUtil {
                                                       String theadName){
         // 1、指定有界队列，并明确大小
         queueSize= queueSize==0?8:queueSize;
-        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<Runnable>(queueSize);
-
+        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(queueSize);
         // 2、自定义线程名字
         ThreadFactory threadFactory = new PippinThreadFactory(theadName);
-
-
 
         return doCreate(corePoolSize, maximumPoolSize,keepAliveTime, unit, queue,threadFactory, getRejectedExecutionHandler());
     }
@@ -72,7 +66,6 @@ public class ThreadPoolsUtil {
      * @param workQueue 在执行任务之前用于保留任务的队列，此队列将仅保存execute方法提交的Runnable任务。
      * @param theadName   指定线程名字
      * @return java.util.concurrent.ExecutorService
-     * @throws
      * @date 20/11/19 16:23
      */
     public static ThreadPoolExecutor doCreate(int corePoolSize,int maximumPoolSize,int keepAliveTime,TimeUnit unit,
@@ -129,11 +122,25 @@ public class ThreadPoolsUtil {
     }
 
 
+    /**
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:24
+     * @param corePoolSize 核心线程数量
+     * @param theadName 线程名称
+     * @return ScheduledExecutorService
+     **/
     public static ScheduledExecutorService doCreate( int corePoolSize, String theadName){
         ThreadFactory threadFactory = new PippinThreadFactory(theadName);
         return doCreate(corePoolSize,threadFactory);
     }
 
+    /**
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-13:24
+     * @param corePoolSize 核心线程数量
+     * @param threadFactory 线程工厂
+     * @return ScheduledExecutorService
+     **/
     public static ScheduledExecutorService doCreate( int corePoolSize, ThreadFactory threadFactory){
         return new ScheduledThreadPoolExecutor (corePoolSize,threadFactory,getRejectedExecutionHandler());
     }

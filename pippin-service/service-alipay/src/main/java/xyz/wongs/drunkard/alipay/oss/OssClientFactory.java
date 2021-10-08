@@ -7,7 +7,7 @@ import xyz.wongs.drunkard.alipay.pojo.OssBed;
 /** OSS Client工厂类
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/22 - 15:09
- * @version 1.0.0
+ * @since 1.0.0
  */
 public enum OssClientFactory {
 

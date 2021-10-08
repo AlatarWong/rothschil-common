@@ -4,11 +4,9 @@ import java.io.Serializable;
 
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- * 
  * @date 2020/8/2 13:32
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public abstract class SuperPo<ID extends Serializable> implements Serializable {
 

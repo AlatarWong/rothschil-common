@@ -25,7 +25,7 @@ import java.util.UUID;
  * @Description
  * 
  * @date 2020/8/15 22:50
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class SignatureUtils {
 

@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @Description 配置认证服务中心
  * 
  * @date 20/11/27 11:03
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Configuration
 @EnableAuthorizationServer

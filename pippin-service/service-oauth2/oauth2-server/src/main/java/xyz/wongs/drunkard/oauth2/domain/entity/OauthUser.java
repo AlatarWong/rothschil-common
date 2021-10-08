@@ -12,7 +12,7 @@ import xyz.wongs.drunkard.base.po.BasePo;
  * @author WCNGS@QQ.COM
  *
  * @date 20/12/2 16:18
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor

@@ -17,7 +17,7 @@ import java.util.Properties;
 /** 全局配置类 ，让应用在第一次调用过程完成，属性值的实例化
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/26 - 17:08
- * @version 1.0.0
+ * @since 1.0.0
  */
 @Component
 public class Global {

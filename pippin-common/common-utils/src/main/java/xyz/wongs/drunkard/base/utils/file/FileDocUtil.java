@@ -44,7 +44,7 @@ public class FileDocUtil {
      * 方法实现说明
      * @method      compBean
      * @author      WCNGS@QQ.COM
-     * @version
+     * @since
      * @see
      * @param bean   组装的Bean
      * @param str   字符
@@ -63,7 +63,7 @@ public class FileDocUtil {
      * 方法实现说明：替换字符串中的换行：\r\n、\n返回一个新的字符串
      * @method      repalceEnterKey
      * @author      WCNGS@QQ.COM
-     * @version
+     * @since
      * @see
      * @param str
      * @return      java.lang.String
@@ -84,7 +84,7 @@ public class FileDocUtil {
      * 方法实现说明
      * @method      compBean
      * @author      WCNGS@QQ.COM
-     * @version
+     * @since
      * @see
      * @param bean   组装的Bean
      * @param str   字符
@@ -101,7 +101,7 @@ public class FileDocUtil {
      * 方法实现说明
      * @method      getFieldValueMap
      * @author      WCNGS@QQ.COM
-     * @version
+     * @since
      * @see
      * @param s
      * @param bean

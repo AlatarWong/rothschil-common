@@ -12,7 +12,7 @@ import org.apache.commons.logging.LogFactory;
 /**服务实现类抽象类，所有的服务实现类的父类
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/26 - 13:56
- * @version 1.0.0
+ * @since 1.0.0
  */
 abstract class AbsAlipayService {
     Log log = LogFactory.getLog(getClass());

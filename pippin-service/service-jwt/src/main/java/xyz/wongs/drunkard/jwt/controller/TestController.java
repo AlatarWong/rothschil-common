@@ -9,7 +9,7 @@ import xyz.wongs.drunkard.jwt.po.User;
  * @Description //TODO
  * 
  * @date 2021/7/7 - 19:19
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @RestController
 @RequestMapping("test")

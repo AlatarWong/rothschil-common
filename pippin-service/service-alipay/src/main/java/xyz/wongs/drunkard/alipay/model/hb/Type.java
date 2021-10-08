@@ -5,7 +5,7 @@ package xyz.wongs.drunkard.alipay.model.hb;
  * @description //TODO
  *
  * @date 2021/9/23 - 10:07
- * @version 1.0.0
+ * @since 1.0.0
  */
 public enum Type {
     /**

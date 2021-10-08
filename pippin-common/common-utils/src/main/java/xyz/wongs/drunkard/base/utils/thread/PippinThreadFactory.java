@@ -4,16 +4,11 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /** 自定义线程池名字
- * @ClassName CoustomThreadFactory
- * @Description 
  * @author WCNGS@QQ.COM
- * 
  * @date 20/11/19 16:36
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public class PippinThreadFactory implements ThreadFactory {
-
-    private final AtomicInteger poolNumber = new AtomicInteger(1);
 
     private final ThreadGroup threadGroup;
 
@@ -27,6 +22,7 @@ public class PippinThreadFactory implements ThreadFactory {
         if (null==name || "".equals(name.trim())){
             name = "pool";
         }
+        AtomicInteger poolNumber = new AtomicInteger(1);
         namePrefix = name +"-"+
                 poolNumber.getAndIncrement() +
                 "-thread-";

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author WCNGS@QQ.COM
  * @date 2020/9/9 15:12
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public interface LocationMapper extends BaseMapper<Location,Long> {
 

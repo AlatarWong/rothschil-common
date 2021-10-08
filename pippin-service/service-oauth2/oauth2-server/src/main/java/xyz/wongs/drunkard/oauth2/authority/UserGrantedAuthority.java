@@ -11,7 +11,7 @@ import java.util.Map;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.oauth2.authority.UserGrantedAuthority
  * @Date: 2019/7/29 16:14
- * @Version: 1.0
+ * @since: 1.0
  */
 public class UserGrantedAuthority implements GrantedAuthority {
     private Map<String, Object> authoritys = Maps.newHashMap();

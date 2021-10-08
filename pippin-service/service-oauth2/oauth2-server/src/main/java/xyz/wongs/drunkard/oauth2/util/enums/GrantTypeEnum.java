@@ -6,7 +6,7 @@ package xyz.wongs.drunkard.oauth2.util.enums;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/27 15:45
- * @Version 1.0.0
+ * @since 1.0.0
 */
 public enum GrantTypeEnum {
 

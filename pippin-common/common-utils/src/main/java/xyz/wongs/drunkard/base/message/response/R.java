@@ -8,7 +8,7 @@ import java.io.Serializable;
  *  定义正常响应实体类
  * @author WCNGS@QQ.COM
  * @date 2020/8/2 13:48
- * @Version 1.0.0
+ * @since 1.0.0
  */
 public class R extends Result implements Serializable {
     private static final long serialVersionUID = -4505655308965878999L;

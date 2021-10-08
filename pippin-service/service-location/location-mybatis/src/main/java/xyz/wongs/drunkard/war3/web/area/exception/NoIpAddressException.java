@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 /**
  * @author WCNGS@QQ.CO
- * @version V1.0
+ * @since V1.0
  * @Title:
  * @Package spring-cloud xyz.wongs.basic.common.exception
  * @Description: TODO

@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
  * @Description 配置资源服务中心 这个类表明了此应用是OAuth2 的资源服务器，此处主要指定了受资源服务器保护的资源链接
  * 
  * @date 20/11/27 11:14
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Configuration
 @EnableResourceServer

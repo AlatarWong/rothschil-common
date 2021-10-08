@@ -16,7 +16,7 @@ import java.security.MessageDigest;
  * @Description
  * 
  * @date 2020/8/15 22:50
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Slf4j
 public class Md5Utils {

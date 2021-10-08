@@ -12,7 +12,7 @@ import org.springframework.security.core.AuthenticationException;
  * @author WCNGS@QQ.COM
  * 
  * @date 20/11/27 17:10
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Slf4j
 public class UserAuthenticationEventPublisher extends DefaultAuthenticationEventPublisher {

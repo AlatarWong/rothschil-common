@@ -20,7 +20,7 @@ import java.util.List;
  * @Description //TODO
  * 
  * @date 2021/7/8 - 13:59
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @NoRepositoryBean
 public interface BaseRepository<T extends AbstractPo, ID extends Serializable> extends JpaRepository<T, ID> {

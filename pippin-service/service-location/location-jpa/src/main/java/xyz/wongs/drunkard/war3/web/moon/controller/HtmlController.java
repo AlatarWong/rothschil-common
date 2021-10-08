@@ -16,7 +16,7 @@ import xyz.wongs.drunkard.war3.domain.service.LocationService;
 /**
  * @author WCNGS@QQ.COM
  * @date 20/11/18 11:04
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Validated
 @Controller

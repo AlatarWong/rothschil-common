@@ -4,9 +4,8 @@ import xyz.wongs.drunkard.base.utils.StringUtils;
 
 /**
  * 字符串格式化
- *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @version 1.0.0
+ * @since 1.0.0
  * @date 2021/9/26 - 17:45
  */
 public class StrFormatter {

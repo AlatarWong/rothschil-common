@@ -14,18 +14,18 @@ import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.message.annoation.Body;
 import xyz.wongs.drunkard.base.message.response.ErR;
 import xyz.wongs.drunkard.base.message.response.R;
-
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 
 
-/** 统一处理响应的消息内容，默认引入的包路径是 xyz.wongs，编写过程中需要格外注意。在需要响应的内容做标记，继而在 {@link xyz.wongs.drunkard.base.interceptor.ResponseBodyInterceptor} 中捕获该标记，再次处理
+/** 统一处理响应的消息内容，默认引入的包路径是 xyz.wongs，编写过程中需要格外注意。在需要响应的内容做标记，
+ * 继而在 {@link xyz.wongs.drunkard.base.interceptor.ResponseBodyInterceptor} 基础上捕获该标记，再次处理
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/26 - 16:23
- * @version 1.0.0
+ * @since 1.0.0
  */
 @ControllerAdvice(basePackages = "xyz.wongs")
-public class ResponseBodytHandler implements ResponseBodyAdvice<Object> {
+public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
     /**
      * 判断是否要执行 beforeBodyWrite 方法

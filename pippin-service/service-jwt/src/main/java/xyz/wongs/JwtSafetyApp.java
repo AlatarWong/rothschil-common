@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description TODO
  * 
  * @date
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @SpringBootApplication
 public class JwtSafetyApp {

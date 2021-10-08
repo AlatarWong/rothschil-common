@@ -12,7 +12,7 @@ import xyz.wongs.drunkard.task.RunFileTask;
  * @description //TODO
  *
  * @date 2021/9/18 - 10:29
- * @version 1.0.0
+ * @since 1.0.0
  */
 @RestController
 public class ImageController {

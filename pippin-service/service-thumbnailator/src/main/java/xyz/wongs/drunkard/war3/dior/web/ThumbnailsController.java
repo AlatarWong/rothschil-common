@@ -18,7 +18,7 @@ import java.io.OutputStream;
  * @Description
  * 
  * @date 21/1/6$ 16:16$
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @RestController
 public class ThumbnailsController {

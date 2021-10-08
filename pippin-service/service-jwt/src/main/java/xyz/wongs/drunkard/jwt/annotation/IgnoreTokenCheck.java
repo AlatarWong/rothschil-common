@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @Description 忽略Token验证注解
  * 
  * @date 2021/7/6 - 10:16
- * @Version 1.0.0
+ * @since 1.0.0
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

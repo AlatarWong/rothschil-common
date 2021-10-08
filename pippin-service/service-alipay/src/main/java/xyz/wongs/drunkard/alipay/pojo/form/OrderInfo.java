@@ -9,7 +9,7 @@ import java.util.List;
 /** 订单信息
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 14:49
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class OrderInfo implements Serializable {
 

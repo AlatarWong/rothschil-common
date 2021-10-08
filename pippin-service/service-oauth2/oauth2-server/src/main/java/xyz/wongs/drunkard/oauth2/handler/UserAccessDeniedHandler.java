@@ -16,7 +16,7 @@ import java.io.IOException;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.handler.AjaxAccessDeniedHandler
  * @Date: 2019/7/1 15:34
- * @Version: 1.0
+ * @since: 1.0
  */
 @Component
 public class UserAccessDeniedHandler implements AccessDeniedHandler {

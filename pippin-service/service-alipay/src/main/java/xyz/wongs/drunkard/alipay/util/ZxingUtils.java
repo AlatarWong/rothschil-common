@@ -22,7 +22,7 @@ import java.util.Map;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * 
  * @date 2021/9/23 - 10:16
- * @version 1.0.0
+ * @since 1.0.0
  */
 public class ZxingUtils {
 	private static Log log = LogFactory.getLog(ZxingUtils.class);

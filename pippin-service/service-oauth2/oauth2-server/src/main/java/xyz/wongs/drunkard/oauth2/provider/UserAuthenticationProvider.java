@@ -21,7 +21,7 @@ import java.util.Collection;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.provider.MyAuthenticationProvider
  * @Date: 2019/7/2 17:17
- * @Version: 1.0
+ * @since: 1.0
  */
 @SuppressWarnings("all")
 @Component
@@ -35,7 +35,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
     /**
      * @Description 认证处理，返回一个Authentication的实现类则代表认证成功，返回null则代表认证失败
      * @Date 2019/7/5 15:19
-     * @Version  1.0
+     * @since  1.0
      */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -63,7 +63,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
     /**
      * @Description 如果该AuthenticationProvider支持传入的Authentication对象，则返回true
      * @Date 2019/7/5 15:18
-     * @Version  1.0
+     * @since  1.0
      */
     @Override
     public boolean supports(Class<?> aClass) {

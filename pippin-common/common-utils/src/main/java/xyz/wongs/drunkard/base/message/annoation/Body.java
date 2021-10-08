@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  *  响应的内容实体
  * @author WCNGS@QQ.COM
  * @date 20/10/30 21:57
- * @Version 1.0.0
+ * @since 1.0.0
 */
 @Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

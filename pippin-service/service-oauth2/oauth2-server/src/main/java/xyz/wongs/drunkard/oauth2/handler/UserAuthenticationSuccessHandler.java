@@ -16,7 +16,7 @@ import java.io.IOException;
  * @ProjectName: spring-parent
  * @Package: com.yaomy.security.handler.AjaxAuthenticationSuccessHandler
  * @Date: 2019/7/1 15:38
- * @Version: 1.0
+ * @since: 1.0
  */
 @Component
 public class UserAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
