@@ -2,16 +2,13 @@ package xyz.wongs.drunkard.war.core.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-import java.util.Date;
 import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 
-/**
+import java.util.Date;
+
+/** 系统访问记录表
  * @author WCNGS@QQ.COM
- * @ClassName SysLogininfor
- * @Description 系统访问记录表 sys_logininfor
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 10:46
  * @since 1.0.0
  */

@@ -9,14 +9,11 @@ import xyz.wongs.drunkard.common.annotation.Excel;
 import xyz.wongs.drunkard.common.annotation.Excel.*;
 import xyz.wongs.drunkard.war.constant.UserConstants;
 
-/**
- * @ClassName SysDictData
- * @Description 字典数据表
- * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
- * @date 20/12/9 11:11
+/** 字典数据表
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 23:53
  * @since 1.0.0
-*/
+ */
 public class SysDictData extends BasePo<Long> {
     private static final long serialVersionUID = 1L;
 

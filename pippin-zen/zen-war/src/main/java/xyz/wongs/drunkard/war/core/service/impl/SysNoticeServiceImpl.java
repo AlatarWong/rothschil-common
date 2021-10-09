@@ -8,11 +8,10 @@ import xyz.wongs.drunkard.war.core.domain.SysNotice;
 import xyz.wongs.drunkard.war.core.mapper.SysNoticeMapper;
 import xyz.wongs.drunkard.war.core.service.ISysNoticeService;
 
-/**
- * 公告 服务层实现
- * 
- * @author ruoyi
- * @date 2018-06-25
+/** 公告
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:04
+ * @since 1.0.0
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService

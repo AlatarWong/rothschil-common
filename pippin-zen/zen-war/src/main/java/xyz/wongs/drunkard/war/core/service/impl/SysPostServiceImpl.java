@@ -12,10 +12,10 @@ import xyz.wongs.drunkard.war.core.mapper.SysPostMapper;
 import xyz.wongs.drunkard.war.core.mapper.SysUserPostMapper;
 import xyz.wongs.drunkard.war.core.service.ISysPostService;
 
-/**
- * 岗位信息 服务层处理
- * 
- * @author ruoyi
+/** 岗位信息
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:04
+ * @since 1.0.0
  */
 @Service
 public class SysPostServiceImpl implements ISysPostService

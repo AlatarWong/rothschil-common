@@ -1,14 +1,14 @@
 package xyz.wongs.drunkard.war.core.service;
 
-import java.util.List;
-
 import xyz.wongs.drunkard.war.core.domain.SysUser;
 import xyz.wongs.drunkard.war.core.domain.SysUserRole;
 
-/**
- * 用户 业务层
- * 
- * @author ruoyi
+import java.util.List;
+
+/** 用户 业务层
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:07
+ * @since 1.0.0
  */
 public interface ISysUserService
 {

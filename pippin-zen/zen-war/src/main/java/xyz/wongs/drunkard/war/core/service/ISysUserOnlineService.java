@@ -2,18 +2,20 @@ package xyz.wongs.drunkard.war.core.service;
 
 import java.util.Date;
 import java.util.List;
+
 import xyz.wongs.drunkard.war.core.domain.SysUserOnline;
 
 /**
- * 在线用户 服务层
- * 
- * @author ruoyi
+ * 在线用户
+ *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:02
+ * @since 1.0.0
  */
-public interface ISysUserOnlineService
-{
+public interface ISysUserOnlineService {
     /**
      * 通过会话序号查询信息
-     * 
+     *
      * @param sessionId 会话ID
      * @return 在线用户信息
      */
@@ -21,7 +23,7 @@ public interface ISysUserOnlineService
 
     /**
      * 通过会话序号删除信息
-     * 
+     *
      * @param sessionId 会话ID
      * @return 在线用户信息
      */
@@ -29,7 +31,7 @@ public interface ISysUserOnlineService
 
     /**
      * 通过会话序号删除信息
-     * 
+     *
      * @param sessions 会话ID集合
      * @return 在线用户信息
      */
@@ -37,14 +39,14 @@ public interface ISysUserOnlineService
 
     /**
      * 保存会话信息
-     * 
+     *
      * @param online 会话信息
      */
     public void saveOnline(SysUserOnline online);
 
     /**
      * 查询会话集合
-     * 
+     *
      * @param userOnline 分页参数
      * @return 会话集合
      */
@@ -52,14 +54,14 @@ public interface ISysUserOnlineService
 
     /**
      * 强退用户
-     * 
+     *
      * @param sessionId 会话ID
      */
     public void forceLogout(String sessionId);
 
     /**
      * 清理用户缓存
-     * 
+     *
      * @param loginName 登录名称
      * @param sessionId 会话ID
      */
@@ -67,7 +69,7 @@ public interface ISysUserOnlineService
 
     /**
      * 查询会话集合
-     * 
+     *
      * @param expiredDate 有效期
      * @return 会话集合
      */

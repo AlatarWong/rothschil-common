@@ -8,11 +8,8 @@ import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 import xyz.wongs.drunkard.common.annotation.Excel.*;
 
-/**
- * @ClassName SysPost
- * @Description 岗位
+/** 岗位
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 10:50
  * @since 1.0.0
 */

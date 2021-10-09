@@ -1,15 +1,13 @@
 package xyz.wongs.drunkard.war.core.domain;
 
-import javax.validation.constraints.*;
-
 import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 
-/**
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+/** 参数配置表 sys_config
  * @author WCNGS@QQ.COM
- * @ClassName SysConfig
- * @Description 参数配置表 sys_config
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 10:27
  * @since 1.0.0
  */

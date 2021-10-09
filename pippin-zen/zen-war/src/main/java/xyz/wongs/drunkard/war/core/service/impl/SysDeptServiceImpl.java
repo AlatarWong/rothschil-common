@@ -17,10 +17,10 @@ import xyz.wongs.drunkard.common.core.domain.Ztree;
 import xyz.wongs.drunkard.war.core.mapper.SysDeptMapper;
 import xyz.wongs.drunkard.war.core.service.ISysDeptService;
 
-/**
- * 部门管理 服务实现
- * 
- * @author ruoyi
+/** 部门管理
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:03
+ * @since 1.0.0
  */
 @Service
 public class SysDeptServiceImpl implements ISysDeptService

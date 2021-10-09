@@ -19,10 +19,10 @@ import xyz.wongs.drunkard.war.core.mapper.SysDictTypeMapper;
 import xyz.wongs.drunkard.war.core.service.ISysDictTypeService;
 import xyz.wongs.drunkard.war.util.DictUtils;
 
-/**
- * 字典 业务层处理
- *
- * @author ruoyi
+/** 字典
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:03
+ * @since 1.0.0
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService {

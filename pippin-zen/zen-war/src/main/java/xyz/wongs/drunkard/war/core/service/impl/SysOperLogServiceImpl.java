@@ -9,10 +9,10 @@ import xyz.wongs.drunkard.war.core.domain.SysOperLog;
 import xyz.wongs.drunkard.war.core.mapper.SysOperLogMapper;
 import xyz.wongs.drunkard.war.core.service.ISysOperLogService;
 
-/**
- * 操作日志 服务层处理
- *
- * @author ruoyi
+/** 操作日志
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:04
+ * @since 1.0.0
  */
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService {

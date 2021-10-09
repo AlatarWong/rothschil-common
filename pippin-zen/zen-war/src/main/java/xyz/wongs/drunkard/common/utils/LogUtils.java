@@ -11,10 +11,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Map;
 
-/**
- * 处理并记录日志文件
- * 
- * @author ruoyi
+/** 处理并记录日志文件
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:06
+ * @since 1.0.0
  */
 public class LogUtils
 {

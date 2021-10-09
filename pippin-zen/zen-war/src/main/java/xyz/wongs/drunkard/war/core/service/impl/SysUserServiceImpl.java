@@ -1,8 +1,5 @@
 package xyz.wongs.drunkard.war.core.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +16,13 @@ import xyz.wongs.drunkard.war.core.mapper.*;
 import xyz.wongs.drunkard.war.core.service.ISysConfigService;
 import xyz.wongs.drunkard.war.core.service.ISysUserService;
 
-/**
- * 用户 业务层处理
- *
- * @author ruoyi
+import java.util.ArrayList;
+import java.util.List;
+
+/** 用户
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:04
+ * @since 1.0.0
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService {

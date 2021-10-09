@@ -9,10 +9,10 @@ import xyz.wongs.drunkard.war.core.domain.SysLogininfor;
 import xyz.wongs.drunkard.war.core.mapper.SysLogininforMapper;
 import xyz.wongs.drunkard.war.core.service.ISysLogininforService;
 
-/**
- * 系统访问日志情况信息 服务层处理
- *
- * @author ruoyi
+/** 系统访问日志情况信息
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:03
+ * @since 1.0.0
  */
 @Service
 public class SysLogininforServiceImpl implements ISysLogininforService {

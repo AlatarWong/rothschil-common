@@ -15,10 +15,10 @@ import xyz.wongs.drunkard.base.utils.thread.Threads;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-/**
- * 自定义任务调度器完成
- *
- * @author ruoyi
+/** 自定义任务调度器完成
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:07
+ * @since 1.0.0
  */
 @Component
 public class SpringSessionValidationScheduler implements SessionValidationScheduler {

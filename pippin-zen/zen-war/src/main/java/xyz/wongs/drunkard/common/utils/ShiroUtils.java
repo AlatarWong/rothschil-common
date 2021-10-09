@@ -10,11 +10,8 @@ import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.base.utils.bean.BeanUtils;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
 
-/**
- * @ClassName ShiroUtils
- * @Description shiro 工具类
+/** shiro 工具类
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 14:52
  * @since 1.0.0
 */

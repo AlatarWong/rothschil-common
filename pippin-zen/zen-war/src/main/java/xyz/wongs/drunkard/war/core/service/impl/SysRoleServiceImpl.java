@@ -25,10 +25,10 @@ import xyz.wongs.drunkard.war.core.mapper.SysRoleMenuMapper;
 import xyz.wongs.drunkard.war.core.mapper.SysUserRoleMapper;
 import xyz.wongs.drunkard.war.core.service.ISysRoleService;
 
-/**
- * 角色 业务层处理
- *
- * @author ruoyi
+/** 角色
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:04
+ * @since 1.0.0
  */
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {

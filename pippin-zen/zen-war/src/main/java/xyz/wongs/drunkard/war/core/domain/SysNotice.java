@@ -6,11 +6,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import xyz.wongs.drunkard.base.po.BasePo;
 
-/**
+/** 通知公告表 sys_notice
  * @author WCNGS@QQ.COM
- * @ClassName SysNotice
- * @Description 通知公告表 sys_notice
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 10:48
  * @since 1.0.0
  */

@@ -8,11 +8,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-/**
- * @ClassName SysDept
- * @Description 部门表
+/** 部门表
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 10:58
  * @since 1.0.0
 */

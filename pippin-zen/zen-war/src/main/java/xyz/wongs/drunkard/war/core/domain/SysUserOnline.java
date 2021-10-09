@@ -8,9 +8,7 @@ import xyz.wongs.drunkard.common.enums.OnlineStatus;
 
 /**
  * @author WCNGS@QQ.COM
- * @ClassName SysUserOnline
- * @Description 当前在线会话
- * @Github <a>https://github.com/rothschil</a>
+ * @Github <a>https://githb.com/rothschil</a>
  * @date 20/12/9 10:51
  * @since 1.0.0
  */

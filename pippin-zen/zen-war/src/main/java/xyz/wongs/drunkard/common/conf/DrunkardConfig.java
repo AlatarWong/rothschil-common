@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @since 1.0.0
  */
 @Component
-@ConfigurationProperties(prefix = "ruoyi")
+@ConfigurationProperties(prefix = "pippin")
 public class DrunkardConfig {
     /**
      * 项目名称

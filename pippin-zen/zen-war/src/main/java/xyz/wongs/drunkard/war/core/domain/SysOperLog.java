@@ -8,10 +8,10 @@ import java.util.Date;
 import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 
-/**
- * 操作日志记录表 oper_log
- *
- * @author ruoyi
+/** 操作日志记录表
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 23:54
+ * @since 1.0.0
  */
 public class SysOperLog extends BasePo<Long> {
     private static final long serialVersionUID = 1L;

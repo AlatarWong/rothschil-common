@@ -21,10 +21,10 @@ import xyz.wongs.drunkard.war.core.mapper.SysMenuMapper;
 import xyz.wongs.drunkard.war.core.mapper.SysRoleMenuMapper;
 import xyz.wongs.drunkard.war.core.service.ISysMenuService;
 
-/**
- * 菜单 业务层处理
- * 
- * @author ruoyi
+/** 菜单
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:03
+ * @since 1.0.0
  */
 @Service
 public class SysMenuServiceImpl implements ISysMenuService

@@ -5,6 +5,10 @@ server:
 spring:
   application:
     name: zen-war
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java,src/main/resources
   redis:
     database: 0
     host: 127.0.0.1
@@ -129,7 +133,7 @@ xss:
   urlPatterns: /system/*,/monitor/*,/tool/*
 
 # 项目相关配置
-ruoyi:
+pippin:
   # 名称
   name: Drunkard
   # 版本

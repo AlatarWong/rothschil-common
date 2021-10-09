@@ -4,10 +4,10 @@ package xyz.wongs.drunkard.common.exception.base;
 import xyz.wongs.drunkard.base.utils.MessageUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 
-/**
- * 基础异常
- *
- * @author ruoyi
+/** 基础异常
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:05
+ * @since 1.0.0
  */
 public class BaseException extends RuntimeException {
     private static final long serialVersionUID = 1L;

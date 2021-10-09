@@ -9,10 +9,10 @@ import xyz.wongs.drunkard.common.annotation.Excel.ColumnType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-/**
- * 角色表 sys_role
- *
- * @author ruoyi
+/** 角色表 sys_role
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 23:54
+ * @since 1.0.0
  */
 public class SysRole extends BasePo<Long> {
     private static final long serialVersionUID = 1L;

@@ -16,10 +16,10 @@ import xyz.wongs.drunkard.war.core.domain.SysUserOnline;
 import xyz.wongs.drunkard.war.core.mapper.SysUserOnlineMapper;
 import xyz.wongs.drunkard.war.core.service.ISysUserOnlineService;
 
-/**
- * 在线用户 服务层处理
- *
- * @author ruoyi
+/** 在线用户
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/10 - 0:04
+ * @since 1.0.0
  */
 @Service
 public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
