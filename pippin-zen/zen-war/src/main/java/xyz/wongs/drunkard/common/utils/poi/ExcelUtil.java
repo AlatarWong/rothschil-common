@@ -27,10 +27,10 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Excel相关处理
- *
- * @author ruoyi
+/** Excel相关处理
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:36
+ * @since 1.0.0
  */
 public class ExcelUtil<T> {
     private static final Logger log = LoggerFactory.getLogger(ExcelUtil.class);

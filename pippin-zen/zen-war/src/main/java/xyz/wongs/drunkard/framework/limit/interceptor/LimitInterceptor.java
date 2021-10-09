@@ -7,9 +7,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
-import xyz.wongs.drunkard.base.message.response.ErrorResult;
+import xyz.wongs.drunkard.base.message.response.ErR;
 import xyz.wongs.drunkard.framework.limit.RequestLimit;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +48,7 @@ public class LimitInterceptor implements HandlerInterceptor {
             RequestLimit requestLimit = methodAnnotation != null?methodAnnotation:classAnnotation;
             if(requestLimit != null){
                 if(isLimit(request,requestLimit)){
-                    resonseOut(response, ErrorResult.fail(ResultCode.API_REQ_MORE_THAN_SET,new DrunkardException(ResultCode.API_REQ_MORE_THAN_SET)));
+                    resonseOut(response, ErR.fail(Status.API_REQ_MORE_THAN_SET,new DrunkardException(Status.API_REQ_MORE_THAN_SET)));
                     return false;
                 }
             }
@@ -62,7 +62,7 @@ public class LimitInterceptor implements HandlerInterceptor {
      * @param result
      * @throws IOException
      */
-    private void resonseOut(HttpServletResponse response, ErrorResult result) throws IOException {
+    private void resonseOut(HttpServletResponse response, ErR result) throws IOException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         String json = JSONObject.toJSON(result).toString();

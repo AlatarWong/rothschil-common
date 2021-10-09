@@ -18,10 +18,10 @@ import xyz.wongs.drunkard.war.core.domain.SysUser;
 import javax.annotation.PostConstruct;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * 登录密码方法
- * 
- * @author ruoyi
+/** 登录密码方法
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:34
+ * @since 1.0.0
  */
 @Component
 public class SysPasswordService

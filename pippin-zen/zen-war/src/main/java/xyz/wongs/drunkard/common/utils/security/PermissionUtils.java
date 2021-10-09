@@ -1,8 +1,5 @@
 package xyz.wongs.drunkard.common.utils.security;
 
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -11,13 +8,18 @@ import org.slf4j.LoggerFactory;
 import xyz.wongs.drunkard.base.utils.MessageUtils;
 import xyz.wongs.drunkard.war.constant.PermissionConstants;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+
 /**
- * permission 工具类
- * 
- * @author ruoyi
+ * 权限工具类
+ *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:38
+ * @since 1.0.0
  */
-public class PermissionUtils
-{
+public class PermissionUtils {
     private static final Logger log = LoggerFactory.getLogger(PermissionUtils.class);
 
     /**
@@ -52,33 +54,23 @@ public class PermissionUtils
 
     /**
      * 权限错误消息提醒
-     * 
+     *
      * @param permissionsStr 错误信息
      * @return 提示信息
      */
-    public static String getMsg(String permissionsStr)
-    {
+    public static String getMsg(String permissionsStr) {
         String permission = StringUtils.substringBetween(permissionsStr, "[", "]");
         String msg = MessageUtils.message(PERMISSION, permission);
-        if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.ADD_PERMISSION))
-        {
+        if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.ADD_PERMISSION)) {
             msg = MessageUtils.message(CREATE_PERMISSION, permission);
-        }
-        else if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.EDIT_PERMISSION))
-        {
+        } else if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.EDIT_PERMISSION)) {
             msg = MessageUtils.message(UPDATE_PERMISSION, permission);
-        }
-        else if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.REMOVE_PERMISSION))
-        {
+        } else if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.REMOVE_PERMISSION)) {
             msg = MessageUtils.message(DELETE_PERMISSION, permission);
-        }
-        else if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.EXPORT_PERMISSION))
-        {
+        } else if (StringUtils.endsWithIgnoreCase(permission, PermissionConstants.EXPORT_PERMISSION)) {
             msg = MessageUtils.message(EXPORT_PERMISSION, permission);
-        }
-        else if (StringUtils.endsWithAny(permission,
-                new String[] { PermissionConstants.VIEW_PERMISSION, PermissionConstants.LIST_PERMISSION }))
-        {
+        } else if (StringUtils.endsWithAny(permission,
+                new String[]{PermissionConstants.VIEW_PERMISSION, PermissionConstants.LIST_PERMISSION})) {
             msg = MessageUtils.message(VIEW_PERMISSION, permission);
         }
         return msg;
@@ -90,25 +82,18 @@ public class PermissionUtils
      * @param property 属性名称
      * @return 用户属性值
      */
-    public static Object getPrincipalProperty(String property)
-    {
+    public static Object getPrincipalProperty(String property) {
         Subject subject = SecurityUtils.getSubject();
-        if (subject != null)
-        {
+        if (subject != null) {
             Object principal = subject.getPrincipal();
-            try
-            {
+            try {
                 BeanInfo bi = Introspector.getBeanInfo(principal.getClass());
-                for (PropertyDescriptor pd : bi.getPropertyDescriptors())
-                {
-                    if (pd.getName().equals(property) == true)
-                    {
+                for (PropertyDescriptor pd : bi.getPropertyDescriptors()) {
+                    if (pd.getName().equals(property) == true) {
                         return pd.getReadMethod().invoke(principal, (Object[]) null);
                     }
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 log.error("Error reading property [{}] from principal of type [{}]", property,
                         principal.getClass().getName());
             }

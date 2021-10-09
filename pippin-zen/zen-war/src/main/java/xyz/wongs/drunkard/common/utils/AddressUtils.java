@@ -3,19 +3,17 @@ package xyz.wongs.drunkard.common.utils;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.wongs.drunkard.base.constant.Constant;
+import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.utils.HttpUtils;
 import xyz.wongs.drunkard.base.utils.IpUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
-import xyz.wongs.drunkard.base.utils.http.HttpUtils;
 import xyz.wongs.drunkard.common.conf.DrunkardConfig;
 
-/**
- * @Description 获取地址类
- * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
- * @date 20/12/9 17:25
+/** 获取地址类
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:38
  * @since 1.0.0
-*/
+ */
 public class AddressUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(AddressUtils.class);
@@ -44,7 +42,7 @@ public class AddressUtils {
         }
         if (DrunkardConfig.isAddressEnabled()) {
             try {
-                String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constant.GBK);
+                String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
                 if (StringUtils.isEmpty(rspStr)) {
                     LOG.error("获取地理位置异常 {}", ip);
                     return UNKNOWN;

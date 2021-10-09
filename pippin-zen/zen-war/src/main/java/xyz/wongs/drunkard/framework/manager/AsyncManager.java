@@ -1,20 +1,18 @@
 package xyz.wongs.drunkard.framework.manager;
 
-import java.util.TimerTask;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import xyz.wongs.drunkard.base.utils.bean.SpringUtils;
 import xyz.wongs.drunkard.base.utils.thread.Threads;
 
+import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
-/**
- * @ClassName AsyncManager
- * @Description 异步任务管理器
- * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
- * @date 20/12/9 17:33
+
+/** 异步任务管理器
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:34
  * @since 1.0.0
-*/
+ */
 public class AsyncManager {
     /**
      * 操作延迟10毫秒

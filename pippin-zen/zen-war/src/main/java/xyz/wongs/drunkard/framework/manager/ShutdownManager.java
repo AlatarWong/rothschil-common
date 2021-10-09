@@ -13,11 +13,12 @@ import javax.annotation.PreDestroy;
 /**
  * 确保应用退出时能关闭后台线程
  *
- * @author cj
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:34
+ * @since 1.0.0
  */
 @Component
-public class ShutdownManager
-{
+public class ShutdownManager {
     private static final Logger logger = LoggerFactory.getLogger("sys-user");
 
     @Autowired(required = false)
@@ -27,8 +28,7 @@ public class ShutdownManager
     private EhCacheManager ehCacheManager;
 
     @PreDestroy
-    public void destroy()
-    {
+    public void destroy() {
         shutdownSpringSessionValidationScheduler();
         shutdownAsyncManager();
         shutdownEhCacheManager();
@@ -37,17 +37,12 @@ public class ShutdownManager
     /**
      * 停止Seesion会话检查
      */
-    private void shutdownSpringSessionValidationScheduler()
-    {
-        if (springSessionValidationScheduler != null && springSessionValidationScheduler.isEnabled())
-        {
-            try
-            {
+    private void shutdownSpringSessionValidationScheduler() {
+        if (springSessionValidationScheduler != null && springSessionValidationScheduler.isEnabled()) {
+            try {
                 logger.info("====关闭会话验证任务====");
                 springSessionValidationScheduler.disableSessionValidation();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }
         }
@@ -56,32 +51,23 @@ public class ShutdownManager
     /**
      * 停止异步执行任务
      */
-    private void shutdownAsyncManager()
-    {
-        try
-        {
+    private void shutdownAsyncManager() {
+        try {
             logger.info("====关闭后台任务任务线程池====");
             AsyncManager.me().shutdown();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
     }
 
-    private void shutdownEhCacheManager()
-    {
-        try
-        {
+    private void shutdownEhCacheManager() {
+        try {
             logger.info("====关闭缓存====");
-            if (ehCacheManager != null)
-            {
+            if (ehCacheManager != null) {
                 CacheManager cacheManager = ehCacheManager.getCacheManager();
                 cacheManager.shutdown();
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
     }

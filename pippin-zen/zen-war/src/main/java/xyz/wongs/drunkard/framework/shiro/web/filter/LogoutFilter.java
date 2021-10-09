@@ -18,10 +18,10 @@ import xyz.wongs.drunkard.war.core.service.ISysUserOnlineService;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/**
- * 退出过滤器
- * 
- * @author ruoyi
+/** 退出过滤器
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:36
+ * @since 1.0.0
  */
 public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter
 {

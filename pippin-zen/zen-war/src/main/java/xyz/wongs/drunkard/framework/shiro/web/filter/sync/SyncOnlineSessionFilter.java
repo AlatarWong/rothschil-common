@@ -8,10 +8,10 @@ import xyz.wongs.drunkard.war.constant.ShiroConstants;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/**
- * 同步Session数据到Db
- * 
- * @author ruoyi
+/** 同步Session数据到Db
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:36
+ * @since 1.0.0
  */
 public class SyncOnlineSessionFilter extends PathMatchingFilter
 {

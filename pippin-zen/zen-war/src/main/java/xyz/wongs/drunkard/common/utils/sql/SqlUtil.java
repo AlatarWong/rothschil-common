@@ -4,10 +4,10 @@ package xyz.wongs.drunkard.common.utils.sql;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.common.exception.base.BaseException;
 
-/**
- * sql操作工具类
- *
- * @author ruoyi
+/** sql操作工具类
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:38
+ * @since 1.0.0
  */
 public class SqlUtil {
     /**

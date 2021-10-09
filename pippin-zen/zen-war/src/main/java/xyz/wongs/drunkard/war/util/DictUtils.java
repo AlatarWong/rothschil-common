@@ -1,8 +1,8 @@
 package xyz.wongs.drunkard.war.util;
 
 import org.springframework.stereotype.Component;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.StringUtils;
-import xyz.wongs.drunkard.war.constant.Constants;
 import xyz.wongs.drunkard.war.core.domain.SysDictData;
 
 import java.util.List;

@@ -20,14 +20,11 @@ import xyz.wongs.drunkard.war.core.service.ISysRoleService;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @ClassName UserRealm
- * @Description 自定义Realm 处理登录 权限
- * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
- * @date 20/12/9 14:53
+/** 自定义Realm 处理登录 权限
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:34
  * @since 1.0.0
-*/
+ */
 public class UserRealm extends AuthorizingRealm {
     private static final Logger log = LoggerFactory.getLogger(UserRealm.class);
 

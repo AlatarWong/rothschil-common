@@ -21,10 +21,8 @@ import xyz.wongs.drunkard.war.core.service.impl.SysLogininforServiceImpl;
 import java.util.TimerTask;
 
 /**
- * @ClassName AsyncFactory
- * @Description 异步工厂（产生任务用）
+ * 异步工厂
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/12/9 17:52
  * @since 1.0.0
 */
