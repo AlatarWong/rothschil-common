@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: war3-infi
+    name: zen-war
   redis:
     database: 0
     host: 127.0.0.1

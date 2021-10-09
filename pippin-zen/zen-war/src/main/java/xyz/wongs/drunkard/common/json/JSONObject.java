@@ -7,10 +7,10 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * 通用消息对象，基于Map实现的可嵌套数据结构。 支持JSON数据结构。
- *
- * @author ruoyi
+/** 通用消息对象，基于Map实现的可嵌套数据结构。 支持JSON数据结构。
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/9 - 21:30
+ * @since 1.0.0
  */
 public class JSONObject extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = 1L;
