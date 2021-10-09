@@ -216,16 +216,18 @@ public class Constants {
     /**
      * 成功
      */
-    public static final String SUCCESS = "10000";
-    /**
-     * 用户支付中
-     */
-    public static final String PAYING = "10003";
+    public static final String SUCCESS = "0";
     /**
      * 失败
      */
 
-    public static final String FAILED = "40004";
+    public static final String FAILED = "1";
+
+
+    /**
+     * 用户支付中
+     */
+    public static final String PAYING = "10003";
     /**
      * 系统异常
      */

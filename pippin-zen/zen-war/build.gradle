@@ -24,9 +24,6 @@ dependencies {
     implementation('com.github.theborakompanioni:thymeleaf-extras-shiro:2.1.0')
     implementation('org.springframework.boot:spring-boot-starter-data-redis'){
         exclude group:'org.slf4j', module: 'slf4j-api'
-//        exclude group:'io.netty', module: 'netty-common'
-//        exclude group:'io.netty', module: 'netty-handler'
-//        exclude group:'io.netty', module: 'netty-handler'
     }
     implementation('redis.clients:jedis:3.7.0'){
         exclude group:'org.apache.commons', module: 'commons-pool2'
