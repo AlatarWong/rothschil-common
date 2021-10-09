@@ -15,7 +15,7 @@ import xyz.wongs.drunkard.common.conf.DrunkardConfig;
 import xyz.wongs.drunkard.common.conf.ServerConfig;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.utils.FileUploadUtils;
-import xyz.wongs.drunkard.war.constant.Constants;
+import xyz.wongs.drunkard.base.constant.Constants;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

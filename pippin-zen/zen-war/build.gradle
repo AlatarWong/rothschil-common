@@ -1,12 +1,14 @@
 archivesBaseName = 'zen-war'
 dependencies {
-    implementation project(':pippin-service:service-location:location-mybatis')
+    implementation(project(':pippin-common:common-persistence:persistence-mybatis')){
+        exclude group:'com.oracle', module: 'ojdbc6'
+    }
 
     implementation('io.springfox:springfox-swagger2:3.0.0')
     implementation('io.springfox:springfox-swagger-ui:3.0.0')
 
     implementation('com.github.penggle:kaptcha:2.3.2')
-
+    implementation 'javax.validation:validation-api:2.0.1.Final'
     implementation('org.apache.shiro:shiro-spring:1.8.0')
     implementation('org.apache.shiro:shiro-ehcache:1.8.0')
     implementation('com.github.theborakompanioni:thymeleaf-extras-shiro:2.1.0')

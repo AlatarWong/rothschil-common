@@ -28,7 +28,7 @@ import xyz.wongs.drunkard.framework.shiro.web.filter.online.OnlineSessionFilter;
 import xyz.wongs.drunkard.framework.shiro.web.filter.sync.SyncOnlineSessionFilter;
 import xyz.wongs.drunkard.framework.shiro.web.session.OnlineWebSessionManager;
 import xyz.wongs.drunkard.framework.shiro.web.session.SpringSessionValidationScheduler;
-import xyz.wongs.drunkard.war.constant.Constants;
+import xyz.wongs.drunkard.base.constant.Constants;
 
 import javax.servlet.Filter;
 import java.io.ByteArrayInputStream;

@@ -1,28 +1,32 @@
 package xyz.wongs.drunkard.base.constant;
 
-/** 通用常量信息
+/**
+ * 通用常量信息
+ *
  * @author WCNGS@QQ.COM
  * @date 2020/9/9 15:00
  * @since 1.0.0
-*/
+ */
 public class Constants {
 
     private Constants() {
     }
 
-    public static String DB_TYPE ="db.type";
+    public static String DB_TYPE = "db.type";
 
-    public static String USER_TYPE ="user-Agent";
+    public static String USER_TYPE = "user-Agent";
 
-    public static final String RANDOM_STR="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    public static final String RANDOM_STR = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     public static final String IP_LOCAL = "127.0.0.1";
     public static final String IP_LOCAL_ADDREE = "unknown";
 
     public static final String UNKNOWN = "unknown";
-    public static final String HEADER_X_FORWARDED_FOR ="x-forwarded-for";
+    public static final String HEADER_X_FORWARDED_FOR = "x-forwarded-for";
 
-    /** BEGIN  JAVA基础类型 **/
+    /**
+     * BEGIN  JAVA基础类型
+     **/
     public static final String BASIC_TYPE_INTEGER = "Integer";
     public static final String BASIC_TYPE_BIG_DECIMAL = "BigDecimal";
     public static final String BASIC_TYPE_LONG = "Long";
@@ -35,27 +39,27 @@ public class Constants {
     /**
      * d
      */
-    public static final String DEFAULT_SORT="id";
+    public static final String DEFAULT_SORT = "id";
 
     /**
      * d
      */
-    public static final String PREIX_SORT="d";
+    public static final String PREIX_SORT = "d";
 
     /**
      * .
      */
-    public static final String POINT=".";
+    public static final String POINT = ".";
 
     /**
      * 斜杠
      */
-    public static final String SLASH="/";
+    public static final String SLASH = "/";
 
     /**
      * 双斜杠
      */
-    public static final String DOUL_SLASH="//";
+    public static final String DOUL_SLASH = "//";
 
 
     public static final String STATUS_EFF = "Y";
@@ -122,6 +126,11 @@ public class Constants {
     public static final String IS_ASC = "isAsc";
 
     /**
+     * 系统用户授权缓存
+     */
+    public static final String SYS_AUTH_CACHE = "sys-authCache";
+
+    /**
      * 参数管理 cache name
      */
     public static final String SYS_CONFIG_CACHE = "sys-config";
@@ -147,44 +156,44 @@ public class Constants {
     public static final String RESOURCE_PREFIX = "/profile";
 
     /**
-     *  下划线
+     * 下划线
      */
     public static final String UNDERSCORE = "_";
 
     /**
-     *  application/json
+     * application/json
      */
     public static final String APPLICATION_JSON = "application/json";
 
     /**
-     *  X-Requested-With
+     * X-Requested-With
      */
     public static final String REQ_HEADER = "X-Requested-With";
 
     /**
-     *  __ajax
+     * __ajax
      */
     public static final String REQ_HEADER_AJAX = "__ajax";
 
     /**
-     *  accept
+     * accept
      */
     public static final String REQ_HEADER_ACCEPT = "accept";
 
     /**
-     *  json
+     * json
      */
     public static final String SUFFIX_JSON = ".json";
 
     /**
-     *  xml
+     * xml
      */
     public static final String SUFFIX_XML = ".xml";
 
     /**
      * 问号
      */
-    public static final String HF_QUESTION_MARK="?";
+    public static final String HF_QUESTION_MARK = "?";
 
     /**
      * 逗号
@@ -194,15 +203,15 @@ public class Constants {
     /**
      * 冒号
      */
-    public static final String HF_COLON =":";
+    public static final String HF_COLON = ":";
 
     /**
      * 句号
      */
     public static final String HF_PERIOD = ".";
 
-    public static final String RESULT="result";
-    public static final String SECKILL="恭喜您，秒杀成功。";
+    public static final String RESULT = "result";
+    public static final String SECKILL = "恭喜您，秒杀成功。";
 
     /**
      * 成功
@@ -211,16 +220,16 @@ public class Constants {
     /**
      * 用户支付中
      */
-    public static final String PAYING  = "10003";
+    public static final String PAYING = "10003";
     /**
      * 失败
      */
 
-    public static final String FAILED  = "40004";
+    public static final String FAILED = "40004";
     /**
      * 系统异常
      */
-    public static final String ERROR   = "20000";
+    public static final String ERROR = "20000";
 
     public static final String RESPONSE_RESULT_ANN = "RESPONSE-RESULT-ANN";
 }

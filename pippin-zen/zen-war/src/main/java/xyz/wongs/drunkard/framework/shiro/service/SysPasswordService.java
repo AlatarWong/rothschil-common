@@ -11,21 +11,22 @@ import xyz.wongs.drunkard.common.exception.user.UserPasswordNotMatchException;
 import xyz.wongs.drunkard.common.exception.user.UserPasswordRetryLimitExceedException;
 import xyz.wongs.drunkard.framework.manager.AsyncManager;
 import xyz.wongs.drunkard.framework.manager.factory.AsyncFactory;
-import xyz.wongs.drunkard.war.constant.Constants;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.war.constant.ShiroConstants;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
 
 import javax.annotation.PostConstruct;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/** 登录密码方法
+/**
+ * 登录密码方法
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 21:34
  * @since 1.0.0
  */
 @Component
-public class SysPasswordService
-{
+public class SysPasswordService {
     @Autowired
     private CacheManager cacheManager;
 
@@ -35,52 +36,42 @@ public class SysPasswordService
     private String maxRetryCount;
 
     @PostConstruct
-    public void init()
-    {
+    public void init() {
         loginRecordCache = cacheManager.getCache(ShiroConstants.LOGINRECORDCACHE);
     }
 
-    public void validate(SysUser user, String password)
-    {
+    public void validate(SysUser user, String password) {
         String loginName = user.getLoginName();
 
         AtomicInteger retryCount = loginRecordCache.get(loginName);
 
-        if (retryCount == null)
-        {
+        if (retryCount == null) {
             retryCount = new AtomicInteger(0);
             loginRecordCache.put(loginName, retryCount);
         }
-        if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount).intValue())
-        {
+        if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount).intValue()) {
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount)));
             throw new UserPasswordRetryLimitExceedException(Integer.valueOf(maxRetryCount).intValue());
         }
 
-        if (!matches(user, password))
-        {
+        if (!matches(user, password)) {
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.count", retryCount)));
             loginRecordCache.put(loginName, retryCount);
             throw new UserPasswordNotMatchException();
-        }
-        else
-        {
+        } else {
             clearLoginRecordCache(loginName);
         }
     }
 
-    public boolean matches(SysUser user, String newPassword)
-    {
+    public boolean matches(SysUser user, String newPassword) {
         return user.getPassword().equals(encryptPassword(user.getLoginName(), newPassword, user.getSalt()));
     }
 
-    public void clearLoginRecordCache(String loginName)
-    {
+    public void clearLoginRecordCache(String loginName) {
         loginRecordCache.remove(loginName);
     }
 
-    public String encryptPassword(String loginName, String password, String salt)
-    {
+    public String encryptPassword(String loginName, String password, String salt) {
         return new Md5Hash(loginName + password + salt).toHex();
     }
 }

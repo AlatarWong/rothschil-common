@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.common.core.page;
 
 
 import xyz.wongs.drunkard.base.utils.ServletUtils;
-import xyz.wongs.drunkard.war.constant.Constants;
+import xyz.wongs.drunkard.base.constant.Constants;
 
 /**
  * 表格数据处理

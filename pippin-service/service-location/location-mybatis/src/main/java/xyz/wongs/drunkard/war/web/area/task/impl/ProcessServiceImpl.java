@@ -19,12 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import xyz.wongs.drunkard.base.constant.Constant;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.war.domain.entity.Location;
 import xyz.wongs.drunkard.war.domain.service.LocationService;
-import xyz.wongs.drunkard.war.web.util.IdClazzUtils;
-import xyz.wongs.drunkard.war.web.util.AreaCodeStringUtils;
 import xyz.wongs.drunkard.war.web.area.task.ProcessService;
+import xyz.wongs.drunkard.war.web.util.AreaCodeStringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,11 +32,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName: JsoupProcessServiceImpl
- * @Description:TODO(这里用一句话描述这个类的作用)
  * @author: <a href="wcngs@qq.com">WCNGS</a>
  * @date: 2017年7月28日 上午11:31:30  *
- * @Copyright: 2017 WCNGS Inc. All rights reserved.
  */
 @Slf4j
 @Service("processService")
@@ -317,7 +313,7 @@ public class ProcessServiceImpl implements ProcessService {
      *
      * @param url
      * @param cssClazz
-     * @param parentURLCode
+     * @param parentCode
      * @return List<Location>
      * @Title: getLocation
      * @Description: TODO(这里用一句话描述这个方法的作用)
@@ -392,8 +388,8 @@ public class ProcessServiceImpl implements ProcessService {
             if (cation.getLv() == 3) {
                 sb.append(str);
             } else {
-                int i = cation.getUrl().indexOf(Constant.SLASH);
-                sb.append(str.substring(0, i)).append(Constant.SLASH).append(sb);
+                int i = cation.getUrl().indexOf(Constants.SLASH);
+                sb.append(str.substring(0, i)).append(Constants.SLASH).append(sb);
             }
         }
         return url;

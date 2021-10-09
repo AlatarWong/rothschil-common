@@ -1,17 +1,12 @@
 package xyz.wongs.drunkard.war.web.controller.system;
 
-import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import xyz.wongs.drunkard.common.annotation.Log;
+import org.springframework.web.bind.annotation.*;
+import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
 import xyz.wongs.drunkard.common.core.controller.BaseController;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.core.page.TableDataInfo;
@@ -21,6 +16,8 @@ import xyz.wongs.drunkard.common.utils.poi.ExcelUtil;
 import xyz.wongs.drunkard.war.constant.UserConstants;
 import xyz.wongs.drunkard.war.core.domain.SysConfig;
 import xyz.wongs.drunkard.war.core.service.ISysConfigService;
+
+import java.util.List;
 
 
 /** 参数配置 信息操作处理

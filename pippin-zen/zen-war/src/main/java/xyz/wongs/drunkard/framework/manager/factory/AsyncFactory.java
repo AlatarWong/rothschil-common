@@ -10,7 +10,7 @@ import xyz.wongs.drunkard.common.utils.AddressUtils;
 import xyz.wongs.drunkard.common.utils.LogUtils;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.framework.shiro.session.OnlineSession;
-import xyz.wongs.drunkard.war.constant.Constants;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.war.core.domain.SysLogininfor;
 import xyz.wongs.drunkard.war.core.domain.SysOperLog;
 import xyz.wongs.drunkard.war.core.domain.SysUserOnline;
