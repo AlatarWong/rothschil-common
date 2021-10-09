@@ -73,7 +73,6 @@ dependencies {
     api group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
     api group: 'org.hyperic', name: 'sigar', version: '1.6.4'
 
-//    api 'com.h2database:h2:1.4.200'
     api(libraries.'commons-httpclient'){
         exclude group:'commons-logging', module: 'commons-logging'
         exclude group:'commons-codec', module: 'commons-codec'

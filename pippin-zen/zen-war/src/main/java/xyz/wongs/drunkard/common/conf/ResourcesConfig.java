@@ -11,14 +11,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.framework.interceptor.RepeatSubmitInterceptor;
 
-/** 通用配置
+/**
+ * 通用配置
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 21:15
  * @since 1.0.0
  */
 @Configuration
-public class ResourcesConfig implements WebMvcConfigurer
-{
+public class ResourcesConfig implements WebMvcConfigurer {
     /**
      * 首页地址
      */
@@ -32,14 +33,12 @@ public class ResourcesConfig implements WebMvcConfigurer
      * 默认首页的设置，当输入域名是可以自动跳转到默认指定的网页
      */
     @Override
-    public void addViewControllers(ViewControllerRegistry registry)
-    {
+    public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:" + indexUrl);
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry)
-    {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /** 本地文件上传路径 */
         registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**").addResourceLocations("file:" + DrunkardConfig.getProfile() + "/");
 
@@ -52,8 +51,7 @@ public class ResourcesConfig implements WebMvcConfigurer
      * 自定义拦截规则
      */
     @Override
-    public void addInterceptors(InterceptorRegistry registry)
-    {
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
     }
 }
