@@ -1,0 +1,12 @@
+archivesBaseName = 'pre-technical'
+dependencies{
+    implementation(project(':pippin-common:common-utils')){
+        exclude group:'com.alibaba', module: 'druid-spring-boot-starter'
+        exclude group:'com.oracle', module: 'ojdbc6'
+        exclude group:'mysql', module: 'mysql-connector-java'
+    }
+
+    implementation('com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4')
+    implementation('cglib:cglib:3.3.0')
+}
+bootJar.enabled = true

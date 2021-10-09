@@ -4,7 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
+import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 
 /**
@@ -28,7 +28,7 @@ public class Aspect2Annotaion extends AbsAspect{
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-16:39
      **/
-    @Pointcut(value = "@annotation(xyz.wongs.drunkard.base.aop.annotion.ApplicationLog)")
+    @Pointcut(value = "@annotation(xyz.wongs.drunkard.base.aop.annotation.ApplicationLog)")
     public void cutService() {}
 
     @Before(value = "cutService()")

@@ -69,7 +69,7 @@ CREATE TABLE tb_file_info (
 这里需要注意下，这里的 `AbstractEntity` 是我基类。
 
 ~~~java
-package xyz.wongs.drunkard.war3.moon.entity;
+package xyz.wongs.drunkard.war.moon.entity;
 
 import lombok.*;
 import xyz.wongs.drunkard.base.po.BasePo;
@@ -100,7 +100,7 @@ public class FileInfo extends AbstractEntity<Long> {
 这里需要注意下，这里的 `BaseMapper` 是我基类。
 
 ~~~java
-package xyz.wongs.drunkard.war3.moon.mapper;
+package xyz.wongs.drunkard.war.moon.mapper;
 
 import xyz.wongs.drunkard.base.persistence.mybatis.mapper.BaseMapper;
 import FileInfo;
@@ -249,7 +249,7 @@ public interface FileInfoMapper extends BaseMapper<FileInfo,Long> {
 这里需要注意下，这里的 `AbstractService` 是我基类。
 
 ~~~java
-package xyz.wongs.drunkard.war3.moon.service;
+package xyz.wongs.drunkard.war.moon.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

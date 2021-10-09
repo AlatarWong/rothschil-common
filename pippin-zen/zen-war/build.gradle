@@ -1,0 +1,19 @@
+archivesBaseName = 'zen-war'
+dependencies {
+    implementation project(':pippin-service:service-location:location-mybatis')
+
+    implementation('io.springfox:springfox-swagger2:3.0.0')
+    implementation('io.springfox:springfox-swagger-ui:3.0.0')
+
+    implementation('com.github.penggle:kaptcha:2.3.2')
+
+    implementation('org.apache.shiro:shiro-spring:1.8.0')
+    implementation('org.apache.shiro:shiro-ehcache:1.8.0')
+    implementation('com.github.theborakompanioni:thymeleaf-extras-shiro:2.1.0')
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    implementation('redis.clients:jedis:3.7.0')
+    implementation('org.apache.poi:poi-ooxml:5.0.0')
+    implementation('com.github.oshi:oshi-core:5.8.2')
+    api fileTree(dir: 'libs', includes: ['*.jar'])
+}
+bootJar.enabled = true

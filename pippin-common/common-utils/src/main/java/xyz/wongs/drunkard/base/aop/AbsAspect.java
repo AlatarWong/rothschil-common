@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import xyz.wongs.drunkard.base.aop.annotion.ApplicationLog;
+import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler;

@@ -49,7 +49,7 @@ public class ApiController {
 
 
     @Body
-    @LoginToken
+    @ApplicationLoginToken
     @GetMapping("/getMessage")
     public String getMessage(){
         return "你已通过验证";
