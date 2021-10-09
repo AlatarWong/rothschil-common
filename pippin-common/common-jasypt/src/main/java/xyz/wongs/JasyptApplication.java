@@ -14,6 +14,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class JasyptApplication {
     public static void main(String[] args) {
-        SpringApplication.run(JasyptApplication.class,args);
+        SpringApplication.run(JasyptApplication.class, args);
     }
 }

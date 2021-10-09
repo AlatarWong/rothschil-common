@@ -7,6 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import xyz.wongs.drunkard.design.adapter.StandardAdapter;
+import xyz.wongs.drunkard.design.decorator.demo.Component;
+import xyz.wongs.drunkard.design.decorator.demo.ConcreteComponent;
+import xyz.wongs.drunkard.design.decorator.demo.ConcreteDecorator;
+import xyz.wongs.drunkard.design.decorator.war3.Changer2Girl;
+import xyz.wongs.drunkard.design.decorator.war3.Changer2Succubus;
+import xyz.wongs.drunkard.design.decorator.war3.DmHunter;
+import xyz.wongs.drunkard.design.decorator.war3.Original;
 import xyz.wongs.drunkard.design.iterator.Aggregate;
 import xyz.wongs.drunkard.design.iterator.ConcreteAggregate;
 import xyz.wongs.drunkard.design.iterator.Iterator;
@@ -37,7 +44,7 @@ public class TestDesign {
 
     @AfterEach
     public void afterAll(){
-        log.info("[AfterAll] 总共耗时={} 秒",(end-beginTime)/1000);
+        log.info("[AfterAll] 总共耗时={} 毫秒",(end-beginTime));
     }
 
     @DisplayName("观察者模式")
@@ -106,5 +113,28 @@ public class TestDesign {
         }
         Object ob = it.first();
         log.warn("First：" + ob.toString());
+    }
+
+    @DisplayName("装饰器模式")
+    @Test
+    public void testDecorator() {
+        Component cp = new ConcreteComponent();
+        cp.say();
+        log.warn("=====================");
+        Component cpt = new ConcreteDecorator(cp);
+        cpt.say();
+    }
+
+    @DisplayName("装饰器模式应用")
+    @Test
+    public void testDecoratorApp() {
+        DmHunter hunter = new Original();
+        hunter.display();
+
+        DmHunter succubus = new Changer2Succubus(hunter);
+        succubus.display();
+
+        DmHunter girl = new Changer2Girl(hunter);
+        girl.display();
     }
 }

@@ -1,21 +1,10 @@
 package xyz.wongs.drunkard.base.config;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import xyz.wongs.drunkard.base.interceptor.ResponseBodyInterceptor;
-
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <ul>
@@ -32,31 +21,31 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private ResponseBodyInterceptor responseBodyInterceptor;
 
-    /** 自定义消息转换器
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-17:07
-     * @param converters 转换器
-     **/
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        // 清除默认 Json 转换器
-        converters.removeIf(converter -> converter instanceof MappingJackson2HttpMessageConverter);
-        // 配置 FastJson
-        FastJsonConfig config = new FastJsonConfig();
-        config.setSerializerFeatures(SerializerFeature.QuoteFieldNames, SerializerFeature.WriteEnumUsingToString,
-                SerializerFeature.WriteMapNullValue, SerializerFeature.WriteDateUseDateFormat,
-                SerializerFeature.DisableCircularReferenceDetect);
-        // 添加 FastJsonHttpMessageConverter
-        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        converter.setFastJsonConfig(config);
-        List<MediaType> fastMediaTypes = new ArrayList<>();
-        fastMediaTypes.add(MediaType.APPLICATION_JSON);
-        converter.setSupportedMediaTypes(fastMediaTypes);
-        converters.add(converter);
-        // 添加 StringHttpMessageConverter，解决中文乱码问题
-        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
-        converters.add(messageConverter);
-    }
+//    /** 自定义消息转换器
+//     * @author <a href="https://github.com/rothschil">Sam</a>
+//     * @date 2021/9/26-17:07
+//     * @param converters 转换器
+//     **/
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        // 清除默认 Json 转换器
+//        converters.removeIf(converter -> converter instanceof MappingJackson2HttpMessageConverter);
+//        // 配置 FastJson
+//        FastJsonConfig config = new FastJsonConfig();
+//        config.setSerializerFeatures(SerializerFeature.QuoteFieldNames, SerializerFeature.WriteEnumUsingToString,
+//                SerializerFeature.WriteMapNullValue, SerializerFeature.WriteDateUseDateFormat,
+//                SerializerFeature.DisableCircularReferenceDetect);
+//        // 添加 FastJsonHttpMessageConverter
+//        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+//        converter.setFastJsonConfig(config);
+//        List<MediaType> fastMediaTypes = new ArrayList<>();
+//        fastMediaTypes.add(MediaType.APPLICATION_JSON);
+//        converter.setSupportedMediaTypes(fastMediaTypes);
+//        converters.add(converter);
+//        // 添加 StringHttpMessageConverter，解决中文乱码问题
+//        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
+//        converters.add(messageConverter);
+//    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

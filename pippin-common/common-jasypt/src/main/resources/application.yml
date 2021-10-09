@@ -1,0 +1,17 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: serivce-alipay
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    enabled: true
+    check-template-location: true
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 30MB
+

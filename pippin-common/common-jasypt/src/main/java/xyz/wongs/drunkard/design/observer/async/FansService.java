@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
+import xyz.wongs.drunkard.thread.ThreadPoolsUtil;
 import xyz.wongs.drunkard.design.observer.Article;
 
 import java.util.Observable;

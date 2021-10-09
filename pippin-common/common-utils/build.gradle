@@ -8,15 +8,12 @@ dependencies {
 
     api(
             libraries.'commons-compress',
-
             libraries.'commons-io',
             libraries.'commons-lang3',
             libraries.'commons-codec',
             libraries.'commons-configuration',
-
             libraries.'mysql-connector-java',
 
-//            libraries.'validation-api',
             libraries.'javax.servlet-api',
             libraries.'fastjson',
             libraries.'guava',

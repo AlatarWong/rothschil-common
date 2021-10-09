@@ -181,10 +181,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     }
 
 	/** 随机反馈字符串
-	 * @Description
 	 * @param length
 	 * @return java.lang.String
-	 * @throws
 	 * @date 2020/8/15 22:36
 	 */
 	public static String getRandomString(int length){
@@ -201,7 +199,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /**
      * 获取参数不为空值
-     *
      * @param value defaultValue 要判断的value
      * @return value 返回值
      */
@@ -209,9 +206,18 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return value != null ? value : defaultValue;
     }
 
+
     /**
      * * 判断一个Collection是否为空， 包含List，Set，Queue
-     *
+     * @param obj 要判断的对象
+     * @return true：为空 false：非空
+     */
+    public static boolean isEmpty(Object obj) {
+        return isNull(obj);
+    }
+
+    /**
+     * * 判断一个Collection是否为空， 包含List，Set，Queue
      * @param coll 要判断的Collection
      * @return true：为空 false：非空
      */
@@ -221,9 +227,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /**
      * * 判断一个对象数组是否为空
-     *
      * @param objects 要判断的对象数组
-     *                * @return true：为空 false：非空
+     * @return true：为空 false：非空
      */
     public static boolean isEmpty(Object[] objects) {
         return isNull(objects) || (objects.length == 0);
@@ -231,7 +236,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /**
      * * 判断一个对象数组是否非空
-     *
      * @param objects 要判断的对象数组
      * @return true：非空 false：空
      */
