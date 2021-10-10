@@ -11,6 +11,7 @@ import java.util.List;
  * @since 1.0.0
  */
 public class TableDataInfo implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

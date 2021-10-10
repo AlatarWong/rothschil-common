@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.DateUtils;
+import xyz.wongs.drunkard.base.utils.Reflections;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.common.annotation.Excel;
 import xyz.wongs.drunkard.common.annotation.Excel.ColumnType;
@@ -17,7 +18,6 @@ import xyz.wongs.drunkard.common.annotation.Excels;
 import xyz.wongs.drunkard.common.conf.DrunkardConfig;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.text.Convert;
-import xyz.wongs.drunkard.common.utils.reflect.ReflectUtils;
 import xyz.wongs.drunkard.war.util.DictUtils;
 
 import java.io.*;
@@ -27,7 +27,9 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/** Excel相关处理
+/**
+ * Excel相关处理
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 21:36
  * @since 1.0.0
@@ -223,7 +225,7 @@ public class ExcelUtil<T> {
                         } else if (StringUtils.isNotEmpty(attr.dictType())) {
                             val = reverseDictByExp(Convert.toStr(val), attr.dictType(), attr.separator());
                         }
-                        ReflectUtils.invokeSetter(entity, propertyName, val);
+                        Reflections.invokeSetter(entity, propertyName, val);
                     }
                 }
                 list.add(entity);
