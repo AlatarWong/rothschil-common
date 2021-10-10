@@ -1,11 +1,5 @@
 package xyz.wongs.drunkard.war.core.service.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +19,11 @@ import xyz.wongs.drunkard.war.core.mapper.SysRoleMenuMapper;
 import xyz.wongs.drunkard.war.core.mapper.SysUserRoleMapper;
 import xyz.wongs.drunkard.war.core.service.ISysRoleService;
 
-/** 角色
+import java.util.*;
+
+/**
+ * 角色
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:04
  * @since 1.0.0

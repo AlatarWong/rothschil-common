@@ -1,7 +1,5 @@
 package xyz.wongs.drunkard.war.core.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.wongs.drunkard.common.text.Convert;
@@ -9,7 +7,11 @@ import xyz.wongs.drunkard.war.core.domain.SysOperLog;
 import xyz.wongs.drunkard.war.core.mapper.SysOperLogMapper;
 import xyz.wongs.drunkard.war.core.service.ISysOperLogService;
 
-/** 操作日志
+import java.util.List;
+
+/**
+ * 操作日志
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:04
  * @since 1.0.0

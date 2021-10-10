@@ -8,7 +8,9 @@ import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 import xyz.wongs.drunkard.common.annotation.Excel.*;
 
-/** 字典类型表
+/**
+ * 字典类型表
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 23:53
  * @since 1.0.0

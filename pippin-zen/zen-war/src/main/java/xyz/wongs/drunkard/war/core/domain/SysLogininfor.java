@@ -7,7 +7,9 @@ import xyz.wongs.drunkard.common.annotation.Excel;
 
 import java.util.Date;
 
-/** 系统访问记录表
+/**
+ * 系统访问记录表
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 10:46
  * @since 1.0.0

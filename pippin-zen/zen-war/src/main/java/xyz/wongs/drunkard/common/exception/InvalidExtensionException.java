@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.common.exception.file;
+package xyz.wongs.drunkard.common.exception;
 
 import org.apache.commons.fileupload.FileUploadException;
 

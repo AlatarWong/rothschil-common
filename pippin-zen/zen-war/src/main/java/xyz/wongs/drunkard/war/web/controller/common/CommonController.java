@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.FileUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.common.conf.DrunkardConfig;
 import xyz.wongs.drunkard.common.conf.ServerConfig;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.utils.FileUploadUtils;
-import xyz.wongs.drunkard.base.constant.Constants;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -39,9 +38,10 @@ public class CommonController {
      *
      * @param fileName 文件名称
      * @param delete   是否删除
+     * @param response 响应
      */
     @GetMapping("common/download")
-    public void fileDownload(String fileName, Boolean delete, HttpServletResponse response, HttpServletRequest request) {
+    public void fileDownload(String fileName, Boolean delete, HttpServletResponse response) {
         try {
             if (!FileUtils.checkAllowDownload(fileName)) {
                 throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", fileName));
@@ -60,12 +60,16 @@ public class CommonController {
         }
     }
 
+
     /**
      * 通用上传请求
+     *
+     * @param file 文件
+     * @return AjaxResult   响应
      */
     @PostMapping("/common/upload")
     @ResponseBody
-    public AjaxResult uploadFile(MultipartFile file) throws Exception {
+    public AjaxResult uploadFile(MultipartFile file) {
         try {
             // 上传文件路径
             String filePath = DrunkardConfig.getUploadPath();
@@ -85,7 +89,7 @@ public class CommonController {
      * 本地资源通用下载
      */
     @GetMapping("/common/download/resource")
-    public void resourceDownload(String resource, HttpServletRequest request, HttpServletResponse response)
+    public void resourceDownload(String resource, HttpServletResponse response)
             throws Exception {
         try {
             if (!FileUtils.checkAllowDownload(resource)) {

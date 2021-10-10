@@ -1,10 +1,5 @@
 package xyz.wongs.drunkard.war.core.service.impl;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Deque;
-import java.util.List;
-
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +11,14 @@ import xyz.wongs.drunkard.war.core.domain.SysUserOnline;
 import xyz.wongs.drunkard.war.core.mapper.SysUserOnlineMapper;
 import xyz.wongs.drunkard.war.core.service.ISysUserOnlineService;
 
-/** 在线用户
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Deque;
+import java.util.List;
+
+/**
+ * 在线用户
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:04
  * @since 1.0.0

@@ -9,7 +9,9 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 菜单权限表 sys_menu
+/**
+ * 菜单权限表 sys_menu
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:06
  * @since 1.0.0

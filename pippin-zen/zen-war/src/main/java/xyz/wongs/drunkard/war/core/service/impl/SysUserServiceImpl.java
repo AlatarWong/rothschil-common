@@ -19,7 +19,9 @@ import xyz.wongs.drunkard.war.core.service.ISysUserService;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 用户
+/**
+ * 用户
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:04
  * @since 1.0.0
@@ -255,12 +257,13 @@ public class SysUserServiceImpl implements ISysUserService {
     /**
      * 新增用户角色信息
      *
-     * @param user 用户对象
+     * @param userId 用户对象
+     * @param roleIds 角色数组
      */
     public void insertUserRole(Long userId, Long[] roleIds) {
         if (StringUtils.isNotNull(roleIds)) {
             // 新增用户与角色管理
-            List<SysUserRole> list = new ArrayList<SysUserRole>();
+            List<SysUserRole> list = new ArrayList<>();
             for (Long roleId : roleIds) {
                 SysUserRole ur = new SysUserRole();
                 ur.setUserId(userId);
@@ -282,7 +285,7 @@ public class SysUserServiceImpl implements ISysUserService {
         Long[] posts = user.getPostIds();
         if (StringUtils.isNotNull(posts)) {
             // 新增用户与岗位管理
-            List<SysUserPost> list = new ArrayList<SysUserPost>();
+            List<SysUserPost> list = new ArrayList<>();
             for (Long postId : posts) {
                 SysUserPost up = new SysUserPost();
                 up.setUserId(user.getId());
@@ -299,7 +302,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * 校验登录名称是否唯一
      *
      * @param loginName 用户名
-     * @return
+     * @return String
      */
     @Override
     public String checkLoginNameUnique(String loginName) {
@@ -314,13 +317,13 @@ public class SysUserServiceImpl implements ISysUserService {
      * 校验手机号码是否唯一
      *
      * @param user 用户信息
-     * @return
+     * @return String 返回值字符，其中，0:唯一;1-不唯一
      */
     @Override
     public String checkPhoneUnique(SysUser user) {
-        Long userId = StringUtils.isNull(user.getId()) ? -1L : user.getId();
+        long userId = StringUtils.isNull(user.getId()) ? -1L : user.getId();
         SysUser info = userMapper.checkPhoneUnique(user.getPhonenumber());
-        if (StringUtils.isNotNull(info) && info.getId().longValue() != userId.longValue()) {
+        if (StringUtils.isNotNull(info) && info.getId() != userId) {
             return UserConstants.USER_PHONE_NOT_UNIQUE;
         }
         return UserConstants.USER_PHONE_UNIQUE;
@@ -330,13 +333,13 @@ public class SysUserServiceImpl implements ISysUserService {
      * 校验email是否唯一
      *
      * @param user 用户信息
-     * @return
+     * @return String 返回值字符，其中，0:唯一;1-不唯一
      */
     @Override
     public String checkEmailUnique(SysUser user) {
-        Long userId = StringUtils.isNull(user.getId()) ? -1L : user.getId();
+        long userId = StringUtils.isNull(user.getId()) ? -1L : user.getId();
         SysUser info = userMapper.checkEmailUnique(user.getEmail());
-        if (StringUtils.isNotNull(info) && info.getId().longValue() != userId.longValue()) {
+        if (StringUtils.isNotNull(info) && info.getId() != userId) {
             return UserConstants.USER_EMAIL_NOT_UNIQUE;
         }
         return UserConstants.USER_EMAIL_UNIQUE;
@@ -363,7 +366,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public String selectUserRoleGroup(Long userId) {
         List<SysRole> list = roleMapper.selectRolesByUserId(userId);
-        StringBuffer idsStr = new StringBuffer();
+        StringBuilder idsStr = new StringBuilder();
         for (SysRole role : list) {
             idsStr.append(role.getRoleName()).append(",");
         }
@@ -382,7 +385,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public String selectUserPostGroup(Long userId) {
         List<SysPost> list = postMapper.selectPostsByUserId(userId);
-        StringBuffer idsStr = new StringBuffer();
+        StringBuilder idsStr = new StringBuilder();
         for (SysPost post : list) {
             idsStr.append(post.getPostName()).append(",");
         }
@@ -419,20 +422,20 @@ public class SysUserServiceImpl implements ISysUserService {
                     user.setCreateBy(operName);
                     this.insertUser(user);
                     successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 导入成功");
+                    successMsg.append("<br/>").append(successNum).append("、账号 ").append(user.getLoginName()).append(" 导入成功");
                 } else if (isUpdateSupport) {
                     user.setUpdateBy(operName);
                     this.updateUser(user);
                     successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 更新成功");
+                    successMsg.append("<br/>").append(successNum).append("、账号 ").append(user.getLoginName()).append(" 更新成功");
                 } else {
                     failureNum++;
-                    failureMsg.append("<br/>" + failureNum + "、账号 " + user.getLoginName() + " 已存在");
+                    failureMsg.append("<br/>").append(failureNum).append("、账号 ").append(user.getLoginName()).append(" 已存在");
                 }
             } catch (Exception e) {
                 failureNum++;
                 String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：";
-                failureMsg.append(msg + e.getMessage());
+                failureMsg.append(msg).append(e.getMessage());
                 log.error(msg, e);
             }
         }

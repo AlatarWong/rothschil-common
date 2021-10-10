@@ -4,7 +4,9 @@ import xyz.wongs.drunkard.war.core.domain.SysConfig;
 
 import java.util.List;
 
-/** 参数配置
+/**
+ * 参数配置
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 23:57
  * @since 1.0.0

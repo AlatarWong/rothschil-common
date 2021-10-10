@@ -3,6 +3,7 @@ package xyz.wongs.drunkard.common.utils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.IpUtils;
 import xyz.wongs.drunkard.common.json.JSON;
 
@@ -11,32 +12,33 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Map;
 
-/** 处理并记录日志文件
+/**
+ * 处理并记录日志文件
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:06
  * @since 1.0.0
  */
-public class LogUtils
-{
+public class LogUtils {
     public static final Logger ERROR_LOG = LoggerFactory.getLogger("sys-error");
     public static final Logger ACCESS_LOG = LoggerFactory.getLogger("sys-access");
 
-    /**
-     * 记录访问日志 [username][jsessionid][ip][accept][UserAgent][url][params][Referer]
-     *
-     * @param request
-     * @throws Exception
-     */
-    public static void logAccess(HttpServletRequest request) throws Exception
-    {
+
+    /** 记录访问日志 [username][jsessionid][ip][accept][UserAgent][url][params][Referer]
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/10-16:42
+     * @param request 请求
+     * @return
+     **/
+    public static void logAccess(HttpServletRequest request) throws Exception {
+
         String username = getUsername();
         String jsessionId = request.getRequestedSessionId();
         String ip = IpUtils.getIpAddr(request);
         String accept = request.getHeader("accept");
-        String userAgent = request.getHeader("User-Agent");
+        String userAgent = request.getHeader(Constants.USER_TYPE);
         String url = request.getRequestURI();
         String params = getParams(request);
-
         StringBuilder s = new StringBuilder();
         s.append(getBlock(username));
         s.append(getBlock(jsessionId));
@@ -52,11 +54,10 @@ public class LogUtils
     /**
      * 记录异常错误 格式 [exception]
      *
-     * @param message
-     * @param e
+     * @param message 消息内容
+     * @param e 异常Bean
      */
-    public static void logError(String message, Throwable e)
-    {
+    public static void logError(String message, Throwable e) {
         String username = getUsername();
         StringBuilder s = new StringBuilder();
         s.append(getBlock("exception"));
@@ -68,10 +69,9 @@ public class LogUtils
     /**
      * 记录页面错误 错误日志记录 [page/eception][username][statusCode][errorMessage][servletName][uri][exceptionName][ip][exception]
      *
-     * @param request
+     * @param request Request对象
      */
-    public static void logPageError(HttpServletRequest request)
-    {
+    public static void logPageError(HttpServletRequest request) {
         String username = getUsername();
 
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
@@ -79,8 +79,7 @@ public class LogUtils
         String uri = (String) request.getAttribute("javax.servlet.error.request_uri");
         Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
 
-        if (statusCode == null)
-        {
+        if (statusCode == null) {
             statusCode = 0;
         }
 
@@ -95,8 +94,7 @@ public class LogUtils
         s.append(getBlock(request.getHeader("Referer")));
         StringWriter sw = new StringWriter();
 
-        while (t != null)
-        {
+        while (t != null) {
             t.printStackTrace(new PrintWriter(sw));
             t = t.getCause();
         }
@@ -105,33 +103,27 @@ public class LogUtils
 
     }
 
-    public static String getBlock(Object msg)
-    {
-        if (msg == null)
-        {
+    public static String getBlock(Object msg) {
+        if (msg == null) {
             msg = "";
         }
         return "[" + msg.toString() + "]";
     }
 
-    protected static String getParams(HttpServletRequest request) throws Exception
-    {
+    protected static String getParams(HttpServletRequest request) throws Exception {
         Map<String, String[]> params = request.getParameterMap();
         return JSON.marshal(params);
     }
 
-    protected static String getUsername()
-    {
+    protected static String getUsername() {
         return (String) SecurityUtils.getSubject().getPrincipal();
     }
 
-    public static Logger getAccessLog()
-    {
+    public static Logger getAccessLog() {
         return ACCESS_LOG;
     }
 
-    public static Logger getErrorLog()
-    {
+    public static Logger getErrorLog() {
         return ERROR_LOG;
     }
 }

@@ -4,7 +4,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.RealmSecurityManager;
 import xyz.wongs.drunkard.framework.shiro.realm.UserRealm;
 
-/** 用户授权信息
+/**
+ * 用户授权信息
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:06
  * @since 1.0.0

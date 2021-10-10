@@ -1,8 +1,9 @@
 package xyz.wongs.drunkard.common.utils.sql;
 
 
+import xyz.wongs.drunkard.base.message.enums.Status;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.StringUtils;
-import xyz.wongs.drunkard.common.exception.base.BaseException;
 
 /** sql操作工具类
  * @author <a href="https://github.com/rothschil">Sam</a>
@@ -20,7 +21,7 @@ public class SqlUtil {
      */
     public static String escapeOrderBySql(String value) {
         if (StringUtils.isNotEmpty(value) && !isValidOrderBySql(value)) {
-            throw new BaseException("参数不符合规范，不能进行查询");
+            throw new DrunkardException(Status.PARAMS_IS_INVALID);
         }
         return value;
     }

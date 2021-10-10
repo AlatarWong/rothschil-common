@@ -3,7 +3,9 @@ package xyz.wongs.drunkard.war.core.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-/** 用户和角色关联
+/**
+ * 用户和角色关联
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 10:52
  * @since 1.0.0

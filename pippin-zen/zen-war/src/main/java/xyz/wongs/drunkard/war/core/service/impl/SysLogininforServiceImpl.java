@@ -1,7 +1,5 @@
 package xyz.wongs.drunkard.war.core.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.wongs.drunkard.common.text.Convert;
@@ -9,7 +7,11 @@ import xyz.wongs.drunkard.war.core.domain.SysLogininfor;
 import xyz.wongs.drunkard.war.core.mapper.SysLogininforMapper;
 import xyz.wongs.drunkard.war.core.service.ISysLogininforService;
 
-/** 系统访问日志情况信息
+import java.util.List;
+
+/**
+ * 系统访问日志情况信息
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:03
  * @since 1.0.0
@@ -45,7 +47,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService {
      * 批量删除系统登录日志
      *
      * @param ids 需要删除的数据
-     * @return
+     * @return int
      */
     @Override
     public int deleteLogininforByIds(String ids) {

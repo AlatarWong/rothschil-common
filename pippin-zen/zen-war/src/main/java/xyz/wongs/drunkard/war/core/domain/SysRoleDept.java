@@ -3,11 +3,13 @@ package xyz.wongs.drunkard.war.core.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-/** 角色和部门关联
+/**
+ * 角色和部门关联
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 10:51
  * @since 1.0.0
-*/
+ */
 public class SysRoleDept {
     /**
      * 角色ID

@@ -9,7 +9,9 @@ import xyz.wongs.drunkard.base.utils.IpUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.common.conf.DrunkardConfig;
 
-/** 获取地址类
+/**
+ * 获取地址类
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 21:38
  * @since 1.0.0
@@ -29,13 +31,14 @@ public class AddressUtils {
     public static final String UNKNOWN = "XX XX";
 
     /**
-     * @Description 查询开源网址获取真实的地理位置信息
+     * 查询开源网址获取真实的地理位置信息
+     *
      * @param ip ip地址
      * @return String
      * @date 20/12/9 17:32
      */
-    public static String getRealAddressByIP(String ip) {
-        String address = UNKNOWN;
+    @Deprecated
+    public static String getRealAddressByIp(String ip) {
         // 内网不查询
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
@@ -55,27 +58,18 @@ public class AddressUtils {
                 LOG.error("获取地理位置异常 {}", e);
             }
         }
-        return address;
+        return UNKNOWN;
     }
 
 
     /**
-     * @Description 查询本地的IP库获取真实的地理位置信息
-     * @param ip
+     * 查询本地的IP库获取真实的地理位置信息
+     *
+     * @param ip 源IP地址
      * @return String
-     * @throws
      * @date 20/12/9 17:32
      */
     public static String getRealAddressByLocalIP(String ip) {
-        StringBuffer sbuf = new StringBuffer();
-//        try {
-            String lo ="";
-//            RegionAddress regionAddress = template.getRegionAddress(ip);
-//            sbuf.append(regionAddress.getCountry()).append(regionAddress.getProvince()).append(regionAddress.getCity());
-//        }
-//        catch (IOException e) {
-//            return UNKNOWN;
-//        }
-        return sbuf.toString();
+        return ip;
     }
 }

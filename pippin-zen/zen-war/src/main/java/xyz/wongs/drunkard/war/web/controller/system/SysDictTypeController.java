@@ -31,6 +31,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/dict")
 public class SysDictTypeController extends BaseController {
+
     private String prefix = "system/dict/type";
 
     @Autowired
@@ -166,7 +167,6 @@ public class SysDictTypeController extends BaseController {
     @GetMapping("/treeData")
     @ResponseBody
     public List<Ztree> treeData() {
-        List<Ztree> ztrees = dictTypeService.selectDictTree(new SysDictType());
-        return ztrees;
+        return dictTypeService.selectDictTree(new SysDictType());
     }
 }

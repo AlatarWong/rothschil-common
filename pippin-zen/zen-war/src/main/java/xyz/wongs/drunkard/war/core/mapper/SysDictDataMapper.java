@@ -5,7 +5,9 @@ import xyz.wongs.drunkard.war.core.domain.SysDictData;
 
 import java.util.List;
 
-/** 字典表
+/**
+ * 字典表
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 23:56
  * @since 1.0.0

@@ -16,6 +16,7 @@ public class CookieUtils {
     /**
      * 设置 Cookie（生成时间为1天）
      *
+     * @param response {@link HttpServletResponse}
      * @param name  名称
      * @param value 值
      */
@@ -26,10 +27,10 @@ public class CookieUtils {
     /**
      * 设置 Cookie
      *
+     * @param response {@link HttpServletResponse}
      * @param name   名称
      * @param value  值
-     * @param maxAge 生存时间（单位秒）
-     * @param uri    路径
+     * @param path    路径
      */
     public static void setCookie(HttpServletResponse response, String name, String value, String path) {
         setCookie(response, name, value, path, 60 * 60 * 24);
@@ -38,10 +39,10 @@ public class CookieUtils {
     /**
      * 设置 Cookie
      *
+     * @param response {@link HttpServletResponse}
      * @param name   名称
      * @param value  值
      * @param maxAge 生存时间（单位秒）
-     * @param uri    路径
      */
     public static void setCookie(HttpServletResponse response, String name, String value, int maxAge) {
         setCookie(response, name, value, "/", maxAge);
@@ -50,10 +51,11 @@ public class CookieUtils {
     /**
      * 设置 Cookie
      *
+     * response {@link HttpServletResponse}
      * @param name   名称
      * @param value  值
+     * @param path    路径
      * @param maxAge 生存时间（单位秒）
-     * @param uri    路径
      */
     public static void setCookie(HttpServletResponse response, String name, String value, String path, int maxAge) {
         Cookie cookie = new Cookie(name, null);
@@ -70,6 +72,7 @@ public class CookieUtils {
     /**
      * 获得指定Cookie的值
      *
+     * @param request {@link HttpServletRequest}
      * @param name 名称
      * @return 值
      */
@@ -80,6 +83,8 @@ public class CookieUtils {
     /**
      * 获得指定Cookie的值，并删除。
      *
+     * @param request {@link HttpServletRequest}
+     * @param response {@link HttpServletResponse}
      * @param name 名称
      * @return 值
      */

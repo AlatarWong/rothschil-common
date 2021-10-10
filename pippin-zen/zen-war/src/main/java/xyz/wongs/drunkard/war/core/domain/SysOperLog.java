@@ -2,13 +2,14 @@ package xyz.wongs.drunkard.war.core.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-import java.util.Date;
-
 import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 
-/** 操作日志记录表
+import java.util.Date;
+
+/**
+ * 操作日志记录表
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 23:54
  * @since 1.0.0

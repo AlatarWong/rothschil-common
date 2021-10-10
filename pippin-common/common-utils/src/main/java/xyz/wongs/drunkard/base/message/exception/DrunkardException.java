@@ -26,6 +26,8 @@ public class DrunkardException extends RuntimeException{
         super();
     }
 
+
+
     /** 利用 {@link xyz.wongs.drunkard.base.message.enums.Status} 定义的枚举来创建异常信息
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/8-12:00
@@ -36,6 +38,18 @@ public class DrunkardException extends RuntimeException{
         super(status.getMsg());
         this.status = status.getStatus();
         this.message = status.getMsg();
+    }
+
+    /** 利用 {@link xyz.wongs.drunkard.base.message.enums.Status} 定义的枚举来创建异常信息
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/8-12:00
+     * @param status {@link xyz.wongs.drunkard.base.message.enums.Status} 类
+     * @param append 补充内容
+     **/
+    public DrunkardException(Status status,String append) {
+        super(status.getMsg());
+        this.status = status.getStatus();
+        this.message = status.getMsg()+append;
     }
 
     /** 利用 {@link xyz.wongs.drunkard.base.message.enums.Status} 定义的枚举来创建异常信息

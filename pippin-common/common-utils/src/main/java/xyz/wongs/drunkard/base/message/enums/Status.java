@@ -26,6 +26,9 @@ public enum Status {
     SYSTEM_EXCEPTION(210, "系统异常"),
     NOT_FOUND(404, "Not Found"),
 
+    FILE_NAME_LIMIT(801, "The file Name is too long"),
+    FILE_SIZE_LIMIT(802, "The file size too big"),
+
     /**
      * 1000～1999 区间表示参数错误
      */
@@ -46,16 +49,23 @@ public enum Status {
     USER_HAS_EXISTED(2005,"Account exists"),
     USER_IS_EXPIRED(2006,"Account expired"),
     USER_FIRST_LANDING(2007, "Login for the first time"),
+    USER_WAS_DEL(2008,"Account deleted"),
+    USER_WAS_LOCK(2009,"Account Locked"),
     USER_SIGN_VERIFY_NOT_COMPLIANT(2010,"Signature does not match"),
     USER_PASSWORD_RESET_FAILED(2011, "Password reset failed"),
     USER_UNKNOWN_IDENTITY(2012, "Unknown identity"),
     UNSUCCESSFUL_AUTHENTICATION(2014, "Authentication failed"),
+    ROLE_WAS_LOCK(2015,"Role Locked"),
+
 
     MANY_USER_LOGINS(2111,"Users are online"),
     USER_KEY_EXCEPTION(2108,"Key generation failed"),
     TOO_MANY_PASSWD_ENTER(2112, "Enter password frequently"),
     VERIFICATION_CODE_INCORRECT(2202,"Verification code error"),
     VERIFICATION_CODE_FAIL(2203,"Verification code generation failed"),
+
+    MANY_ERRORS_OPT(2204,"用户操作错误次数过多"),
+
 
     TOKEN_EXPIRED(2308,"Token Expired"),
     TOKEN_GENERATION_FAIL(2309,"The Token generation failed"),

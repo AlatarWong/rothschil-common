@@ -6,7 +6,9 @@ import xyz.wongs.drunkard.common.annotation.Excel;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-/** 参数配置表 sys_config
+/**
+ * 参数配置表 sys_config
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 10:27
  * @since 1.0.0

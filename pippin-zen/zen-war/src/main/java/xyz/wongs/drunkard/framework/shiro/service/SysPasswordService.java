@@ -6,12 +6,12 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.message.enums.Status;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.MessageUtils;
-import xyz.wongs.drunkard.common.exception.user.UserPasswordNotMatchException;
-import xyz.wongs.drunkard.common.exception.user.UserPasswordRetryLimitExceedException;
 import xyz.wongs.drunkard.framework.manager.AsyncManager;
 import xyz.wongs.drunkard.framework.manager.factory.AsyncFactory;
-import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.war.constant.ShiroConstants;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
 
@@ -49,15 +49,16 @@ public class SysPasswordService {
             retryCount = new AtomicInteger(0);
             loginRecordCache.put(loginName, retryCount);
         }
-        if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount).intValue()) {
+        int retry = Integer.parseInt(maxRetryCount);
+        if (retryCount.incrementAndGet() > retry) {
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount)));
-            throw new UserPasswordRetryLimitExceedException(Integer.valueOf(maxRetryCount).intValue());
+            throw new DrunkardException(Status.MANY_ERRORS_OPT," Max Retry is "+retry);
         }
 
         if (!matches(user, password)) {
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.count", retryCount)));
             loginRecordCache.put(loginName, retryCount);
-            throw new UserPasswordNotMatchException();
+            throw new DrunkardException(Status.USER_NOT_LOGIN_ERROR);
         } else {
             clearLoginRecordCache(loginName);
         }

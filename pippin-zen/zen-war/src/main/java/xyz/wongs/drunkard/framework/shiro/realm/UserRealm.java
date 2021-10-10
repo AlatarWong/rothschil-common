@@ -10,7 +10,6 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.wongs.drunkard.common.exception.user.*;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.framework.shiro.service.SysLoginService;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
@@ -78,18 +77,6 @@ public class UserRealm extends AuthorizingRealm {
         SysUser user = null;
         try {
             user = loginService.login(username, password);
-        } catch (CaptchaException e) {
-            throw new AuthenticationException(e.getMessage(), e);
-        } catch (UserNotExistsException e) {
-            throw new UnknownAccountException(e.getMessage(), e);
-        } catch (UserPasswordNotMatchException e) {
-            throw new IncorrectCredentialsException(e.getMessage(), e);
-        } catch (UserPasswordRetryLimitExceedException e) {
-            throw new ExcessiveAttemptsException(e.getMessage(), e);
-        } catch (UserBlockedException e) {
-            throw new LockedAccountException(e.getMessage(), e);
-        } catch (RoleBlockedException e) {
-            throw new LockedAccountException(e.getMessage(), e);
         } catch (Exception e) {
             log.info("对用户[" + username + "]进行登录验证..验证未通过{}", e.getMessage());
             throw new AuthenticationException(e.getMessage(), e);

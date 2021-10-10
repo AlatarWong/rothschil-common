@@ -8,11 +8,13 @@ import xyz.wongs.drunkard.base.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 import xyz.wongs.drunkard.common.annotation.Excel.*;
 
-/** 岗位
+/**
+ * 岗位实体
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 10:50
  * @since 1.0.0
-*/
+ */
 public class SysPost extends BasePo<Long> {
     private static final long serialVersionUID = 1L;
 

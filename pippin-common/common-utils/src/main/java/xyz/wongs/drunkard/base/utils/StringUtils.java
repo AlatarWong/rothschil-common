@@ -37,6 +37,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     private static final String CHARSET_NAME = "UTF-8";
     private static final String PARR = "<([a-zA-Z]+)[^<>]*>";
 
+
     /** 获取UUID
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-20:45

@@ -4,18 +4,20 @@ package xyz.wongs.drunkard.common.utils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.base.message.enums.Status;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.DateUtils;
 import xyz.wongs.drunkard.base.utils.MimeTypeUtils;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.common.conf.DrunkardConfig;
-import xyz.wongs.drunkard.common.exception.file.FileNameLengthLimitExceededException;
-import xyz.wongs.drunkard.common.exception.file.FileSizeLimitExceededException;
-import xyz.wongs.drunkard.common.exception.file.InvalidExtensionException;
+import xyz.wongs.drunkard.common.exception.InvalidExtensionException;
 
 import java.io.File;
 import java.io.IOException;
 
-/** 文件上传工具类
+/**
+ * 文件上传工具类
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/10 - 0:06
  * @since 1.0.0
@@ -49,7 +51,7 @@ public class FileUploadUtils {
      *
      * @param file 上传的文件
      * @return 文件名称
-     * @throws Exception
+     * @throws IOException
      */
     public static final String upload(MultipartFile file) throws IOException {
         try {
@@ -82,17 +84,14 @@ public class FileUploadUtils {
      * @param file             上传的文件
      * @param allowedExtension 上传文件类型
      * @return 返回上传成功的文件名
-     * @throws FileSizeLimitExceededException       如果超出最大大小
-     * @throws FileNameLengthLimitExceededException 文件名太长
-     * @throws IOException                          比如读写文件出错时
-     * @throws InvalidExtensionException            文件校验异常
+     * @throws IOException               比如读写文件出错时
+     * @throws InvalidExtensionException 文件校验异常
      */
     public static final String upload(String baseDir, MultipartFile file, String[] allowedExtension)
-            throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException,
-            InvalidExtensionException {
+            throws IOException, InvalidExtensionException {
         int fileNamelength = file.getOriginalFilename().length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
-            throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+            throw new DrunkardException(Status.FILE_NAME_LIMIT);
         }
 
         assertAllowed(file, allowedExtension);
@@ -139,14 +138,13 @@ public class FileUploadUtils {
      *
      * @param file 上传的文件
      * @return
-     * @throws FileSizeLimitExceededException 如果超出最大大小
      * @throws InvalidExtensionException
      */
     public static final void assertAllowed(MultipartFile file, String[] allowedExtension)
-            throws FileSizeLimitExceededException, InvalidExtensionException {
+            throws InvalidExtensionException {
         long size = file.getSize();
         if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE) {
-            throw new FileSizeLimitExceededException(DEFAULT_MAX_SIZE / 1024 / 1024);
+            throw new DrunkardException(Status.FILE_SIZE_LIMIT);
         }
 
         String fileName = file.getOriginalFilename();
