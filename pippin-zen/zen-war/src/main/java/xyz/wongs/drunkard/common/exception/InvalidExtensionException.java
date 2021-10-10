@@ -12,17 +12,29 @@ import java.util.Arrays;
  * @since 1.0.0
  */
 public class InvalidExtensionException extends FileUploadException {
+
     private static final long serialVersionUID = 1L;
 
-    private String[] allowedExtension;
-    private String extension;
-    private String filename;
 
-    public InvalidExtensionException(String[] allowedExtension, String extension, String filename) {
-        super("filename : [" + filename + "], extension : [" + extension + "], allowed extension : [" + Arrays.toString(allowedExtension) + "]");
+    /**
+     * 允许的拓展信息
+     */
+    private final String[] allowedExtension;
+
+    /**
+     * 拓展信息
+     */
+    private final String extension;
+    /**
+     * 文件名
+     */
+    private final String fileName;
+
+    public InvalidExtensionException(String[] allowedExtension, String extension, String fileName) {
+        super("filename : [" + fileName + "], extension : [" + extension + "], allowed extension : [" + Arrays.toString(allowedExtension) + "]");
         this.allowedExtension = allowedExtension;
         this.extension = extension;
-        this.filename = filename;
+        this.fileName = fileName;
     }
 
     public String[] getAllowedExtension() {
@@ -33,8 +45,8 @@ public class InvalidExtensionException extends FileUploadException {
         return extension;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getFileName() {
+        return fileName;
     }
 
     public static class InvalidImageExtensionException extends InvalidExtensionException {

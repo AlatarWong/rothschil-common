@@ -42,7 +42,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
     public boolean isRepeatSubmit(HttpServletRequest request) throws Exception {
         // 本次参数及系统时间
         String nowParams = JSON.marshal(request.getParameterMap());
-        Map<String, Object> nowDataMap = new HashMap<String, Object>();
+        Map<String, Object> nowDataMap = new HashMap<>(45);
         nowDataMap.put(REPEAT_PARAMS, nowParams);
         nowDataMap.put(REPEAT_TIME, System.currentTimeMillis());
 
@@ -60,7 +60,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
                 }
             }
         }
-        Map<String, Object> sessionMap = new HashMap<String, Object>();
+        Map<String, Object> sessionMap = new HashMap<>(45);
         sessionMap.put(url, nowDataMap);
         session.setAttribute(SESSION_REPEAT_KEY, sessionMap);
         return false;
@@ -81,9 +81,6 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
     private boolean compareTime(Map<String, Object> nowMap, Map<String, Object> preMap) {
         long time1 = (Long) nowMap.get(REPEAT_TIME);
         long time2 = (Long) preMap.get(REPEAT_TIME);
-        if ((time1 - time2) < (this.intervalTime * 1000)) {
-            return true;
-        }
-        return false;
+        return (time1 - time2) < (this.intervalTime * 1000L);
     }
 }
