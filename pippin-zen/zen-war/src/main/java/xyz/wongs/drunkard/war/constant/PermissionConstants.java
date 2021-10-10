@@ -1,6 +1,8 @@
 package xyz.wongs.drunkard.war.constant;
 
-/** 权限通用常量
+/**
+ * 权限通用常量
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 20:53
  * @since 1.0.0

@@ -10,15 +10,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  判断请求url和数据是否和上一次相同，
- *  如果和上次相同，则是重复提交表单。 有效时间为10秒内。
+ * 判断请求url和数据是否和上一次相同，
+ * 如果和上次相同，则是重复提交表单。 有效时间为10秒内。
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 21:12
  * @since 1.0.0
  */
 @Component
-public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
-{
+public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
+
     public final String REPEAT_PARAMS = "repeatParams";
 
     public final String REPEAT_TIME = "repeatTime";
@@ -27,20 +28,18 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
     /**
      * 间隔时间，单位:秒 默认10秒
-     * 
+     * <p>
      * 两次相同参数的请求，如果间隔时间大于该参数，系统不会认定为重复提交的数据
      */
     private int intervalTime = 10;
 
-    public void setIntervalTime(int intervalTime)
-    {
+    public void setIntervalTime(int intervalTime) {
         this.intervalTime = intervalTime;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean isRepeatSubmit(HttpServletRequest request) throws Exception
-    {
+    public boolean isRepeatSubmit(HttpServletRequest request) throws Exception {
         // 本次参数及系统时间
         String nowParams = JSON.marshal(request.getParameterMap());
         Map<String, Object> nowDataMap = new HashMap<String, Object>();
@@ -52,14 +51,11 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
 
         HttpSession session = request.getSession();
         Object sessionObj = session.getAttribute(SESSION_REPEAT_KEY);
-        if (sessionObj != null)
-        {
+        if (sessionObj != null) {
             Map<String, Object> sessionMap = (Map<String, Object>) sessionObj;
-            if (sessionMap.containsKey(url))
-            {
+            if (sessionMap.containsKey(url)) {
                 Map<String, Object> preDataMap = (Map<String, Object>) sessionMap.get(url);
-                if (compareParams(nowDataMap, preDataMap) && compareTime(nowDataMap, preDataMap))
-                {
+                if (compareParams(nowDataMap, preDataMap) && compareTime(nowDataMap, preDataMap)) {
                     return true;
                 }
             }
@@ -73,8 +69,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
     /**
      * 判断参数是否相同
      */
-    private boolean compareParams(Map<String, Object> nowMap, Map<String, Object> preMap)
-    {
+    private boolean compareParams(Map<String, Object> nowMap, Map<String, Object> preMap) {
         String nowParams = (String) nowMap.get(REPEAT_PARAMS);
         String preParams = (String) preMap.get(REPEAT_PARAMS);
         return nowParams.equals(preParams);
@@ -83,12 +78,10 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
     /**
      * 判断两次间隔时间
      */
-    private boolean compareTime(Map<String, Object> nowMap, Map<String, Object> preMap)
-    {
+    private boolean compareTime(Map<String, Object> nowMap, Map<String, Object> preMap) {
         long time1 = (Long) nowMap.get(REPEAT_TIME);
         long time2 = (Long) preMap.get(REPEAT_TIME);
-        if ((time1 - time2) < (this.intervalTime * 1000))
-        {
+        if ((time1 - time2) < (this.intervalTime * 1000)) {
             return true;
         }
         return false;

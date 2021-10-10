@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.framework.limit;
+package xyz.wongs.drunkard.common.annotation;
 
 import java.lang.annotation.*;
 

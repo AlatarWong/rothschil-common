@@ -22,10 +22,11 @@ import java.util.TimerTask;
 
 /**
  * 异步工厂
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 17:52
  * @since 1.0.0
-*/
+ */
 public class AsyncFactory {
     private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 

@@ -8,7 +8,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-/** 异步任务管理器
+/**
+ * 异步任务管理器
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 21:34
  * @since 1.0.0

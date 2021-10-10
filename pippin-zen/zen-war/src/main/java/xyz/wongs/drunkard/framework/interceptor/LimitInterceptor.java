@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.framework.limit.interceptor;
+package xyz.wongs.drunkard.framework.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.message.response.ErR;
-import xyz.wongs.drunkard.framework.limit.RequestLimit;
+import xyz.wongs.drunkard.common.annotation.RequestLimit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +19,8 @@ import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName ResponseResultInterceptor
- * @Description 请求的拦截器
+ * 请求的拦截器
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/10/30 22:08
  * @since 1.0.0
 */
@@ -58,9 +56,9 @@ public class LimitInterceptor implements HandlerInterceptor {
 
     /**
      * 回写给客户端
-     * @param response
-     * @param result
-     * @throws IOException
+     * @param response 响应
+     * @param result 结果
+     * @throws IOException IO写入异常
      */
     private void resonseOut(HttpServletResponse response, ErR result) throws IOException {
         response.setCharacterEncoding("UTF-8");
@@ -71,11 +69,9 @@ public class LimitInterceptor implements HandlerInterceptor {
     }
 
     /** 判断请求是否受限
-     * @Description
-     * @param request
-     * @param requestLimit
+     * @param request 请求
+     * @param requestLimit Request注解
      * @return boolean
-     * @throws
      * @date 20/11/18 09:40
      */
     public boolean isLimit(HttpServletRequest request, RequestLimit requestLimit){
@@ -88,7 +84,7 @@ public class LimitInterceptor implements HandlerInterceptor {
             //初始 次数
             redisTemplate.opsForValue().set(limitKey,1,requestLimit.second(), TimeUnit.SECONDS);
         }else{
-            if(redisCount.intValue() >= requestLimit.maxCount()){
+            if(redisCount >= requestLimit.maxCount()){
                 return true;
             }
             // 次数自增
