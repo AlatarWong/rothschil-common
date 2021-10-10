@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErR handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        LOG.error("发生参数校验异常！原因是：", e);
+        LOG.error("发生参数校验异常！原因是：{}", e);
         return ErR.fail(Status.API_PARAM_EXCEPTION, e, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 }

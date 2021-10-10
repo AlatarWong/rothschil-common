@@ -1,8 +1,6 @@
 package xyz.wongs.drunkard.war.web.controller.system;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -16,6 +14,9 @@ import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.common.core.controller.BaseController;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * 登录验证
@@ -24,6 +25,7 @@ import xyz.wongs.drunkard.common.core.domain.AjaxResult;
  * @date 2021/10/9 - 21:09
  * @since 1.0.0
  */
+@Slf4j
 @Controller
 public class SysLoginController extends BaseController {
     @GetMapping("/login")
@@ -38,8 +40,9 @@ public class SysLoginController extends BaseController {
 
     @PostMapping("/login")
     @ResponseBody
-    public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
+    public AjaxResult ajaxLogin(String username, String password) {
+        log.warn("username={},password={}",username,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password, true);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);

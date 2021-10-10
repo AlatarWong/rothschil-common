@@ -286,7 +286,7 @@ function createMenuItem(dataUrl, menuName) {
                 });
             }
             flag = false;
-            return false;
+            return flag;
         }
     });
     // 选项卡菜单不存在

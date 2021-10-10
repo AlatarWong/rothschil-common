@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.StringUtils;
-import xyz.wongs.drunkard.base.utils.bean.SpringUtils;
 import xyz.wongs.drunkard.common.annotation.DataScope;
 import xyz.wongs.drunkard.common.text.Convert;
 import xyz.wongs.drunkard.war.constant.UserConstants;
@@ -100,7 +99,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      */
     @Override
     public List<SysRole> selectRoleAll() {
-        return SpringUtils.getAopProxy(this).selectRoleList(new SysRole());
+        return selectRoleList(new SysRole());
     }
 
     /**
