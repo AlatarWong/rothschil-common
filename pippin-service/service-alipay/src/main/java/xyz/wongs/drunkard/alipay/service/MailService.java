@@ -7,6 +7,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.message.enums.Status;
 import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.StringUtils;
@@ -91,7 +92,7 @@ public class MailService {
                 messageHelper.setSentDate(mailVo.getSentDate());
             }
             mailSender.send(messageHelper.getMimeMessage());
-            mailVo.setStatus("ok");
+            mailVo.setStatus(Constants.SUCCESS);
             logger.info("发送邮件成功：{} to {}", mailVo.getFrom(), mailVo.getTo());
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import xyz.wongs.drunkard.alipay.service.MailService;
 import xyz.wongs.drunkard.base.vo.MailVo;
 
-/**
+/** 发送邮件
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/10/9 - 15:07
  * @since 1.0.0
