@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>登陆聊天</title>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
     <style>
         *, *:after, *:before {
             -webkit-box-sizing: border-box;
@@ -10,7 +10,7 @@
         }
 
         body {
-            background: #383a3c url('static/images/login-bg.jpg');
+            background: #383a3c url('/static/images/login-bg.jpg');
             font-weight: 400;
             font-size: 1em;
             line-height: 1.25;
@@ -154,7 +154,7 @@
      * 登陆聊天
      */
     function login() {
-        location.href = '/index?username='+$('#username').val();
+        location.href = '/im/index?username='+$('#username').val();
     }
 
     /**

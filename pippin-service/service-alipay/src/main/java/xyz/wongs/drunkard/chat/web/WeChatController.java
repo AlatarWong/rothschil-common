@@ -3,14 +3,17 @@ package xyz.wongs.drunkard.chat.web;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.base.utils.bean.SpringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@RequestMapping("chat")
+@RequestMapping("im")
 @RestController
 public class WeChatController {
 
@@ -26,10 +29,12 @@ public class WeChatController {
      * 聊天界面
      */
     @GetMapping("/index")
-    public ModelAndView index(String username, String password, HttpServletRequest request) throws UnknownHostException {
+    public ModelAndView index(String username) throws UnknownHostException {
         if (StringUtils.isEmpty(username)) {
             username = "匿名用户";
         }
+        HttpServletRequest request = SpringUtils.getHttpServletRequest();
+
         ModelAndView mav = new ModelAndView("/chat");
         mav.addObject("username", username);
         mav.addObject("webSocketUrl", "ws://"+ InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/chat");

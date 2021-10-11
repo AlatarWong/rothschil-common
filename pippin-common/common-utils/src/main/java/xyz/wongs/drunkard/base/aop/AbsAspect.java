@@ -2,6 +2,7 @@ package xyz.wongs.drunkard.base.aop;
 
 import cn.hutool.core.util.URLUtil;
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -18,6 +19,7 @@ import xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler;
 import xyz.wongs.drunkard.base.queue.AppLogQueue;
 import xyz.wongs.drunkard.base.utils.DateUtils;
 import xyz.wongs.drunkard.base.utils.IpUtils;
+import xyz.wongs.drunkard.base.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -31,6 +33,7 @@ import java.util.Date;
  * @date 2021/9/24 - 16:31
  * @since 1.0.0
  */
+@Slf4j
 public abstract class AbsAspect {
 
     @Autowired
@@ -76,6 +79,10 @@ public abstract class AbsAspect {
         String className = joinPoint.getTarget().getClass().getName();
         // 参数
         Object[] params = joinPoint.getArgs();
+        // 参数名
+        String[] argNames = ((MethodSignature)joinPoint.getSignature()).getParameterNames();
+
+
         AppLog.AppLogBuilder opt = AppLog.builder();
 
         opt.clazz(className).methodName(methodName).logName(businessName).type(key)
@@ -87,21 +94,37 @@ public abstract class AbsAspect {
     }
 
     public String isParams(Object[] params) {
+        log.info(" Object[] length is "+ params.length);
+
+        if (StringUtils.isEmpty(params)) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder("Params is [");
         for (Object param : params) {
-            if (param instanceof MultipartFile[]) {
-                MultipartFile[] files = (MultipartFile[]) param;
-                StringBuilder sb = new StringBuilder("File Name is [ ");
-                for (MultipartFile o : files) {
-                    sb.append(o.getOriginalFilename());
-                }
-                sb.append(" ]");
-                return sb.toString();
+
+            if (StringUtils.isEmpty(param) | StringUtils.isBlank(param.toString())) {
+                continue;
             }
-            if (param instanceof MultipartFile) {
-                return ((MultipartFile) param).getOriginalFilename();
+            // 文件类
+            if (param instanceof MultipartFile[]) {
+                sb.append(" Files{");
+                MultipartFile[] files = (MultipartFile[]) param;
+                for (MultipartFile o : files) {
+                    sb.append(o.getOriginalFilename()).append(Constants.HF_COLON);
+                }
+                sb.append(" }");
+                return sb.toString();
+            } else if (param instanceof MultipartFile) {
+                sb.append(((MultipartFile) param).getOriginalFilename());
+            } else if(StringUtils.isBasicType(param)){
+                sb.append(param).append(Constants.HF_COLON);
+            } else{
+                sb.append(JSON.toJSONString(params));
             }
         }
-        return JSON.toJSONString(params);
+        sb.append(" ]");
+        return sb.toString();
     }
 
     /**
@@ -120,5 +143,11 @@ public abstract class AbsAspect {
             return method.getAnnotation(ApplicationLog.class);
         }
         return null;
+    }
+
+
+    public static void main(String[] args) {
+        int i=2;
+        System.out.println();
     }
 }

@@ -3,6 +3,7 @@
  */
 package xyz.wongs.drunkard.base.utils;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -137,6 +138,25 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return sb.toString();
     }
 
+    /** 判断是否基本类型、基本封装类型
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/11-19:45
+     * @param obj   实体实例
+     * @return boolean
+     **/
+    public static boolean isBasicType(Object obj){
+        return basicType(obj) | ObjectUtil.isBasicType(obj);
+    }
+
+    /** 判断是否基本类型
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/11-19:45
+     * @param obj   实体实例
+     * @return boolean
+     **/
+    public static boolean basicType(Object obj){
+        return obj instanceof String | obj instanceof Boolean | obj instanceof Integer | obj instanceof Long | obj instanceof Double;
+    }
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
