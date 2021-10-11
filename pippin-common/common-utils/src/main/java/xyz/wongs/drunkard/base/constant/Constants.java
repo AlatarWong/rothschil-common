@@ -16,6 +16,7 @@ public class Constants {
 
     public static String USER_TYPE = "user-Agent";
 
+
     public static final String RANDOM_STR = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     public static final String IP_LOCAL = "127.0.0.1";

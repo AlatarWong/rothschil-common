@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import xyz.wongs.drunkard.alipay.model.ExtendParams;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePrecreateRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
-import xyz.wongs.drunkard.alipay.oss.OssUpload;
+import xyz.wongs.drunkard.oss.util.OssUploadUtil;
 import xyz.wongs.drunkard.alipay.pojo.AlipayProperty;
 import xyz.wongs.drunkard.alipay.pojo.GoodsDetail;
-import xyz.wongs.drunkard.alipay.pojo.OssBed;
+import xyz.wongs.drunkard.oss.bo.OssBed;
 import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 import xyz.wongs.drunkard.alipay.service.impl.AlipayTradeServiceImpl;
 import xyz.wongs.drunkard.alipay.util.ZxingUtils;
@@ -127,7 +127,7 @@ public abstract class AbstractPay {
         File folder = new File(foldPath);
         ZxingUtils.getQRCodeImge(response.getQrCode(), 256, folder.getPath());
         // 将生成的二维码上传到阿里云OSS，然后将二维码url地址返回给前端展示
-        return OssUpload.upload(ossBed, folder.getPath());
+        return OssUploadUtil.upload(ossBed, folder.getPath());
     }
 
     /**

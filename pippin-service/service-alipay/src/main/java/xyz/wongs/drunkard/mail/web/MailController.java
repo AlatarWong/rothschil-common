@@ -1,10 +1,10 @@
-package xyz.wongs.drunkard.alipay.web;
+package xyz.wongs.drunkard.mail.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import xyz.wongs.drunkard.alipay.service.MailService;
@@ -15,36 +15,24 @@ import xyz.wongs.drunkard.base.vo.MailVo;
  * @date 2021/10/9 - 15:07
  * @since 1.0.0
  */
-@RestController
+@Controller
 public class MailController {
 
     @Autowired
     private MailService mailService;
 
 
-    @GetMapping("/mail")
+    @GetMapping("/")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("mail");
         mv.addObject("from", mailService.getMailSendFrom());
         return mv;
     }
 
-    @PostMapping("/mail/send")
-    public MailVo send(MailVo mailVo, @RequestParam("files") MultipartFile[] files) {
+    @PostMapping("/send")
+    public void send(MailVo mailVo, @RequestParam("files") MultipartFile[] files) {
         mailVo.setMultipartFiles(files);
-        return mailService.send(mailVo);
+        mailService.send(mailVo);
     }
 
-    @GetMapping("/idx")
-    public ModelAndView listUploadedFiles(){
-        ModelAndView mv = new ModelAndView("uploadForm");
-        return mv;
-    }
-
-    @PostMapping("/upload")
-    public ModelAndView handleFileUpload(@RequestParam("file") MultipartFile file) {
-        ModelAndView mv = new ModelAndView("redirect:/mail");
-        mv.addObject("message","You successfully uploaded " + file.getOriginalFilename() + "!");
-        return mv;
-    }
 }

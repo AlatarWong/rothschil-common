@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8"/>
     <title>发送邮件</title>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:href="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/5.1.1/js/bootstrap.min.js}"></script>
 
 </head>
 <body>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
 <div class="col-md-6" style="margin:20px;padding:20px;border: #E0E0E0 1px solid;">
     <marquee behavior="alternate" onfinish="alert(12)" id="mq"
              onMouseOut="this.start();$('#egg').text('嗯 真听话！');"
              onMouseOver="this.stop();$('#egg').text('有本事放开我呀！');">
-        <h5 id="egg">祝大家新年快乐！</h5><img id="doge" src="images/7.gif" alt="">
+        <h5 id="egg">祝大家新年快乐！</h5><img id="doge" src="/static/images/7.gif" alt="">
     </marquee>
 
     <form class="form-horizontal" id="mailForm">
@@ -63,7 +67,6 @@
         var appCtx = [[${#request.getContextPath()}]];
 
         function sendMail() {
-
             var formData = new FormData($('#mailForm')[0]);
             $.ajax({
                 url: appCtx + '/mail/send',
@@ -72,10 +75,10 @@
                 contentType: false,
                 processData: false,
                 success: function (result) {
-                    alert(result.status === 'ok' ? "发送成功！" : "你被Doge嘲讽了：" + result.error);
+                    //alert(result.status === 'ok' ? "发送成功！" : "你被Doge嘲讽了：" + result.error);
                 },
                 error: function () {
-                    alert("发送失败！");
+                    //alert("发送失败！");
                 }
             });
         }

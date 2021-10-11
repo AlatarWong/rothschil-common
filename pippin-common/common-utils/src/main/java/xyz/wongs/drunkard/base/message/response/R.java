@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 public class R extends Result implements Serializable {
+
     private static final long serialVersionUID = -4505655308965878999L;
 
     /**
@@ -27,7 +28,7 @@ public class R extends Result implements Serializable {
         this.data = data;
     }
 
-    private void setResultCode(Status status) {
+    private void setStatus(Status status) {
         this.code = status.getStatus();
         this.message = status.getMsg();
     }
@@ -40,7 +41,7 @@ public class R extends Result implements Serializable {
      **/
     public static R success() {
         R r = new R();
-        r.setResultCode(Status.SUCCESS);
+        r.setStatus(Status.SUCCESS);
         return r;
     }
 
@@ -53,33 +54,6 @@ public class R extends Result implements Serializable {
     public static R success(Object data) {
         R r = success();
         r.setData(data);
-        return r;
-    }
-
-
-    /** 失败
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:45
-     * @param code 错误编码
-     * @param message 具体错误信息
-     * @return Result
-     **/
-    public static R fail(Integer code, String message) {
-        R r = new R();
-        r.setCode(code);
-        r.setMessage(message);
-        return r;
-    }
-
-    /** 失败
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:45
-     * @param status 错误编码 {@link Status}
-     * @return Result
-     **/
-    public static R fail(Status status) {
-        R r = new R();
-        r.setResultCode(status);
         return r;
     }
 

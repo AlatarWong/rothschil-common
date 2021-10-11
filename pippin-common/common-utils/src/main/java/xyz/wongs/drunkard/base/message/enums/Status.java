@@ -25,6 +25,7 @@ public enum Status {
     IO_EXCEPTION(205, "IO异常"),
     SYSTEM_EXCEPTION(210, "系统异常"),
     NOT_FOUND(404, "Not Found"),
+    CONTENT_IS_NULL(405, "Content is empty"),
 
     FILE_NAME_LIMIT(801, "The file Name is too long"),
     FILE_SIZE_LIMIT(802, "The file size too big"),

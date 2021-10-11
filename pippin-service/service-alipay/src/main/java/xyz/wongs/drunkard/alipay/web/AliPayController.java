@@ -20,14 +20,14 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- *  支付宝当面付，核心逻辑 <br>
- *  <ur>
- *  <li> 1.生成支付二维码，供用户扫码支付 </li>
- *  <li> 2.当用户支付成功后，会回调我们后台更新订单状态，减少库存等操作 </li>
- *  <li> 3.前端轮询查询订单状态，成功返回首页，失败则跳到失败页面等操作 </li>
- *  </ur>
+ * 支付宝当面付，核心逻辑 <br>
+ * <ur>
+ * <li> 1.生成支付二维码，供用户扫码支付 </li>
+ * <li> 2.当用户支付成功后，会回调我们后台更新订单状态，减少库存等操作 </li>
+ * <li> 3.前端轮询查询订单状态，成功返回首页，失败则跳到失败页面等操作 </li>
+ * </ur>
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/23 - 12:29
  * @since 1.0.0
  */
@@ -73,7 +73,8 @@ public class AliPayController {
 
     /**
      * 支付生成二维码，供用户扫码支付
-     * @param orderNo   支付订单号
+     *
+     * @param orderNo 支付订单号
      * @return String   支付成功后跳转界面
      */
     @RequestMapping("/alipay")
@@ -85,6 +86,7 @@ public class AliPayController {
 
     /**
      * 支付宝回调方法，当用户扫码并支付成功后，会回调到后台，告诉后台用户付款成功，可以更新订单状态
+     *
      * @param request
      * @return String
      */
@@ -130,12 +132,13 @@ public class AliPayController {
 
     /**
      * 3.前端会轮询调用订单状态，如变为支付成功状态后，跳转到首页等操作
+     *
      * @param session
      * @param orderNo
      * @return
      */
     @RequestMapping("query-order-pay-status")
-    public String queryOrderPayStatus(HttpSession session, Long orderNo){
+    public String queryOrderPayStatus(HttpSession session, Long orderNo) {
         // ServerResponse serverResponse = iOrderService.queryOrderPayStatus(user.getId(),orderNo);
         return "pay";
     }

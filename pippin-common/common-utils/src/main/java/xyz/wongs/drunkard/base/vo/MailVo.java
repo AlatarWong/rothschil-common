@@ -20,7 +20,6 @@ public class MailVo implements Serializable {
 
     private String id;
     private String from;
-
     private String to;
     private String subject;
     private String text;

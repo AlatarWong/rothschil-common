@@ -7,6 +7,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import xyz.wongs.drunkard.base.message.enums.Status;
+import xyz.wongs.drunkard.base.message.exception.DrunkardException;
 import xyz.wongs.drunkard.base.utils.StringUtils;
 import xyz.wongs.drunkard.base.vo.MailVo;
 
@@ -22,31 +24,49 @@ public class MailService {
     @Autowired
     private JavaMailSenderImpl mailSender;
 
-    public MailVo send(MailVo mailVo) {
+
+    /**
+     * 对外提供发送邮件入口
+     *
+     * @param mailVo 邮件实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/11-10:03
+     **/
+    public void send(MailVo mailVo) {
         try {
             checkMail(mailVo);
             sendMimeMail(mailVo);
-            return saveMail(mailVo);
         } catch (Exception e) {
             logger.error("发送邮件失败:", e);
-            mailVo.setStatus("fail");
-            mailVo.setError(e.getMessage());
-            return mailVo;
         }
     }
 
+    /**
+     * 检查邮件实体是否符合规范，如收件人、主题、内容等
+     *
+     * @param mailVo 邮件实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/11-10:03
+     **/
     private void checkMail(MailVo mailVo) {
         if (StringUtils.isEmpty(mailVo.getTo())) {
-            throw new RuntimeException("邮件收信人不能为空");
+            throw new DrunkardException(Status.CONTENT_IS_NULL, "收件人");
         }
         if (StringUtils.isEmpty(mailVo.getSubject())) {
-            throw new RuntimeException("邮件主题不能为空");
+            throw new DrunkardException(Status.CONTENT_IS_NULL, "邮件主题");
         }
         if (StringUtils.isEmpty(mailVo.getText())) {
-            throw new RuntimeException("邮件内容不能为空");
+            throw new DrunkardException(Status.CONTENT_IS_NULL, "邮件内容");
         }
     }
 
+    /**
+     * 发送邮件
+     *
+     * @param mailVo 邮件实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/11-10:04
+     **/
     private void sendMimeMail(MailVo mailVo) {
         try {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mailSender.createMimeMessage(), true);
@@ -72,16 +92,10 @@ public class MailService {
             }
             mailSender.send(messageHelper.getMimeMessage());
             mailVo.setStatus("ok");
-            logger.info("发送邮件成功：{}->{}", mailVo.getFrom(), mailVo.getTo());
+            logger.info("发送邮件成功：{} to {}", mailVo.getFrom(), mailVo.getTo());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-
-    private MailVo saveMail(MailVo mailVo) {
-
-        return mailVo;
     }
 
 

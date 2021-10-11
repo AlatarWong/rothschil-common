@@ -8,7 +8,7 @@ package xyz.wongs.drunkard.base.message.response;
 public abstract class Result {
 
     /**
-     * 错误编码
+     * 结果编码
      **/
     Integer code;
     /**

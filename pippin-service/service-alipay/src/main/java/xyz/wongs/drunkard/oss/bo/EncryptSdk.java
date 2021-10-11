@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.alipay.pojo;
+package xyz.wongs.drunkard.oss.bo;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;

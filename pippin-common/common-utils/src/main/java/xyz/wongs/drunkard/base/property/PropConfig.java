@@ -15,7 +15,6 @@ import java.util.Properties;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/24 - 21:42
  * @since 1.0.0
  */
@@ -32,10 +31,10 @@ public class PropConfig {
             try {
                 // PropertiesLoaderUtils的默认编码是ISO-8859-1,在这里转码一下
                 String value = new String(props.getProperty(key).getBytes("ISO-8859-1"), Constants.UTF8);
-                LOG.debug("[key] {} \t [value] {}",key,value);
+                LOG.debug("[key] {} \t [value] {}", key, value);
                 propertiesMap.put(key, value);
             } catch (UnsupportedEncodingException | DrunkardException e) {
-                LOG.error("[key]={}, [errMsg]={}",key,e.getMessage());
+                LOG.error("[key]={}, [errMsg]={}", key, e.getMessage());
             }
         }
     }

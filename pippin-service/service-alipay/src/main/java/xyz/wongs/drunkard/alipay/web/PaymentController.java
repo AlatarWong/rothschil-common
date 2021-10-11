@@ -15,7 +15,6 @@ import java.util.Map;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- *
  * @date 2021/9/23 - 12:29
  * @since 1.0.0
  */
@@ -30,9 +29,9 @@ public class PaymentController {
     @PostMapping("/pay-ment")
     public ModelAndView payment(@ModelAttribute OrderInfo orderInfo) {
         String qrPath = paymentService.pay(orderInfo);
-        Map<String,String> repMap = new HashMap<String,String>(2);
+        Map<String, String> repMap = new HashMap<String, String>(2);
         repMap.put("qrPath", qrPath);
-        return new ModelAndView("pay",repMap);
+        return new ModelAndView("pay", repMap);
     }
 
 

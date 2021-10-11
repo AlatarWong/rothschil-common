@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 import xyz.wongs.drunkard.base.constant.Constants;
@@ -23,7 +24,9 @@ import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.Date;
 
-/** 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
+/**
+ * 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 16:31
  * @since 1.0.0
@@ -36,41 +39,41 @@ public abstract class AbsAspect {
     @Autowired
     protected AppLogQueue appLogQueue;
 
-    protected void send2Queue(ThreadLocal<AppLog> threadLocal, Object ret, Exception e){
+    protected void send2Queue(ThreadLocal<AppLog> threadLocal, Object ret, Exception e) {
         int success = 0;
         Date endTime = Date.from(Instant.now());
         AppLog appLog = threadLocal.get();
-        if(null!=e){
-            success=-1;
+        if (null != e) {
+            success = -1;
             appLog.setErr(e.getMessage());
         }
-        if(null!=ret){
+        if (null != ret) {
             appLog.setRespContent(JSON.toJSONString(ret));
         }
         appLog.setEndTime(endTime);
         appLog.setSucceed(success);
-        appLog.setCost(DateUtils.getMills(appLog.getBeginTime(),endTime));
+        appLog.setCost(DateUtils.getMills(appLog.getBeginTime(), endTime));
         threadLocal.remove();
         queueTaskHandler.setOperationLog(appLog);
         appLogQueue.addQueue(queueTaskHandler);
     }
 
 
-    protected AppLog getOperationLog(ApplicationLog applicationLog, JoinPoint joinPoint){
-        return getOperationLog(joinPoint,applicationLog.value(),applicationLog.key());
+    protected AppLog getOperationLog(ApplicationLog applicationLog, JoinPoint joinPoint) {
+        return getOperationLog(joinPoint, applicationLog.value(), applicationLog.key());
     }
 
 
-    protected AppLog getOperationLog(JoinPoint joinPoint, String businessName, String key){
+    protected AppLog getOperationLog(JoinPoint joinPoint, String businessName, String key) {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) requestAttributes;
-        Assert.notNull(sra,"The ServletRequestAttributes must not be null");
+        Assert.notNull(sra, "The ServletRequestAttributes must not be null");
         HttpServletRequest request = sra.getRequest();
         //获取拦截的方法名
         Date beginTime = Date.from(Instant.now());
         String methodName = joinPoint.getSignature().getName();
         // 类名
-        String className =joinPoint.getTarget().getClass().getName();
+        String className = joinPoint.getTarget().getClass().getName();
         // 参数
         Object[] params = joinPoint.getArgs();
         AppLog.AppLogBuilder opt = AppLog.builder();
@@ -78,21 +81,42 @@ public abstract class AbsAspect {
         opt.clazz(className).methodName(methodName).logName(businessName).type(key)
                 .ipAddress(IpUtils.getIpAddr(request)).url(URLUtil.getPath(request.getRequestURI()))
                 .httpType(request.getMethod()).userAgent(request.getHeader(Constants.USER_TYPE))
-                .beginTime(beginTime).reqContent(JSON.toJSONString(params));
+                .beginTime(beginTime).reqContent(isParams(params));
+
         return opt.build();
     }
 
-    /** 获取 ApplicationLog 注解
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-16:22
+    public String isParams(Object[] params) {
+        for (Object param : params) {
+            if (param instanceof MultipartFile[]) {
+                MultipartFile[] files = (MultipartFile[]) param;
+                StringBuilder sb = new StringBuilder("File Name is [ ");
+                for (MultipartFile o : files) {
+                    sb.append(o.getOriginalFilename());
+                }
+                sb.append(" ]");
+                return sb.toString();
+            }
+            if (param instanceof MultipartFile) {
+                return ((MultipartFile) param).getOriginalFilename();
+            }
+        }
+        return JSON.toJSONString(params);
+    }
+
+    /**
+     * 获取 ApplicationLog 注解
+     *
      * @param joinPoint 切点
      * @return ApplicationLog
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/9/24-16:22
      **/
-    protected static ApplicationLog getApplicationLog(JoinPoint joinPoint){
+    protected static ApplicationLog getApplicationLog(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
-        if (method != null){
+        if (method != null) {
             return method.getAnnotation(ApplicationLog.class);
         }
         return null;

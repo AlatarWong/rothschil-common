@@ -4,7 +4,9 @@ import xyz.wongs.drunkard.base.message.enums.Status;
 
 import java.io.Serializable;
 
-/** 定义的异常错误实体类
+/**
+ * 定义的异常错误实体类
+ *
  * @author WCNGS@QQ.COM
  * @date 20/11/18 10:42
  * @since 1.0.0

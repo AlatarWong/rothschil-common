@@ -47,5 +47,10 @@ public class TestResource {
 //        String encrypt3 = encryptor.encrypt(key3);
 //        System.out.println("[加密1]" + encrypt3);
 //        System.out.println("[解密1]" + encryptor.decrypt(encrypt3));
+
+        String key4 = "QIUFEAORHRRGRPCR";
+        String encrypt4 = encryptor.encrypt(key4);
+        System.out.println("[加密1]" + encrypt4);
+        System.out.println("[解密1]" + encryptor.decrypt(encrypt4));
     }
 }

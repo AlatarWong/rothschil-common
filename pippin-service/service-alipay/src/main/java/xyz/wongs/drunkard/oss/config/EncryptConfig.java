@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.alipay.config;
+package xyz.wongs.drunkard.oss.config;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xyz.wongs.drunkard.alipay.pojo.EncryptSdk;
+import xyz.wongs.drunkard.oss.bo.EncryptSdk;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>

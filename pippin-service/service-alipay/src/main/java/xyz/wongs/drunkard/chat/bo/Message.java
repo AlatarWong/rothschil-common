@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.chat;
+package xyz.wongs.drunkard.chat.bo;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;

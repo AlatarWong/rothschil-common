@@ -4,7 +4,9 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import xyz.wongs.drunkard.base.property.PropConfig;
 
-/** 配置文件监听器，用来加载自定义配置文件
+/**
+ * 配置文件监听器，用来加载自定义配置文件
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 21:58
  * @since 1.0.0

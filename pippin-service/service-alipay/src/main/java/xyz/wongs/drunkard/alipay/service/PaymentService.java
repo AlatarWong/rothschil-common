@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.wongs.drunkard.alipay.pojo.AlipayProperty;
-import xyz.wongs.drunkard.alipay.pojo.OssBed;
+import xyz.wongs.drunkard.oss.bo.OssBed;
 import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 
 /**

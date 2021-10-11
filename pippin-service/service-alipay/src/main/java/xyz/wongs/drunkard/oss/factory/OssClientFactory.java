@@ -1,8 +1,8 @@
-package xyz.wongs.drunkard.alipay.oss;
+package xyz.wongs.drunkard.oss.factory;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import xyz.wongs.drunkard.alipay.pojo.OssBed;
+import xyz.wongs.drunkard.oss.bo.OssBed;
 
 /** OSS Client工厂类
  * @author <a href="https://github.com/rothschil">Sam</a>

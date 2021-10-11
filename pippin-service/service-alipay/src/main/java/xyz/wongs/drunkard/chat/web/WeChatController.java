@@ -1,6 +1,7 @@
-package xyz.wongs.drunkard.alipay.web;
+package xyz.wongs.drunkard.chat.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import xyz.wongs.drunkard.base.utils.StringUtils;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+@RequestMapping("chat")
 @RestController
 public class WeChatController {
 
@@ -33,4 +35,5 @@ public class WeChatController {
         mav.addObject("webSocketUrl", "ws://"+ InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/chat");
         return mav;
     }
+
 }

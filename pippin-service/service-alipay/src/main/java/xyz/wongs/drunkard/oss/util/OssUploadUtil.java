@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.alipay.oss;
+package xyz.wongs.drunkard.oss.util;
 
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
@@ -9,10 +9,11 @@ import com.aliyun.oss.model.ObjectListing;
 import com.aliyun.oss.model.PutObjectResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.wongs.drunkard.alipay.pojo.OssBed;
+import xyz.wongs.drunkard.oss.bo.OssBed;
 import xyz.wongs.drunkard.base.constant.Constants;
 import xyz.wongs.drunkard.base.utils.DateUtils;
 import xyz.wongs.drunkard.base.utils.file.FileUtil;
+import xyz.wongs.drunkard.oss.factory.OssClientFactory;
 
 import java.io.*;
 import java.util.List;
@@ -22,9 +23,9 @@ import java.util.List;
  * @date 2021/9/22 - 16:59
  * @since 1.0.0
  */
-public class OssUpload {
+public class OssUploadUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OssUpload.class);
+    private static final Logger LOG = LoggerFactory.getLogger(OssUploadUtil.class);
 
     /**
      * 路径前缀，这里固定值，实际上需要在配置项中获取
