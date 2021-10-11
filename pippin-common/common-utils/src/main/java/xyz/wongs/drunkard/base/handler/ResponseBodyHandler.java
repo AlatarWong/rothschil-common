@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 统一处理响应的消息内容，默认引入的包路径是 xyz.wongs，编写过程中需要格外注意。在需要响应的内容做标记，
  * 继而在 {@link xyz.wongs.drunkard.base.interceptor.ResponseBodyInterceptor} 基础上捕获该标记，再次处理
+ * 默认处理 {@link Controller},RestController.class,
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/26 - 16:23
@@ -33,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @EnableWebMvc
 @Configuration
-@ControllerAdvice(basePackages = "xyz.wongs",annotations = {RestController.class, Controller.class})
+@ControllerAdvice(basePackages = "xyz.wongs",annotations = {Controller.class})
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
     /**

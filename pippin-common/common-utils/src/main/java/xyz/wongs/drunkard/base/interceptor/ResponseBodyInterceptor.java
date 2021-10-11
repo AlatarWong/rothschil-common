@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class ResponseBodyInterceptor implements HandlerInterceptor {
 
-    /** Handler 处理 之前的预处理
+    /** Handler 处理 之前的预处理，增加 对 {@link RestController} 注解捕获、添加 标记
      * @param request  HttpServletRequest
      * @param response HttpServletResponse
      * @param handler  HandlerMethod
-     * @return boolean
+     * @return boolean 预处理结果为 True 才会进行后续所有操作
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/26-16:35
      **/
@@ -46,7 +46,7 @@ public class ResponseBodyInterceptor implements HandlerInterceptor {
     }
 
 
-    /** 请求结束执行 只有在 {@link ResponseBodyInterceptor.preHandle} 结果为 True，才执行
+    /** 请求结束执行 只有在 {@link ResponseBodyInterceptor} 中 <b>preHandle</b> 结果为 <b>True</b>，才执行
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/11-11:16
      * @param request   HttpServletRequest
