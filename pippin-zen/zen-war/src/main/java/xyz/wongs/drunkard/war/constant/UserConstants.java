@@ -7,6 +7,7 @@ package xyz.wongs.drunkard.war.constant;
  * @date 2019/10/9 - 20:53
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class UserConstants {
     /**
      * 平台内系统用户的唯一标志

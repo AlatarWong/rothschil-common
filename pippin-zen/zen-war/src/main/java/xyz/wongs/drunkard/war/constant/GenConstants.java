@@ -7,6 +7,7 @@ package xyz.wongs.drunkard.war.constant;
  * @date 2019/10/9 - 20:52
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class GenConstants {
     /**
      * 单表（增删改查）

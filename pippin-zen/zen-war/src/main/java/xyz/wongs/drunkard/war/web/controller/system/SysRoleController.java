@@ -31,7 +31,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/role")
 public class SysRoleController extends BaseController {
-    private String prefix = "system/role";
+    private final String prefix = "system/role";
 
     @Autowired
     private ISysRoleService roleService;

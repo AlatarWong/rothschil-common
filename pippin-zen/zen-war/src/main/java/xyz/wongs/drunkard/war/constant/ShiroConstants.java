@@ -7,6 +7,7 @@ package xyz.wongs.drunkard.war.constant;
  * @date 2019/10/9 - 20:53
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class ShiroConstants {
     /**
      * 当前登录的用户

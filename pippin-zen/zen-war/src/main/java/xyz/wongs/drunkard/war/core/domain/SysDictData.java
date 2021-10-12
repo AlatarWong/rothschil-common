@@ -1,13 +1,14 @@
 package xyz.wongs.drunkard.war.core.domain;
 
-import javax.validation.constraints.*;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import xyz.wongs.drunkard.common.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
-import xyz.wongs.drunkard.common.annotation.Excel.*;
+import xyz.wongs.drunkard.common.annotation.Excel.ColumnType;
+import xyz.wongs.drunkard.common.po.BasePo;
 import xyz.wongs.drunkard.war.constant.UserConstants;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /** 字典数据表
  * @author <a href="https://github.com/rothschil">Sam</a>
@@ -89,7 +90,7 @@ public class SysDictData extends BasePo<Long> {
     }
 
     @NotBlank(message = "字典标签不能为空")
-    @Size(min = 0, max = 100, message = "字典标签长度不能超过100个字符")
+    @Size(max = 100, message = "字典标签长度不能超过100个字符")
     public String getDictLabel() {
         return dictLabel;
     }
@@ -99,7 +100,7 @@ public class SysDictData extends BasePo<Long> {
     }
 
     @NotBlank(message = "字典键值不能为空")
-    @Size(min = 0, max = 100, message = "字典键值长度不能超过100个字符")
+    @Size(max = 100, message = "字典键值长度不能超过100个字符")
     public String getDictValue() {
         return dictValue;
     }
@@ -109,7 +110,7 @@ public class SysDictData extends BasePo<Long> {
     }
 
     @NotBlank(message = "字典类型不能为空")
-    @Size(min = 0, max = 100, message = "字典类型长度不能超过100个字符")
+    @Size(max = 100, message = "字典类型长度不能超过100个字符")
     public String getDictType() {
         return dictType;
     }
@@ -118,7 +119,7 @@ public class SysDictData extends BasePo<Long> {
         this.dictType = dictType;
     }
 
-    @Size(min = 0, max = 100, message = "样式属性长度不能超过100个字符")
+    @Size(max = 100, message = "样式属性长度不能超过100个字符")
     public String getCssClass() {
         return cssClass;
     }
@@ -136,7 +137,7 @@ public class SysDictData extends BasePo<Long> {
     }
 
     public boolean getDefault() {
-        return UserConstants.YES.equals(this.isDefault) ? true : false;
+        return UserConstants.YES.equals(this.isDefault);
     }
 
     public String getIsDefault() {

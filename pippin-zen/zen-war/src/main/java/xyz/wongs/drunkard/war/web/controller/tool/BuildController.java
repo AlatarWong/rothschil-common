@@ -16,11 +16,11 @@ import xyz.wongs.drunkard.common.core.controller.BaseController;
 @Controller
 @RequestMapping("/tool/build")
 public class BuildController extends BaseController {
-    private String prefix = "tool/build";
 
     @RequiresPermissions("tool:build:view")
     @GetMapping()
     public String build() {
+        String prefix = "tool/build";
         return prefix + "/build";
     }
 }

@@ -33,7 +33,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController {
-    private String prefix = "system/user";
+    private final String prefix = "system/user";
 
     @Autowired
     private ISysUserService userService;
@@ -68,7 +68,7 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public AjaxResult export(SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         return util.exportExcel(list, "用户数据");
     }
 
@@ -77,7 +77,7 @@ public class SysUserController extends BaseController {
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         List<SysUser> userList = util.importExcel(file.getInputStream());
         String operName = ShiroUtils.getSysUser().getLoginName();
         String message = userService.importUser(userList, updateSupport, operName);

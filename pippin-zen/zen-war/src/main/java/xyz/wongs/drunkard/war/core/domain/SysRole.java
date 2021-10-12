@@ -110,7 +110,7 @@ public class SysRole extends BasePo<Long> {
     }
 
     @NotBlank(message = "角色名称不能为空")
-    @Size(min = 0, max = 30, message = "角色名称长度不能超过30个字符")
+    @Size(max = 30, message = "角色名称长度不能超过30个字符")
     public String getRoleName() {
         return roleName;
     }
@@ -120,7 +120,7 @@ public class SysRole extends BasePo<Long> {
     }
 
     @NotBlank(message = "权限字符不能为空")
-    @Size(min = 0, max = 100, message = "权限字符长度不能超过100个字符")
+    @Size(max = 100, message = "权限字符长度不能超过100个字符")
     public String getRoleKey() {
         return roleKey;
     }

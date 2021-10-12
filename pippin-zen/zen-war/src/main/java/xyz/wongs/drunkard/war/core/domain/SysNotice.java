@@ -1,10 +1,11 @@
 package xyz.wongs.drunkard.war.core.domain;
 
-import javax.validation.constraints.*;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import xyz.wongs.drunkard.common.po.BasePo;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * 通知公告表 sys_notice
@@ -56,7 +57,7 @@ public class SysNotice extends BasePo<Long> {
     }
 
     @NotBlank(message = "公告标题不能为空")
-    @Size(min = 0, max = 50, message = "公告标题不能超过50个字符")
+    @Size(max = 50, message = "公告标题不能超过50个字符")
     public String getNoticeTitle() {
         return noticeTitle;
     }
