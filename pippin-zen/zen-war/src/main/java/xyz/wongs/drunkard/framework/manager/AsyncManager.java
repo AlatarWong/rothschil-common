@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.framework.manager;
 
-import xyz.wongs.drunkard.base.utils.bean.SpringUtils;
-import xyz.wongs.drunkard.base.utils.thread.Threads;
+import xyz.wongs.drunkard.common.utils.bean.SpringUtils;
+import xyz.wongs.drunkard.common.utils.thread.Threads;
 
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;

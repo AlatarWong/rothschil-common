@@ -15,7 +15,7 @@ public enum OnlineStatus {
 
     private final String info;
 
-    private OnlineStatus(String info) {
+    OnlineStatus(String info) {
         this.info = info;
     }
 

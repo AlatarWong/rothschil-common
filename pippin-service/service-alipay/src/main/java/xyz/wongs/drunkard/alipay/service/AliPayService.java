@@ -13,7 +13,7 @@ import xyz.wongs.drunkard.alipay.pojo.AlipayProperty;
 import xyz.wongs.drunkard.alipay.pojo.GoodsDetail;
 import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 import xyz.wongs.drunkard.alipay.service.impl.AlipayTradeServiceImpl;
-import xyz.wongs.drunkard.base.utils.DateUtils;
+import xyz.wongs.drunkard.common.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

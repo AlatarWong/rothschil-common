@@ -7,10 +7,10 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.message.enums.Status;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.constant.Constants;
+import xyz.wongs.drunkard.base.response.enums.Status;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.base.vo.MailVo;
 
 import java.util.Date;

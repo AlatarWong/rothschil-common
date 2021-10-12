@@ -4,7 +4,7 @@ import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
-import xyz.wongs.drunkard.base.utils.Reflections;
+import xyz.wongs.drunkard.common.utils.Reflections;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,7 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import xyz.wongs.drunkard.base.utils.thread.Threads;
+import xyz.wongs.drunkard.common.utils.thread.Threads;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;

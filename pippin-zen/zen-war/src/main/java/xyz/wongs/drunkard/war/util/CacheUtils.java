@@ -5,7 +5,7 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.wongs.drunkard.base.utils.bean.SpringUtils;
+import xyz.wongs.drunkard.common.utils.bean.SpringUtils;
 
 import java.util.Iterator;
 import java.util.Set;

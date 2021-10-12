@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.task.thread;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

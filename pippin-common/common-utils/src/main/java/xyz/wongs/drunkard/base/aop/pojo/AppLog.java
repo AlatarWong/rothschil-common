@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.base.aop.pojo;
 
 import lombok.*;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 import java.util.Date;
 

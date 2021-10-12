@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.war.domain.entity;
 
 import lombok.*;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 /** 行政区域实体类
  * @author WCNGS@QQ.COM

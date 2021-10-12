@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.war.core.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

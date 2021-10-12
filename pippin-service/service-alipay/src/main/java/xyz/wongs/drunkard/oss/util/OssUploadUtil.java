@@ -10,9 +10,9 @@ import com.aliyun.oss.model.PutObjectResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.wongs.drunkard.oss.bo.OssBed;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.utils.DateUtils;
-import xyz.wongs.drunkard.base.utils.file.FileUtil;
+import xyz.wongs.drunkard.common.constant.Constants;
+import xyz.wongs.drunkard.common.utils.DateUtils;
+import xyz.wongs.drunkard.common.utils.file.FileUtil;
 import xyz.wongs.drunkard.oss.factory.OssClientFactory;
 
 import java.io.*;

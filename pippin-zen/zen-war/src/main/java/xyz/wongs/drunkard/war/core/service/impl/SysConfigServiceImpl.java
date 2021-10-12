@@ -2,9 +2,9 @@ package xyz.wongs.drunkard.war.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.constant.Constants;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.common.text.Convert;
 import xyz.wongs.drunkard.war.constant.UserConstants;
 import xyz.wongs.drunkard.war.core.domain.SysConfig;

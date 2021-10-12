@@ -1,6 +1,6 @@
 package xyz.wongs.drunkard.base.persistence.mybatis.mapper;
 
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 import java.io.Serializable;
 import java.util.List;

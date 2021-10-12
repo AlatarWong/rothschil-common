@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.oauth2.handler;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
+import xyz.wongs.drunkard.base.response.enums.ResultCode;
 import xyz.wongs.drunkard.oauth2.util.JSONUtils;
 
 import javax.servlet.ServletException;

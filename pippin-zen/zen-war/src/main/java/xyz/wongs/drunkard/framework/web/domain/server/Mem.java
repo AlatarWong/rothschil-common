@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.framework.web.domain.server;
 
 
-import xyz.wongs.drunkard.base.utils.Arith;
+import xyz.wongs.drunkard.common.utils.Arith;
 
 /**
  * 內存相关信息

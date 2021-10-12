@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 /**
  * @ClassName OauthUser

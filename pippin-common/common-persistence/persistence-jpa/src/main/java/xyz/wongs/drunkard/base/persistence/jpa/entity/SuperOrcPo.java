@@ -1,6 +1,6 @@
 package xyz.wongs.drunkard.base.persistence.jpa.entity;
 
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 

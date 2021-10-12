@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.jwt.controller;
 
 import org.springframework.web.bind.annotation.*;
-import xyz.wongs.drunkard.base.message.annoation.Body;
+import xyz.wongs.drunkard.base.response.annoation.Body;
 import xyz.wongs.drunkard.jwt.po.User;
 
 /**

@@ -2,12 +2,12 @@ package xyz.wongs.drunkard.base.persistence.jpa.entity;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.domain.Persistable;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-/** 抽象实体基类，如果主键是数据库端自动生成 请使用 {@link xyz.wongs.drunkard.base.po.BasePo} ，如果是Oracle 请使用 {@link xyz.wongs.drunkard.base.persistence.jpa.entity.SuperOrcPo}
+/** 抽象实体基类，如果主键是数据库端自动生成 请使用 {@link xyz.wongs.drunkard.common.po.BasePo} ，如果是Oracle 请使用 {@link xyz.wongs.drunkard.base.persistence.jpa.entity.SuperOrcPo}
  * @author WCNGS@QQ.COM
  * @date 20/12/18 10:53
  * @since 1.0.0

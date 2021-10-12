@@ -3,8 +3,7 @@ package xyz.wongs.drunkard.common.utils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.utils.IpUtils;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.common.json.JSON;
 
 import javax.servlet.http.HttpServletRequest;

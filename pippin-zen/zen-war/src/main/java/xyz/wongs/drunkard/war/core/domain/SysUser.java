@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 import xyz.wongs.drunkard.common.annotation.Excel.*;
 import xyz.wongs.drunkard.common.annotation.Excels;

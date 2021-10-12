@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.alipay.pojo;
 
 import com.google.gson.annotations.SerializedName;
-import xyz.wongs.drunkard.base.utils.Utils;
+import xyz.wongs.drunkard.common.utils.Utils;
 /**
  * 商品列表信息
  * <ur>

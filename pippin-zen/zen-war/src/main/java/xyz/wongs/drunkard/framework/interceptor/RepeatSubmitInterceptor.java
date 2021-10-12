@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.framework.interceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import xyz.wongs.drunkard.base.utils.ServletUtils;
+import xyz.wongs.drunkard.common.utils.ServletUtils;
 import xyz.wongs.drunkard.common.annotation.RepeatSubmit;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.json.JSON;

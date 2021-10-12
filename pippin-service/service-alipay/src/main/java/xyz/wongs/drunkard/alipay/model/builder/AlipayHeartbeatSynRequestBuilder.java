@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.alipay.model.builder;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.StringUtils;
 import xyz.wongs.drunkard.alipay.model.hb.*;
-import xyz.wongs.drunkard.base.utils.Utils;
+import xyz.wongs.drunkard.common.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

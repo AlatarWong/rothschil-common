@@ -5,17 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
 
 
 /**
- * 全局配置类 ，让应用在第一次调用过程完成，属性值的实例化
+ * 全局配置类 ，让应用在第一次调用过程完成，属性值的实例化，与 {@link xyz.wongs.drunkard.base.property.PropConfig} 有功能类似，可以留一个
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2018/4/26 - 17:08
@@ -24,7 +23,7 @@ import java.util.Properties;
 @Component
 public class Global {
 
-    private static Logger LOG = LoggerFactory.getLogger(Global.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Global.class);
     /**
      * 保存全局属性值
      */
@@ -53,10 +52,10 @@ public class Global {
                 String key = o.toString();
                 try {
                     // PropertiesLoaderUtils的默认编码是ISO-8859-1,在这里转码一下
-                    String value = new String(props.getProperty(key).getBytes("ISO-8859-1"), Constants.UTF8);
+                    String value = new String(props.getProperty(key).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
                     LOG.error("[key] {} \t [value] {}", key, value);
                     GLOBAL_ATTR_MAP.put(key, value);
-                } catch (UnsupportedEncodingException | DrunkardException e) {
+                } catch (DrunkardException e) {
                     LOG.error("[key]={}, [errMsg]={}", key, e.getMessage());
                 }
             }

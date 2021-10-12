@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 import xyz.wongs.drunkard.oauth2.util.JSONUtils;
 import xyz.wongs.drunkard.oauth2.util.enums.DateFormatEnum;
 import xyz.wongs.drunkard.oauth2.util.enums.GrantTypeEnum;

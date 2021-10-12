@@ -7,8 +7,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import xyz.wongs.drunkard.base.message.enums.Status;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.base.response.enums.Status;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

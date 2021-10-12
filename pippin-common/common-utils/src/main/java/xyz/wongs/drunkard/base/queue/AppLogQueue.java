@@ -3,8 +3,8 @@ package xyz.wongs.drunkard.base.queue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.handler.IQueueTaskHandler;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
+import xyz.wongs.drunkard.base.queue.handler.IQueueTaskHandler;
+import xyz.wongs.drunkard.common.utils.thread.ThreadPoolsUtil;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -74,7 +74,7 @@ public class AppLogQueue {
         }
         if (threadStatus.isDone()) {
             init();
-            LOG.info("线程池任务结束，重新!");
+            LOG.info("线程池任务结束!");
         }
     }
 

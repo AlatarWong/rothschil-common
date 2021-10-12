@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.war.domain.entity.Location;
 import xyz.wongs.drunkard.war.domain.service.LocationService;
 import xyz.wongs.drunkard.war.web.area.task.ProcessService;

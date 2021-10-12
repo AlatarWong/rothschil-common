@@ -60,7 +60,7 @@ public class MailVo implements Serializable {
     private String bcc;
 
     /**
-     * 状态，参考 {@link xyz.wongs.drunkard.base.constant.Constants}
+     * 状态，参考 {@link xyz.wongs.drunkard.common.constant.Constants}
      */
     private String status;
 

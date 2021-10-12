@@ -1,6 +1,6 @@
 package xyz.wongs.drunkard.common.core.page;
 
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 /**
  * 分页数据

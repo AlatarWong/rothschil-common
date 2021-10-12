@@ -1,6 +1,6 @@
 package xyz.wongs.drunkard.common.core.domain;
 
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import java.util.HashMap;
 

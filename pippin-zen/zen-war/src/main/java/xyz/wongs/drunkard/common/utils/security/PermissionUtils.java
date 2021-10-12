@@ -5,7 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xyz.wongs.drunkard.base.utils.MessageUtils;
+import xyz.wongs.drunkard.common.utils.MessageUtils;
 import xyz.wongs.drunkard.war.constant.PermissionConstants;
 
 import java.beans.BeanInfo;

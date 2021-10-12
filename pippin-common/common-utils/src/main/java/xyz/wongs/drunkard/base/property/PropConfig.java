@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

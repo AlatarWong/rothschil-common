@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 import xyz.wongs.drunkard.war.domain.entity.Location;
 import xyz.wongs.drunkard.war.domain.service.LocationService;
 

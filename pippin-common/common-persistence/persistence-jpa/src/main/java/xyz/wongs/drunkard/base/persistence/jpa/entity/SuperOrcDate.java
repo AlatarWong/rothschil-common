@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.base.persistence.jpa.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

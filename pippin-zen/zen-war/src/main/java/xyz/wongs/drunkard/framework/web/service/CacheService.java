@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.framework.web.service;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Service;
-import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.war.util.CacheUtils;
 
 import java.util.Set;

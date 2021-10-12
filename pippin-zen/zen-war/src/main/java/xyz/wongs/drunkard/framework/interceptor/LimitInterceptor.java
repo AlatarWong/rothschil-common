@@ -7,9 +7,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import xyz.wongs.drunkard.base.message.enums.Status;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
-import xyz.wongs.drunkard.base.message.response.ErR;
+import xyz.wongs.drunkard.base.response.enums.Status;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
+import xyz.wongs.drunkard.base.response.po.ErR;
 import xyz.wongs.drunkard.common.annotation.RequestLimit;
 
 import javax.servlet.http.HttpServletRequest;

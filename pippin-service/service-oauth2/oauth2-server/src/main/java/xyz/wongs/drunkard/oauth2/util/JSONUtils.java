@@ -7,8 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import org.apache.commons.lang3.ArrayUtils;
-import xyz.wongs.drunkard.base.message.enums.ResultCode;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.base.response.enums.ResultCode;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 import xyz.wongs.drunkard.oauth2.util.enums.DateFormatEnum;
 
 import java.io.File;

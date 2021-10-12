@@ -18,11 +18,11 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FQueryResult;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FRefundResult;
 import xyz.wongs.drunkard.alipay.service.AlipayTradeService;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.message.enums.Status;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
+import xyz.wongs.drunkard.common.constant.Constants;
+import xyz.wongs.drunkard.base.response.enums.Status;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
 import xyz.wongs.drunkard.base.property.PropConfig;
-import xyz.wongs.drunkard.base.utils.Utils;
+import xyz.wongs.drunkard.common.utils.Utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

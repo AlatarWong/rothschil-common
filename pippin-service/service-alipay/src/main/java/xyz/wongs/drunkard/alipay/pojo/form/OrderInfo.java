@@ -1,6 +1,6 @@
 package xyz.wongs.drunkard.alipay.pojo.form;
 
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

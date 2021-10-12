@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import xyz.wongs.drunkard.alipay.config.PayConst;
 import xyz.wongs.drunkard.alipay.model.builder.AlipayHeartbeatSynRequestBuilder;
 import xyz.wongs.drunkard.alipay.service.AlipayMonitorService;
-import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.base.property.PropConfig;
 
 /** 提供交易保障服务

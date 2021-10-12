@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.moon.entity;
 
 import lombok.*;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 @EqualsAndHashCode(callSuper=false)
 @Builder(toBuilder=true)

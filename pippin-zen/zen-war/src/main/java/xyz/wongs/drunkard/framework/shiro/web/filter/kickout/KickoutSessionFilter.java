@@ -9,7 +9,7 @@ import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
-import xyz.wongs.drunkard.base.utils.ServletUtils;
+import xyz.wongs.drunkard.common.utils.ServletUtils;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.war.constant.ShiroConstants;

@@ -5,7 +5,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import org.apache.commons.lang.StringUtils;
-import xyz.wongs.drunkard.base.utils.Utils;
+import xyz.wongs.drunkard.common.utils.Utils;
 
 import java.lang.reflect.Type;
 import java.util.List;

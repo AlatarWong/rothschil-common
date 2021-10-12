@@ -9,8 +9,8 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
-import xyz.wongs.drunkard.base.utils.Arith;
-import xyz.wongs.drunkard.base.utils.IpUtils;
+import xyz.wongs.drunkard.common.utils.Arith;
+import xyz.wongs.drunkard.common.utils.IpUtils;
 import xyz.wongs.drunkard.framework.web.domain.server.*;
 
 import java.net.UnknownHostException;

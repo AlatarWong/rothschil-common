@@ -1,6 +1,6 @@
 package xyz.wongs.drunkard.war.core.domain;
 
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 import xyz.wongs.drunkard.common.annotation.Excel;
 
 import javax.validation.constraints.NotBlank;

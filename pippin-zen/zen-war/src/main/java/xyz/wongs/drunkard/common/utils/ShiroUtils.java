@@ -6,8 +6,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import xyz.wongs.drunkard.base.utils.StringUtils;
-import xyz.wongs.drunkard.base.utils.bean.BeanUtils;
+import xyz.wongs.drunkard.common.utils.bean.BeanUtils;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
 
 /**

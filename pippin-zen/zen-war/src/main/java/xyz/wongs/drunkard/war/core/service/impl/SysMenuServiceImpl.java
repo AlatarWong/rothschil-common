@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.war.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.common.core.domain.Ztree;
 import xyz.wongs.drunkard.war.constant.UserConstants;
 import xyz.wongs.drunkard.war.core.domain.SysMenu;

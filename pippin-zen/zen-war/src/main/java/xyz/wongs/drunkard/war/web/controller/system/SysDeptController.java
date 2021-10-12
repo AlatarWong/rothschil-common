@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.common.core.controller.BaseController;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.core.domain.Ztree;

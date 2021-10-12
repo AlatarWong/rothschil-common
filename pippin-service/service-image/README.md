@@ -72,10 +72,10 @@ CREATE TABLE tb_file_info (
 package xyz.wongs.drunkard.war.moon.entity;
 
 import lombok.*;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
-@EqualsAndHashCode(callSuper=false)
-@Builder(toBuilder=true)
+@EqualsAndHashCode(callSuper = false)
+@Builder(toBuilder = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -302,13 +302,12 @@ package xyz.wongs.drunkard.task;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.utils.file.FileUtil;
-import xyz.wongs.drunkard.base.utils.security.Md5Utils;
+import xyz.wongs.drunkard.common.utils.file.FileUtil;
+import xyz.wongs.drunkard.common.utils.security.Md5Utils;
 import FileInfo;
 import FileInfoService;
 
 import java.io.File;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -316,7 +315,7 @@ import java.util.List;
  * @author WCNGS@QQ.COM
  * @ClassName ResultCode 定义的接口状态码
  * @Description
- * 
+ *
  * @date 2020/12/28 17:21
  * @since 1.0.0
  */
@@ -327,26 +326,26 @@ public class RunFileTask {
     @Autowired
     public FileInfoService fileInfoService;
 
-    public void run(String path){
+    public void run(String path) {
         File file = new File(path);
-        if(!file.isDirectory()){
+        if (!file.isDirectory()) {
             return;
         }
         listFiles(file);
     }
 
-    public void listFiles(File file){
+    public void listFiles(File file) {
         File[] files = file.listFiles();
         List<FileInfo> lists = new ArrayList<FileInfo>();
         for (File fl : files) {
             // 1、文件夹就递归
-            if(fl.isDirectory()){
+            if (fl.isDirectory()) {
                 listFiles(fl);
                 continue;
             }
             String suffixName = FileUtil.getSuffix(fl);
             // 2、只要文件后缀名字是图片的
-            if(!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())){
+            if (!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())) {
                 continue;
             }
             String fileName = FileUtil.getName(fl);
@@ -357,7 +356,7 @@ public class RunFileTask {
             lists.add(imageInfo);
         }
         // 3、批量写入数据库中
-        if(!lists.isEmpty()){
+        if (!lists.isEmpty()) {
             fileInfoService.insert(lists);
         }
     }
@@ -563,8 +562,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.utils.file.FileUtil;
-import xyz.wongs.drunkard.base.utils.security.Md5Utils;
+import xyz.wongs.drunkard.common.utils.file.FileUtil;
+import xyz.wongs.drunkard.common.utils.security.Md5Utils;
 import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
 import xyz.wongs.drunkard.task.queue.FileInfoQueue;
 import FileInfo;
@@ -572,29 +571,23 @@ import FileInfoService;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @ClassName RunFileTask
- * @Description 
+ * @Description
  * @author WCNGS@QQ.COM
- * 
+ *
  * @date 20/12/30 12:58
  * @since 1.0.0
-*/
+ */
 @Component
 @Slf4j
 public class RunFileTask {
 
-    public static final String THREAD_NAME ="RUN_FILE_NAME";
+    public static final String THREAD_NAME = "RUN_FILE_NAME";
 
     @Autowired
     public FileInfoService fileInfoService;
@@ -605,24 +598,24 @@ public class RunFileTask {
     @Autowired
     private FileInfoHandler fileInfoHandler;
 
-    public void run(String path){
+    public void run(String path) {
         File file = new File(path);
-        if(!file.isDirectory()){
+        if (!file.isDirectory()) {
             return;
         }
         listFiles(file);
     }
 
-    public void listFiles(File file){
+    public void listFiles(File file) {
         File[] files = file.listFiles();
         List<FileInfo> lists = new ArrayList<FileInfo>();
         for (File fl : files) {
-            if(fl.isDirectory()){
+            if (fl.isDirectory()) {
                 listFiles(fl);
                 continue;
             }
             String suffixName = FileUtil.getSuffix(fl);
-            if(!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())){
+            if (!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())) {
                 continue;
             }
             long size = fl.length();
@@ -631,11 +624,11 @@ public class RunFileTask {
                 FileInfo imageInfo = FileInfo.builder().fileName(fileName).filePath(filePath).fileSize(size).suffixName(suffixName)
                         .md5(DigestUtils.md5Hex(new FileInputStream(fl))).build();
                 lists.add(imageInfo);
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if(!lists.isEmpty()){
+        if (!lists.isEmpty()) {
             fileInfoHandler.setLists(lists);
             fileInfoQueue.addQueue(fileInfoHandler);
         }
@@ -658,7 +651,8 @@ public class RunFileTask {
 package xyz.wongs.drunkard.task.thread;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -668,19 +662,19 @@ import java.util.concurrent.Callable;
  * @ClassName FileSizeThread
  * @Description
  * @author WCNGS@QQ.COM
- * 
+ *
  * @date 20/12/30 13:16
  * @since 1.0.0
-*/
+ */
 public class FileSizeThread implements Callable<String> {
 
     private File file;
 
-    public FileSizeThread(){
+    public FileSizeThread() {
 
     }
 
-    public FileSizeThread(File file){
+    public FileSizeThread(File file) {
         this.file = file;
     }
 
@@ -705,9 +699,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.utils.file.FileUtil;
-import xyz.wongs.drunkard.base.utils.security.Md5Utils;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
+import xyz.wongs.drunkard.common.utils.file.FileUtil;
+import xyz.wongs.drunkard.common.utils.security.Md5Utils;
+import xyz.wongs.drunkard.common.utils.thread.ThreadPoolsUtil;
 import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
 import xyz.wongs.drunkard.task.queue.FileInfoQueue;
 import xyz.wongs.drunkard.task.thread.FileSizeThread;
@@ -715,30 +709,25 @@ import FileInfo;
 import FileInfoService;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @ClassName RunFileTask
- * @Description 
+ * @Description
  * @author WCNGS@QQ.COM
- * 
+ *
  * @date 20/12/30 12:58
  * @since 1.0.0
-*/
+ */
 @Component
 @Slf4j
 public class RunFileTask {
 
-    public static final String THREAD_NAME ="RUN_FILE_NAME";
+    public static final String THREAD_NAME = "RUN_FILE_NAME";
 
     @Autowired
     public FileInfoService fileInfoService;
@@ -749,29 +738,29 @@ public class RunFileTask {
     @Autowired
     private FileInfoHandler fileInfoHandler;
 
-    private ThreadPoolExecutor executor = ThreadPoolUtils.doCreate(1,1,THREAD_NAME);
+    private ThreadPoolExecutor executor = ThreadPoolUtils.doCreate(1, 1, THREAD_NAME);
 
-    public void run(String path){
+    public void run(String path) {
         File file = new File(path);
-        if(!file.isDirectory()){
+        if (!file.isDirectory()) {
             return;
         }
         listFiles(file);
     }
 
-    public void listFiles(File file){
+    public void listFiles(File file) {
         File[] files = file.listFiles();
         List<FileInfo> lists = new ArrayList<FileInfo>();
         for (File fl : files) {
-            if(fl.isDirectory()){
+            if (fl.isDirectory()) {
                 listFiles(fl);
                 continue;
             }
             String suffixName = FileUtil.getSuffix(fl);
-            if(!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())){
+            if (!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())) {
                 continue;
             }
-            
+
             Future<String> r = executor.submit(new FileSizeThread(fl));
             String fileName = FileUtil.getName(fl);
             long size = fl.length();
@@ -780,13 +769,13 @@ public class RunFileTask {
                 FileInfo imageInfo = FileInfo.builder().fileName(fileName).filePath(filePath).fileSize(size).suffixName(suffixName)
                         .md5(r.get()).build();
                 lists.add(imageInfo);
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
-            } catch (ExecutionException e){
+            } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        if(!lists.isEmpty()){
+        if (!lists.isEmpty()) {
             fileInfoHandler.setLists(lists);
             fileInfoQueue.addQueue(fileInfoHandler);
         }

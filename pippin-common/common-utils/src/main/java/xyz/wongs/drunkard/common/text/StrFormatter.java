@@ -1,13 +1,16 @@
 package xyz.wongs.drunkard.common.text;
 
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
+import xyz.wongs.drunkard.common.enums.SystemOsProperty;
 
 /**
  * 字符串格式化
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @since 1.0.0
  * @date 2018/4/26 - 17:45
+ * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class StrFormatter {
     public static final String EMPTY_JSON = "{}";
     public static final char C_BACKSLASH = '\\';
@@ -73,5 +76,10 @@ public class StrFormatter {
         sbuf.append(strPattern, handledPosition, strPattern.length());
 
         return sbuf.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.getProperty(SystemOsProperty.OS_NAME.getCode()));
+        System.out.println(System.getProperty(SystemOsProperty.USER_NAME.getCode()));
     }
 }

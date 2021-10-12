@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.framework.shiro.web.filter.captcha;
 
 import com.google.code.kaptcha.Constants;
 import org.apache.shiro.web.filter.AccessControlFilter;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.war.constant.ShiroConstants;
 

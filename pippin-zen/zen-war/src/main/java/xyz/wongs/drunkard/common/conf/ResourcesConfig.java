@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.framework.interceptor.RepeatSubmitInterceptor;
 
 /**

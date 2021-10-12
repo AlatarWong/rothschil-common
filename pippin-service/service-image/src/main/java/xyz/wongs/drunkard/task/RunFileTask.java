@@ -2,8 +2,8 @@ package xyz.wongs.drunkard.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.utils.file.FileUtil;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
+import xyz.wongs.drunkard.common.utils.file.FileUtil;
+import xyz.wongs.drunkard.common.utils.thread.ThreadPoolsUtil;
 import xyz.wongs.drunkard.moon.entity.ImageInfo;
 import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
 import xyz.wongs.drunkard.task.queue.ImageInfoQueue;

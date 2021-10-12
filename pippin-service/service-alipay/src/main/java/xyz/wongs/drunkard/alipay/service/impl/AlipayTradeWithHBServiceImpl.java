@@ -14,7 +14,7 @@ import xyz.wongs.drunkard.alipay.model.builder.AlipayTradeQueryRequestBuilder;
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPayResult;
 import xyz.wongs.drunkard.alipay.service.impl.hb.HbListener;
 import xyz.wongs.drunkard.alipay.service.impl.hb.TradeListener;
-import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.base.property.PropConfig;
 
 import java.net.ConnectException;

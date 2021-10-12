@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.common.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import java.util.*;
 import java.util.regex.Matcher;

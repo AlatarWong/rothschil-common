@@ -1,9 +1,9 @@
 package xyz.wongs.drunkard.common.utils.sql;
 
 
-import xyz.wongs.drunkard.base.message.enums.Status;
-import xyz.wongs.drunkard.base.message.exception.DrunkardException;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.base.response.enums.Status;
+import xyz.wongs.drunkard.common.exception.DrunkardException;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 /** sql操作工具类
  * @author <a href="https://github.com/rothschil">Sam</a>

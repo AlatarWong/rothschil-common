@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.common.conf;
 
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.base.utils.ServletUtils;
+import xyz.wongs.drunkard.common.utils.ServletUtils;
 
 import javax.servlet.http.HttpServletRequest;
 

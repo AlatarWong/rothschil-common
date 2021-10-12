@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.base.persistence.mybatis.service;
 
 import org.springframework.transaction.annotation.Transactional;
 import xyz.wongs.drunkard.base.persistence.mybatis.mapper.BaseMapper;
-import xyz.wongs.drunkard.base.po.BasePo;
+import xyz.wongs.drunkard.common.po.BasePo;
 
 import java.io.Serializable;
 

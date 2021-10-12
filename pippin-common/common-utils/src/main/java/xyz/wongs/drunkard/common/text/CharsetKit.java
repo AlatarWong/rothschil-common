@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.common.text;
 
 
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

@@ -11,24 +11,22 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.multipart.MultipartFile;
 import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler;
 import xyz.wongs.drunkard.base.queue.AppLogQueue;
-import xyz.wongs.drunkard.base.utils.DateUtils;
-import xyz.wongs.drunkard.base.utils.IpUtils;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.base.queue.handler.impl.QueueTaskHandler;
+import xyz.wongs.drunkard.common.constant.Constants;
+import xyz.wongs.drunkard.common.utils.DateUtils;
+import xyz.wongs.drunkard.common.utils.IpUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.Date;
-import java.util.Enumeration;
 
 /**
- * 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
+ * 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link QueueTaskHandler}
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2018/4/24 - 16:31
@@ -43,6 +41,15 @@ public abstract class AbsAspect {
     @Autowired
     protected AppLogQueue appLogQueue;
 
+    /**
+     * 发送到队列中用于异步
+     *
+     * @param threadLocal 线程变量
+     * @param ret         响应内容
+     * @param e           异常信息
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-11:47
+     **/
     protected void send2Queue(ThreadLocal<AppLog> threadLocal, Object ret, Exception e) {
         int success = 0;
         Date endTime = Date.from(Instant.now());
@@ -81,58 +88,19 @@ public abstract class AbsAspect {
         String className = joinPoint.getTarget().getClass().getName();
         // 参数
         Object[] params = joinPoint.getArgs();
-        // 参数名 String[] argNames = ((MethodSignature) joinPoint.getSignature()).getParameterNames();
+        // 参数名 ((MethodSignature) joinPoint.getSignature()).getParameterNames();
         AppLog.AppLogBuilder opt = AppLog.builder();
-        String paramsValue = getParamsValue(params);
+        String paramsValue = StringUtils.getParamsValue(params);
+        String headers = StringUtils.getHeader(request);
+
         opt.clazz(className).methodName(methodName).logName(businessName).type(key).parameters(paramsValue)
                 .ipAddress(IpUtils.getIpAddr(request)).url(URLUtil.getPath(request.getRequestURI()))
                 .httpType(request.getMethod()).userAgent(request.getHeader(Constants.USER_TYPE))
-                .beginTime(beginTime).headers(getHeader(request));
+                .beginTime(beginTime).headers(headers);
 
         return opt.build();
     }
 
-    public String getHeader(HttpServletRequest request) {
-        Enumeration<String> enumerates = request.getHeaderNames();
-        StringBuilder sb = new StringBuilder("Header[");
-        while (enumerates.hasMoreElements()) {
-            String key = enumerates.nextElement();
-            String value = request.getHeader(key);
-            sb.append(key).append(Constants.HF_COLON).append(value);
-        }
-        sb.append(" ]");
-        return sb.toString();
-    }
-
-    public String getParamsValue(Object[] params) {
-        if (StringUtils.isEmpty(params)) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (Object param : params) {
-
-            if (StringUtils.isEmpty(param) | StringUtils.isBlank(param.toString())) {
-                continue;
-            }
-            // 文件类
-            if (param instanceof MultipartFile[]) {
-                sb.append(" Files{");
-                MultipartFile[] files = (MultipartFile[]) param;
-                for (MultipartFile o : files) {
-                    sb.append(o.getOriginalFilename()).append(Constants.HF_COLON);
-                }
-                sb.append(" }");
-                return sb.toString();
-            } else if (param instanceof MultipartFile) {
-                sb.append(((MultipartFile) param).getOriginalFilename());
-            } else if (StringUtils.isBasicType(param)) {
-                sb.append(param).append(Constants.HF_COLON);
-            } else {
-                sb.append(JSON.toJSONString(params));
-            }
-        }
-        return sb.toString();
-    }
 
     /**
      * 获取 ApplicationLog 注解

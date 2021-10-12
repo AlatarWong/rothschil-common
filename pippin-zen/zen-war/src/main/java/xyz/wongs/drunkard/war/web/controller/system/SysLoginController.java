@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import xyz.wongs.drunkard.base.utils.ServletUtils;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.ServletUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.common.core.controller.BaseController;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 

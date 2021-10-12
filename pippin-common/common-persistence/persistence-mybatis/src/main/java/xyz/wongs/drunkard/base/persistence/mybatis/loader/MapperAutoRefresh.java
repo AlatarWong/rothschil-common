@@ -14,9 +14,9 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
-import xyz.wongs.drunkard.base.constant.Constants;
-import xyz.wongs.drunkard.base.utils.thread.ThreadPoolsUtil;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.constant.Constants;
+import xyz.wongs.drunkard.common.utils.thread.ThreadPoolsUtil;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.*;

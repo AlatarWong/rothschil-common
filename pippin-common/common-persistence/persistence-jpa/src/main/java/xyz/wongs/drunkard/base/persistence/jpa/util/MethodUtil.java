@@ -2,10 +2,10 @@ package xyz.wongs.drunkard.base.persistence.jpa.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
-import xyz.wongs.drunkard.base.constant.Constants;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
-import xyz.wongs.drunkard.base.utils.DateUtils;
-import xyz.wongs.drunkard.base.utils.StringUtils;
+import xyz.wongs.drunkard.common.utils.DateUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 
 import javax.annotation.Nullable;
 import javax.persistence.criteria.CriteriaBuilder;
