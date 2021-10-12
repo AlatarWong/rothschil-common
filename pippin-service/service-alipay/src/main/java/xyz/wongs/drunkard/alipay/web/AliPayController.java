@@ -19,7 +19,6 @@ import xyz.wongs.drunkard.base.property.PropConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -42,7 +41,6 @@ public class AliPayController {
 
     @Autowired
     private AliPayService aliPayService;
-
 
     @RequestMapping("/")
     public String index() {
@@ -90,7 +88,7 @@ public class AliPayController {
     @PostMapping("/pay-ment")
     public ModelAndView payment(@ModelAttribute OrderInfo orderInfo) {
         String qrPath = aliPayService.pay(orderInfo);
-        Map<String, String> repMap = new HashMap<String, String>(2);
+        Map<String, String> repMap = new HashMap<>(2);
         repMap.put("qrPath", qrPath);
         return new ModelAndView("pay", repMap);
     }
@@ -98,30 +96,29 @@ public class AliPayController {
     /**
      * 支付宝回调方法，当用户扫码并支付成功后，会回调到后台，告诉后台用户付款成功，可以更新订单状态
      *
-     * @param request
+     * @param request 请求
      * @return String
      */
     @RequestMapping("/alipay-callback")
     public String alipayCallback(HttpServletRequest request) {
         Map<String, String> params = new HashMap<>();
 
-        Map requestParams = request.getParameterMap();
-        for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
-            String name = (String) iter.next();
-            String[] values = (String[]) requestParams.get(name);
+        Map<String, String[]> requestParams = request.getParameterMap();
+        for (String name : requestParams.keySet()) {
+            String[] values = requestParams.get(name);
             String valueStr = "";
             for (int i = 0; i < values.length; i++) {
                 valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
             }
             params.put(name, valueStr);
         }
-        LOG.info("支付宝回调,sign:{},trade_status:{},参数:{}", params.get("sign"), params.get("trade_status"), params.toString());
+        LOG.info("支付宝回调,sign:{},trade_status:{},参数:{}", params.get("sign"), params.get("trade_status"), params);
 
         //非常重要,验证回调的正确性,是不是支付宝发的.并且呢还要避免重复通知.
         params.remove("sign_type");
         try {
-            boolean alipayRSACheckedV2 = AlipaySignature.rsaCheckV2(params, PropConfig.getProperty(PayConst.ALI_PUB_KEY), "utf-8", PropConfig.getProperty(PayConst.SIGN_TYPE));
-            if (!alipayRSACheckedV2) {
+            boolean alipayRsaCheckedV2 = AlipaySignature.rsaCheckV2(params, PropConfig.getProperty(PayConst.ALI_PUB_KEY), "utf-8", PropConfig.getProperty(PayConst.SIGN_TYPE));
+            if (!alipayRsaCheckedV2) {
                 LOG.error("非法请求,验证不通过,再恶意请求我就报警找网警了");
             }
         } catch (AlipayApiException e) {
@@ -129,8 +126,7 @@ public class AliPayController {
         }
 
         //todo 验证各种数据
-
-        // 回调业务处理
+//      回调业务处理
 //        boolean aliCallback = aliPayService.aliCallback(params);
 //        if (aliCallback) {
 //            // 如果回调成功，并且我们将订单状态都更改成功后，务必一定要给支付宝返回 success 这7个字符，否则支付宝按照一定规则一直重复调用
@@ -144,13 +140,12 @@ public class AliPayController {
     /**
      * 3.前端会轮询调用订单状态，如变为支付成功状态后，跳转到首页等操作
      *
-     * @param session
-     * @param orderNo
-     * @return
+     * @param session Session
+     * @param orderNo 订单号
+     * @return 回调完显示界面
      */
     @RequestMapping("query-order-pay-status")
     public String queryOrderPayStatus(HttpSession session, Long orderNo) {
-        // ServerResponse serverResponse = iOrderService.queryOrderPayStatus(user.getId(),orderNo);
         return "pay";
     }
 }

@@ -81,13 +81,10 @@ public abstract class AbsAspect {
         String className = joinPoint.getTarget().getClass().getName();
         // 参数
         Object[] params = joinPoint.getArgs();
-        // 参数名
-        String[] argNames = ((MethodSignature) joinPoint.getSignature()).getParameterNames();
-
+        // 参数名 String[] argNames = ((MethodSignature) joinPoint.getSignature()).getParameterNames();
         AppLog.AppLogBuilder opt = AppLog.builder();
         String paramsValue = getParamsValue(params);
-        opt.clazz(className).methodName(methodName).logName(businessName).type(key)
-                .parameters(paramsValue)
+        opt.clazz(className).methodName(methodName).logName(businessName).type(key).parameters(paramsValue)
                 .ipAddress(IpUtils.getIpAddr(request)).url(URLUtil.getPath(request.getRequestURI()))
                 .httpType(request.getMethod()).userAgent(request.getHeader(Constants.USER_TYPE))
                 .beginTime(beginTime).headers(getHeader(request));
@@ -97,9 +94,9 @@ public abstract class AbsAspect {
 
     public String getHeader(HttpServletRequest request) {
         Enumeration<String> enumerates = request.getHeaderNames();
-        StringBuffer sb = new StringBuffer("Header[");
+        StringBuilder sb = new StringBuilder("Header[");
         while (enumerates.hasMoreElements()) {
-            String key = (String) enumerates.nextElement();
+            String key = enumerates.nextElement();
             String value = request.getHeader(key);
             sb.append(key).append(Constants.HF_COLON).append(value);
         }
@@ -111,7 +108,7 @@ public abstract class AbsAspect {
         if (StringUtils.isEmpty(params)) {
             return null;
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (Object param : params) {
 
             if (StringUtils.isEmpty(param) | StringUtils.isBlank(param.toString())) {
@@ -155,9 +152,4 @@ public abstract class AbsAspect {
         return null;
     }
 
-
-    public static void main(String[] args) {
-        int i = 2;
-        System.out.println();
-    }
 }
