@@ -105,7 +105,7 @@ public class AppLog extends BasePo<Long> {
     /**
      * 请求报文
      */
-    private String reqContent;
+    private String headers;
 
     /**
      * 响应内容

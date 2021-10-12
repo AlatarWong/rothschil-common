@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import xyz.wongs.drunkard.alipay.service.MailService;
+import xyz.wongs.drunkard.mail.service.MailService;
 import xyz.wongs.drunkard.base.vo.MailVo;
 
 /** 发送邮件

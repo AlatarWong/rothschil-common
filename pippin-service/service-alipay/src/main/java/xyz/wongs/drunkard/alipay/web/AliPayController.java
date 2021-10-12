@@ -7,10 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import xyz.wongs.drunkard.alipay.config.PayConst;
+import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 import xyz.wongs.drunkard.alipay.service.AliPayService;
-import xyz.wongs.drunkard.base.config.Global;
 import xyz.wongs.drunkard.base.property.PropConfig;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,9 +43,9 @@ public class AliPayController {
     @Autowired
     private AliPayService aliPayService;
 
+
     @RequestMapping("/")
     public String index() {
-        Global.getConfig("key1");
         return "index";
     }
 
@@ -82,6 +85,14 @@ public class AliPayController {
         String qrPath = aliPayService.alipay(orderNo);
         model.addAttribute("qrPath", qrPath);
         return "pay";
+    }
+
+    @PostMapping("/pay-ment")
+    public ModelAndView payment(@ModelAttribute OrderInfo orderInfo) {
+        String qrPath = aliPayService.pay(orderInfo);
+        Map<String, String> repMap = new HashMap<String, String>(2);
+        repMap.put("qrPath", qrPath);
+        return new ModelAndView("pay", repMap);
     }
 
     /**

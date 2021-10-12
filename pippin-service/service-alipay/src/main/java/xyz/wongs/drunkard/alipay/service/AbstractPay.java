@@ -24,8 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 抽象类，定义公用处理方法，完成封装 {@link AlipayTradePrecreateRequestBuilder}、上传 OSS图床
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/26 - 11:08
  * @since 1.0.0
  */
@@ -41,7 +42,7 @@ public abstract class AbstractPay {
 
     protected String pretreatment(Long orderNo) {
         OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setOutTradeNo(orderNo+"");
+        orderInfo.setOutTradeNo(orderNo + "");
         orderInfo.setSubject(StringUtils.getRandomString(4));
         orderInfo.setTotalAmount(23424);
         return pretreatment(orderInfo);
@@ -96,18 +97,19 @@ public abstract class AbstractPay {
     }
 
 
-
-    /** 根据订单中商品列表 拼装商品支付明细
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:59
+    /**
+     * 根据订单中商品列表 拼装商品支付明细
+     *
      * @param orderInfo 订单
      * @return GoodsDetail>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/9/26-10:59
      **/
     protected List<GoodsDetail> details(OrderInfo orderInfo) {
         List<String> alipayGoodsIds = orderInfo.getAlipayGoodsIds();
         List<GoodsDetail> goodsDetailList = new ArrayList<>(alipayGoodsIds.size());
         String transId = DateUtils.getTransId();
-        GoodsDetail detail = xyz.wongs.drunkard.alipay.pojo.GoodsDetail.newInstance(transId,"goods_id001",1000,1);
+        GoodsDetail detail = xyz.wongs.drunkard.alipay.pojo.GoodsDetail.newInstance(transId, "goods_id001", 1000, 1);
         goodsDetailList.add(detail);
         return goodsDetailList;
     }
@@ -132,6 +134,7 @@ public abstract class AbstractPay {
 
     /**
      * 打印应答
+     *
      * @param response 响应实体
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/23-14:54

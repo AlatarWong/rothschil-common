@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.alipay.service;
+package xyz.wongs.drunkard.mail.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,16 +15,18 @@ import xyz.wongs.drunkard.base.vo.MailVo;
 
 import java.util.Date;
 
-
+/**
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/12 - 10:27
+ * @since 1.0.0
+ */
 @Service
 public class MailService {
 
     private static final Logger logger = LoggerFactory.getLogger(MailService.class);
 
-
     @Autowired
     private JavaMailSenderImpl mailSender;
-
 
     /**
      * 对外提供发送邮件入口

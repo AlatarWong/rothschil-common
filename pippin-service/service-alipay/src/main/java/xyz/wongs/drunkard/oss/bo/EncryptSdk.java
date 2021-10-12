@@ -5,14 +5,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-/** 加密工具实体，定义加密属性值，属性 参考 {@link org.jasypt.encryption.pbe.PooledPBEStringEncryptor}
+/**
+ * 加密工具实体，定义加密属性值，属性 参考 {@link org.jasypt.encryption.pbe.PooledPBEStringEncryptor}
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/9/24 - 10:08
  * @since 1.0.0
  */
 @Validated
 @Component
-@ConfigurationProperties(prefix="oss")
+@ConfigurationProperties(prefix = "oss")
 @PropertySource(value = "classpath:oss-sdk.properties")
 public class EncryptSdk {
 

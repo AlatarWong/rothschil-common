@@ -11,8 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import xyz.wongs.drunkard.oss.bo.EncryptSdk;
 
 /**
+ * 信息安全处理类
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/23 - 15:18
  * @since 1.0.0
  */

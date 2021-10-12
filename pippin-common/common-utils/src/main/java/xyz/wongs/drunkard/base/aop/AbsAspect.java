@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Enumeration;
 
 /**
  * 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
@@ -72,6 +73,7 @@ public abstract class AbsAspect {
         ServletRequestAttributes sra = (ServletRequestAttributes) requestAttributes;
         Assert.notNull(sra, "The ServletRequestAttributes must not be null");
         HttpServletRequest request = sra.getRequest();
+
         //获取拦截的方法名
         Date beginTime = Date.from(Instant.now());
         String methodName = joinPoint.getSignature().getName();
@@ -80,27 +82,36 @@ public abstract class AbsAspect {
         // 参数
         Object[] params = joinPoint.getArgs();
         // 参数名
-        String[] argNames = ((MethodSignature)joinPoint.getSignature()).getParameterNames();
-
+        String[] argNames = ((MethodSignature) joinPoint.getSignature()).getParameterNames();
 
         AppLog.AppLogBuilder opt = AppLog.builder();
-
+        String paramsValue = getParamsValue(params);
         opt.clazz(className).methodName(methodName).logName(businessName).type(key)
+                .parameters(paramsValue)
                 .ipAddress(IpUtils.getIpAddr(request)).url(URLUtil.getPath(request.getRequestURI()))
                 .httpType(request.getMethod()).userAgent(request.getHeader(Constants.USER_TYPE))
-                .beginTime(beginTime).reqContent(isParams(params));
+                .beginTime(beginTime).headers(getHeader(request));
 
         return opt.build();
     }
 
-    public String isParams(Object[] params) {
-        log.info(" Object[] length is "+ params.length);
+    public String getHeader(HttpServletRequest request) {
+        Enumeration<String> enumerates = request.getHeaderNames();
+        StringBuffer sb = new StringBuffer("Header[");
+        while (enumerates.hasMoreElements()) {
+            String key = (String) enumerates.nextElement();
+            String value = request.getHeader(key);
+            sb.append(key).append(Constants.HF_COLON).append(value);
+        }
+        sb.append(" ]");
+        return sb.toString();
+    }
 
+    public String getParamsValue(Object[] params) {
         if (StringUtils.isEmpty(params)) {
             return null;
         }
-
-        StringBuilder sb = new StringBuilder("Params is [");
+        StringBuffer sb = new StringBuffer();
         for (Object param : params) {
 
             if (StringUtils.isEmpty(param) | StringUtils.isBlank(param.toString())) {
@@ -117,13 +128,12 @@ public abstract class AbsAspect {
                 return sb.toString();
             } else if (param instanceof MultipartFile) {
                 sb.append(((MultipartFile) param).getOriginalFilename());
-            } else if(StringUtils.isBasicType(param)){
+            } else if (StringUtils.isBasicType(param)) {
                 sb.append(param).append(Constants.HF_COLON);
-            } else{
+            } else {
                 sb.append(JSON.toJSONString(params));
             }
         }
-        sb.append(" ]");
         return sb.toString();
     }
 
@@ -147,7 +157,7 @@ public abstract class AbsAspect {
 
 
     public static void main(String[] args) {
-        int i=2;
+        int i = 2;
         System.out.println();
     }
 }

@@ -1,7 +1,6 @@
 package xyz.wongs.drunkard.alipay.service;
 
 
-import com.alipay.api.AlipayResponse;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +11,9 @@ import xyz.wongs.drunkard.alipay.model.builder.AlipayTradePrecreateRequestBuilde
 import xyz.wongs.drunkard.alipay.model.result.AlipayF2FPrecreateResult;
 import xyz.wongs.drunkard.alipay.pojo.AlipayProperty;
 import xyz.wongs.drunkard.alipay.pojo.GoodsDetail;
+import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
 import xyz.wongs.drunkard.alipay.service.impl.AlipayTradeServiceImpl;
 import xyz.wongs.drunkard.base.utils.DateUtils;
-import xyz.wongs.drunkard.base.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,33 +23,21 @@ import java.util.Map;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * 
  * @date 2021/9/23 - 14:51
  * @since 1.0.0
  */
 @Service
-public class AliPayService{
+public class AliPayService extends AbstractPay {
 
     private static final Logger logger = LoggerFactory.getLogger(AliPayService.class);
 
     @Autowired
     private AlipayProperty alipayProperty;
 
-//    /** 支付宝生成二维码
-//     * @author <a href="https://github.com/rothschil">Sam</a>
-//     * @date 2021/9/23-15:59
-//     * @param orderNo   订单id
-//     * @return String 远程图片访问地址
-//     **/
-//    public String alipay(Long orderNo) {
-//        return pretreatment(orderNo);
-//    }
-
     public String alipay(Long orderNo) {
         Map<String, String> resultMap = new HashMap<>();
         // 根据userId和orderNo到数据库查询订单是否存在。。。
         resultMap.put("orderNo", String.valueOf(orderNo));
-
         // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
         // 需保证商户系统端不能重复，建议通过数据库sequence生成，
         String outTradeNo = String.valueOf(orderNo);
@@ -90,7 +77,7 @@ public class AliPayService{
         List<GoodsDetail> goodsDetailList = new ArrayList<GoodsDetail>();
         // 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail
         String transId = DateUtils.getTransId();
-        GoodsDetail detail = GoodsDetail.newInstance(transId,"goods_id001",1000,1);
+        GoodsDetail detail = GoodsDetail.newInstance(transId, "goods_id001", 1000, 1);
         // 创建好一个商品后添加至商品明细列表
         goodsDetailList.add(detail);
 
@@ -110,11 +97,7 @@ public class AliPayService{
                 AlipayTradePrecreateResponse response = result.getResponse();
                 dumpResponse(response);
                 String remote = "uploadOss(response)";
-                logger.info("Alipay Pre-order Success, The QR code URL is {}", remote);
-
-                // String qrFileName = String.format("qr-%s.png", response.getOutTradeNo());
-                // 将生成的二维码上传到七牛云，然后将二维码url地址返回给前端展示
-                logger.info("qrPath:" + remote);
+                logger.info("Alipay Pre-order Success, qrPath={}", remote);
                 return remote;
             case FAILED:
                 logger.error("支付宝预下单失败!!!");
@@ -129,16 +112,8 @@ public class AliPayService{
         return null;
     }
 
-    // 简单打印应答
-    private void dumpResponse(AlipayResponse response) {
-        if (response != null) {
-            logger.info(String.format("code:%s, msg:%s", response.getCode(), response.getMsg()));
-            if (StringUtils.isNotEmpty(response.getSubCode())) {
-                logger.info(String.format("subCode:%s, subMsg:%s", response.getSubCode(),
-                        response.getSubMsg()));
-            }
-            logger.info("body:" + response.getBody());
-        }
+    public String pay(OrderInfo orderInfo) {
+        return pretreatment(orderInfo);
     }
 
 }
