@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.alipay.model.hb;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  *
- * @date 2021/9/23 - 10:03
+ * @date 2018/4/23 - 10:03
  * @since 1.0.0
  */
 public enum ExceptionInfo {

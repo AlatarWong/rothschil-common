@@ -31,7 +31,7 @@ import java.util.Enumeration;
  * 定义AOP处理通用方法，引入 {@link xyz.wongs.drunkard.base.queue.AppLogQueue} 异步队列模块 和 {@link xyz.wongs.drunkard.base.handler.impl.QueueTaskHandler}
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/24 - 16:31
+ * @date 2018/4/24 - 16:31
  * @since 1.0.0
  */
 @Slf4j
@@ -140,7 +140,7 @@ public abstract class AbsAspect {
      * @param joinPoint 切点
      * @return ApplicationLog
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-16:22
+     * @date 2018/4/24-16:22
      **/
     protected static ApplicationLog getApplicationLog(JoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();

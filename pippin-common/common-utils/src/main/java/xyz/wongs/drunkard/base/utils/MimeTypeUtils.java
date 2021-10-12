@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.base.utils;
  * 媒体类型工具类
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 17:48
+ * @date 2018/4/26 - 17:48
  * @since 1.0.0
  */
 public class MimeTypeUtils {

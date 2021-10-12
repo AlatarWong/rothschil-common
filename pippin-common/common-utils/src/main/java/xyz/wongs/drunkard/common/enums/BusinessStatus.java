@@ -7,6 +7,7 @@ package xyz.wongs.drunkard.common.enums;
  * @date 2019/10/9 - 21:04
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public enum BusinessStatus {
     /**
      * 成功

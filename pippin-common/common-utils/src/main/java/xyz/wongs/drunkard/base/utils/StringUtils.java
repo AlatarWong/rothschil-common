@@ -41,7 +41,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /** 获取UUID
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-20:45
+     * @date 2018/4/24-20:45
      * @param
      * @return String
      **/
@@ -51,7 +51,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /** 字符转换为Unicode
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-20:45
+     * @date 2018/4/24-20:45
      * @param input
      * @return String
      **/
@@ -87,7 +87,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /** Unicode 换为 字符转
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-20:45
+     * @date 2018/4/24-20:45
      * @param input
      * @return String
      **/
@@ -160,7 +160,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-20:46
+     * @date 2018/4/24-20:46
      * @param totalAmount
      * @param unAmount
      * @return String
@@ -204,7 +204,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	/** 随机反馈字符串
 	 * @param length
 	 * @return java.lang.String
-	 * @date 2020/8/15 22:36
+	 * @date 2017/12/15 22:36
 	 */
 	public static String getRandomString(int length){
 

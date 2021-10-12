@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  * 默认处理 {@link Controller},RestController.class,
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 16:23
+ * @date 2018/4/26 - 16:23
  * @since 1.0.0
  */
 @EnableWebMvc
@@ -70,7 +70,7 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
      * @param response            Response响应
      * @return Object 响应内容
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:28
+     * @date 2018/4/26-16:28
      **/
     @Override
     public Object beforeBodyWrite(Object body, @Nullable MethodParameter returnType, @Nullable MediaType selectContentType, @Nullable Class<? extends HttpMessageConverter<?>> selectConverterType, @Nullable ServerHttpRequest request, @Nullable ServerHttpResponse response) {

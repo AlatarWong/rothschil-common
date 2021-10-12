@@ -9,7 +9,7 @@ import xyz.wongs.drunkard.base.utils.Utils;
  * <li>对比二者 差异，主要在于 {@link GoodsDetail} 有对实体进行序列化设置，当然解决方案就是对 {@link com.alipay.api.domain.GoodsDetail} 所在顶层包进行重写</li>
  * </ur>
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 16:04
+ * @date 2018/4/26 - 16:04
  * @since 1.0.0
  */
 public class GoodsDetail {
@@ -51,7 +51,7 @@ public class GoodsDetail {
 
     /** 创建一个商品信息，参数含义分别为商品id（使用国标）、商品名称、商品价格（单位为分）、商品数量
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-17:33
+     * @date 2018/4/26-17:33
      * @param goodsId
      * @param goodsName
      * @param price

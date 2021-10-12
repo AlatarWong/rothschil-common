@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  * 
- * @date 2021/9/23 - 10:14
+ * @date 2018/4/23 - 10:14
  * @since 1.0.0
  */
 public class HbQueue {

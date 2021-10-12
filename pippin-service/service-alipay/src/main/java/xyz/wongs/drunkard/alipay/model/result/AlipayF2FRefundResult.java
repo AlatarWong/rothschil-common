@@ -7,7 +7,7 @@ import xyz.wongs.drunkard.alipay.model.TradeStatus;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  * 
- * @date 2021/9/23 - 10:09
+ * @date 2018/4/23 - 10:09
  * @since 1.0.0
  */
 public class AlipayF2FRefundResult implements Result {

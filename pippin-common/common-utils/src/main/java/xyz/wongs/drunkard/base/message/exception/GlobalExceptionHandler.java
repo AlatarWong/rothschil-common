@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
      * @param ex 异常
      * @return ErR 异常响应
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:54
+     * @date 2018/4/26-16:54
      **/
     @ExceptionHandler(DrunkardException.class)
     @ResponseBody
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
 //     * @param e 异常
 //     * @return ErR 异常响应
 //     * @author <a href="https://github.com/rothschil">Sam</a>
-//     * @date 2021/9/26-16:54
+//     * @date 2018/4/26-16:54
 //     **/
 //    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 //    @ExceptionHandler(Throwable.class)
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
      * @param e 异常
      * @return ErR 异常响应
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:54
+     * @date 2018/4/26-16:54
      **/
     @ExceptionHandler(BindException.class)
     public ErR handleBindException(BindException e) {

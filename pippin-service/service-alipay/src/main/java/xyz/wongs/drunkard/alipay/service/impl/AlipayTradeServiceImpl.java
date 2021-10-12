@@ -17,7 +17,7 @@ import xyz.wongs.drunkard.base.property.PropConfig;
 /** 当面付2.0具体实现（不提供交易保障接口的集成）
  * @author <a href="https://github.com/rothschil">Sam</a>
  *
- * @date 2021/9/23 - 10:11
+ * @date 2018/4/23 - 10:11
  * @since 1.0.0
  */
 public class AlipayTradeServiceImpl extends AbsAlipayTradeService {
@@ -152,7 +152,7 @@ public class AlipayTradeServiceImpl extends AbsAlipayTradeService {
     /** 商户可以直接使用的pay方法
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-9:43
+     * @date 2018/4/23-9:43
      * @param builder
      * @return AlipayF2FPayResult
      **/

@@ -24,7 +24,7 @@ import java.util.UUID;
  * @ClassName Md5Utils
  * @Description
  * 
- * @date 2020/8/15 22:50
+ * @date 2017/12/15 22:50
  * @since 1.0.0
  */
 public class SignatureUtils {
@@ -77,7 +77,7 @@ public class SignatureUtils {
      * @return java.lang.String 返回十六进制字符串
      * @throws
      * @Description
-     * @date 2020/8/15 23:23
+     * @date 2017/12/15 23:23
      */
     private static String hex(byte[] arry) {
         StringBuffer sb = new StringBuffer();
@@ -95,7 +95,7 @@ public class SignatureUtils {
      * @return boolean  true:密码一致；false：不一致
      * @throws
      * @Description
-     * @date 2020/8/15 23:21
+     * @date 2017/12/15 23:21
      */
     public static boolean getSaltverify4Md5(String password, String md5Str, String salt) {
         int size = 48;

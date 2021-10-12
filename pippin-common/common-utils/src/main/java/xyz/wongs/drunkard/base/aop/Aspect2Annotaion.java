@@ -28,7 +28,7 @@ public class Aspect2Annotaion extends AbsAspect {
      * 切面
      *
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/24-16:39
+     * @date 2018/4/24-16:39
      **/
     @Pointcut(value = "@annotation(xyz.wongs.drunkard.base.aop.annotation.ApplicationLog)")
     public void cutService() {

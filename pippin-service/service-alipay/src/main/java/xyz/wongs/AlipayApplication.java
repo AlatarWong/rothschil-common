@@ -7,7 +7,7 @@ import xyz.wongs.drunkard.base.property.listener.PropListener;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/24 - 10:16
+ * @date 2018/4/24 - 10:16
  * @since 1.0.0
  */
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})

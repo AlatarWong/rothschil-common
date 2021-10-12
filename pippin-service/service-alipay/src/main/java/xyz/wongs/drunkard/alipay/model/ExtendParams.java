@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  * 
- * @date 2021/9/23 - 9:58
+ * @date 2018/4/23 - 9:58
  * @since 1.0.0
  */
 public class ExtendParams {

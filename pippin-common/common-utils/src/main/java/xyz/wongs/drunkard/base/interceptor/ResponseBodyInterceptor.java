@@ -30,7 +30,7 @@ public class ResponseBodyInterceptor implements HandlerInterceptor {
      * @param handler  HandlerMethod
      * @return boolean 预处理结果为 True 才会进行后续所有操作
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:35
+     * @date 2018/4/26-16:35
      **/
     @Override
     public boolean preHandle(@Nullable HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable Object handler) {

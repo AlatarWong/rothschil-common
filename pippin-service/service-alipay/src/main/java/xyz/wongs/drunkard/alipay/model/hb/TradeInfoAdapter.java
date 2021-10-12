@@ -14,7 +14,7 @@ import java.util.List;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  *
- * @date 2021/9/23 - 10:20
+ * @date 2018/4/23 - 10:20
  * @since 1.0.0
  */
 public class TradeInfoAdapter implements JsonSerializer<List<TradeInfo>> {

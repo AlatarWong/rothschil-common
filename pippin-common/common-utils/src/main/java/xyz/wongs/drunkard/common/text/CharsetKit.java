@@ -11,8 +11,9 @@ import java.nio.charset.StandardCharsets;
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @since 1.0.0
- * @date 2021/9/26 - 17:45
+ * @date 2018/4/26 - 17:45
  */
+@SuppressWarnings("unused")
 public class CharsetKit {
     /**
      * ISO-8859-1
@@ -30,11 +31,11 @@ public class CharsetKit {
     /**
      * ISO-8859-1
      */
-    public static final Charset CHARSET_ISO_8859_1 = Charset.forName(ISO_8859_1);
+    public static final Charset CHARSET_ISO_8859_1 = StandardCharsets.ISO_8859_1;
     /**
      * UTF-8
      */
-    public static final Charset CHARSET_UTF_8 = Charset.forName(UTF_8);
+    public static final Charset CHARSET_UTF_8 = StandardCharsets.UTF_8;
     /**
      * GBK
      */

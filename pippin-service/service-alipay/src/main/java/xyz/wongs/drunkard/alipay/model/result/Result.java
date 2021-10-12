@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.alipay.model.result;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  * 
- * @date 2021/9/23 - 10:09
+ * @date 2018/4/23 - 10:09
  * @since 1.0.0
  */
 public interface Result {
@@ -13,7 +13,7 @@ public interface Result {
      * 因为还有unknown的状态可能业务已经成功了
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-10:09
+     * @date 2018/4/23-10:09
      * @param
      * @return boolean
      **/

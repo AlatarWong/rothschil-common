@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * Properties文件载入工具类. 可载入多个 properties文件, 相同的属性在最后载入的文件中的值将会覆盖之前的值，但以System的Property优先.
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @since 1.0.0
- * @date 2021/9/26 - 17:48
+ * @date 2018/4/26 - 17:48
  */
 public class PropertiesLoader {
 

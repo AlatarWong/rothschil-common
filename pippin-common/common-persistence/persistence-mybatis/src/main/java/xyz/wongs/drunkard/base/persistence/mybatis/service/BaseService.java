@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @Description
  * @author WCNGS@QQ.COM
  * 
- * @date 2020/8/2 13:34
+ * @date 2017/12/2 13:34
  * @since 1.0.0
  */
 @Transactional(readOnly = true)
@@ -26,7 +26,7 @@ public abstract class BaseService<T extends BasePo,ID extends Serializable> exte
      * @Description
      * @param t 对象信息
      * @return int
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     @Transactional(rollbackFor = Exception.class)
     public int insert(T t) {
@@ -37,7 +37,7 @@ public abstract class BaseService<T extends BasePo,ID extends Serializable> exte
      * @Description
      * @param t 对象信息
      * @return int
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     @Transactional(rollbackFor = Exception.class)
     public int insertSelective(T t) {

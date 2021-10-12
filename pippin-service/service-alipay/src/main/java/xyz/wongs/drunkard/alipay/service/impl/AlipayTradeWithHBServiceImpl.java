@@ -25,7 +25,7 @@ import java.net.SocketTimeoutException;
 /** 当面付2.0具体实现（集成了交易保障逻辑）
  * @author <a href="https://github.com/rothschil">Sam</a>
  * 
- * @date 2021/9/23 - 10:12
+ * @date 2018/4/23 - 10:12
  * @since 1.0.0
  */
 public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
@@ -224,7 +224,7 @@ public class AlipayTradeWithHBServiceImpl extends AbsAlipayTradeService {
     /** 商户可以直接使用的pay方法，并且集成了监控代码
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-9:43
+     * @date 2018/4/23-9:43
      * @param builder
      * @return AlipayF2FPayResult
      **/

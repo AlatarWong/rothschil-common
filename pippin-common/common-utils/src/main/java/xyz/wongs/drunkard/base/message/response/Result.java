@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.base.message.response;
  * 所有响应的超类，定义返回编码和消息描述
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 16:48
+ * @date 2018/4/26 - 16:48
  * @since 1.0.0
  */
 public abstract class Result {

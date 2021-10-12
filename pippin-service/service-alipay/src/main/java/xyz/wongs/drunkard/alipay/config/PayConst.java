@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.alipay.config;
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
  *
- * @date 2021/9/26 - 10:17
+ * @date 2018/4/26 - 10:17
  * @since 1.0.0
  */
  public class PayConst {

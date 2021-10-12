@@ -20,7 +20,7 @@ public interface BaseMapper<T extends BasePo,ID extends Serializable> extends De
      * @param t
      * @return
      * @throws
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     int insert(T t);
 
@@ -29,7 +29,7 @@ public interface BaseMapper<T extends BasePo,ID extends Serializable> extends De
      * @param t
      * @return
      * @throws
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     int insertSelective(T t);
 

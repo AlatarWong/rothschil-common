@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /** 图床配置信息 主要利用阿里云的OSS存储支付过程中生成二维码，可以参考 <a href="https://www.aliyun.com/product/oss">https://www.aliyun.com/product/oss</a>
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/24 - 11:02
+ * @date 2018/4/24 - 11:02
  * @since 1.0.0
  */
 @Component

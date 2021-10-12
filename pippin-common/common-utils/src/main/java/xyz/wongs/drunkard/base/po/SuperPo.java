@@ -17,7 +17,7 @@ public abstract class SuperPo<ID extends Serializable> implements Serializable {
      * 获取主键
      *
      * @return ID 主键
-     * @date 2020/8/2 13:23
+     * @date 2017/12/2 13:23
      */
     public abstract ID getId();
 
@@ -25,7 +25,7 @@ public abstract class SuperPo<ID extends Serializable> implements Serializable {
      * 设置主键
      *
      * @param id 主键
-     * @date 2020/8/2 13:22
+     * @date 2017/12/2 13:22
      */
     public abstract void setId(ID id);
 }

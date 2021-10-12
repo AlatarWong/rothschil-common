@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 定义正常响应实体类
  *
  * @author WCNGS@QQ.COM
- * @date 2020/8/2 13:48
+ * @date 2017/12/2 13:48
  * @since 1.0.0
  */
 public class R extends Result implements Serializable {
@@ -40,7 +40,7 @@ public class R extends Result implements Serializable {
      *
      * @return Result
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:43
+     * @date 2018/4/26-16:43
      **/
     public static R success() {
         R r = new R();
@@ -54,7 +54,7 @@ public class R extends Result implements Serializable {
      * @param data 数据实体
      * @return Result
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:43
+     * @date 2018/4/26-16:43
      **/
     public static R success(Object data) {
         R r = success();

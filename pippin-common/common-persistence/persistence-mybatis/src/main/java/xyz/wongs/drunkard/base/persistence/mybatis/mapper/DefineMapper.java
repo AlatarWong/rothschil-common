@@ -9,7 +9,7 @@ import java.util.List;
  * @Description
  * @author WCNGS@QQ.COM
  *
- * @date 2020/8/19 20:54
+ * @date 2017/12/19 20:54
  * @since 1.0.0
 */
 public interface DefineMapper<T extends BasePo,ID extends Serializable> {
@@ -26,7 +26,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param condition 具体条件
      * @return List
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     List<T> getListByCondition(Object condition);
 
@@ -34,7 +34,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param example   Example对象
      * @return List
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     List<T> getListByExample(Object example);
 
@@ -42,7 +42,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param id 主键信息
      * @return int
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     int deleteByPrimaryKey(ID id);
 
@@ -50,7 +50,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param id 主键
      * @return t 实体对象
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     T selectByPrimaryKey(ID id);
 
@@ -58,7 +58,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param t 对象信息
      * @return  int
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     int updateByPrimaryKeySelective(T t);
 
@@ -66,7 +66,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param t 对象信息
      * @return int
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     int updateByPrimaryKeyWithBlob(T t);
 
@@ -74,7 +74,7 @@ public interface DefineMapper<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param t 对象信息
      * @return  int
-     * @date 2020/8/2 13:24
+     * @date 2017/12/2 13:24
      */
     int updateByPrimaryKey(T t);
 }

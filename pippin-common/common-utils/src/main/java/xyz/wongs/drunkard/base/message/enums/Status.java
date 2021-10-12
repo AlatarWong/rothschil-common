@@ -8,7 +8,7 @@ package xyz.wongs.drunkard.base.message.enums;
  * <li> 3000～3999 区间表示接口异常</li>
  * </ul>
  * @author WCNGS@QQ.COM
- * @date 2020/8/2 13:31
+ * @date 2017/12/2 13:31
  * @since 1.0.0
 */
 public enum Status {

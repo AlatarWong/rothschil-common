@@ -9,7 +9,7 @@ import xyz.wongs.drunkard.alipay.model.hb.SysTradeInfo;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  *
- * @date 2021/9/23 - 10:14
+ * @date 2018/4/23 - 10:14
  * @since 1.0.0
  */
 public class HbListener implements TradeListener {
@@ -31,7 +31,7 @@ public class HbListener implements TradeListener {
     /** 支付成功
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-10:14
+     * @date 2018/4/23-10:14
      * @param outTradeNo
      * @param beforeCall
      * @return

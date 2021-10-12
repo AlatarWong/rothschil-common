@@ -34,7 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     /** 自定义消息转换器
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-17:07
+     * @date 2018/4/26-17:07
      * @param converters 转换器
      **/
     @Override

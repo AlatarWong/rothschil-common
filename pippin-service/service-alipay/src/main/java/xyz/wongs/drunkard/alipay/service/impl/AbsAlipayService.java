@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**服务实现类抽象类，所有的服务实现类的父类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 13:56
+ * @date 2018/4/26 - 13:56
  * @since 1.0.0
  */
 abstract class AbsAlipayService {
@@ -19,7 +19,7 @@ abstract class AbsAlipayService {
 
     /** 验证bizContent对象
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/22-10:51
+     * @date 2018/4/22-10:51
      * @param builder 请求抽象类
      * @return
      **/
@@ -36,7 +36,7 @@ abstract class AbsAlipayService {
 
     /** 调用 {@link com.alipay.api.AlipayClient } 的 execute 方法，进行远程调用
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/22-10:51
+     * @date 2018/4/22-10:51
      * @param client 请求客户端
      * @param request 请求接口
      * @return AlipayResponse

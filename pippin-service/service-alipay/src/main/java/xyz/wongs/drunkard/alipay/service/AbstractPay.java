@@ -27,7 +27,7 @@ import java.util.List;
  * 抽象类，定义公用处理方法，完成封装 {@link AlipayTradePrecreateRequestBuilder}、上传 OSS图床
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 11:08
+ * @date 2018/4/26 - 11:08
  * @since 1.0.0
  */
 public abstract class AbstractPay {
@@ -103,7 +103,7 @@ public abstract class AbstractPay {
      * @param orderInfo 订单
      * @return GoodsDetail>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:59
+     * @date 2018/4/26-10:59
      **/
     protected List<GoodsDetail> details(OrderInfo orderInfo) {
         List<String> alipayGoodsIds = orderInfo.getAlipayGoodsIds();
@@ -120,7 +120,7 @@ public abstract class AbstractPay {
      * @param response 响应实体
      * @return String 远程图床的路径
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/23-15:57
+     * @date 2018/4/23-15:57
      **/
     protected String uploadOss(AlipayTradePrecreateResponse response) {
         String qrPath = String.format("/qr-%s.png", response.getOutTradeNo());
@@ -137,7 +137,7 @@ public abstract class AbstractPay {
      *
      * @param response 响应实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/23-14:54
+     * @date 2018/4/23-14:54
      **/
     protected void dumpResponse(AlipayResponse response) {
 
@@ -152,7 +152,7 @@ public abstract class AbstractPay {
 
     /** 回调
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/23-14:54
+     * @date 2018/4/23-14:54
      * @param params 订单等参数
      * @return boolean
      **/

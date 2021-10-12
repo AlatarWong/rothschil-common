@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 /** 定义线程的基本单元
  * @author WCNGS@QQ.COM
- * @date 2020/8/2 14:51
+ * @date 2017/12/2 14:51
  * @since 1.0.0
 */
 public class ThreadUnit implements Runnable{

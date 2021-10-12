@@ -8,7 +8,7 @@ import xyz.wongs.drunkard.oss.bo.OssBed;
  * OSS Client工厂类
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/22 - 15:09
+ * @date 2018/4/22 - 15:09
  * @since 1.0.0
  */
 public enum OssClientFactory {
@@ -27,7 +27,7 @@ public enum OssClientFactory {
      * @param ossBed 图床信息
      * @return OSS OOS实例
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/23-10:01
+     * @date 2018/4/23-10:01
      **/
     public OSS singletonInstance(OssBed ossBed) {
         if (null == CLIENT) {
@@ -40,7 +40,7 @@ public enum OssClientFactory {
      * 关闭连接
      *
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/23-10:01
+     * @date 2018/4/23-10:01
      **/
     public void shutDown() {
         if (null == CLIENT) {

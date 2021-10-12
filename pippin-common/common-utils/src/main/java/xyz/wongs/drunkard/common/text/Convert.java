@@ -12,15 +12,18 @@ import java.util.Set;
 
 /**
  * 类型转换器
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2018/4/26 - 17:45
  * @since 1.0.0
- * @date 2021/9/26 - 17:45
  */
+@SuppressWarnings("unused")
 public class Convert {
     /**
      * 转换为字符串<br>
      * 如果给定的值为null，或者转换失败，返回默认值<br>
      * 转换失败不会报错
+     *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
      * @return 结果
@@ -39,6 +42,7 @@ public class Convert {
      * 转换为字符串<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
      * 转换失败不会报错
+     *
      * @param value 被转换的值
      * @return 结果
      */
@@ -50,6 +54,7 @@ public class Convert {
      * 转换为字符<br>
      * 如果给定的值为null，或者转换失败，返回默认值<br>
      * 转换失败不会报错
+     *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
      * @return 结果
@@ -70,6 +75,7 @@ public class Convert {
      * 转换为字符<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
      * 转换失败不会报错
+     *
      * @param value 被转换的值
      * @return 结果
      */
@@ -81,6 +87,7 @@ public class Convert {
      * 转换为byte<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<br>
      * 转换失败不会报错
+     *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
      * @return 结果
@@ -110,6 +117,7 @@ public class Convert {
      * 转换为byte<br>
      * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
      * 转换失败不会报错
+     *
      * @param value 被转换的值
      * @return 结果
      */
@@ -264,7 +272,7 @@ public class Convert {
      * 转换为Integer数组<br>
      *
      * @param split 分隔符
-     * @param split 被转换的值
+     * @param str 被转换的值
      * @return 结果
      */
     public static Integer[] toIntArray(String split, String str) {
@@ -314,7 +322,7 @@ public class Convert {
      * 转换为String数组<br>
      *
      * @param split 分隔符
-     * @param split 被转换的值
+     * @param str 被转换的值
      * @return 结果
      */
     public static String[] toStrArray(String split, String str) {
@@ -605,7 +613,7 @@ public class Convert {
             return new BigDecimal((Long) value);
         }
         if (value instanceof Double) {
-            return new BigDecimal((Double) value);
+            return BigDecimal.valueOf((Double) value);
         }
         if (value instanceof Integer) {
             return new BigDecimal((Integer) value);
@@ -672,7 +680,8 @@ public class Convert {
         if (obj instanceof String) {
             return (String) obj;
         } else if (obj instanceof byte[] || obj instanceof Byte[]) {
-            return str((Byte[]) obj, charset);
+            assert obj instanceof Byte[];
+            return str(obj, charset);
         } else if (obj instanceof ByteBuffer) {
             return str((ByteBuffer) obj, charset);
         }
@@ -745,8 +754,8 @@ public class Convert {
      * @param input String.
      * @return 全角字符串.
      */
-    public static String toSBC(String input) {
-        return toSBC(input, null);
+    public static String toSbc(String input) {
+        return toSbc(input, null);
     }
 
     /**
@@ -756,8 +765,8 @@ public class Convert {
      * @param notConvertSet 不替换的字符集合
      * @return 全角字符串.
      */
-    public static String toSBC(String input, Set<Character> notConvertSet) {
-        char c[] = input.toCharArray();
+    public static String toSbc(String input, Set<Character> notConvertSet) {
+        char[] c = input.toCharArray();
         for (int i = 0; i < c.length; i++) {
             if (null != notConvertSet && notConvertSet.contains(c[i])) {
                 // 跳过不替换的字符
@@ -792,7 +801,7 @@ public class Convert {
      * @return 替换后的字符
      */
     public static String toDBC(String text, Set<Character> notConvertSet) {
-        char c[] = text.toCharArray();
+        char[] c = text.toCharArray();
         for (int i = 0; i < c.length; i++) {
             if (null != notConvertSet && notConvertSet.contains(c[i])) {
                 // 跳过不替换的字符
@@ -805,9 +814,8 @@ public class Convert {
                 c[i] = (char) (c[i] - 65248);
             }
         }
-        String returnString = new String(c);
 
-        return returnString;
+        return new String(c);
     }
 
     /**

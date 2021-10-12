@@ -6,7 +6,7 @@ import java.io.File;
 
 /** 文件类型工具类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 17:47
+ * @date 2018/4/26 - 17:47
  * @since 1.0.0
  */
 public class FileTypeUtils {

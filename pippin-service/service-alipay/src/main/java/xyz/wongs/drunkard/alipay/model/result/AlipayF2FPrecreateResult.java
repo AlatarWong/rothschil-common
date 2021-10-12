@@ -6,7 +6,7 @@ import xyz.wongs.drunkard.alipay.model.TradeStatus;
 /** 当面付2.0预下单（产生二维码）应答
  * @author <a href="https://github.com/rothschil">Sam</a>
  *
- * @date 2021/9/23 - 10:08
+ * @date 2018/4/23 - 10:08
  * @since 1.0.0
  */
 public class AlipayF2FPrecreateResult implements Result {

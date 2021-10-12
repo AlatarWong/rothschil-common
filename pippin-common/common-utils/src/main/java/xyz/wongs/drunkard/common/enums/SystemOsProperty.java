@@ -2,10 +2,12 @@ package xyz.wongs.drunkard.common.enums;
 
 /**
  * 通过 System.getProperty("") 获取环境变量内容
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2018/4/26 - 17:43
  * @since 1.0.0
- * @date 2021/9/26 - 17:43
  */
+@SuppressWarnings("unused")
 public enum SystemOsProperty {
 
     /**

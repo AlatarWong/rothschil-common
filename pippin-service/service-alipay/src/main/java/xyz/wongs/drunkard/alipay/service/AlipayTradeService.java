@@ -14,7 +14,7 @@ import xyz.wongs.drunkard.alipay.model.result.AlipayF2FRefundResult;
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @description //TODO
  * 
- * @date 2021/9/23 - 10:11
+ * @date 2018/4/23 - 10:11
  * @since 1.0.0
  */
 public interface AlipayTradeService {
@@ -22,7 +22,7 @@ public interface AlipayTradeService {
     /** 当面付2.0流程支付
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-9:43
+     * @date 2018/4/23-9:43
      * @param builder
      * @return AlipayF2FPayResult
      **/
@@ -31,7 +31,7 @@ public interface AlipayTradeService {
     /** 当面付2.0消费查询
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-9:43
+     * @date 2018/4/23-9:43
      * @param builder
      * @return AlipayF2FPayResult
      **/
@@ -40,7 +40,7 @@ public interface AlipayTradeService {
     /** 当面付2.0消费退款
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-9:43
+     * @date 2018/4/23-9:43
      * @param builder
      * @return AlipayF2FPayResult
      **/
@@ -49,7 +49,7 @@ public interface AlipayTradeService {
     /** 当面付2.0预下单(生成二维码)
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @description //TODO
-     * @date 2021/9/23-9:43
+     * @date 2018/4/23-9:43
      * @param builder
      * @return AlipayF2FPayResult
      **/

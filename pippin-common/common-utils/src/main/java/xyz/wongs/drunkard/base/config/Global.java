@@ -18,7 +18,7 @@ import java.util.Properties;
  * 全局配置类 ，让应用在第一次调用过程完成，属性值的实例化
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/26 - 17:08
+ * @date 2018/4/26 - 17:08
  * @since 1.0.0
  */
 @Component
@@ -36,7 +36,7 @@ public class Global {
      * @param key 键
      * @return String Value
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-17:08
+     * @date 2018/4/26-17:08
      **/
     public static String getConfig(String key) {
         String value = GLOBAL_ATTR_MAP.get(key);

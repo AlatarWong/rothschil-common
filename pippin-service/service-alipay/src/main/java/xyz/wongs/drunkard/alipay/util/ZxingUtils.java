@@ -22,7 +22,7 @@ import java.util.Map;
  * 使用了zxing库进行二维码的生成
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/9/23 - 10:16
+ * @date 2018/4/23 - 10:16
  * @since 1.0.0
  */
 public class ZxingUtils {
@@ -59,7 +59,7 @@ public class ZxingUtils {
      * @param imgPath  图片保存路径
      * @return File
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:36
+     * @date 2018/4/26-10:36
      **/
     public static File getQRCodeImge(String contents, int width, String imgPath) {
         return getQRCodeImge(contents, width, width, imgPath);
@@ -75,7 +75,7 @@ public class ZxingUtils {
      * @param imgPath  图片保存路径
      * @return File
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:37
+     * @date 2018/4/26-10:37
      **/
     public static File getQRCodeImge(String contents, int width, int height, String imgPath) {
         try {

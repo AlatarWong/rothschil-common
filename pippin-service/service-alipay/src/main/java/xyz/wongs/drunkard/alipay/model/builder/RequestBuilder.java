@@ -5,7 +5,7 @@ import xyz.wongs.drunkard.alipay.util.GsonFactory;
 /** 请求抽象类
  * @author <a href="https://github.com/rothschil">Sam</a>
  *
- * @date 2021/9/23 - 10:21
+ * @date 2018/4/23 - 10:21
  * @since 1.0.0
  */
 public abstract class RequestBuilder {
@@ -14,7 +14,7 @@ public abstract class RequestBuilder {
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:42
+     * @date 2018/4/26-10:42
      * @param
      * @return boolean
      **/
@@ -22,7 +22,7 @@ public abstract class RequestBuilder {
 
     /** 获取bizContent对象，用于下一步转换为json字符串
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:42
+     * @date 2018/4/26-10:42
      * @param
      * @return Object
      **/
@@ -30,7 +30,7 @@ public abstract class RequestBuilder {
 
     /** 将bizContent对象转换为json字符串
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-10:42
+     * @date 2018/4/26-10:42
      * @param
      * @return String
      **/

@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @since 1.0.0
- * @date 2021/9/26 - 17:47
+ * @date 2018/4/26 - 17:47
  */
 public class FileUtils extends org.apache.commons.io.FileUtils {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";

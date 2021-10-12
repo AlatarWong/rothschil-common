@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @Description
  * @author WCNGS@QQ.COM
  * 
- * @date 2020/8/19 20:58
+ * @date 2017/12/19 20:58
  * @since 1.0.0
 */
 public interface DefineService<T extends BasePo,ID extends Serializable> {
@@ -20,7 +20,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @param pgInfo 分页信息
      * @param t 实体对象
      * @return PageInfo
-     * @date 2020/8/2 14:07
+     * @date 2017/12/2 14:07
      */
     PageInfo<T> selectPage(PaginationInfo pgInfo, T t);
 
@@ -29,7 +29,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @param condition 条件
      * @param pgInfo 分页信息
      * @return PageInfo
-     * @date 2020/8/2 14:07
+     * @date 2017/12/2 14:07
      */
     PageInfo<T> selectPageByCondition(PaginationInfo pgInfo, Object condition);
 
@@ -39,7 +39,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @param pgInfo 分页信息
      * @param example Example对象
      * @return PageInfo
-     * @date 2020/8/2 14:07
+     * @date 2017/12/2 14:07
      */
     PageInfo<T> selectByExample(PaginationInfo pgInfo, Object example);
 
@@ -47,7 +47,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param id ID KEY
      * @return int
-     * @date 2020/8/2 14:07
+     * @date 2017/12/2 14:07
      */
     int deleteByPrimaryKey(ID id);
 
@@ -56,7 +56,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param id ID KEY
      * @return int
-     * @date 2020/8/2 14:08
+     * @date 2017/12/2 14:08
      */
     T selectByPrimaryKey(ID id);
 
@@ -64,7 +64,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param t 对象信息
      * @return int
-     * @date 2020/8/2 14:08
+     * @date 2017/12/2 14:08
      */
     int updateByPrimaryKeySelective(T t);
 
@@ -72,7 +72,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param t 对象信息
      * @return int
-     * @date 2020/8/2 14:08
+     * @date 2017/12/2 14:08
      */
     int updateByPrimaryKeyWithBlob(T t);
 
@@ -80,7 +80,7 @@ public interface DefineService<T extends BasePo,ID extends Serializable> {
      * @Description
      * @param t 对象信息
      * @return int
-     * @date 2020/8/2 14:08
+     * @date 2017/12/2 14:08
      */
     int updateByPrimaryKey(T t);
 }

@@ -13,7 +13,7 @@ import java.util.Map;
  * <b>业务类实体对象</b> 可以直接继承本类，提供基本元素属性供 Entity 实体使用。
  *
  * @author WCNGS@QQ.COM
- * @date 2020/8/2 13:32
+ * @date 2017/12/2 13:32
  * @since 1.0.0
  */
 public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> {
