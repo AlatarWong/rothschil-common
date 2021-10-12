@@ -3,14 +3,15 @@ package xyz.wongs.drunkard.framework.shiro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.common.utils.DateUtils;
 import xyz.wongs.drunkard.common.utils.MessageUtils;
 import xyz.wongs.drunkard.common.utils.ServletUtils;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.framework.manager.AsyncManager;
 import xyz.wongs.drunkard.framework.manager.factory.AsyncFactory;
-import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.war.constant.ShiroConstants;
 import xyz.wongs.drunkard.war.constant.UserConstants;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
@@ -37,11 +38,11 @@ public class SysRegisterService {
     public String register(SysUser user) {
         String msg = "", loginName = user.getLoginName(), password = user.getPassword();
 
-        if (!StringUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
+        if (!ObjectUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
             msg = "验证码错误";
-        } else if (StringUtils.isEmpty(loginName)) {
+        } else if (StringUtils.hasLength(loginName)) {
             msg = "用户名不能为空";
-        } else if (StringUtils.isEmpty(password)) {
+        } else if (StringUtils.hasLength(password)) {
             msg = "用户密码不能为空";
         } else if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
                 || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {

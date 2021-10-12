@@ -5,7 +5,9 @@ import xyz.wongs.drunkard.base.response.enums.Status;
 import xyz.wongs.drunkard.common.exception.DrunkardException;
 import xyz.wongs.drunkard.common.utils.StringUtils;
 
-/** sql操作工具类
+/**
+ * sql操作工具类
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/9 - 21:38
  * @since 1.0.0

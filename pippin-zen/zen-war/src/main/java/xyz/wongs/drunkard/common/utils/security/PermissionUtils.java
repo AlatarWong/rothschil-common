@@ -19,6 +19,7 @@ import java.beans.PropertyDescriptor;
  * @date 2019/10/9 - 21:38
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class PermissionUtils {
     private static final Logger log = LoggerFactory.getLogger(PermissionUtils.class);
 
