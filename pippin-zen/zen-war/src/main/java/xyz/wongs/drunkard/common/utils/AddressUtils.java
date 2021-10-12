@@ -66,7 +66,7 @@ public class AddressUtils {
      * @return String
      * @date 20/12/9 17:32
      */
-    public static String getRealAddressByLocalIP(String ip) {
+    public static String getRealAddressByLocalIp(String ip) {
         return ip;
     }
 }

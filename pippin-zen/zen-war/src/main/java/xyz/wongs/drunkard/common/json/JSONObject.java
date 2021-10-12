@@ -2,16 +2,18 @@ package xyz.wongs.drunkard.common.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import xyz.wongs.drunkard.common.utils.StringUtils;
-
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** 通用消息对象，基于Map实现的可嵌套数据结构。 支持JSON数据结构。
+/**
+ * 通用消息对象，基于Map实现的可嵌套数据结构。 支持JSON数据结构。
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/9 - 21:30
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class JSONObject extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = 1L;
     private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+\\])+)");
@@ -183,12 +185,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
         } else {
             final Matcher matcher = arrayNamePattern.matcher(name);
             if (matcher.find()) {
-                return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Object>() {
-                    @Override
-                    public Object callback(JSONArray arr, int index) {
-                        return elementAt(arr, index);
-                    }
-                });
+                return endArray(matcher.group(1), matcher.group(2), JSONObject::elementAt);
             } else {
                 return get(name);
             }
@@ -209,12 +206,9 @@ public class JSONObject extends LinkedHashMap<String, Object> {
         } else {
             final Matcher matcher = arrayNamePattern.matcher(name);
             if (matcher.find()) {
-                endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Void>() {
-                    @Override
-                    public Void callback(JSONArray arr, int index) {
-                        elementAt(arr, index, value);
-                        return null;
-                    }
+                endArray(matcher.group(1), matcher.group(2), (EndArrayCallback<Void>) (arr, index) -> {
+                    elementAt(arr, index, value);
+                    return null;
                 });
             } else {
                 set(name, value);
@@ -232,12 +226,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
     public JSONObject obj(final String name) {
         final Matcher matcher = arrayNamePattern.matcher(name);
         if (matcher.find()) {
-            return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<JSONObject>() {
-                @Override
-                public JSONObject callback(JSONArray arr, int index) {
-                    return objAt(arr, index);
-                }
-            });
+            return endArray(matcher.group(1), matcher.group(2), JSONObject::objAt);
         } else {
             JSONObject obj = getObj(name);
             if (obj == null) {
@@ -472,9 +461,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 
     private static JSONArray toArr(final Collection<Object> list) {
         final JSONArray arr = new JSONArray(list.size());
-        for (final Object element : list) {
-            arr.add(element);
-        }
+        arr.addAll(list);
         return arr;
     }
 
@@ -589,12 +576,12 @@ public class JSONObject extends LinkedHashMap<String, Object> {
     }
 
     private static int[] parseIndexes(final String s) {
-        int[] indexes = null;
-        List<Integer> list = new ArrayList<Integer>();
+        int[] indexes;
+        List<Integer> list = new ArrayList<>();
 
         final StringTokenizer st = new StringTokenizer(s, "[]");
         while (st.hasMoreTokens()) {
-            final int index = Integer.valueOf(st.nextToken());
+            final int index = Integer.parseInt(st.nextToken());
             if (index < 0) {
                 throw new RuntimeException(String.format("Illegal index %1$d in \"%2$s\"", index, s));
             }
@@ -604,7 +591,7 @@ public class JSONObject extends LinkedHashMap<String, Object> {
 
         indexes = new int[list.size()];
         int i = 0;
-        for (Integer tmp : list.toArray(new Integer[list.size()])) {
+        for (Integer tmp : list.toArray(new Integer[0])) {
             indexes[i++] = tmp;
         }
 
