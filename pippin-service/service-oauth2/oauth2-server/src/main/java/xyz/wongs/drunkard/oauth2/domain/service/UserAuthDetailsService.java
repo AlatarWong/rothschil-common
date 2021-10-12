@@ -27,7 +27,7 @@ public class UserAuthDetailsService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
     /**
      * @Description 根据用户名查询用户角色、权限等信息
-     * @Date 2019/7/1 14:50
+     * @date 2019/7/1 14:50
      * @since  1.0
      */
     @Override

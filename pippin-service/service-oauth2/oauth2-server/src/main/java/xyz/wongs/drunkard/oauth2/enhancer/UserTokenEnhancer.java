@@ -21,7 +21,7 @@ import java.util.UUID;
 public class UserTokenEnhancer implements TokenEnhancer {
     /**
      * @Description 重新定义令牌token
-     * @Date 2019/7/9 19:56
+     * @date 2019/7/9 19:56
      * @since  1.0
      */
     @Override
@@ -45,7 +45,7 @@ public class UserTokenEnhancer implements TokenEnhancer {
     }
     /**
      * @Description 生成自定义token
-     * @Date 2019/7/9 19:50
+     * @date 2019/7/9 19:50
      * @since  1.0
      */
     private String getToken(){

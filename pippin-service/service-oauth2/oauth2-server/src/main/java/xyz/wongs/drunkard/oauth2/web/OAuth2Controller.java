@@ -49,7 +49,7 @@ public class OAuth2Controller {
 
     /**
      * @Description /oauth/token(令牌端点) 获取用户token信息
-     * @Date 2019/7/22 15:59
+     * @date 2019/7/22 15:59
      * @since  1.0
      */
     @PostMapping(value = "/token")
@@ -91,7 +91,7 @@ public class OAuth2Controller {
     }
     /**
      * @Description /oauth/token（令牌端点）刷新token信息
-     * @Date 2019/7/25 16:13
+     * @date 2019/7/25 16:13
      * @since  1.0
      */
     @PostMapping(value = "refresh_token")
@@ -129,7 +129,7 @@ public class OAuth2Controller {
     }
     /**
      * @Description oauth/check_token（端点校验）token有效性
-     * @Date 2019/7/25 16:22
+     * @date 2019/7/25 16:22
      * @since  1.0
      */
     @PostMapping(value = "check_token")
@@ -151,7 +151,7 @@ public class OAuth2Controller {
     }
     /**
      * @Description 账号退出
-     * @Date 2019/7/25 17:47
+     * @date 2019/7/25 17:47
      * @since  1.0
      */
     @PostMapping(value = "logout")

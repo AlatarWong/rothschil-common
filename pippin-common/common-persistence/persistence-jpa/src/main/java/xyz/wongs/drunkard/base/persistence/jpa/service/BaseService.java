@@ -3,90 +3,94 @@ package xyz.wongs.drunkard.base.persistence.jpa.service;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
+import xyz.wongs.drunkard.base.persistence.jpa.entity.BasePo;
 import xyz.wongs.drunkard.common.utils.Reflections;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Service基类
- * @Description
- * @author WCNGS@QQ.COM
+/**
+ * JPA 中封装的Service基类
  *
+ * @author WCNGS@QQ.COM
  * @date 20/12/18 11:05
  * @since 1.0.0
-*/
-@Transactional(readOnly = true,rollbackFor = Exception.class)
-public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializable> {
+ */
+@SuppressWarnings("unused")
+@Transactional(readOnly = true, rollbackFor = Exception.class)
+public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> {
 
     protected JpaRepository<T, ID> jpaRepository;
 
-    public BaseService() {}
+    public BaseService() {
+    }
+
     /**
      * 重要
-     * **/
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     **/
     public abstract void setJpaRepository(JpaRepository<T, ID> jpaRepository);
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:16
-     * @Param t 实体信息
+     * @param t 实体信息
      * @return List
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:16
      **/
-    public List findByEntity(T t) {
+    public List<T> findByEntity(T t) {
         return jpaRepository.findAll(getExample(t));
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:16
-     * @Param t 实体信息
-     * @Param page 页
-     * @Param size 每页数量
+     * @param page 页
+     * @param size 每页数量
+     * @param t    实体信息
      * @return Page
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:16
      **/
-    public Page findPageByEntity(int page, int size, T t) {
-        size=size==0?10:size;
-        return jpaRepository.findAll(getExample(t),PageRequest.of(page, size));
+    public Page<T> findPageByEntity(int page, int size, T t) {
+        size = size == 0 ? 10 : size;
+        return jpaRepository.findAll(getExample(t), PageRequest.of(page, size));
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:16
-     * @Param t 实体信息
+     * @param t 实体信息
      * @return Example
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:16
      **/
-    private Example getExample(T t){
+    private Example<T> getExample(T t) {
         ExampleMatcher matcher = ExampleMatcher.matching();
-        List<String> fields = new ArrayList<String>();
-        Reflections.getField(t,fields);
-        for (String fld: fields){
-            matcher.withMatcher(fld,ExampleMatcher.GenericPropertyMatchers.exact());
+        List<String> fields = new ArrayList<>();
+        Reflections.getField(t, fields);
+        for (String fld : fields) {
+            matcher.withMatcher(fld, ExampleMatcher.GenericPropertyMatchers.exact());
         }
-        return Example.of(t,matcher);
+        return Example.of(t, matcher);
     }
 
-    /** 保存单个实体
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param t 实体
+    /**
+     * 保存单个实体
+     *
+     * @param t 实体
      * @return T  返回id对应的实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public T save(T t) {
         return jpaRepository.save(t);
     }
 
-    /** 保存
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param t 实体
+    /**
+     * 保存
+     *
+     * @param t 实体
      * @return T  返回id对应的实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public T saveAndFlush(T t) {
@@ -95,99 +99,109 @@ public abstract class BaseService<T extends AbstractPo<?>, ID extends Serializab
         return t;
     }
 
-    /** 根据主键删除相应实体
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param id 主键
+    /**
+     * 根据主键删除相应实体
+     *
+     * @param id 主键
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * //TODO
+     * @date 2020/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public void delete(ID id) {
         jpaRepository.delete(findOne(id));
     }
 
-    /** 删除实体
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param t              实体
+    /**
+     * 删除实体
+     *
+     * @param t 实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public void delete(T t) {
         jpaRepository.delete(t);
     }
 
-    /** 按照主键查询
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param id                id 主键
+    /**
+     * 按照主键查询
+     *
+     * @param id id 主键
      * @return T  返回id对应的实体
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     public T findOne(ID id) {
-        return jpaRepository.getOne(id);
-    }
-
-    /** 实体是否存在
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param id                id 主键
-     * @return boolean   存在 返回true，否则false
-     **/
-    public boolean exists(ID id) {
-        return findOne(id)==null;
+        return jpaRepository.getById(id);
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 统计实体总数
-     * @Date 2018/7/3 22:07
+     * 实体是否存在
+     *
+     * @param id id 主键
+     * @return boolean   存在 返回true，否则false
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
+     **/
+    public boolean exists(ID id) {
+        return findOne(id) == null;
+    }
+
+    /**
+     * 统计实体总数
+     *
      * @return List<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2018/7/3 22:07
      **/
     public long count() {
         return jpaRepository.count();
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 查询所有实体
-     * @Date 2018/7/3 22:07
+     * 查询所有实体
+     *
      * @return List<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2018/7/3 22:07
      **/
     public List<T> findAll() {
         return jpaRepository.findAll();
     }
 
-    /** 按照顺序查询所有实体
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @Date 2021/7/8-14:02
-     * @Param sort
+    /**
+     * 按照顺序查询所有实体
+     *
+     * @param sort 排序实例
      * @return List<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     public List<T> findAll(Sort sort) {
         return jpaRepository.findAll(sort);
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 分页及排序查询实体
-     * @Date 2021/7/8-14:02
-     * @Param pageable  分页及排序数据
+     * 分页及排序查询实体
+     *
+     * @param pageable 分页及排序数据
      * @return Page<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     public Page<T> findAll(Pageable pageable) {
         return jpaRepository.findAll(pageable);
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 分页
-     * @Date 2021/7/8-14:02
-     * @Param page  页数
-     * @Param size  每页数量
+     * 分页
+     *
+     * @param page 页数
+     * @param size 每页数量
      * @return Page<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:02
      **/
     public Page<T> findEntityNoCriteria(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);

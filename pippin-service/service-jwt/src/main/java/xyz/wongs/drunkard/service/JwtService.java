@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.jwt.po.User;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
  * 
- * @date 2021/7/6 - 10:24
+ * @date 2020/11/6 - 10:24
  * @since 1.0.0
  */
 @Component
@@ -17,10 +17,10 @@ public class JwtService {
 
     /**
      * @return String
-     * @Author <a href="https://github.com/rothschil">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
-     * @Date 2021/7/6-10:24
-     * @Param user
+     * @date 2020/11/6-10:24
+     * @param user
      **/
     public String getToken(User user) {
         String token = "";

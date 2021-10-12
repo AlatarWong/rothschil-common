@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * @Description Spring security认证Bean
-     * @Date 2019/7/4 17:39
+     * @date 2019/7/4 17:39
      * @since  1.0
      */
     @Bean

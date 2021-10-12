@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description 登录表明身份注解
  * 
- * @date 2021/7/6 - 10:16
+ * @date 2020/11/6 - 10:16
  * @since 1.0.0
  */
 @Target({ElementType.METHOD, ElementType.TYPE})

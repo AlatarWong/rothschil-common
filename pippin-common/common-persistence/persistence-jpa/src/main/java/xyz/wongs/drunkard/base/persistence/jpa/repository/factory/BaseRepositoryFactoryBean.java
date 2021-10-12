@@ -7,15 +7,20 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
-import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
+import xyz.wongs.drunkard.base.persistence.jpa.entity.BasePo;
 import xyz.wongs.drunkard.base.persistence.jpa.repository.impl.BaseRepositoryImpl;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
 
+/**
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/12 - 15:48
+ * @since 1.0.0
+ */
 @SuppressWarnings({"rawtypes","unchecked"})
-public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T extends AbstractPo,I extends Serializable> extends JpaRepositoryFactoryBean<R, T, I> {
+public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T extends BasePo,I extends Serializable> extends JpaRepositoryFactoryBean<R, T, I> {
 
 
     public BaseRepositoryFactoryBean(Class<? extends R> repositoryInterface) {
@@ -44,8 +49,8 @@ public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T extends 
 
         /**
          *  设置具体的实现类的class
-         * @param metadata
-         * @return
+         * @param metadata 原数据
+         * @return Class
          */
         @Override
         protected Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {

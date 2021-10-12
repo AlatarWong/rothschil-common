@@ -2,12 +2,11 @@ package xyz.wongs.drunkard.base.persistence.jpa.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
+import xyz.wongs.drunkard.base.persistence.jpa.entity.BasePo;
 import xyz.wongs.drunkard.common.constant.Constants;
-import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
 import xyz.wongs.drunkard.common.utils.DateUtils;
 import xyz.wongs.drunkard.common.utils.StringUtils;
 
-import javax.annotation.Nullable;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -23,34 +22,29 @@ import java.util.List;
 
 /**
  * @author WCNGS@QQ.CO
- * @since V1.0
  * @date 2018/7/4 20:54
+ * @since V1.0
  **/
 @Slf4j
-public class MethodUtil {
+public class MethodUtil<T extends BasePo> {
 
-    public static Specification getSpecification(AbstractPo t){
-        return new Specification<AbstractPo>() {
-            @Override
-            public Predicate toPredicate(@Nullable Root<AbstractPo> root, @Nullable CriteriaQuery<?> query,@Nullable CriteriaBuilder cb) {
-                List<Predicate> list = MethodUtil.getFieldValue(t,root,cb);
-                Predicate[] pre = new Predicate[list.size()];
-                pre = list.toArray(pre);
-                assert query != null;
-                CriteriaQuery<?> quy = query.where(pre);
-                return quy.getRestriction();
-            }
+    public static Specification<BasePo> getSpecification(BasePo t) {
+        return (root, query, cb) -> {
+            List<Predicate> list = MethodUtil.getFieldValue(t, root, cb);
+            Predicate[] pre = new Predicate[list.size()];
+            pre = list.toArray(pre);
+            CriteriaQuery<?> quy = query.where(pre);
+            return quy.getRestriction();
         };
     }
 
     /**
-     * @Description
      * @param entity 实体基类
-     * @param root root
-     * @param cb    CriteriaBuilder
+     * @param root   root
+     * @param cb     CriteriaBuilder
      * @date 20/12/18 10:12
      */
-    public static List<Predicate> getFieldValue(AbstractPo entity, Root<?> root, CriteriaBuilder cb) {
+    public static List<Predicate> getFieldValue(BasePo entity, Root<?> root, CriteriaBuilder cb) {
         List<Predicate> lp = new ArrayList<>();
         Class<?> cls = entity.getClass();
         Field[] fields = cls.getDeclaredFields();
@@ -59,7 +53,7 @@ public class MethodUtil {
         for (Field field : fields) {
             try {
                 //校验是否有GETTER、SETTER的方法
-                if(!checkGetSetMethodAndAnnotation(methods,field)){
+                if (!checkGetSetMethodAndAnnotation(methods, field)) {
                     continue;
                 }
                 String fieldGetName = StringUtils.parGetName(field.getName());
@@ -99,14 +93,15 @@ public class MethodUtil {
         return lp;
     }
 
-    /** 检查Set Get方法以及忽略Transient 的注解
-     * @Description
+    /**
+     * 检查Set Get方法以及忽略Transient 的注解
+     *
      * @param methods Null
-     * @param field Null
+     * @param field   Null
      * @return boolean
      * @date 20/12/22 15:13
      */
-    public static boolean checkGetSetMethodAndAnnotation(Method[] methods,Field field){
+    public static boolean checkGetSetMethodAndAnnotation(Method[] methods, Field field) {
         boolean result = true;
         String fieldGetName = StringUtils.parGetName(field.getName());
         String fieldSetName = StringUtils.parSetName(field.getName());
@@ -116,7 +111,7 @@ public class MethodUtil {
         } else {
             //检查 Transient 注解
             Annotation annotation = field.getAnnotation(javax.persistence.Transient.class);
-            if(StringUtils.isNotNull(annotation)){
+            if (StringUtils.isNotNull(annotation)) {
                 result = false;
             }
         }
@@ -124,15 +119,14 @@ public class MethodUtil {
     }
 
     /**
-     * @Description
-     * @param cb No
-     * @param root No
+     * @param cb    No
+     * @param root  No
      * @param field No
      * @param value No
      * @return javax.persistence.criteria.Predicate
      * @date 20/12/22 14:39
      */
-    public static Predicate doInteger(CriteriaBuilder cb,Root<?> root,Field field,String value){
+    public static Predicate doInteger(CriteriaBuilder cb, Root<?> root, Field field, String value) {
         return cb.equal(root.get(field.getName()).as(Integer.class), Integer.valueOf(value));
     }
 

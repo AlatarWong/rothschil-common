@@ -27,8 +27,8 @@ public class HtmlController {
     private LocationService locationService;
 
     /** idx 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Date 2021/7/8-14:57
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:57
      * @Param
      * @return String
      **/
@@ -38,9 +38,9 @@ public class HtmlController {
     }
 
     /** 查询列表 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Date 2021/7/8-14:58
-     * @Param model MODEL
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2020/11/8-14:58
+     * @param model MODEL
      * @param pageNum   页数
      * @param pageSize  每页大小
      * @return String

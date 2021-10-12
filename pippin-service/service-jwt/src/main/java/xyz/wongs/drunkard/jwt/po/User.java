@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.jwt.po;
 import java.io.Serializable;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
  *
  * @date `2021/7/6` - 10:22

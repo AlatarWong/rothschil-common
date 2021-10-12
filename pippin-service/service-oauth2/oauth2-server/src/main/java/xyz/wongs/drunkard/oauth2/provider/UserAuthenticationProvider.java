@@ -34,7 +34,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
    // private ApplicationEventPublisher publisher;
     /**
      * @Description 认证处理，返回一个Authentication的实现类则代表认证成功，返回null则代表认证失败
-     * @Date 2019/7/5 15:19
+     * @date 2019/7/5 15:19
      * @since  1.0
      */
     @Override
@@ -62,7 +62,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
     }
     /**
      * @Description 如果该AuthenticationProvider支持传入的Authentication对象，则返回true
-     * @Date 2019/7/5 15:18
+     * @date 2019/7/5 15:18
      * @since  1.0
      */
     @Override

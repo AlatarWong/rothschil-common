@@ -80,7 +80,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
      * 删除目录
      *
      * @author fengshuonan
-     * @Date 2017/10/30 下午4:15
+     * @date 2017/10/30 下午4:15
      */
     public static boolean deleteDir(File dir) {
         if (dir.isDirectory()) {

@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.war.domain.entity;
 
 import lombok.*;
-import xyz.wongs.drunkard.base.persistence.jpa.entity.AbstractPo;
+import xyz.wongs.drunkard.base.persistence.jpa.entity.BasePo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name="tb_locations")
-public class Location extends AbstractPo<Long> {
+public class Location extends BasePo<Long> {
 
     @Id
     @Column(name = "id", nullable = false)

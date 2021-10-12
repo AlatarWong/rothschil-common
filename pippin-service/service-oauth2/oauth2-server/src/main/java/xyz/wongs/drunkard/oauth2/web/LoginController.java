@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
     /**
      * @Description 登录测试接口
-     * @Date 2019/7/8 17:42
+     * @date 2019/7/8 17:42
      * @since  1.0
      */
     @RequestMapping(value = "/get_token_info", method = RequestMethod.GET)
@@ -39,7 +39,7 @@ public class LoginController {
     }
     /**
      * @Description 获取授权码
-     * @Date 2019/7/9 15:44
+     * @date 2019/7/9 15:44
      * @since  1.0
      */
     @RequestMapping("/get_auth_code")

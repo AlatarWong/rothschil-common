@@ -2,26 +2,30 @@ package xyz.wongs.drunkard.base.persistence.jpa.entity;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.domain.Persistable;
-import xyz.wongs.drunkard.common.po.BasePo;
+import xyz.wongs.drunkard.common.po.SuperPo;
 
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-/** 抽象实体基类，如果主键是数据库端自动生成 请使用 {@link xyz.wongs.drunkard.common.po.BasePo} ，如果是Oracle 请使用 {@link xyz.wongs.drunkard.base.persistence.jpa.entity.SuperOrcPo}
+/**
+ * 抽象实体基类，如果主键是数据库端自动生成 请使用 {@link xyz.wongs.drunkard.common.po.BasePo} ，
+ * 如果是Oracle 请使用 {@link BaseOrcDate}
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/18 10:53
  * @since 1.0.0
-*/
+ */
 @MappedSuperclass
-public abstract class AbstractPo<ID extends Serializable> extends BasePo<ID> implements Persistable<ID> {
+public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> implements Persistable<ID> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public abstract ID getId();
+    @Override
+    public abstract ID getId();
 
     /**
      * Sets the id of the entity.
+     *
      * @param id the id to set
      */
     @Override
@@ -45,7 +49,7 @@ public abstract class AbstractPo<ID extends Serializable> extends BasePo<ID> imp
         if (!getClass().equals(obj.getClass())) {
             return false;
         }
-        AbstractPo<?> that = (AbstractPo<?>) obj;
+        BasePo<?> that = (BasePo<?>) obj;
         return null != this.getId() && this.getId().equals(that.getId());
     }
 

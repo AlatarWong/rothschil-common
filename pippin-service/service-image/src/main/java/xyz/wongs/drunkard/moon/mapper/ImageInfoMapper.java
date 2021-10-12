@@ -7,10 +7,10 @@ import xyz.wongs.drunkard.moon.entity.ImageInfo;
 import java.util.List;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
  * 
- * @date 2021/7/13 - 9:41
+ * @date 2020/11/13 - 9:41
  * @since 1.0.0
  */
 public interface ImageInfoMapper extends BaseMapper<ImageInfo,Long> {

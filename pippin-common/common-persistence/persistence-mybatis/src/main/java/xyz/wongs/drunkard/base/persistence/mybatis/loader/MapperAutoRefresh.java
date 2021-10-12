@@ -26,25 +26,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author WCNGS@QQ.COM
- * @ClassName MapperAutoRefresh
- * @Description Mybatis的mapper文件中的sql语句被修改后, 只能重启服务器才能被加载, 非常耗时,所以就写了一个自动加载的类,
+ * Mybatis的mapper文件中的sql语句被修改后, 只能重启服务器才能被加载, 非常耗时,所以就写了一个自动加载的类,
  * 配置后检查xml文件更改,如果发生变化,重新加载xml里面的内容.
- * 
+ *
+ * @author WCNGS@QQ.COM
  * @date 20/11/17 10:29
  * @since 1.0.0
  */
 @Slf4j
 @Component
+@SuppressWarnings("unused")
 public class MapperAutoRefresh implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
-    private static Properties prop = new Properties();
+    private static final Properties prop = new Properties();
     /**
      * 是否启用Mapper刷新线程功能
      */
-    private static boolean enabled;
+    private static final boolean enabled;
     /**
      * 刷新启用后，是否启动了刷新线程
      */
@@ -80,7 +80,9 @@ public class MapperAutoRefresh implements ApplicationContextAware {
     private static String mappingPath;
 
     private static final String XML_RESOURCE_PATTERN = "**/*.xml";
+
     private String basePackage = "/mapper";
+
     private static String FILE_NAME = "/conf/mybatis-refresh.properties";
 
     @Override
@@ -113,41 +115,38 @@ public class MapperAutoRefresh implements ApplicationContextAware {
 
 
     @PostConstruct
-    public void start() throws IOException{
+    public void start() throws IOException {
         SqlSessionFactory sessionFactory = applicationContext.getBean(SqlSessionFactory.class);
-        Configuration configuration = sessionFactory.getConfiguration();
-        this.configuration = configuration;
-        mapperLocations = getResource(basePackage,XML_RESOURCE_PATTERN);
+        this.configuration = sessionFactory.getConfiguration();
+        mapperLocations = getResource(basePackage, XML_RESOURCE_PATTERN);
         exeTask();
     }
 
-    /**
-     * @Description 根据路径获取XML 的Resource
-     * @param basePackage
-     * @param pattern
+    /** 根据路径获取XML 的Resource
+     * @param basePackage 给定包
+     * @param pattern 正则表达式
      * @return javax.annotation.Resource[]
-     * @throws
      * @date 20/11/17 10:48
      */
     public Resource[] getResource(String basePackage, String pattern) throws IOException {
-        String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX+ ClassUtils.convertClassNameToResourcePath(applicationContext.getEnvironment().resolveRequiredPlaceholders(
+        String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + ClassUtils.convertClassNameToResourcePath(applicationContext.getEnvironment().resolveRequiredPlaceholders(
                 basePackage)) + "/" + pattern;
         ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
         return resourcePatternResolver.getResources(packageSearchPath);
     }
 
-    class MyBatisThreadRefresh implements Runnable{
+    class MyBatisThreadRefresh implements Runnable {
 
-        private MapperAutoRefresh mapperAutoRefresh;
+        private final MapperAutoRefresh mapperAutoRefresh;
 
-        MyBatisThreadRefresh(MapperAutoRefresh mapperAutoRefresh){
+        MyBatisThreadRefresh(MapperAutoRefresh mapperAutoRefresh) {
             this.mapperAutoRefresh = mapperAutoRefresh;
         }
 
         @Override
         public void run() {
             // 解析资源
-            if(null==location){
+            if (null == location) {
                 location = Sets.newHashSet();
                 log.debug("MapperLocation's length:" + mapperLocations.length);
                 for (Resource mapperLocation : mapperLocations) {
@@ -177,52 +176,44 @@ public class MapperAutoRefresh implements ApplicationContextAware {
                     for (String s : location) {
                         mapperAutoRefresh.refresh(s, beforeTime);
                     }
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-                try {
                     TimeUnit.SECONDS.sleep(sleepSeconds);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
 
-    /** 执行资源刷新任务
-     * @Description
-     * @param
-     * @return void
-     * @throws
+    /**
+     * 执行资源刷新任务
+     *
      * @date 20/11/17 11:04
      */
     public void exeTask() {
-        if(null==mapperLocations || mapperLocations.length==0){
-            return ;
+        if (null == mapperLocations || mapperLocations.length == 0) {
+            return;
         }
         beforeTime = System.currentTimeMillis();
-        if(enabled){
+        if (enabled) {
             // 启动刷新线程
             final MapperAutoRefresh runnable = this;
 
-            ExecutorService es = ThreadPoolsUtil.doCreate(1,1,"Mybatis-Refresh");
+            ExecutorService es = ThreadPoolsUtil.doCreate(1, 1, "Mybatis-Refresh");
             MyBatisThreadRefresh mtr = new MyBatisThreadRefresh(this);
             es.execute(mtr);
         }
     }
 
-    /** 刷新资源的操作
-     * @Description
-     * @param filePath 资源的路径
-     * @param beforeTime    开始时间
-     * @return void
-     * @throws
+    /**
+     * 刷新资源的操作
+     *
+     * @param filePath   资源的路径
+     * @param beforeTime 开始时间
      * @date 20/11/17 11:06
      */
-    public void refresh(String filePath,long beforeTime) throws FileNotFoundException {
+    public void refresh(String filePath, long beforeTime) throws FileNotFoundException {
         // 本次刷新时间
-        Long refrehTime = System.currentTimeMillis();
+        long refrehTime = System.currentTimeMillis();
         // 获取需要刷新的Mapper文件列表
         List<File> fileList = this.getRefreshFile(new File(filePath), beforeTime);
 
@@ -232,7 +223,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
         log.info("Refresh file: " + fileList.size());
 
         for (File file : fileList) {
-            try{
+            try {
                 InputStream inputStream = new FileInputStream(file);
                 String resource = file.getAbsolutePath();
 
@@ -243,16 +234,16 @@ public class MapperAutoRefresh implements ApplicationContextAware {
                         "keyGenerators", "sqlFragments"
                 };
 
-                for (String fieldName : mapFieldNames){
+                for (String fieldName : mapFieldNames) {
                     Field field = configuration.getClass().getDeclaredField(fieldName);
                     field.setAccessible(true);
-                    Map map = ((Map)field.get(configuration));
-                    if (!(map instanceof StrictMap)){
+                    Map map = ((Map) field.get(configuration));
+                    if (!(map instanceof StrictMap)) {
                         Map newMap = new StrictMap(StringUtils.capitalize(fieldName) + "collection");
-                        for (Object key : map.keySet()){
+                        for (Object key : map.keySet()) {
                             try {
                                 newMap.put(key, map.get(key));
-                            }catch(IllegalArgumentException ex){
+                            } catch (IllegalArgumentException ex) {
                                 newMap.put(key, ex.getMessage());
                             }
                         }
@@ -263,15 +254,13 @@ public class MapperAutoRefresh implements ApplicationContextAware {
                 // 清理已加载的资源标识，方便让它重新加载。
                 Field loadedResourcesField = configuration.getClass().getDeclaredField("loadedResources");
                 loadedResourcesField.setAccessible(true);
-                Set loadedResourcesSet = ((Set)loadedResourcesField.get(configuration));
+                Set loadedResourcesSet = ((Set) loadedResourcesField.get(configuration));
                 loadedResourcesSet.remove(resource);
 
                 //重新编译加载资源文件。
                 XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(inputStream, configuration,
                         resource, configuration.getSqlFragments());
                 xmlMapperBuilder.parse();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -288,12 +277,12 @@ public class MapperAutoRefresh implements ApplicationContextAware {
         }
     }
 
-    /** 获取需要刷新的文件列表，返回 刷新文件列表
-     * @Description
-     * @param dir   目录
-     * @param beforeTime    上次刷新时间
+    /**
+     * 获取需要刷新的文件列表，返回 刷新文件列表
+     *
+     * @param dir        目录
+     * @param beforeTime 上次刷新时间
      * @return java.util.List<java.io.File>
-     * @throws
      * @date 20/11/17 11:18
      */
     private List<File> getRefreshFile(File dir, Long beforeTime) {
@@ -302,8 +291,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
 
         File[] files = dir.listFiles();
         if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-                File file = files[i];
+            for (File file : files) {
                 if (file.isDirectory()) {
                     fileList.addAll(this.getRefreshFile(file, beforeTime));
                 } else if (file.isFile()) {
@@ -326,7 +314,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
     public static class StrictMap<V> extends HashMap<String, V> {
 
         private static final long serialVersionUID = -4950446264854982944L;
-        private String name;
+        private final String name;
 
         public StrictMap(String name, int initialCapacity, float loadFactor) {
             super(initialCapacity, loadFactor);
@@ -389,7 +377,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
         }
 
         protected static class Ambiguity {
-            private String subject;
+            private final String subject;
 
             public Ambiguity(String subject) {
                 this.subject = subject;
@@ -406,12 +394,14 @@ public class MapperAutoRefresh implements ApplicationContextAware {
         return refresh;
     }
 
-    /** 判断文件是否需要刷新,需要刷新返回true，否则返回false
-     * @Description
-     * @param file  文件
-     * @param beforeTime    上次刷新时间
+    /**
+     * 判断文件是否需要刷新,需要刷新返回true，否则返回false
+     *
+     * @param file       文件
+     * @param beforeTime 上次刷新时间
      * @return boolean
      * @throws
+     * @Description
      * @date 20/11/17 11:17
      */
     private boolean checkFile(File file, Long beforeTime) {
@@ -425,28 +415,19 @@ public class MapperAutoRefresh implements ApplicationContextAware {
     /**
      * 获取整数属性
      *
-     * @param key
+     * @param key KEY
      * @return int
-     * @throws
-     * @Description
      * @date 20/11/17 10:37
      */
     private static int getPropInt(String key) {
-        int i = 0;
-        try {
-            i = Integer.parseInt(getPropString(key));
-        } catch (Exception e) {
-        }
-        return i;
+        return Integer.parseInt(Objects.requireNonNull(getPropString(key)));
     }
 
     /**
      * 获取字符串属性
      *
-     * @param key
+     * @param key KEY
      * @return int
-     * @throws
-     * @Description
      * @date 20/11/17 10:37
      */
     private static String getPropString(String key) {

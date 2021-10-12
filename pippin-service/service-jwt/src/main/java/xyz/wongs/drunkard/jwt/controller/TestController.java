@@ -5,10 +5,10 @@ import xyz.wongs.drunkard.base.response.annoation.Body;
 import xyz.wongs.drunkard.jwt.po.User;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
  * 
- * @date 2021/7/7 - 19:19
+ * @date 2020/11/7 - 19:19
  * @since 1.0.0
  */
 @RestController

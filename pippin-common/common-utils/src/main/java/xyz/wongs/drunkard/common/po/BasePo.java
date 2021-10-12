@@ -59,6 +59,7 @@ public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> {
      */
     private String remark;
 
+
     /**
      * 请求参数
      */
@@ -144,4 +145,5 @@ public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
 }

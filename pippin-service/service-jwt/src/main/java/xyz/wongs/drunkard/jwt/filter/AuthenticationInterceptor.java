@@ -23,10 +23,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description 拦截器，获取 Token，并验证 Token合法性
  * 
- * @date 2021/7/6 - 10:25
+ * @date 2020/11/6 - 10:25
  * @since 1.0.0
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {

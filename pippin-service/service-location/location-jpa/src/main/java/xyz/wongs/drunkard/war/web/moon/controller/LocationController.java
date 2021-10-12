@@ -28,10 +28,10 @@ public class LocationController{
     private LocationService locationService;
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
-     * @Date 2021/7/8-14:59
-     * @Param lv 层级
+     * @date 2020/11/8-14:59
+     * @param lv 层级
      * @return Location
      **/
     @RequestMapping(value = "/{lv}", method = RequestMethod.GET)
@@ -40,9 +40,9 @@ public class LocationController{
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
-     * @Date 2021/7/8-14:59
+     * @date 2020/11/8-14:59
      * @return Map
      **/
     @GetMapping("/test")
@@ -53,10 +53,10 @@ public class LocationController{
     }
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @Description //TODO
-     * @Date 2021/7/8-14:59
-     * @Param userId id
+     * @date 2020/11/8-14:59
+     * @param userId id
      * @return Map
      **/
     @GetMapping("/valid")

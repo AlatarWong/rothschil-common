@@ -46,10 +46,10 @@ public class LocationService extends BaseService<Location, Long> {
 	}
 
 	/** 根据SQL，查询结果，获取结果列表
-	 * @Author <a href="https://github.com/rothschil">Sam</a>
+	 * @author <a href="https://github.com/rothschil">Sam</a>
 	 * @Description //TODO
-	 * @Date 2021/7/8-14:42
-	 * @Param sql 原生SQL语句
+	 * @date 2020/11/8-14:42
+	 * @param sql 原生SQL语句
 	 * @return List
 	 **/
 	public List<Location> listBySql(String sql) {
@@ -57,10 +57,10 @@ public class LocationService extends BaseService<Location, Long> {
 	}
 
 	/** 根据hql，查询结果，获取结果列表
-	 * @Author <a href="https://github.com/rothschil">Sam</a>
+	 * @author <a href="https://github.com/rothschil">Sam</a>
 	 * @Description //TODO
-	 * @Date 2021/7/8-14:42
-	 * @Param hql
+	 * @date 2020/11/8-14:42
+	 * @param hql
 	 * @return List
 	 **/
 	public List<Location> listByHql(String hql) {

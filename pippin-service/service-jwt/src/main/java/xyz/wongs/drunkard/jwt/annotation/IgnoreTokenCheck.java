@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description 忽略Token验证注解
  * 
- * @date 2021/7/6 - 10:16
+ * @date 2020/11/6 - 10:16
  * @since 1.0.0
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
@@ -17,10 +17,10 @@ import java.lang.annotation.Target;
 public @interface IgnoreTokenCheck {
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @Description 默认 为 true，需要检查
-     * @Date 2021/7/7-20:10
-     * @Param null
+     * @date 2020/11/7-20:10
+     * @param null
      * @return null
      **/
     boolean required() default true;

@@ -1,10 +1,10 @@
 package xyz.wongs.drunkard.jwt.filter;
 
 /**
- * @Author <a href="https://github.com/rothschil">Sam</a>
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @Description //TODO
  * 
- * @date 2021/7/6 - 10:49
+ * @date 2020/11/6 - 10:49
  * @since 1.0.0
  */
 
