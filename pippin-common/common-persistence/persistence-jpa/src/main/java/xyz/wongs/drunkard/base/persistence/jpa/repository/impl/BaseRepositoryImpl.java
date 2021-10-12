@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import xyz.wongs.drunkard.base.persistence.jpa.entity.BasePo;
 import xyz.wongs.drunkard.base.persistence.jpa.repository.BaseRepository;
-import xyz.wongs.drunkard.base.persistence.jpa.util.MethodUtil;
+import xyz.wongs.drunkard.base.persistence.jpa.util.JpaMethodUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -180,7 +180,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      **/
     @Override
     public Page<T> find(T t, Pageable pageable) {
-        Specification spec = MethodUtil.getSpecification(t);
+        Specification spec = JpaMethodUtil.getSpecification(t);
         return find(spec, pageable);
     }
 
@@ -204,7 +204,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
 
         // 多种查询条件,可以自定义实现，拓展为动态查询，可以为空，为空时候，自动从实体的属性中获取
         if (list.isEmpty()) {
-            list = MethodUtil.getFieldValue(t, root, cb);
+            list = JpaMethodUtil.getFieldValue(t, root, cb);
         }
 
         List<Expression<?>> grouping = new ArrayList<Expression<?>>();

@@ -56,9 +56,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         List<MediaType> fastMediaTypes = new ArrayList<>();
         fastMediaTypes.add(MediaType.APPLICATION_JSON);
         converter.setSupportedMediaTypes(fastMediaTypes);
-
-
-
         converters.add(converter);
         // 添加 StringHttpMessageConverter，解决中文乱码问题
 //        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);

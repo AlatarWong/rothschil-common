@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * 防止重复提交拦截器
+ * 拦截器，用于防止表单重复提交
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/9 - 21:11

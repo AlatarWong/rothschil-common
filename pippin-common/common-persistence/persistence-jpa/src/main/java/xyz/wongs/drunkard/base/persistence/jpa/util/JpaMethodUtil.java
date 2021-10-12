@@ -26,11 +26,11 @@ import java.util.List;
  * @since V1.0
  **/
 @Slf4j
-public class MethodUtil<T extends BasePo> {
+public class JpaMethodUtil<T extends BasePo> {
 
     public static Specification<BasePo> getSpecification(BasePo t) {
         return (root, query, cb) -> {
-            List<Predicate> list = MethodUtil.getFieldValue(t, root, cb);
+            List<Predicate> list = JpaMethodUtil.getFieldValue(t, root, cb);
             Predicate[] pre = new Predicate[list.size()];
             pre = list.toArray(pre);
             CriteriaQuery<?> quy = query.where(pre);

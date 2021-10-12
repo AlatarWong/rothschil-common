@@ -12,35 +12,34 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @ClassName RedisConfig
- * @Description  Redis配置类
+ * Redis配置类
+ *
  * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
  * @date 20/11/18 11:01
  * @since 1.0.0
-*/
+ */
 @Configuration
 public class RedisConfig {
 
-    /** 配置 RedisTemplate 构造函数，修改默认的序列化
-     * @Description
-     * @param factory
+    /**
+     * 配置 RedisTemplate 构造函数，修改默认的序列化
+     *
+     * @param factory 连接工厂
      * @return org.springframework.data.redis.core.RedisTemplate
-     * @throws
      * @date 20/11/18 11:01
      */
     @Bean
-    public RedisTemplate<?,?> redisTemplate(RedisConnectionFactory factory){
+    public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory factory) {
 
-        RedisTemplate<?,?> redisTemplate = new RedisTemplate<String,Object>();
+        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<String, Object>();
         redisTemplate.setConnectionFactory(factory);
 
         //使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
-        Jackson2JsonRedisSerializer<?> serializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+        Jackson2JsonRedisSerializer<?> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         //之前的版本 mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(),ObjectMapper.DefaultTyping.NON_FINAL);
+        mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(mapper);
 
         redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -50,10 +49,8 @@ public class RedisConfig {
     }
 
     /**
-     * @Description
-     * @param factory
+     * @param factory 连接工厂
      * @return org.springframework.data.redis.core.StringRedisTemplate
-     * @throws
      * @date 20/11/18 11:01
      */
     @Bean

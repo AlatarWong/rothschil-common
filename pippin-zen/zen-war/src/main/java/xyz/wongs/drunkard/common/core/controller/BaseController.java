@@ -30,6 +30,7 @@ import java.util.List;
  * @date 20/12/9 17:23
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class BaseController {
     protected final Logger logger = LoggerFactory.getLogger(BaseController.class);
 

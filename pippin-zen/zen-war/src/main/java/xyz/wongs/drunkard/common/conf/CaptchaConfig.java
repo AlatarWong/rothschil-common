@@ -9,11 +9,13 @@ import java.util.Properties;
 
 import static com.google.code.kaptcha.Constants.*;
 
-/**验证码配置
+/**
+ * 验证码配置
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 16:29
  * @since 1.0.0
-*/
+ */
 @Configuration
 public class CaptchaConfig {
     @Bean(name = "captchaProducer")

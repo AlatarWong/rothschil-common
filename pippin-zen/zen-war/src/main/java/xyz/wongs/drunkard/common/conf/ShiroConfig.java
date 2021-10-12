@@ -37,13 +37,17 @@ import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/** 权限配置加载
+/**
+ * 权限配置加载
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/9 - 21:15
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Configuration
 public class ShiroConfig {
+
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
     /**
@@ -133,11 +137,10 @@ public class ShiroConfig {
         EhCacheManager em = new EhCacheManager();
         if (StringUtils.isNull(cacheManager)) {
             em.setCacheManager(new net.sf.ehcache.CacheManager(getCacheManagerConfigFileInputStream()));
-            return em;
         } else {
             em.setCacheManager(cacheManager);
-            return em;
         }
+        return em;
     }
 
     /**
@@ -149,13 +152,12 @@ public class ShiroConfig {
         try {
             inputStream = ResourceUtils.getInputStreamForPath(configFile);
             byte[] b = IOUtils.toByteArray(inputStream);
-            InputStream in = new ByteArrayInputStream(b);
-            return in;
+            return new ByteArrayInputStream(b);
         } catch (IOException e) {
             throw new ConfigurationException(
                     "Unable to obtain input stream for cacheManagerConfigFile [" + configFile + "]", e);
         } finally {
-            IOUtils.closeQuietly(inputStream,null);
+            IOUtils.closeQuietly(inputStream, null);
         }
     }
 
@@ -175,8 +177,7 @@ public class ShiroConfig {
      */
     @Bean
     public OnlineSessionDAO sessionDAO() {
-        OnlineSessionDAO sessionDAO = new OnlineSessionDAO();
-        return sessionDAO;
+        return new OnlineSessionDAO();
     }
 
     /**
@@ -184,8 +185,7 @@ public class ShiroConfig {
      */
     @Bean
     public OnlineSessionFactory sessionFactory() {
-        OnlineSessionFactory sessionFactory = new OnlineSessionFactory();
-        return sessionFactory;
+        return new OnlineSessionFactory();
     }
 
     /**
@@ -199,7 +199,7 @@ public class ShiroConfig {
         // 删除过期的session
         manager.setDeleteInvalidSessions(true);
         // 设置全局session超时时间
-        manager.setGlobalSessionTimeout(expireTime * 60 * 1000);
+        manager.setGlobalSessionTimeout((long) expireTime * 60 * 1000);
         // 去掉 JSESSIONID
         manager.setSessionIdUrlRewritingEnabled(false);
         // 定义要使用的无效的Session定时调度器
@@ -273,7 +273,7 @@ public class ShiroConfig {
         // 系统权限列表
         // filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 
-        Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
+        Map<String, Filter> filters = new LinkedHashMap<>();
         filters.put("onlineSession", onlineSessionFilter());
         filters.put("syncOnlineSession", syncOnlineSessionFilter());
         filters.put("captchaValidate", captchaValidateFilter());

@@ -6,10 +6,11 @@ import xyz.wongs.drunkard.common.constant.Constants;
 
 /**
  * 表格数据处理
+ *
  * @author WCNGS@QQ.COM
  * @date 20/12/9 15:53
  * @since 1.0.0
-*/
+ */
 public class TableSupport {
     /**
      * 封装分页对象
