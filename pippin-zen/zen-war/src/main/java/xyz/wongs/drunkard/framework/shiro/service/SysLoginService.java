@@ -28,6 +28,7 @@ import xyz.wongs.drunkard.war.core.service.ISysUserService;
  */
 @Component
 public class SysLoginService {
+
     @Autowired
     private SysPasswordService passwordService;
 

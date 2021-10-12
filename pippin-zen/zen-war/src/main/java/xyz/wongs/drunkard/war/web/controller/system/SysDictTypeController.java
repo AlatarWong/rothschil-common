@@ -32,7 +32,7 @@ import java.util.List;
 @RequestMapping("/system/dict")
 public class SysDictTypeController extends BaseController {
 
-    private String prefix = "system/dict/type";
+    private final String prefix = "system/dict/type";
 
     @Autowired
     private ISysDictTypeService dictTypeService;
@@ -59,7 +59,7 @@ public class SysDictTypeController extends BaseController {
     public AjaxResult export(SysDictType dictType) {
 
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
-        ExcelUtil<SysDictType> util = new ExcelUtil<SysDictType>(SysDictType.class);
+        ExcelUtil<SysDictType> util = new ExcelUtil<>(SysDictType.class);
         return util.exportExcel(list, "字典类型");
     }
 

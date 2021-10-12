@@ -25,7 +25,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/monitor/operlog")
 public class SysOperlogController extends BaseController {
-    private String prefix = "monitor/operlog";
+    private final String prefix = "monitor/operlog";
 
     @Autowired
     private ISysOperLogService operLogService;
@@ -50,7 +50,7 @@ public class SysOperlogController extends BaseController {
     @ResponseBody
     public AjaxResult export(SysOperLog operLog) {
         List<SysOperLog> list = operLogService.selectOperLogList(operLog);
-        ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
+        ExcelUtil<SysOperLog> util = new ExcelUtil<>(SysOperLog.class);
         return util.exportExcel(list, "操作日志");
     }
 

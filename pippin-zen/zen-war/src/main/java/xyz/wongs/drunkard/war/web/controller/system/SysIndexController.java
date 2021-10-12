@@ -46,7 +46,14 @@ public class SysIndexController extends BaseController {
     @Autowired
     private SysPasswordService passwordService;
 
-    // 系统首页
+    /**
+     * 系统首页
+     *
+     * @param mmap ModelMap
+     * @return String None
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     @GetMapping("/index")
     public String index(ModelMap mmap) {
         // 取身份信息
@@ -76,11 +83,17 @@ public class SysIndexController extends BaseController {
                 break;
             }
         }
-        String webIndex = "topnav".equalsIgnoreCase(indexStyle) ? "index-topnav" : "index";
-        return webIndex;
+        return "topnav".equalsIgnoreCase(indexStyle) ? "index-topnav" : "index";
     }
 
-    // 锁定屏幕
+    /**
+     * 锁定屏幕
+     *
+     * @param mmap ModelMap
+     * @return String None
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     @GetMapping("/lockscreen")
     public String lockscreen(ModelMap mmap) {
         mmap.put("user", ShiroUtils.getSysUser());
@@ -88,7 +101,14 @@ public class SysIndexController extends BaseController {
         return "lock";
     }
 
-    // 解锁屏幕
+    /**
+     * 解锁屏幕
+     *
+     * @param password String
+     * @return AjaxResult None
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     @PostMapping("/unlockscreen")
     @ResponseBody
     public AjaxResult unlockscreen(String password) {
@@ -103,32 +123,67 @@ public class SysIndexController extends BaseController {
         return AjaxResult.error("密码不正确，请重新输入。");
     }
 
-    // 切换主题
+    /**
+     * 切换主题
+     *
+     * @return String
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     @GetMapping("/system/switchSkin")
     public String switchSkin() {
+
         return "skin";
     }
 
-    // 切换菜单
+    /**
+     * 切换菜单
+     *
+     * @param style    String
+     * @param response HttpServletResponse
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     @GetMapping("/system/menuStyle/{style}")
     public void menuStyle(@PathVariable String style, HttpServletResponse response) {
         CookieUtils.setCookie(response, "nav-style", style);
     }
 
-    // 系统介绍
+    /**
+     * 系统介绍
+     *
+     * @param mmap ModelMap
+     * @return String None
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     @GetMapping("/system/main")
     public String main(ModelMap mmap) {
         mmap.put("version", DrunkardConfig.getVersion());
         return "main";
     }
 
-    // 检查初始密码是否提醒修改
+    /**
+     * 检查初始密码是否提醒修改
+     *
+     * @param pwdUpdateDate Date
+     * @return boolean true
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     public boolean initPasswordIsModify(Date pwdUpdateDate) {
         Integer initPasswordModify = Convert.toInt(configService.selectConfigByKey("sys.account.initPasswordModify"));
         return initPasswordModify != null && initPasswordModify == 1 && pwdUpdateDate == null;
     }
 
-    // 检查密码是否过期
+    /**
+     * 检查密码是否过期
+     *
+     * @param pwdUpdateDate Date
+     * @return boolean true
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:56
+     **/
     public boolean passwordIsExpiration(Date pwdUpdateDate) {
         Integer passwordValidateDays = Convert.toInt(configService.selectConfigByKey("sys.account.passwordValidateDays"));
         if (passwordValidateDays != null && passwordValidateDays > 0) {

@@ -17,6 +17,7 @@ import javax.annotation.PreDestroy;
  * @date 2019/10/9 - 21:34
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Component
 public class ShutdownManager {
     private static final Logger logger = LoggerFactory.getLogger("sys-user");

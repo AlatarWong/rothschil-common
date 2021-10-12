@@ -44,11 +44,10 @@ public class CaptchaValidateFilter extends AccessControlFilter {
     }
 
     @Override
-    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
-            throws Exception {
+    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         // 验证码禁用 或不是表单提交 允许访问
-        if (captchaEnabled == false || !"post".equals(httpServletRequest.getMethod().toLowerCase())) {
+        if (!captchaEnabled || !"post".equalsIgnoreCase(httpServletRequest.getMethod())) {
             return true;
         }
         return validateResponse(httpServletRequest, httpServletRequest.getParameter(ShiroConstants.CURRENT_VALIDATECODE));
@@ -59,14 +58,11 @@ public class CaptchaValidateFilter extends AccessControlFilter {
         String code = String.valueOf(obj != null ? obj : "");
         // 验证码清除，防止多次使用。
         request.getSession().removeAttribute(Constants.KAPTCHA_SESSION_KEY);
-        if (StringUtils.isEmpty(validateCode) || !validateCode.equalsIgnoreCase(code)) {
-            return false;
-        }
-        return true;
+        return !StringUtils.isEmpty(validateCode) && validateCode.equalsIgnoreCase(code);
     }
 
     @Override
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) {
         request.setAttribute(ShiroConstants.CURRENT_CAPTCHA, ShiroConstants.CAPTCHA_ERROR);
         return true;
     }

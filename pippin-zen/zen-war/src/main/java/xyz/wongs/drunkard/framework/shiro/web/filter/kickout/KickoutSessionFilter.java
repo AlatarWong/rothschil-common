@@ -9,8 +9,8 @@ import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
-import xyz.wongs.drunkard.common.utils.ServletUtils;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
+import xyz.wongs.drunkard.common.utils.ServletUtils;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.war.constant.ShiroConstants;
 import xyz.wongs.drunkard.war.core.domain.SysUser;
@@ -32,7 +32,8 @@ import java.util.Deque;
  * @since 1.0.0
  */
 public class KickoutSessionFilter extends AccessControlFilter {
-    private final static ObjectMapper objectMapper = new ObjectMapper();
+
+    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     /**
      * 同一个用户最大会话数
@@ -53,8 +54,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
     private Cache<String, Deque<Serializable>> cache;
 
     @Override
-    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o)
-            throws Exception {
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) {
         return false;
     }
 
@@ -76,7 +76,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
             Deque<Serializable> deque = cache.get(loginName);
             if (deque == null) {
                 // 初始化队列
-                deque = new ArrayDeque<Serializable>();
+                deque = new ArrayDeque<>();
             }
 
             // 如果队列里没有此sessionId，且用户没有被踢出；放入队列
@@ -89,7 +89,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
 
             // 如果队列里的sessionId数超出最大会话数，开始踢人
             while (deque.size() > maxSession) {
-                Serializable kickoutSessionId = null;
+                Serializable kickoutSessionId;
                 // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；
                 if (kickoutAfter) {
                     // 踢出后者
@@ -114,7 +114,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
             }
 
             // 如果被踢出了，(前者或后者)直接退出，重定向到踢出后的地址
-            if ((Boolean) session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout") == true) {
+            if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout")) {
                 // 退出登录
                 subject.logout();
                 saveRequest(request);
@@ -131,7 +131,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
         HttpServletResponse res = (HttpServletResponse) response;
         if (ServletUtils.isAjaxRequest(req)) {
             AjaxResult ajaxResult = AjaxResult.error("您已在别处登录，请您修改密码或重新登录");
-            ServletUtils.renderString(res, objectMapper.writeValueAsString(ajaxResult));
+            ServletUtils.renderString(res, OBJECT_MAPPER.writeValueAsString(ajaxResult));
         } else {
             WebUtils.issueRedirect(request, response, kickoutUrl);
         }
@@ -154,8 +154,15 @@ public class KickoutSessionFilter extends AccessControlFilter {
         this.sessionManager = sessionManager;
     }
 
-    // 设置Cache的key的前缀
+    /**
+     * 设置Cache的key的前缀
+     *
+     * @param cacheManager CacheManager
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:44
+     **/
     public void setCacheManager(CacheManager cacheManager) {
+
         // 必须和ehcache缓存配置中的缓存name一致
         this.cache = cacheManager.getCache(ShiroConstants.SYS_USERCACHE);
     }

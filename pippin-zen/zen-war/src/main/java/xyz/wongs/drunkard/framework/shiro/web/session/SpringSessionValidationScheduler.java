@@ -15,11 +15,14 @@ import xyz.wongs.drunkard.common.utils.thread.Threads;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-/** 自定义任务调度器完成
+/**
+ * 自定义任务调度器完成
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/10 - 0:07
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Component
 public class SpringSessionValidationScheduler implements SessionValidationScheduler {
     private static final Logger log = LoggerFactory.getLogger(SpringSessionValidationScheduler.class);
@@ -43,7 +46,9 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
     @Lazy
     private ValidatingSessionManager sessionManager;
 
-    // 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟
+    /**
+     * 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟
+     */
     @Value("${shiro.session.validationInterval}")
     private long sessionValidationInterval;
 
@@ -59,10 +64,13 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
      *
      * <p>
      * Unless this method is called, the default value is {@link #DEFAULT_SESSION_VALIDATION_INTERVAL}.
-     *
-     * @param sessionValidationInterval
-     */
+
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/12-16:49
+     * @param sessionValidationInterval None
+     **/
     public void setSessionValidationInterval(long sessionValidationInterval) {
+
         this.sessionValidationInterval = sessionValidationInterval;
     }
 
@@ -80,12 +88,9 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
         }
 
         try {
-            executorService.scheduleAtFixedRate(new Runnable() {
-                @Override
-                public void run() {
-                    if (enabled) {
-                        sessionManager.validateSessions();
-                    }
+            executorService.scheduleAtFixedRate(() -> {
+                if (enabled) {
+                    sessionManager.validateSessions();
                 }
             }, 1000, sessionValidationInterval * 60 * 1000, TimeUnit.MILLISECONDS);
 

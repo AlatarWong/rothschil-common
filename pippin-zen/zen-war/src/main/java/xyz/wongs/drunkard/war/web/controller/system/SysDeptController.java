@@ -6,11 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.common.core.controller.BaseController;
 import xyz.wongs.drunkard.common.core.domain.AjaxResult;
 import xyz.wongs.drunkard.common.core.domain.Ztree;
 import xyz.wongs.drunkard.common.utils.ShiroUtils;
+import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.war.constant.UserConstants;
 import xyz.wongs.drunkard.war.core.domain.SysDept;
 import xyz.wongs.drunkard.war.core.domain.SysRole;
@@ -28,7 +28,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/dept")
 public class SysDeptController extends BaseController {
-    private String prefix = "system/dept";
+    private final String prefix = "system/dept";
 
     @Autowired
     private ISysDeptService deptService;
@@ -43,8 +43,7 @@ public class SysDeptController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public List<SysDept> list(SysDept dept) {
-        List<SysDept> deptList = deptService.selectDeptList(dept);
-        return deptList;
+        return deptService.selectDeptList(dept);
     }
 
     /**
@@ -147,8 +146,7 @@ public class SysDeptController extends BaseController {
     @GetMapping("/treeData")
     @ResponseBody
     public List<Ztree> treeData() {
-        List<Ztree> ztrees = deptService.selectDeptTree(new SysDept());
-        return ztrees;
+        return deptService.selectDeptTree(new SysDept());
     }
 
     /**
@@ -159,8 +157,7 @@ public class SysDeptController extends BaseController {
     public List<Ztree> treeDataExcludeChild(@PathVariable(value = "excludeId", required = false) Long excludeId) {
         SysDept dept = new SysDept();
         dept.setId(excludeId);
-        List<Ztree> ztrees = deptService.selectDeptTreeExcludeChild(dept);
-        return ztrees;
+        return deptService.selectDeptTreeExcludeChild(dept);
     }
 
     /**
@@ -169,7 +166,6 @@ public class SysDeptController extends BaseController {
     @GetMapping("/roleDeptTreeData")
     @ResponseBody
     public List<Ztree> deptTreeData(SysRole role) {
-        List<Ztree> ztrees = deptService.roleDeptTreeData(role);
-        return ztrees;
+        return deptService.roleDeptTreeData(role);
     }
 }

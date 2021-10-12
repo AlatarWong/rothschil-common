@@ -30,7 +30,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/system/config")
 public class SysConfigController extends BaseController {
-    private String prefix = "system/config";
+    private final String prefix = "system/config";
 
     @Autowired
     private ISysConfigService configService;
@@ -59,7 +59,7 @@ public class SysConfigController extends BaseController {
     @ResponseBody
     public AjaxResult export(SysConfig config) {
         List<SysConfig> list = configService.selectConfigList(config);
-        ExcelUtil<SysConfig> util = new ExcelUtil<SysConfig>(SysConfig.class);
+        ExcelUtil<SysConfig> util = new ExcelUtil<>(SysConfig.class);
         return util.exportExcel(list, "参数数据");
     }
 

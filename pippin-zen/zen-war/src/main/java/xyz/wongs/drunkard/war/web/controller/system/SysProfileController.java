@@ -32,7 +32,7 @@ import xyz.wongs.drunkard.war.core.service.ISysUserService;
 public class SysProfileController extends BaseController {
     private static final Logger log = LoggerFactory.getLogger(SysProfileController.class);
 
-    private String prefix = "system/user/profile";
+    private final String prefix = "system/user/profile";
 
     @Autowired
     private ISysUserService userService;

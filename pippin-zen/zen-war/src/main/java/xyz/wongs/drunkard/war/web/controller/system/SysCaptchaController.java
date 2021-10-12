@@ -48,7 +48,7 @@ public class SysCaptchaController extends BaseController {
             response.setContentType("image/jpeg");
 
             String type = request.getParameter("type");
-            String capStr = null;
+            String capStr;
             String code = null;
             BufferedImage bi = null;
             if ("math".equals(type)) {
@@ -62,6 +62,7 @@ public class SysCaptchaController extends BaseController {
             }
             session.setAttribute(Constants.KAPTCHA_SESSION_KEY, code);
             out = response.getOutputStream();
+            assert bi != null;
             ImageIO.write(bi, "jpg", out);
             out.flush();
 
