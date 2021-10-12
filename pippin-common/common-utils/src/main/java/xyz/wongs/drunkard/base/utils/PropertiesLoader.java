@@ -103,7 +103,7 @@ public class PropertiesLoader {
     /**
      * 取出Double类型的Property，但以System的Property优先.如果都为Null则返回Default值，如果内容错误则抛出异常
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:50
+     * @date 2019/10/8-13:50
      * @param key KEY
      * @param defaultValue 默认值
      * @return Boolean
@@ -116,7 +116,7 @@ public class PropertiesLoader {
     /**
      * 取出Boolean类型的Property，但以System的Property优先.如果都为Null抛出异常,如果内容不是true/false则返回false.
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:50
+     * @date 2019/10/8-13:50
      * @param key KEY
      * @return Boolean
      **/
@@ -131,7 +131,7 @@ public class PropertiesLoader {
     /**
      * 取出Boolean类型的Property，但以System的Property优先.如果都为Null则返回Default值,如果内容不为true/false则返回false.
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:50
+     * @date 2019/10/8-13:50
      * @param key KEY
      * @param defaultValue 默认值
      * @return Boolean
@@ -144,7 +144,7 @@ public class PropertiesLoader {
 
     /** 载入多个文件, 文件路径使用Spring Resource格式.
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:50
+     * @date 2019/10/8-13:50
      * @param resourcesPaths
      * @return Properties
      **/

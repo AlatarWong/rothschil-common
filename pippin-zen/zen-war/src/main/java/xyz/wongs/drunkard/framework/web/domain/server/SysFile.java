@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.framework.web.domain.server;
  * 系统文件相关信息
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:51
+ * @date 2019/10/9 - 20:51
  * @since 1.0.0
  */
 public class SysFile {

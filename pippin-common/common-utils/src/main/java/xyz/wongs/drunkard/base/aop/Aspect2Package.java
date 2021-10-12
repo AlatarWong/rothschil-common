@@ -13,8 +13,8 @@ import xyz.wongs.drunkard.base.aop.pojo.AppLog;
  * 1、正常下执行次序是：@Around @Before ${METHOD} @Around @After @AfterReturning；
  * 2、异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
  * 处理 全局Controller下面的public 方法
+ *
  * @author WCNGS@QQ.COM
- * 
  * @date 20/12/2 10:23
  * @since 1.0.0
  */
@@ -27,7 +27,9 @@ public class Aspect2Package extends AbsAspect {
 
     protected final ThreadLocal<AppLog> threadLocal = new ThreadLocal<>();
 
-    /** 切面
+    /**
+     * 切面
+     *
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/24-16:39
      **/
@@ -38,7 +40,8 @@ public class Aspect2Package extends AbsAspect {
 
     @Before(value = "cutService()")
     public void before(JoinPoint joinPoint) {
-        AppLog appLog = getOperationLog(joinPoint,null,null);
+        AppLog appLog = getOperationLog(joinPoint, null, null);
+        threadLocal.remove();
         threadLocal.set(appLog);
     }
 

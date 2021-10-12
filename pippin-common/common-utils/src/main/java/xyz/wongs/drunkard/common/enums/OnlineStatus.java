@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.common.enums;
 
 /** 用户会话
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:58
+ * @date 2019/10/9 - 20:58
  * @since 1.0.0
  */
 public enum OnlineStatus {

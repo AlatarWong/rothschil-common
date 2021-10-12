@@ -21,7 +21,7 @@ public class ShiroUtils {
 
     /** 获取当前登录 {@link Subject} 主题
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:47
+     * @date 2019/10/10-16:47
      * @return Subject
      **/
     public static Subject getSubject() {
@@ -30,7 +30,7 @@ public class ShiroUtils {
 
     /** 获取当前登录的 Session
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:48
+     * @date 2019/10/10-16:48
      * @return Session
      **/
     public static Session getSession() {
@@ -39,7 +39,7 @@ public class ShiroUtils {
 
     /** 当前登录的账号登出
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:48
+     * @date 2019/10/10-16:48
      **/
     public static void logout() {
         getSubject().logout();
@@ -47,7 +47,7 @@ public class ShiroUtils {
 
     /** 获取当前登录用户
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:45
+     * @date 2019/10/10-16:45
      * @return SysUser
      **/
     public static SysUser getSysUser() {
@@ -63,7 +63,7 @@ public class ShiroUtils {
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:45
+     * @date 2019/10/10-16:45
      * @param user 系统中的用户
      **/
     public static void setSysUser(SysUser user) {
@@ -78,7 +78,7 @@ public class ShiroUtils {
 
     /** 生成随机盐
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:46
+     * @date 2019/10/10-16:46
      * @return String
      **/
     public static String randomSalt() {

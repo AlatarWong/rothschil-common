@@ -4,7 +4,7 @@ import java.util.List;
 
 /** 定义迭代器
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/8 - 18:29
+ * @date 2019/10/8 - 18:29
  * @since 1.0.0
  */
 public class ConcreteIterator implements Iterator {

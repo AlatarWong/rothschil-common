@@ -5,7 +5,8 @@ import xyz.wongs.drunkard.base.message.enums.Status;
 import java.io.Serializable;
 
 /**
- *  定义正常响应实体类
+ * 定义正常响应实体类
+ *
  * @author WCNGS@QQ.COM
  * @date 2020/8/2 13:48
  * @since 1.0.0
@@ -34,10 +35,12 @@ public class R extends Result implements Serializable {
     }
 
 
-    /** 成功
+    /**
+     * 成功
+     *
+     * @return Result
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/9/26-16:43
-     * @return Result
      **/
     public static R success() {
         R r = new R();
@@ -45,11 +48,13 @@ public class R extends Result implements Serializable {
         return r;
     }
 
-    /** 成功
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/9/26-16:43
+    /**
+     * 成功
+     *
      * @param data 数据实体
      * @return Result
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/9/26-16:43
      **/
     public static R success(Object data) {
         R r = success();

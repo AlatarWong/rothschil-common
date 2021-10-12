@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * 全局配置类
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:14
+ * @date 2019/10/9 - 21:14
  * @since 1.0.0
  */
 @Component

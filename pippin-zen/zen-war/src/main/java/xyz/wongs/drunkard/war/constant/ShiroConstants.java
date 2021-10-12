@@ -4,7 +4,7 @@ package xyz.wongs.drunkard.war.constant;
  * Shiro通用常量
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:53
+ * @date 2019/10/9 - 20:53
  * @since 1.0.0
  */
 public class ShiroConstants {

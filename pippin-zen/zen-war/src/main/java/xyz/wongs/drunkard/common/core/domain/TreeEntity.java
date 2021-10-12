@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.common.core.domain;
 
 /** Tree基类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:20
+ * @date 2019/10/9 - 21:20
  * @since 1.0.0
  */
 public class TreeEntity extends BaseEntity {

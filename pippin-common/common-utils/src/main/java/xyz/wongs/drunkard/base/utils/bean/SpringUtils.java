@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * spring工具类 方便在非spring管理环境中获取bean
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/8 - 14:45
+ * @date 2019/10/8 - 14:45
  * @since 1.0.0
  */
 @Component

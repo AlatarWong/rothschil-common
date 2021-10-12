@@ -10,7 +10,7 @@ import xyz.wongs.drunkard.common.core.controller.BaseController;
  * swagger 接口
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:10
+ * @date 2019/10/9 - 21:10
  * @since 1.0.0
  */
 @Controller

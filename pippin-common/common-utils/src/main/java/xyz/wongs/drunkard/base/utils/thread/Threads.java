@@ -17,7 +17,7 @@ public class Threads {
 
     /** sleep等待,单位毫秒
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:17
+     * @date 2019/10/8-12:17
      * @param milliseconds 毫秒
      **/
     public static void sleep(long milliseconds) {
@@ -29,7 +29,7 @@ public class Threads {
 
     /** sleep等待,单位为秒
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:17
+     * @date 2019/10/8-12:17
      * @param seconds 秒
      **/
     public static void sleep(int seconds) {
@@ -48,7 +48,7 @@ public class Threads {
      * <li>如果仍人超時，則強制退出.</li>
      * 另对在shutdown时线程本身被调用中断做了处理.
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:15
+     * @date 2019/10/8-12:15
      * @param pool {@link ExecutorService}
      **/
     public static void shutdownAndAwaitTermination(ExecutorService pool) {

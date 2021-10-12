@@ -16,7 +16,7 @@ import java.util.Map;
  * 处理并记录日志文件
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/10 - 0:06
+ * @date 2019/10/10 - 0:06
  * @since 1.0.0
  */
 public class LogUtils {
@@ -26,7 +26,7 @@ public class LogUtils {
 
     /** 记录访问日志 [username][jsessionid][ip][accept][UserAgent][url][params][Referer]
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:42
+     * @date 2019/10/10-16:42
      * @param request 请求
      * @return
      **/

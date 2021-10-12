@@ -21,7 +21,7 @@ import java.io.IOException;
  * 图片验证码（支持算术形式）
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:59
+ * @date 2019/10/9 - 20:59
  * @since 1.0.0
  */
 @Controller

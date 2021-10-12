@@ -6,7 +6,7 @@ import xyz.wongs.drunkard.base.utils.bean.SpringUtils;
 
 /** 获取i18n资源文件
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:22
+ * @date 2019/10/9 - 21:22
  * @since 1.0.0
  */
 public class MessageUtils {

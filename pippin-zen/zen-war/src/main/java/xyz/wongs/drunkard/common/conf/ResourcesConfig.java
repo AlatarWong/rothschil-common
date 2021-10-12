@@ -15,7 +15,7 @@ import xyz.wongs.drunkard.framework.interceptor.RepeatSubmitInterceptor;
  * 通用配置
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:15
+ * @date 2019/10/9 - 21:15
  * @since 1.0.0
  */
 @Configuration

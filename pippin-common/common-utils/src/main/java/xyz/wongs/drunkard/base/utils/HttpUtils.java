@@ -13,7 +13,7 @@ import java.security.cert.X509Certificate;
 
 /** 通用http发送方法
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:39
+ * @date 2019/10/9 - 21:39
  * @since 1.0.0
  */
 public class HttpUtils {

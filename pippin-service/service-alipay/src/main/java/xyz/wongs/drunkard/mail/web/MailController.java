@@ -13,7 +13,7 @@ import xyz.wongs.drunkard.base.vo.MailVo;
 
 /** 发送邮件
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 15:07
+ * @date 2019/10/9 - 15:07
  * @since 1.0.0
  */
 @RequestMapping("mail")
@@ -33,7 +33,7 @@ public class MailController {
 
     /** 多文件上传
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-14:43
+     * @date 2019/10/11-14:43
      * @param mailVo    邮件实体
      * @param files 文件列表
      * @return ModelAndView

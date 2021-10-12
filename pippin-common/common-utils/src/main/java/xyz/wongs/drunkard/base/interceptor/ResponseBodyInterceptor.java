@@ -22,7 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class ResponseBodyInterceptor implements HandlerInterceptor {
 
-    /** Handler 处理 之前的预处理，增加 对 {@link RestController} 注解捕获、添加 标记
+    /**
+     * Handler 处理 之前的预处理，增加 对 {@link RestController} 注解捕获、添加 标记
+     *
      * @param request  HttpServletRequest
      * @param response HttpServletResponse
      * @param handler  HandlerMethod
@@ -46,13 +48,15 @@ public class ResponseBodyInterceptor implements HandlerInterceptor {
     }
 
 
-    /** 请求结束执行 只有在 {@link ResponseBodyInterceptor} 中 <b>preHandle</b> 结果为 <b>True</b>，才执行
+    /**
+     * 请求结束执行 只有在 {@link ResponseBodyInterceptor} 中 <b>preHandle</b> 结果为 <b>True</b>，才执行
+     *
+     * @param request      HttpServletRequest
+     * @param response     HttpServletResponse
+     * @param handler      handler
+     * @param modelAndView modelAndView
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-11:16
-     * @param request   HttpServletRequest
-     * @param response  HttpServletResponse
-     * @param handler   handler
-     * @param modelAndView  modelAndView
+     * @date 2019/10/11-11:16
      **/
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -61,17 +65,15 @@ public class ResponseBodyInterceptor implements HandlerInterceptor {
 
 
     /**
-     *
      * 视图渲染完成后才执行，但是需要满足条件：
+     * 请求结束执行 只有在 {@link ResponseBodyInterceptor}  .preHandle 结果为 True，才执行
      *
-     * 请求结束执行 只有在 {@link ResponseBodyInterceptor.preHandle} 结果为 True，才执行
-     *
+     * @param request  HttpServletRequest
+     * @param response HttpServletResponse
+     * @param handler  handler
+     * @param ex       ex
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-11:17
-     * @param request   HttpServletRequest
-     * @param response  HttpServletResponse
-     * @param handler   handler
-     * @param ex    ex
+     * @date 2019/10/11-11:17
      **/
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {

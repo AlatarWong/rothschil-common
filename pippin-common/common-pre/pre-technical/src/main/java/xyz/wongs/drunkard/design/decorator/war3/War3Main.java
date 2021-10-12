@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.design.decorator.war3;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 11:09
+ * @date 2019/10/9 - 11:09
  * @since 1.0.0
  */
 public class War3Main {

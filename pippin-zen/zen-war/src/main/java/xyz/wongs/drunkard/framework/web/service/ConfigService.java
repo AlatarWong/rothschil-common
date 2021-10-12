@@ -8,7 +8,7 @@ import xyz.wongs.drunkard.war.core.service.ISysConfigService;
  * html调用 thymeleaf 实现参数管理
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:51
+ * @date 2019/10/9 - 20:51
  * @since 1.0.0
  */
 @Service("config")

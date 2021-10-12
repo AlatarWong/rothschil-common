@@ -6,7 +6,7 @@ import xyz.wongs.drunkard.base.po.BasePo;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/8 - 11:54
+ * @date 2019/10/8 - 11:54
  * @since 1.0.0
  */
 @EqualsAndHashCode(callSuper=false)

@@ -26,7 +26,7 @@ import java.util.List;
  * 主要是在此如果会话的属性修改了 就标识下其修改了 然后方便 OnlineSessionDao同步
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:25
+ * @date 2019/10/9 - 21:25
  * @since 1.0.0
  */
 public class OnlineWebSessionManager extends DefaultWebSessionManager {

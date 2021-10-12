@@ -7,13 +7,14 @@ import java.lang.annotation.*;
 
 /**
  * 应用全局日志
+ *
  * @author WCNGS@QQ.COM
  * @date 2019/10/29 16:50
  * @since 1.0.0
-*/
+ */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD, ElementType.TYPE})
 public @interface ApplicationLog {
 
     /**

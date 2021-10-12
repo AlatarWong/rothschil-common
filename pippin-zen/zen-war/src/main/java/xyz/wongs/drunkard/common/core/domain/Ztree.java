@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /** Ztree树结构实体类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:20
+ * @date 2019/10/9 - 21:20
  * @since 1.0.0
  */
 public class Ztree implements Serializable {

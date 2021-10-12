@@ -5,7 +5,7 @@ import java.util.List;
 
 /** 实现抽象聚合类，返回一个具体迭代器的实例
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/8 - 18:26
+ * @date 2019/10/8 - 18:26
  * @since 1.0.0
  */
 public class ConcreteAggregate implements Aggregate{

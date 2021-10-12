@@ -9,7 +9,7 @@ import java.util.Random;
  * 验证码文本生成器
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:14
+ * @date 2019/10/9 - 21:14
  * @since 1.0.0
  */
 public class KaptchaTextCreator extends DefaultTextCreator {

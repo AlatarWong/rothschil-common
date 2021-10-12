@@ -28,7 +28,7 @@ import java.util.Deque;
  * 登录帐号控制过滤器
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:35
+ * @date 2019/10/9 - 21:35
  * @since 1.0.0
  */
 public class KickoutSessionFilter extends AccessControlFilter {

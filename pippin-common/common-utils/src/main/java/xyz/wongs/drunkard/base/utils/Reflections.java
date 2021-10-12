@@ -295,7 +295,7 @@ public class Reflections {
      * @param e 异常对象
      * @return RuntimeException
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/10-16:40
+     * @date 2019/10/10-16:40
      **/
     public static RuntimeException convertReflectionExceptionToUnchecked(Exception e) {
         if (e instanceof IllegalAccessException || e instanceof IllegalArgumentException

@@ -8,7 +8,7 @@ import java.util.List;
  * 操作日志
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/10 - 0:02
+ * @date 2019/10/10 - 0:02
  * @since 1.0.0
  */
 public interface ISysOperLogService {

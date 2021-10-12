@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 登录密码方法
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:34
+ * @date 2019/10/9 - 21:34
  * @since 1.0.0
  */
 @Component

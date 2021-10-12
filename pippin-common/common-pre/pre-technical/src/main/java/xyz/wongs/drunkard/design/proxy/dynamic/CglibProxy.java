@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/8 - 17:38
+ * @date 2019/10/8 - 17:38
  * @since 1.0.0
  */
 @Slf4j
@@ -20,7 +20,7 @@ public class CglibProxy implements MethodInterceptor {
 
     /**  通过设置 Enhancer 类来设置代理类，
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-18:03
+     * @date 2019/10/8-18:03
      * @param obj
      * @return Object
      **/
@@ -30,7 +30,7 @@ public class CglibProxy implements MethodInterceptor {
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-18:01
+     * @date 2019/10/8-18:01
      * @param obj 表示要进行增强的对象
      * @param method    表示拦截的方法
      * @param args  表示参数列表

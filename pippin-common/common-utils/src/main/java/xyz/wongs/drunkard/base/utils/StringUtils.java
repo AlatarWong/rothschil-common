@@ -140,7 +140,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /** 判断是否基本类型、基本封装类型
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-19:45
+     * @date 2019/10/11-19:45
      * @param obj   实体实例
      * @return boolean
      **/
@@ -150,7 +150,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     /** 判断是否基本类型
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-19:45
+     * @date 2019/10/11-19:45
      * @param obj   实体实例
      * @return boolean
      **/

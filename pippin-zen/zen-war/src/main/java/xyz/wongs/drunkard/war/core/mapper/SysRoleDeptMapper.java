@@ -8,7 +8,7 @@ import java.util.List;
  * 角色与部门关联表
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 23:58
+ * @date 2019/10/9 - 23:58
  * @since 1.0.0
  */
 public interface SysRoleDeptMapper {

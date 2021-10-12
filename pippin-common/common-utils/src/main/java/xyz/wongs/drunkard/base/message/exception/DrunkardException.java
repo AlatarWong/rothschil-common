@@ -34,7 +34,7 @@ public class DrunkardException extends RuntimeException {
      *
      * @param status {@link xyz.wongs.drunkard.base.message.enums.Status} 类
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(Status status) {
 
@@ -49,7 +49,7 @@ public class DrunkardException extends RuntimeException {
      * @param status {@link xyz.wongs.drunkard.base.message.enums.Status} 类
      * @param append 补充内容
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(Status status, String append) {
         super(status.getMsg());
@@ -63,7 +63,7 @@ public class DrunkardException extends RuntimeException {
      * @param status {@link xyz.wongs.drunkard.base.message.enums.Status} 类
      * @param cause  异常原因信息
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(Status status, Throwable cause) {
         super(status.getMsg(), cause);
@@ -77,7 +77,7 @@ public class DrunkardException extends RuntimeException {
      * @param message 定义的消息
      * @param cause   异常原因信息
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(String message, Throwable cause) {
         super(message, cause);
@@ -89,7 +89,7 @@ public class DrunkardException extends RuntimeException {
      *
      * @param message 定义的消息
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(String message) {
         super(message);
@@ -103,7 +103,7 @@ public class DrunkardException extends RuntimeException {
      * @param status  自定义状态码
      * @param message 定义的消息
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(Integer status, String message) {
         super(message);
@@ -118,7 +118,7 @@ public class DrunkardException extends RuntimeException {
      * @param message 定义的消息
      * @param cause   异常原因信息
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-12:00
+     * @date 2019/10/8-12:00
      **/
     public DrunkardException(Integer status, String message, Throwable cause) {
         super(message, cause);

@@ -17,7 +17,7 @@ import java.util.Date;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/12 - 10:27
+ * @date 2019/10/12 - 10:27
  * @since 1.0.0
  */
 @Service
@@ -33,7 +33,7 @@ public class MailService {
      *
      * @param mailVo 邮件实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-10:03
+     * @date 2019/10/11-10:03
      **/
     public void send(MailVo mailVo) {
         try {
@@ -49,7 +49,7 @@ public class MailService {
      *
      * @param mailVo 邮件实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-10:03
+     * @date 2019/10/11-10:03
      **/
     private void checkMail(MailVo mailVo) {
         if (StringUtils.isEmpty(mailVo.getTo())) {
@@ -68,7 +68,7 @@ public class MailService {
      *
      * @param mailVo 邮件实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-10:04
+     * @date 2019/10/11-10:04
      **/
     private void sendMimeMail(MailVo mailVo) {
         try {

@@ -5,7 +5,7 @@ import java.awt.*;
 
 /** 原生形态
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 10:58
+ * @date 2019/10/9 - 10:58
  * @since 1.0.0
  */
 public class Original extends JFrame implements DmHunter{

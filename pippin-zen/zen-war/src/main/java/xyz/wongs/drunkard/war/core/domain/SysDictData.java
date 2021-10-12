@@ -11,7 +11,7 @@ import xyz.wongs.drunkard.war.constant.UserConstants;
 
 /** 字典数据表
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 23:53
+ * @date 2019/10/9 - 23:53
  * @since 1.0.0
  */
 public class SysDictData extends BasePo<Long> {

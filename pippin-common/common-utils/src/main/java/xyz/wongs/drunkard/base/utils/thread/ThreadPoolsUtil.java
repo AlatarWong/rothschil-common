@@ -124,7 +124,7 @@ public class ThreadPoolsUtil {
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:24
+     * @date 2019/10/8-13:24
      * @param corePoolSize 核心线程数量
      * @param theadName 线程名称
      * @return ScheduledExecutorService
@@ -136,7 +136,7 @@ public class ThreadPoolsUtil {
 
     /**
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:24
+     * @date 2019/10/8-13:24
      * @param corePoolSize 核心线程数量
      * @param threadFactory 线程工厂
      * @return ScheduledExecutorService

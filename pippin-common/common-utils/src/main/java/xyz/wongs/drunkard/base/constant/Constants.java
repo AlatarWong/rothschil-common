@@ -80,7 +80,6 @@ public class Constants {
 
     public static final String ISO_8859 = "ISO-8859-1";
 
-
     /**
      * 通用失败标识
      */

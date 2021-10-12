@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 文件上传 误异常类
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:28
+ * @date 2019/10/9 - 21:28
  * @since 1.0.0
  */
 public class InvalidExtensionException extends FileUploadException {

@@ -15,13 +15,14 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 异步处理日志的队列，将需要存储的日志放入这个队列中
+ *
  * @author WCNGS@QQ.COM
  * @date 20/11/13 16:14
  * @since 1.0.0
-*/
+ */
 @Component
 public class AppLogQueue {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(AppLogQueue.class);
 
     private final LinkedBlockingQueue<IQueueTaskHandler> queue = new LinkedBlockingQueue<>(500);
@@ -31,7 +32,7 @@ public class AppLogQueue {
      */
     private volatile boolean running = true;
 
-    private final ThreadPoolExecutor threadPoolExecutor =getThread();
+    private final ThreadPoolExecutor threadPoolExecutor = getThread();
 
     /**
      * 线程状态
@@ -39,12 +40,12 @@ public class AppLogQueue {
     private Future<?> threadStatus = null;
 
     @PostConstruct
-    public void init(){
-        threadStatus  = threadPoolExecutor.submit(() -> {
-            while(running){
+    public void init() {
+        threadStatus = threadPoolExecutor.submit(() -> {
+            while (running) {
                 try {
                     // 队列中不存在元素 则不处理
-                    if(!queue.isEmpty()){
+                    if (!queue.isEmpty()) {
                         IQueueTaskHandler taskHandler = queue.take();
                         taskHandler.processData();
                     }
@@ -56,12 +57,15 @@ public class AppLogQueue {
         });
     }
 
+    @SuppressWarnings("unused")
     @PreDestroy
     public void destroys() {
         running = false;
         threadPoolExecutor.shutdownNow();
     }
 
+
+    @SuppressWarnings("unused")
     public void activeService() {
         running = true;
         if (threadPoolExecutor.isShutdown()) {
@@ -74,24 +78,24 @@ public class AppLogQueue {
         }
     }
 
-    public void addQueue(IQueueTaskHandler taskHandler){
-        if(!running){
+    public void addQueue(IQueueTaskHandler taskHandler) {
+        if (!running) {
             LOG.warn("service is stop");
-            return ;
+            return;
         }
 
         boolean isFull = queue.offer(taskHandler);
-        if(!isFull){
+        if (!isFull) {
             LOG.warn("添加任务到队列失败");
         }
     }
 
-    public boolean empty(){
+    public boolean empty() {
         return queue.isEmpty();
     }
 
-    private ThreadPoolExecutor getThread(){
-        return ThreadPoolsUtil.doCreate(1,1,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),this.getClass().getName());
+    private ThreadPoolExecutor getThread() {
+        return ThreadPoolsUtil.doCreate(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), this.getClass().getName());
     }
 
 }

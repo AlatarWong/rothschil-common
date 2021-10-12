@@ -20,7 +20,7 @@ import xyz.wongs.drunkard.war.core.service.ISysUserService;
  * 注册校验方法
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:34
+ * @date 2019/10/9 - 21:34
  * @since 1.0.0
  */
 @Component

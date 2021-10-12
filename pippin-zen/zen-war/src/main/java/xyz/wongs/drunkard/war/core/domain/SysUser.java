@@ -14,7 +14,7 @@ import xyz.wongs.drunkard.common.annotation.Excels;
 
 /** 用户对象 sys_user
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 23:54
+ * @date 2019/10/9 - 23:54
  * @since 1.0.0
  */
 public class SysUser extends BasePo<Long> {

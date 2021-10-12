@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /** Bean 工具类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:27
+ * @date 2019/10/9 - 21:27
  * @since 1.0.0
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils {

@@ -12,7 +12,7 @@ import xyz.wongs.drunkard.base.handler.IQueueTaskHandler;
  * @author WCNGS@QQ.COM
  * @date 20/11/18 11:04
  * @since 1.0.0
-*/
+ */
 @Component
 public class QueueTaskHandler implements IQueueTaskHandler {
 
@@ -24,15 +24,15 @@ public class QueueTaskHandler implements IQueueTaskHandler {
     private AppLog appLog;
 
     /**
-     * @Author <a href="https://github.com/rothschil">Sam</a>
-     * @Description 这里也就是我们实现QueueTaskHandler的处理接口
-     * @Date 20/11/13 16:32
-     * @Param
+     * 实现QueueTaskHandler的处理接口
+     *
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 20/11/13 16:32
      **/
     @Override
     public void processData() {
         operationLogService.insert(appLog);
-        // 可以加上自己的事后处理逻辑....
+        // 可以加上事后处理逻辑....
     }
 
     public AppLog getOperationLog() {

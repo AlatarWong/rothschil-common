@@ -158,7 +158,7 @@ public class IpUtils {
 
     /** 获取IP 地址
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:47
+     * @date 2019/10/8-13:47
      * @return String
      **/
     public static String getHostIp() {
@@ -171,7 +171,7 @@ public class IpUtils {
 
     /** 获取 HOST 名称
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/8-13:47
+     * @date 2019/10/8-13:47
      * @return String
      **/
     public static String getHostName() {

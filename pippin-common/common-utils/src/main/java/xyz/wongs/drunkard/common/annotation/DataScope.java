@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 数据权限过滤注解
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 22:52
+ * @date 2019/10/9 - 22:52
  * @since 1.0.0
  */
 @Target(ElementType.METHOD)

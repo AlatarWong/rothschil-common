@@ -9,7 +9,7 @@ import java.util.List;
 
 /** 字典工具类
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:54
+ * @date 2019/10/9 - 20:54
  * @since 1.0.0
  */
 @Component

@@ -9,7 +9,7 @@ import java.util.List;
  * 部门管理
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 23:55
+ * @date 2019/10/9 - 23:55
  * @since 1.0.0
  */
 public interface SysDeptMapper {

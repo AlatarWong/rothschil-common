@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.design.decorator.war3;
 
 /** 女妖形态
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 11:00
+ * @date 2019/10/9 - 11:00
  * @since 1.0.0
  */
 public class Changer2Succubus extends Changer{

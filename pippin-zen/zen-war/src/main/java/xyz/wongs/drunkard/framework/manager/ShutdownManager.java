@@ -14,7 +14,7 @@ import javax.annotation.PreDestroy;
  * 确保应用退出时能关闭后台线程
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 21:34
+ * @date 2019/10/9 - 21:34
  * @since 1.0.0
  */
 @Component

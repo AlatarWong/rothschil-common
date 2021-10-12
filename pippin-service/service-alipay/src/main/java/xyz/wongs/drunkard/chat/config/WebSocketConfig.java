@@ -15,7 +15,7 @@ public class WebSocketConfig {
      *
      * @return ServerEndpointExporter
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/11-20:10
+     * @date 2019/10/11-20:10
      **/
     @Bean
     public ServerEndpointExporter serverEndpointExporter() {

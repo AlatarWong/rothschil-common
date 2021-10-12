@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/9 - 20:52
+ * @date 2019/10/9 - 20:52
  * @since 1.0.0
  */
 @Service("dict")

@@ -10,7 +10,7 @@ import java.util.Observable;
 
 /** 被观察者，对观察者对象的引用进行抽象保存
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/8 - 13:58
+ * @date 2019/10/8 - 13:58
  * @since 1.0.0
  */
 @Component

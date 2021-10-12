@@ -23,7 +23,7 @@ import xyz.wongs.drunkard.war.util.DictUtils;
  * 字典类型
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2021/10/10 - 0:03
+ * @date 2019/10/10 - 0:03
  * @since 1.0.0
  */
 @Service
