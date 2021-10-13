@@ -43,7 +43,6 @@
 <!-- /TOC -->
 
 
-
 ![gradle](https://abram.oss-cn-shanghai.aliyuncs.com/blog/sctel/gradle.png)
 
 ## 1. 概述
