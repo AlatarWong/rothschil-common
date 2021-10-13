@@ -2,8 +2,8 @@ package xyz.wongs.drunkard.base.property;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import xyz.wongs.drunkard.base.response.enums.Status;
 import xyz.wongs.drunkard.common.exception.DrunkardException;
 
 import java.io.IOException;
@@ -24,7 +24,12 @@ public class PropConfig {
 
     public static Map<String, String> propertiesMap;
 
-    private static void processProperties(Properties props) throws BeansException {
+    /** 加载并且处理 Properties 文件
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/13-11:37
+     * @param props Properties 文件
+     **/
+    private static void processProperties(Properties props) {
         propertiesMap = new HashMap<>(32);
         for (Object o : props.keySet()) {
             String key = o.toString();
@@ -33,8 +38,8 @@ public class PropConfig {
                 String value = new String(props.getProperty(key).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
                 LOG.debug("[key] {} \t [value] {}", key, value);
                 propertiesMap.put(key, value);
-            } catch (DrunkardException e) {
-                LOG.error("[key]={}, [errMsg]={}", key, e.getMessage());
+            } catch (Exception e) {
+                throw new DrunkardException();
             }
         }
     }
@@ -43,6 +48,8 @@ public class PropConfig {
         try {
             Properties properties = PropertiesLoaderUtils.loadAllProperties(propertyFileName);
             processProperties(properties);
+        } catch (DrunkardException e) {
+            throw new DrunkardException(Status.INIT_FAIL_PROPERTIE,propertyFileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

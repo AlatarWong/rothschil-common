@@ -8,10 +8,10 @@ import xyz.wongs.drunkard.task.hadler.IntfImageInfoHandler;
 
 import java.util.List;
 
-/** 异步处理图像信息接口
- * @author <a href="https://github.com/rothschil">Sam</a>
- * @description //TODO
+/**
+ * 异步处理图像信息接口
  *
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2018/4/17 - 15:41
  * @since 1.0.0
  */
@@ -24,7 +24,7 @@ public class ImageInfoHandler implements IntfImageInfoHandler {
     private ImageInfoService imageInfoService;
 
     @Override
-    public void processData(){
+    public void processData() {
         imageInfoService.insert(lists);
     }
 

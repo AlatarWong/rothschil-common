@@ -1,7 +1,9 @@
 package xyz.wongs.drunkard.common.constant;
 
+import org.springframework.stereotype.Controller;
+
 /**
- * 通用常量信息
+ * 常量信息，可以在此基础上拓展
  *
  * @author WCNGS@QQ.COM
  * @date 2020/9/9 15:00
@@ -25,11 +27,15 @@ public class Constants {
 
     public static String USER_TYPE = "user-Agent";
 
-
+    /**
+     * 英文字符数字，用于随机生成字符串
+     */
     public static final String RANDOM_STR = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+    /**
+     * Local 地址
+     */
     public static final String IP_LOCAL = "127.0.0.1";
-    public static final String IP_LOCAL_ADDREE = "unknown";
 
     public static final String UNKNOWN = "unknown";
     public static final String HEADER_X_FORWARDED_FOR = "x-forwarded-for";
@@ -220,6 +226,7 @@ public class Constants {
     public static final String HF_PERIOD = ".";
 
     public static final String RESULT = "result";
+
     public static final String SECKILL = "恭喜您，秒杀成功。";
 
     /**
@@ -242,5 +249,8 @@ public class Constants {
      */
     public static final String ERROR = "20000";
 
+    /**
+     *  标识常量，用于在 {@link Controller} 层面中统一处理 返回值
+     */
     public static final String RESPONSE_RESULT_ANN = "RESPONSE-RESULT-ANN";
 }

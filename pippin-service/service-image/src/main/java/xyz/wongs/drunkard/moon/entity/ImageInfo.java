@@ -3,6 +3,11 @@ package xyz.wongs.drunkard.moon.entity;
 import lombok.*;
 import xyz.wongs.drunkard.common.po.BasePo;
 
+/**
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/13 - 11:53
+ * @since 1.0.0
+ */
 @EqualsAndHashCode(callSuper=false)
 @Builder(toBuilder=true)
 @Data

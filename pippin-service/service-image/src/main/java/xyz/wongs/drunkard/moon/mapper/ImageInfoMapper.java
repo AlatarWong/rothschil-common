@@ -8,12 +8,11 @@ import java.util.List;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @Description //TODO
- * 
  * @date 2020/11/13 - 9:41
  * @since 1.0.0
  */
-public interface ImageInfoMapper extends BaseMapper<ImageInfo,Long> {
+public interface ImageInfoMapper extends BaseMapper<ImageInfo, Long> {
+
     @Override
     int deleteByPrimaryKey(Long id);
 

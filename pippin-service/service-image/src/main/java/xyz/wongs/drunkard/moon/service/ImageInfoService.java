@@ -11,28 +11,30 @@ import xyz.wongs.drunkard.moon.mapper.ImageInfoMapper;
 import java.util.List;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- *
  * @date 2020/9/9 16:11
  * @since 1.0.0
-*/
-@Service(value= "imageInfoService")
+ */
+@Service(value = "imageInfoService")
 @Transactional(readOnly = true)
 public class ImageInfoService extends BaseService<ImageInfo, Long> {
 
-    @Autowired
     private ImageInfoMapper imageInfoMapper;
+
+    @Autowired
+    public void setImageInfoMapper(ImageInfoMapper imageInfoMapper) {
+        this.imageInfoMapper = imageInfoMapper;
+    }
 
     @Override
     protected BaseMapper<ImageInfo, Long> getMapper() {
         return imageInfoMapper;
     }
 
-	@Transactional(rollbackFor = Exception.class)
-	public void insert(List<ImageInfo> lists){
+    @Transactional(rollbackFor = Exception.class)
+    public void insert(List<ImageInfo> lists) {
         imageInfoMapper.batchInsert(lists);
-	}
+    }
 
 
 }

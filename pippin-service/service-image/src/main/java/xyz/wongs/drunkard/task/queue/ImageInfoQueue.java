@@ -8,26 +8,26 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.*;
 
-/** 异步文件写入队列
- * @ClassName FileInfoQueue
- * @Description 
- * @author WCNGS@QQ.COM
+/**
+ * 异步文件写入队列
  *
+ * @author WCNGS@QQ.COM
  * @date 20/11/13 16:14
  * @since 1.0.0
-*/
+ */
+@SuppressWarnings("unused")
 @Slf4j
 @Component
 public class ImageInfoQueue {
 
-    private final LinkedBlockingQueue<IntfImageInfoHandler> queue = new LinkedBlockingQueue<IntfImageInfoHandler>(500);
+    private final LinkedBlockingQueue<IntfImageInfoHandler> queue = new LinkedBlockingQueue<>(500);
 
     /**
      * 线程池
      */
     private ExecutorService service = new ThreadPoolExecutor(1, 1,
             0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>(),Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
+            new LinkedBlockingQueue<>(), Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
     /**
      * 检查服务是否运行
      */
@@ -39,22 +39,19 @@ public class ImageInfoQueue {
     private Future<?> threadStatus = null;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         threadStatus = service.submit(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        while(running){
-                            try {
-                                // 队列中不存在元素 则不处理
-                                if(!queue.isEmpty()){
-                                    IntfImageInfoHandler taskHandler = queue.take();
-                                    taskHandler.processData();
-                                }
-                            } catch (InterruptedException e) {
-                                log.error("服务停止，退出", e);
-                                running = false;
+                () -> {
+                    while (running) {
+                        try {
+                            // 队列中不存在元素 则不处理
+                            if (!queue.isEmpty()) {
+                                IntfImageInfoHandler taskHandler = queue.take();
+                                taskHandler.processData();
                             }
+                        } catch (InterruptedException e) {
+                            log.error("服务停止，退出", e);
+                            running = false;
                         }
                     }
                 });
@@ -79,20 +76,20 @@ public class ImageInfoQueue {
         }
     }
 
-    public boolean addQueue(IntfImageInfoHandler taskHandler){
-        if(!running){
+    public boolean addQueue(IntfImageInfoHandler taskHandler) {
+        if (!running) {
             log.warn("service is stop");
             return false;
         }
 
         boolean isFull = queue.offer(taskHandler);
-        if(!isFull){
+        if (!isFull) {
             log.warn("添加任务到队列失败");
         }
         return isFull;
     }
 
-    public boolean empty(){
+    public boolean empty() {
         return queue.isEmpty();
     }
 

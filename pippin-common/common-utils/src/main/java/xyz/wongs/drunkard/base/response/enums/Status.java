@@ -7,16 +7,21 @@ package xyz.wongs.drunkard.base.response.enums;
  * <li> 2000～2999 区间表示用户错误</li>
  * <li> 3000～3999 区间表示接口异常</li>
  * </ul>
+ *
  * @author WCNGS@QQ.COM
  * @date 2017/12/2 13:31
  * @since 1.0.0
-*/
+ */
 public enum Status {
 
-    /** 成功 **/
-    SUCCESS(0,"SUCCESS"),
-    /** 失败 **/
-    FAILURE(-1,"FAILURE"),
+    /**
+     * 成功
+     **/
+    SUCCESS(0, "SUCCESS"),
+    /**
+     * 失败
+     **/
+    FAILURE(-1, "FAILURE"),
 
     EXCEPTION(201, "未知异常"),
     RUNTIME_EXCEPTION(202, "运行时异常"),
@@ -29,50 +34,53 @@ public enum Status {
 
     FILE_NAME_LIMIT(801, "The file Name is too long"),
     FILE_SIZE_LIMIT(802, "The file size too big"),
+    INIT_FAIL_PROPERTIE(804, "资源文件初始化失败"),
 
     /**
      * 1000～1999 区间表示参数错误
      */
-    PARAMS_IS_INVALID(1001,"参数无效"),
-    PARAMS_IS_BANK(1002,"参数为空"),
-    PARAMS_TYPE_BIND_ERROR(1003,"参数类型错误"),
-    PARAMS_NOT_COMPLETE(1004,"参数缺失"),
-    NUMBER_FORMAT(1005,"[The Character to number failed]"),
-    QR_CODE_ERR(1006,"[The QR CODE Generation failed]"),
-    LIST_EMPTY(1007,"[The List Empty]"),
+    PARAMS_IS_INVALID(1001, "参数无效"),
+    PARAMS_IS_BANK(1002, "参数为空"),
+    PARAMS_TYPE_BIND_ERROR(1003, "参数类型错误"),
+    PARAMS_NOT_COMPLETE(1004, "参数缺失"),
+    NUMBER_FORMAT(1005, "[The Character to number failed]"),
+    QR_CODE_ERR(1006, "[The QR CODE Generation failed]"),
+    LIST_EMPTY(1007, "[The List Empty]"),
     /**
      * 2000～2999 区间表示用户错误
      */
-    USER_NOT_LOGGED_IN(2001,"Access to Resources Requires Identity! Please Sign In"),
-    USER_NOT_LOGIN_ERROR(2002,"The User does not exist Or the password is wrong"),
-    USER_ACCOUNT_FORBIDDEN(2003,"Account is disabled"),
-    USER_NOT_EXIST(2004,"Account not exists"),
-    USER_HAS_EXISTED(2005,"Account exists"),
-    USER_IS_EXPIRED(2006,"Account expired"),
+    USER_NOT_LOGGED_IN(2001, "Access to Resources Requires Identity! Please Sign In"),
+    USER_NOT_LOGIN_ERROR(2002, "The User does not exist Or the password is wrong"),
+    USER_ACCOUNT_FORBIDDEN(2003, "Account is disabled"),
+    USER_NOT_EXIST(2004, "Account not exists"),
+    USER_HAS_EXISTED(2005, "Account exists"),
+    USER_IS_EXPIRED(2006, "Account expired"),
     USER_FIRST_LANDING(2007, "Login for the first time"),
-    USER_WAS_DEL(2008,"Account deleted"),
-    USER_WAS_LOCK(2009,"Account Locked"),
-    USER_SIGN_VERIFY_NOT_COMPLIANT(2010,"Signature does not match"),
+    USER_WAS_DEL(2008, "Account deleted"),
+    USER_WAS_LOCK(2009, "Account Locked"),
+    USER_SIGN_VERIFY_NOT_COMPLIANT(2010, "Signature does not match"),
     USER_PASSWORD_RESET_FAILED(2011, "Password reset failed"),
     USER_UNKNOWN_IDENTITY(2012, "Unknown identity"),
     UNSUCCESSFUL_AUTHENTICATION(2014, "Authentication failed"),
-    ROLE_WAS_LOCK(2015,"Role Locked"),
+    ROLE_WAS_LOCK(2015, "Role Locked"),
 
 
-    MANY_USER_LOGINS(2111,"Users are online"),
-    USER_KEY_EXCEPTION(2108,"Key generation failed"),
+    MANY_USER_LOGINS(2111, "Users are online"),
+    USER_KEY_EXCEPTION(2108, "Key generation failed"),
     TOO_MANY_PASSWD_ENTER(2112, "Enter password frequently"),
-    VERIFICATION_CODE_INCORRECT(2202,"Verification code error"),
-    VERIFICATION_CODE_FAIL(2203,"Verification code generation failed"),
+    VERIFICATION_CODE_INCORRECT(2202, "Verification code error"),
+    VERIFICATION_CODE_FAIL(2203, "Verification code generation failed"),
 
-    MANY_ERRORS_OPT(2204,"用户操作错误次数过多"),
+    MANY_ERRORS_OPT(2204, "用户操作错误次数过多"),
 
 
-    TOKEN_EXPIRED(2308,"Token Expired"),
-    TOKEN_GENERATION_FAIL(2309,"The Token generation failed"),
-    TOKEN_INVALID(2310,"The Token is invalid"),
-    TOKEN_VERIFICATION_FAIL(2311,"The Token verification failed"),
-    TOKEN_VERIFICATION_PROCESS_ERR(2311,"The Token verification process error"),
+
+
+    TOKEN_EXPIRED(2308, "Token Expired"),
+    TOKEN_GENERATION_FAIL(2309, "The Token generation failed"),
+    TOKEN_INVALID(2310, "The Token is invalid"),
+    TOKEN_VERIFICATION_FAIL(2311, "The Token verification failed"),
+    TOKEN_VERIFICATION_PROCESS_ERR(2311, "The Token verification process error"),
     /**
      * 3000～3999 区间表示接口异常
      */

@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @date 20/11/13 16:14
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Component
 public class AppLogQueue {
 
@@ -57,7 +58,7 @@ public class AppLogQueue {
         });
     }
 
-    @SuppressWarnings("unused")
+
     @PreDestroy
     public void destroys() {
         running = false;
@@ -65,7 +66,6 @@ public class AppLogQueue {
     }
 
 
-    @SuppressWarnings("unused")
     public void activeService() {
         running = true;
         if (threadPoolExecutor.isShutdown()) {

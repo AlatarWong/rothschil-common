@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-/** 获取IP方法
+/**
+ * 获取IP方法
+ *
  * @author WCNGS@QQ.COM
  * @date 2020/6/19 18:12
  * @since 1.0.0
@@ -38,7 +40,7 @@ public class IpUtils {
 
     public static boolean internalIp(String ip) {
         byte[] addr = textToNumericFormatV4(ip);
-        return internalIp(addr) || Constants.IP_LOCAL_ADDREE.equals(ip);
+        return internalIp(addr) || Constants.UNKNOWN.equals(ip);
     }
 
     private static boolean internalIp(byte[] addr) {
@@ -65,11 +67,8 @@ public class IpUtils {
                     return true;
                 }
             case section5:
-                switch (b1) {
-                    case section6:
-                        return true;
-                    default:
-                        break;
+                if (b1 == section6) {
+                    return true;
                 }
             default:
                 return false;
@@ -78,6 +77,7 @@ public class IpUtils {
 
     /**
      * 将IPv4地址转换成字节
+     *
      * @param text IPv4地址
      * @return byte 字节
      */
@@ -156,10 +156,12 @@ public class IpUtils {
         return bytes;
     }
 
-    /** 获取IP 地址
+    /**
+     * 获取IP 地址
+     *
+     * @return String
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-13:47
-     * @return String
      **/
     public static String getHostIp() {
         try {
@@ -169,16 +171,18 @@ public class IpUtils {
         }
     }
 
-    /** 获取 HOST 名称
+    /**
+     * 获取 HOST 名称
+     *
+     * @return String
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-13:47
-     * @return String
      **/
     public static String getHostName() {
         try {
             return InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
-            return Constants.IP_LOCAL_ADDREE;
+            return Constants.UNKNOWN;
         }
     }
 }

@@ -17,29 +17,35 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @ClassName RunFileTask
- * @Description 
  * @author WCNGS@QQ.COM
- * 
  * @date 20/12/30 12:58
  * @since 1.0.0
-*/
+ */
 @Component
 public class RunFileTask {
 
-    public static final String THREAD_NAME ="RUN_FILE_NAME";
+    public static final String THREAD_NAME = "RUN_FILE_NAME";
 
-    @Autowired
+
     private ImageInfoQueue imageInfoQueue;
 
-    @Autowired
     private ImageInfoHandler imageInfoHandler;
 
-    private ThreadPoolExecutor executor = ThreadPoolsUtil.doCreate(3,5,THREAD_NAME);
+    @Autowired
+    public void setImageInfoQueue(ImageInfoQueue imageInfoQueue) {
+        this.imageInfoQueue = imageInfoQueue;
+    }
 
-    public void run(String path){
+    @Autowired
+    public void setImageInfoHandler(ImageInfoHandler imageInfoHandler) {
+        this.imageInfoHandler = imageInfoHandler;
+    }
+
+    private final ThreadPoolExecutor executor = ThreadPoolsUtil.doCreate(3, 5, THREAD_NAME);
+
+    public void run(String path) {
         File file = new File(path);
-        if(!file.isDirectory()){
+        if (!file.isDirectory()) {
             return;
         }
         listFiles(file);
@@ -47,17 +53,18 @@ public class RunFileTask {
         executor.shutdown();
     }
 
-    public void listFiles(File file){
+    public void listFiles(File file) {
 
         File[] files = file.listFiles();
-        List<ImageInfo> lists = new ArrayList<ImageInfo>();
+        List<ImageInfo> lists = new ArrayList<>();
+        assert files != null;
         for (File fl : files) {
-            if(fl.isDirectory()){
+            if (fl.isDirectory()) {
                 listFiles(fl);
                 continue;
             }
             String suffixName = FileUtil.getSuffix(fl);
-            if(!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())){
+            if (!ImageConst.LIST_SUFFIX.contains(suffixName.toUpperCase())) {
                 continue;
             }
             Future<String> result = executor.submit(new FileSizeThread(fl));
@@ -68,11 +75,11 @@ public class RunFileTask {
                 ImageInfo imageInfo = ImageInfo.builder().fileName(fileName).filePath(filePath).fileSize(size).suffixName(suffixName)
                         .md5(result.get()).build();
                 lists.add(imageInfo);
-            } catch (InterruptedException | ExecutionException e){
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        if(!lists.isEmpty()){
+        if (!lists.isEmpty()) {
             imageInfoHandler.setLists(lists);
             imageInfoQueue.addQueue(imageInfoHandler);
         }
