@@ -3,19 +3,15 @@ package xyz.wongs.drunkard.oauth2.domain.mapper;
 
 import xyz.wongs.drunkard.base.persistence.mybatis.mapper.BaseMapper;
 import xyz.wongs.drunkard.oauth2.domain.entity.OauthUser;
-import xyz.wongs.drunkard.oauth2.domain.entity.SysPermission;
 
 import java.util.List;
 
 /**
- * @ClassName OauthUserMapper
- * @Description 
  * @author WCNGS@QQ.COM
- *
  * @date 20/12/2 16:58
  * @since 1.0.0
-*/
-public interface OauthUserMapper extends BaseMapper<OauthUser,Long> {
+ */
+public interface OauthUserMapper extends BaseMapper<OauthUser, Long> {
 
     @Override
     int deleteByPrimaryKey(Long uId);

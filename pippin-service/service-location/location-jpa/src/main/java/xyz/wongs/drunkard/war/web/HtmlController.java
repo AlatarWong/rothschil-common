@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.war.web.moon.controller;
+package xyz.wongs.drunkard.war.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

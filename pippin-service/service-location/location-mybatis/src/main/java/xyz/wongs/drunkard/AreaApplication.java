@@ -6,20 +6,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 /**
- * @ClassName DustAreaApplication
- * @Description 
  * @author WCNGS@QQ.COM
- * 
  * @date 20/11/18 11:03
  * @since 1.0.0
-*/
+ */
 @EnableCaching
-@MapperScan(basePackages = {"xyz.wongs.drunkard.**.mapper"})
+@MapperScan(basePackages = {"xyz.wongs.**.mapper"})
 @SpringBootApplication
 public class AreaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AreaApplication.class,args);
+        SpringApplication.run(AreaApplication.class, args);
     }
 
 }

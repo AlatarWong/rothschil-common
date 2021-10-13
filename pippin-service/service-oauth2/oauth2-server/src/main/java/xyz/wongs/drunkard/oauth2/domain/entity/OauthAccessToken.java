@@ -3,13 +3,10 @@ package xyz.wongs.drunkard.oauth2.domain.entity;
 import lombok.Data;
 
 /**
- * @ClassName OauthAccessToken
- * @Description 
  * @author WCNGS@QQ.COM
- *
  * @date 20/12/2 16:19
  * @since 1.0.0
-*/
+ */
 @Data
 public class OauthAccessToken {
     private String authenticationId;

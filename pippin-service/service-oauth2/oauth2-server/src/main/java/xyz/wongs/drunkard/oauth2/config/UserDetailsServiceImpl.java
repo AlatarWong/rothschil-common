@@ -19,14 +19,13 @@ import xyz.wongs.drunkard.oauth2.domain.service.SysPermissionService;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 进行登录用户自定义过滤
- * @ClassName UserDetailsServiceImpl
- * @Description
+/**
+ * 进行登录用户自定义过滤
+ *
  * @author WCNGS@QQ.COM
- * 
  * @date 20/11/26 17:41
  * @since 1.0.0
-*/
+ */
 @Slf4j
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

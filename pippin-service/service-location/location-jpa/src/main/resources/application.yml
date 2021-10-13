@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: war3-sky
+    name: location-jpa
   jpa:
     hibernate:
       ddl-auto: none
@@ -44,7 +44,7 @@ spring:
       settings:
         web-allow-others: true
   datasource:
-    platform: h2
+#    platform: h2
     url: jdbc:h2:E:/Repertory/H2_Database/area;AUTO_SERVER=TRUE
     username: root
     password: 123456

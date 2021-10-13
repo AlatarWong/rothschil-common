@@ -1,8 +1,10 @@
 archivesBaseName = 'location-mybatis'
+
 dependencies {
     api(project(':pippin-common:common-persistence:persistence-mybatis')) {
         exclude group:'com.oracle', module: 'ojdbc6'
     }
+
     implementation('org.jsoup:jsoup:1.9.2')
     implementation('org.apache.httpcomponents:httpmime:4.5.5')
     implementation('net.sourceforge.htmlunit:neko-htmlunit:2.30')
@@ -11,6 +13,7 @@ dependencies {
         exclude(group:'xml-apis', module: 'xml-apis')
     }
     implementation('com.jayway.jsonpath:json-path:2.5.0')
+
     implementation('io.springfox:springfox-swagger2:2.9.2')
     implementation('io.springfox:springfox-swagger-ui:2.9.2')
     api fileTree(dir: 'libs', includes: ['*.jar'])

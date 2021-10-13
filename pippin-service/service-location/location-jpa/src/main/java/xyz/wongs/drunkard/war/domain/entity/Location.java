@@ -10,17 +10,19 @@ import javax.persistence.Table;
 
 /**
  * 行政区域实体类
+ *
  * @author WCNGS@QQ.COM
  * @date 2020/9/9 15:27
  * @since 1.0.0
-*/
-@EqualsAndHashCode(callSuper=false)
-@Builder(toBuilder=true)
-@Data
+ */
+@EqualsAndHashCode(callSuper = true)
+@Builder(toBuilder = true)
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="tb_locations")
+@Table(name = "tb_locations")
 public class Location extends BasePo<Long> {
 
     @Id

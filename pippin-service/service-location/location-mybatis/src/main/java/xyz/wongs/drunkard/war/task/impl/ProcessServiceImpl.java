@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.war.web.area.task.impl;
+package xyz.wongs.drunkard.war.task.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -19,29 +19,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import xyz.wongs.drunkard.common.constant.Constants;
 import xyz.wongs.drunkard.war.domain.entity.Location;
 import xyz.wongs.drunkard.war.domain.service.LocationService;
-import xyz.wongs.drunkard.war.web.area.task.ProcessService;
-import xyz.wongs.drunkard.war.web.util.AreaCodeStringUtils;
+import xyz.wongs.drunkard.war.task.ProcessService;
+import xyz.wongs.drunkard.war.util.AreaCodeStringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author: <a href="wcngs@qq.com">WCNGS</a>
- * @date: 2017年7月28日 上午11:31:30  *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2017年7月28日 上午11:31:30  *
+ * @since 1.0.0
  */
 @Slf4j
 @Service("processService")
 public class ProcessServiceImpl implements ProcessService {
 
+
+    LocationService locationService;
+
     @Autowired
     @Qualifier("locationService")
-    LocationService locationService;
+    public void setLocationService(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     @Override
     public void initLevelOne(String url, Location parentLocation) {
@@ -49,7 +53,7 @@ public class ProcessServiceImpl implements ProcessService {
         try {
             levelOne = getLevelOneByRoot(url, parentLocation.getLocalCode());
         } catch (IOException e) {
-            log.error(" IOException pCode={}", parentLocation.getLocalCode(), e.getMessage(), url);
+            log.error(" IOException msg {}", e.getMessage());
         }
         save(levelOne);
     }
@@ -69,14 +73,10 @@ public class ProcessServiceImpl implements ProcessService {
     /**
      * 初始化省、直辖区、自治区
      *
-     * @param url
+     * @param url URL
      * @return void
-     * @throws
-     * @method intiRootUrl
      * @author WCNGS@QQ.COM
-     * @since
      * @date 2018/6/30 23:29
-     * @see
      */
     @Override
     public boolean intiRootUrl(String url) {
@@ -91,7 +91,7 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     public List<Location> getLocationRoot(String url, String pCode) {
-        List<Location> locas = new ArrayList<Location>(35);
+        List<Location> locas = new ArrayList<>(50);
         try {
             Elements eleProv = getElementsByConnection(url, "provincetr");
             for (Element e : eleProv) {
@@ -101,14 +101,13 @@ public class ProcessServiceImpl implements ProcessService {
                 }
                 for (Element target : eleHerf) {
                     String urls = target.attributes().asList().get(0).getValue();
-                    Location location = Location.builder().id(IdClazzUtils.getId(Location.class))
-                            .localCode("0").url(urls).lv(0).localName(target.text())
+                    Location location = Location.builder().localCode("0").url(urls).lv(0).localName(target.text())
                             .localCode(urls.substring(0, 2)).build();
                     locas.add(location);
                 }
             }
         } catch (IOException e) {
-            log.error(" IOException pCode={}", pCode, e.getMessage(), url);
+            log.error(" IOException pCode={}", pCode);
         }
         return locas;
     }
@@ -116,15 +115,10 @@ public class ProcessServiceImpl implements ProcessService {
     /**
      * 方法实现说明
      *
-     * @param url
-     * @param location
-     * @return void
-     * @throws
-     * @method thridLevelResolve
+     * @param url      URL
+     * @param location Location
      * @author WCNGS@QQ.COM
-     * @since
      * @date 2018/7/1 9:50
-     * @see
      */
     @Override
     public void initLevelThrid(String url, Location location) {
@@ -135,22 +129,16 @@ public class ProcessServiceImpl implements ProcessService {
     /**
      * 方法实现说明
      *
-     * @param url
-     * @param location
-     * @param flag
-     * @return void
-     * @throws
-     * @method thridLevelResolve
+     * @param url      URL
+     * @param location 实例
+     * @param flag     标识
      * @author WCNGS@QQ.COM
-     * @since
      * @date 2018/7/1 16:24
-     * @see
      */
     @Override
     public void initLevelThrid(String url, Location location, String flag) {
-
         try {
-            if (StringUtils.isEmpty(location.getUrl())) {
+            if (StringUtils.hasLength(location.getUrl())) {
                 return;
             }
             List<Location> thridLevelLocas = getLocation(url, new String[]{"towntr", "href"}, location.getLocalCode(), 3, flag);
@@ -176,15 +164,13 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public void initLevelFour(String url, List<Location> thridLevelLocas) {
         for (Location le : thridLevelLocas) {
-            List<Location> locations = new ArrayList<Location>(12);
-            String suffix = new StringBuilder().append(url).append(AreaCodeStringUtils.getUrlStrByLocationCode(le.getLocalCode(), 3)).append(le.getUrl()).toString();
-            Elements es = null;
+            List<Location> locations = new ArrayList<>(12);
+            String suffix = url + AreaCodeStringUtils.getUrlStrByLocationCode(le.getLocalCode(), 3) + le.getUrl();
             try {
-                es = getElementsByConnection(suffix, "villagetr");
-                Location tempLocation = null;
+                Elements es = getElementsByConnection(suffix, "villagetr");
+                Location tempLocation;
                 for (Element e : es) {
                     tempLocation = new Location(e.child(0).text(), e.child(2).text(), le.getLocalCode(), null, 4);
-                    tempLocation.setId(IdClazzUtils.getId(Location.class));
                     locations.add(tempLocation);
                 }
                 le.setFlag("Y");
@@ -198,27 +184,22 @@ public class ProcessServiceImpl implements ProcessService {
                 } catch (InterruptedException interruptedException) {
                     log.error("msg={} ", interruptedException.getMessage());
                 }
-                continue;
             } catch (Exception e) {
                 log.error("Exception code={},msg={}", le.getLocalCode(), e.getMessage());
-                continue;
             }
         }
     }
 
 
     /**
-     * @param url
-     * @param location
-     * @return
-     * @Title: getLocationSecondLevel
-     * @Description: TODO(这里用一句话描述这个方法的作用)
-     * @return: List<Location>
+     * @param url      URL
+     * @param location 实例
+     * @return List<Location>
      */
     public List<Location> getLocationSecondLevel(String url, Location location) {
-        List<Location> locas = null;
+        List<Location> locations = null;
         try {
-            locas = new ArrayList<Location>(90);
+            locations = new ArrayList<>(90);
             //URL地址截取
             //标识位
             boolean flag = false;
@@ -227,13 +208,12 @@ public class ProcessServiceImpl implements ProcessService {
                 log.error(url + " 不能解析！");
                 return null;
             }
-            Location tempLocation = null;
+            Location tempLocation;
             for (Element e : es) {
                 //针对市辖区 这种无URL的做特殊处理
                 if (!flag) {
                     tempLocation = new Location(e.child(0).text(), e.child(1).text(), location.getLocalCode(), null, 2);
-                    tempLocation.setId(IdClazzUtils.getId(Location.class));
-                    locas.add(tempLocation);
+                    locations.add(tempLocation);
                     //标识位置为TURE
                     flag = true;
                     continue;
@@ -241,105 +221,76 @@ public class ProcessServiceImpl implements ProcessService {
                 es = e.getElementsByAttribute("href");
                 if (es.size() == 0) {
                     tempLocation = new Location(e.child(0).text(), e.child(1).text(), location.getLocalCode(), "", 2);
-                    tempLocation.setId(IdClazzUtils.getId(Location.class));
-                    locas.add(tempLocation);
+                    locations.add(tempLocation);
                     continue;
                 }
                 List<Attribute> attrs = es.get(0).attributes().asList();
                 tempLocation = new Location(es.get(0).text(), es.get(1).text(), location.getLocalCode(), attrs.get(0).getValue(), 2);
-                tempLocation.setId(IdClazzUtils.getId(Location.class));
-                locas.add(tempLocation);
+                locations.add(tempLocation);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return locas;
+        return locations;
     }
 
 
     /**
-     * @param url
-     * @param pCode
-     * @return
-     * @Title: getLocationOneLevel
-     * @Description: 1、获取第一级地市信息
+     * 1、获取第一级地市信息
      * 2、第二级区县信息
-     * @return: List<Location>
+     *
+     * @param url   URL
+     * @param pCode 上级code
+     * @return List<Location>
      */
     public List<Location> getLevelOneByRoot(String url, String pCode) throws IOException {
-
-        List<Location> locas = new ArrayList<Location>(20);
+        List<Location> locations = new ArrayList<>(20);
         Elements eles = getElementsByConnection(url, "citytr");
         if (null == eles) {
             log.error(url + " 不能解析！");
             return null;
         }
-        Location location = null;
+        Location location;
         for (Element e : eles) {
             eles = e.getElementsByAttribute("href");
             List<Attribute> attrs = eles.get(0).attributes().asList();
             location = new Location(eles.get(0).text(), eles.get(1).text(), pCode, attrs.get(0).getValue(), 1);
-            location.setId(IdClazzUtils.getId(Location.class));
-            locas.add(location);
+            locations.add(location);
         }
-        return locas;
+        return locations;
     }
 
 
     public List<Location> getLocation(String url, String[] cssClazz, String parentCode, Integer lv, String flag) throws IOException {
-        List<Location> locas = new ArrayList<Location>(20);
+        List<Location> locations = new ArrayList<>(20);
         Elements eles = getElementsByConnection(url, cssClazz[0]);
         if (null == eles) {
             log.error(url + " 不能解析！");
             return null;
         }
-        Location location = null;
+        Location location;
         for (Element e : eles) {
             eles = e.getElementsByAttribute(cssClazz[1]);
             List<Attribute> attrs = eles.get(0).attributes().asList();
             location = new Location(eles.get(0).text(), eles.get(1).text(), parentCode, attrs.get(0).getValue(), lv, flag);
-            location.setId(IdClazzUtils.getId(Location.class));
-            locas.add(location);
+            locations.add(location);
         }
-        return locas;
-    }
-
-    /**
-     * 案例
-     * <tr class='towntr'>
-     * <td><a href='02/340102001.html'>340102001000</a></td>
-     * <td><a href='02/340102001.html'>明光路街道</a></td>
-     * </tr>
-     *
-     * @param url
-     * @param cssClazz
-     * @param parentCode
-     * @return List<Location>
-     * @Title: getLocation
-     * @Description: TODO(这里用一句话描述这个方法的作用)
-     */
-    public List<Location> getLocation(String url, String[] cssClazz, String parentCode, Integer lv) {
-        return getLocation(url, cssClazz, parentCode, lv);
+        return locations;
     }
 
 
     /**
      * 方法实现说明
      *
-     * @param url
-     * @param clazzName
+     * @param url       URL
+     * @param clazzName 实例类名字
      * @return org.jsoup.select.Elements
-     * @throws
-     * @method getElementss
      * @author WCNGS@QQ.COM
-     * @since
      * @date 2018/7/2 11:28
-     * @see
      */
     public Elements getElementsByConnection(String url, String clazzName) throws IOException {
 
         try {
-            /** CloseableHttpClient httpclient = HttpClients.createDefault(); **/
             //设置CookieSpecs.STANDARD的cookie解析模式，下面为源码，对应解析格式我给出了备注
             CloseableHttpClient httpclient = HttpClients.custom()
                     .setDefaultRequestConfig(RequestConfig.custom()
@@ -369,30 +320,6 @@ public class ProcessServiceImpl implements ProcessService {
         }
 
         return null;
-    }
-
-    /**
-     * @param locations
-     * @return java.lang.String
-     * @throws
-     * @Description
-     * @date 2020/9/9 14:52
-     */
-    public String appengUrl(List<Location> locations) {
-        Iterator<Location> it = locations.iterator();
-        String url = "";
-        StringBuilder sb = new StringBuilder();
-        while (it.hasNext()) {
-            Location cation = it.next();
-            String str = cation.getUrl();
-            if (cation.getLv() == 3) {
-                sb.append(str);
-            } else {
-                int i = cation.getUrl().indexOf(Constants.SLASH);
-                sb.append(str.substring(0, i)).append(Constants.SLASH).append(sb);
-            }
-        }
-        return url;
     }
 
 }

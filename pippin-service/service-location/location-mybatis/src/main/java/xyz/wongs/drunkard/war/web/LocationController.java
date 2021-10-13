@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.war.web.moon.controller;
+package xyz.wongs.drunkard.war.web;
 
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +18,27 @@ import java.util.Map;
  * @author WCNGS@QQ.COM
  * @date 20/11/18 11:04
  * @since 1.0.0
-*/
+ */
 @Validated
 @Api(value = "areas")
 @RestController
 @RequestMapping(value = "/areas")
-public class LocationController{
+public class LocationController {
+
+
+    private LocationService locationService;
 
     @Autowired
     @Qualifier("locationService")
-    private LocationService locationService;
+    public void setLocationService(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     /**
      * 请求参数在URL中，需要在 @ApiImplicitParam 中加上 "paramType="path""
-     * @Title: getLocationListByLevel
-     * @Description:
-     * @param lv
-     * @return  List<LocationEntity>
+     *
+     * @param lv 层级
+     * @return List<LocationEntity>
      */
     @ApiOperation(value = "获取行政区域列表", notes = "根据层级获取行政列表")
     @ApiImplicitParam(name = "lv", value = "层级", required = true, dataType = "Integer", paramType = "path")
@@ -62,16 +66,12 @@ public class LocationController{
     @GetMapping("/fail")
     public Integer error() {
         // 查询结果数
-        int res = 0;
-        if( res == 0 ) {
-            throw new DrunkardException("没有数据");
-        }
-        return res;
+        throw new DrunkardException("没有数据");
     }
 
     @ApplicationLog
     @GetMapping("/vali")
-    public Map<String, Object> testValidator(Integer userId) {
+    public Map<String, Object> testValidator() {
         HashMap<String, Object> data = new HashMap<>(3);
         data.put("info", "测试成功");
         return data;

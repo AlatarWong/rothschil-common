@@ -16,10 +16,10 @@ import xyz.wongs.drunkard.base.persistence.jpa.repository.factory.BaseRepository
 @EnableJpaRepositories(basePackages = {"xyz.wongs"},
         repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class
 )
-public class SkyApplication {
+public class LocationJapApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SkyApplication.class,args);
+        SpringApplication.run(LocationJapApplication.class,args);
     }
 
 }

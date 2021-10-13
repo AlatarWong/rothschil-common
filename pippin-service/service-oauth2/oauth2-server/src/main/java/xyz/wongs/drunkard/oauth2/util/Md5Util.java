@@ -3,8 +3,6 @@ package xyz.wongs.drunkard.oauth2.util;
 import java.security.MessageDigest;
 
 /**
- * @ClassName MD5Util
- * @Description 
  * @author WCNGS@QQ.COM
  * 
  * @date 20/12/2 16:14
@@ -14,10 +12,10 @@ public class Md5Util {
 
 	public static final String MD_5="MD5";
 
-	public static String byteArrayToHexString(byte b[]) {
-		StringBuffer resultSb = new StringBuffer();
-		for (int i = 0; i < b.length; i++){
-			resultSb.append(byteToHexString(b[i]));
+	public static String byteArrayToHexString(byte[] b) {
+		StringBuilder resultSb = new StringBuilder();
+		for (byte value : b) {
+			resultSb.append(byteToHexString(value));
 		}
 		return resultSb.toString();
 	}

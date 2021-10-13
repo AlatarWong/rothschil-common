@@ -7,13 +7,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * @ClassName UserAuthenticationEventPublisher
- * @Description 
  * @author WCNGS@QQ.COM
- * 
  * @date 20/11/27 17:10
  * @since 1.0.0
-*/
+ */
 @Slf4j
 public class UserAuthenticationEventPublisher extends DefaultAuthenticationEventPublisher {
 
@@ -27,7 +24,7 @@ public class UserAuthenticationEventPublisher extends DefaultAuthenticationEvent
     }
 
     @Override
-    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher){
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 }

@@ -24,13 +24,13 @@ import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 配置认证服务中心
+ *
  * @author WCNGS@QQ.COM
- * @ClassName AuthorizationServerConfig
- * @Description 配置认证服务中心
- * 
  * @date 20/11/27 11:03
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -38,44 +38,70 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     /**
      * webSecurityConfig 中配置的AuthenticationManager
      */
-    @Autowired
-    @Qualifier("authenticationManagerBean")
+
     private AuthenticationManager authenticationManager;
 
     /**
      * 此项目使用数据库保存 token 等信息所以要配置数据源
      */
-    @Autowired
     private DataSource dataSource;
 
     /**
      * webSecurityConfig 中配置的 userDetailsService
      */
-    @Autowired
-    @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
     /**
      * webSecurityConfig 中配置的 passwordEncoder(使用MD5加密)
      */
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
     private TokenStore tokenStore;
 
-    @Autowired
     private ClientDetailsService clientDetailsService;
 
-    @Autowired
     private OAuthTokenAuthenticationFilter oAuthTokenAuthenticationFilter;
+
+    @Autowired
+    @Qualifier("authenticationManagerBean")
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Autowired
+    @Qualifier("userDetailsServiceImpl")
+    public void setUserDetailsService(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Autowired
+    public void setTokenStore(TokenStore tokenStore) {
+        this.tokenStore = tokenStore;
+    }
+
+    @Autowired
+    public void setClientDetailsService(ClientDetailsService clientDetailsService) {
+        this.clientDetailsService = clientDetailsService;
+    }
+
+    @Autowired
+    public void setoAuthTokenAuthenticationFilter(OAuthTokenAuthenticationFilter oAuthTokenAuthenticationFilter) {
+        this.oAuthTokenAuthenticationFilter = oAuthTokenAuthenticationFilter;
+    }
 
     /**
      * 使用Jdbctoken store，若需要使用内存 token Store，则用 return new InMemoryTokenStore();
-     * @Description
-     * @param
+     *
      * @return org.springframework.security.oauth2.provider.token.TokenStore
-     * @throws
      * @date 20/11/27 11:05
      */
     @Bean
@@ -94,11 +120,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
 
-    /** 直接使用 clients.jdbc(dataSource);
-     * @Description
-     * @param clients
-     * @return void
-     * @throws
+    /**
+     * 直接使用 clients.jdbc(dataSource);
+     *
+     * @param clients ClientDetailsServiceConfigurer
      * @date 20/11/27 11:07
      */
     @Override
@@ -106,16 +131,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 请求token的时候会将client_id,client_secret等信息保存到 oauth_client_details 表中，所以需要手动创建该表
         // 注意：以下注释的代码在请求了一次 token 之后则可以注释掉，否则如果不换 client 名字的话会因为主键冲突无法插入 client 信息。也可以一开始就注释，手动添加记录到数据库
         clients.jdbc(dataSource);
-//                .withClient("client")
-//                .secret(passwordEncoder.encode("123456"))
-//                // 四种认证模式
-//                .authorizedGrantTypes("authorization_code", "refresh_token","password", "implicit")
-//                .authorities("ROLE_ADMIN","ROLE_USER")
-//                .scopes("all")
-////                .redirectUris("http://www.baidu.com")
-//                .accessTokenValiditySeconds(7200)
-//                .refreshTokenValiditySeconds(7200);
-
     }
 
     @Override
@@ -125,7 +140,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .checkTokenAccess("permitAll()")
                 //允许表单登录
                 .allowFormAuthenticationForClients()
-                //oauth/token端点过滤器
+        //oauth/token端点过滤器
 //                .addTokenEndpointAuthenticationFilter(oAuthTokenAuthenticationFilter)
         ;
     }

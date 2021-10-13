@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * @Description: Description
- * @ProjectName: spring-parent
- * @Package: com.yaomy.security.oauth2.api.GrantController
- * @since: 1.0
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/13 - 16:34
+ * @since 1.0.0
  */
 @Slf4j
 @Controller

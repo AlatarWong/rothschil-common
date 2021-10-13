@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Description: Description
- * @ProjectName: spring-parent
- * @since: 1.0
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/13 - 16:34
+ * @since 1.0.0
  */
 @Slf4j
 @RestController

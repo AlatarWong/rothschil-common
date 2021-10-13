@@ -18,13 +18,12 @@ import xyz.wongs.drunkard.oauth2.provider.UserSmsAuthenticationProvider;
 import xyz.wongs.drunkard.oauth2.util.Md5Util;
 
 /**
- * @ClassName WebSecurityConfig
- * @Description  访问控制交给资源服务器，只保留 /oauth/**,/login/**,/logout/**
- * @author WCNGS@QQ.COM
+ * 访问控制交给资源服务器，只保留 /oauth/**,/login/**,/logout/**
  *
+ * @author WCNGS@QQ.COM
  * @date 20/11/27 15:18
  * @since 1.0.0
-*/
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -46,12 +45,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new PasswordEncoder() {
             @Override
             public String encode(CharSequence charSequence) {
-                return Md5Util.md5Encode(String.valueOf(charSequence),null);
+                return Md5Util.md5Encode(String.valueOf(charSequence), null);
             }
 
             @Override
             public boolean matches(CharSequence charSequence, String s) {
-                return s.equals(Md5Util.md5Encode(String.valueOf(charSequence),null));
+                return s.equals(Md5Util.md5Encode(String.valueOf(charSequence), null));
             }
         };
     }
@@ -74,21 +73,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
                 .and()
                 .authenticationProvider(smsAuthenticationProvider())
-                .authenticationProvider(authenticationProvider());;
+                .authenticationProvider(authenticationProvider());
+        ;
     }
 
     /**
      * @Description Spring security认证Bean
      * @date 2019/7/4 17:39
-     * @since  1.0
+     * @since 1.0
      */
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         AuthenticationProvider authenticationProvider = new UserAuthenticationProvider();
         return authenticationProvider;
     }
+
     @Bean
-    public AuthenticationProvider smsAuthenticationProvider(){
+    public AuthenticationProvider smsAuthenticationProvider() {
         AuthenticationProvider authenticationProvider = new UserSmsAuthenticationProvider();
         return authenticationProvider;
     }
@@ -97,7 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.requestMatchers().antMatchers("/oauth/**","/login/**","/logout/**")
+        http.requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/oauth/**").authenticated()
@@ -106,10 +107,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * @Description Spring Security应该忽略URLS以xxx开头的路由
      * @param web
      * @return void
      * @throws
+     * @Description Spring Security应该忽略URLS以xxx开头的路由
      * @date 20/11/27 15:52
      */
     @Override

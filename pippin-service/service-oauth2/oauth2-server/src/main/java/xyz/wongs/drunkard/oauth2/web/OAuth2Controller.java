@@ -29,17 +29,14 @@ import xyz.wongs.drunkard.oauth2.util.enums.GrantTypeEnum;
 import java.util.*;
 
 /**
- * @ClassName OAuth2Controller
- * @Description 
  * @author WCNGS@QQ.COM
- * 
  * @date 20/11/27 15:26
  * @since 1.0.0
-*/
+ */
 @Slf4j
 @RestController
 @RequestMapping(value = "/oauth2")
-public class OAuth2Controller {
+public class Oauth2Controller {
 
     @Autowired
     private Environment propertyService;
@@ -50,10 +47,10 @@ public class OAuth2Controller {
     /**
      * @Description /oauth/token(令牌端点) 获取用户token信息
      * @date 2019/7/22 15:59
-     * @since  1.0
+     * @since 1.0
      */
     @PostMapping(value = "/token")
-    public Map<String, Object> getToken(@RequestParam String username, @RequestParam String password){
+    public Map<String, Object> getToken(@RequestParam String username, @RequestParam String password) {
 
         ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails();
         resource.setId(propertyService.getProperty("spring.security.oauth.resource.id"));
@@ -80,22 +77,23 @@ public class OAuth2Controller {
 
             Collection<? extends GrantedAuthority> authorities = tokenStore.readAuthentication(template.getAccessToken()).getUserAuthentication().getAuthorities();
             List<Map> list = Lists.newArrayList();
-            for(GrantedAuthority authority:authorities){
+            for (GrantedAuthority authority : authorities) {
                 list.add(JSONUtils.toJavaBean(authority.getAuthority(), Map.class));
             }
             result.put("authorities", list);
             return result;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DrunkardException("登录异常，请检查登录信息...");
         }
     }
+
     /**
      * @Description /oauth/token（令牌端点）刷新token信息
      * @date 2019/7/25 16:13
-     * @since  1.0
+     * @since 1.0
      */
     @PostMapping(value = "refresh_token")
-    public Map<String, Object> refreshToken(@RequestParam String refresh_token){
+    public Map<String, Object> refreshToken(@RequestParam String refresh_token) {
         try {
             ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails();
             resource.setId(propertyService.getProperty("spring.security.oauth.resource.id"));
@@ -118,22 +116,23 @@ public class OAuth2Controller {
 
             Collection<? extends GrantedAuthority> authorities = tokenStore.readAuthentication(accessToken).getUserAuthentication().getAuthorities();
             List<Map> list = Lists.newArrayList();
-            for(GrantedAuthority authority:authorities){
+            for (GrantedAuthority authority : authorities) {
                 list.add(JSONUtils.toJavaBean(authority.getAuthority(), Map.class));
             }
             result.put("authorities", list);
             return result;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DrunkardException("登录异常，请检查登录信息...");
         }
     }
+
     /**
      * @Description oauth/check_token（端点校验）token有效性
      * @date 2019/7/25 16:22
-     * @since  1.0
+     * @since 1.0
      */
     @PostMapping(value = "check_token")
-    public Map<String, Object> checkToken(@RequestParam String access_token){
+    public Map<String, Object> checkToken(@RequestParam String access_token) {
         try {
             OAuth2AccessToken accessToken = tokenStore.readAccessToken(access_token);
             OAuth2Authentication auth2Authentication = tokenStore.readAuthentication(access_token);
@@ -145,22 +144,23 @@ public class OAuth2Controller {
             //过期时间
             map.put("expiration", DateFormatUtils.format(accessToken.getExpiration(), DateFormatEnum.YYYY_MM_DD_HH_MM_SS.getFormat()));
             return map;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DrunkardException("登录异常，请检查登录信息...");
         }
     }
+
     /**
      * @Description 账号退出
      * @date 2019/7/25 17:47
-     * @since  1.0
+     * @since 1.0
      */
     @PostMapping(value = "logout")
-    public Map<String, Object> logOut(@RequestParam String access_token){
+    public Map<String, Object> logOut(@RequestParam String access_token) {
         try {
-            if(StringUtils.isNotBlank(access_token)){
+            if (StringUtils.isNotBlank(access_token)) {
                 OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(access_token);
-                if(oAuth2AccessToken != null){
-                    log.error("----access_token是："+oAuth2AccessToken.getValue());
+                if (oAuth2AccessToken != null) {
+                    log.error("----access_token是：" + oAuth2AccessToken.getValue());
                     tokenStore.removeAccessToken(oAuth2AccessToken);
                     OAuth2RefreshToken oAuth2RefreshToken = oAuth2AccessToken.getRefreshToken();
                     tokenStore.removeRefreshToken(oAuth2RefreshToken);
@@ -170,7 +170,7 @@ public class OAuth2Controller {
             HashMap<String, Object> data = new HashMap<>(3);
             data.put("200", "测试成功");
             return data;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DrunkardException("登出异常");
         }
     }

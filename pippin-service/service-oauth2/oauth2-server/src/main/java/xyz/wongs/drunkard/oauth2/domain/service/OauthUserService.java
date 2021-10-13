@@ -10,23 +10,24 @@ import xyz.wongs.drunkard.oauth2.domain.entity.OauthUser;
 import xyz.wongs.drunkard.oauth2.domain.mapper.OauthUserMapper;
 
 /**
- * @ClassName OauthUserService
- * @Description 
  * @author WCNGS@QQ.COM
- *
  * @date 20/12/2 16:58
  * @since 1.0.0
-*/
+ */
 @Service
 @Transactional(readOnly = true)
 public class OauthUserService extends BaseService<OauthUser, Long> {
 
-	@Autowired
-	private OauthUserMapper oauthUserMapper;
+    private OauthUserMapper oauthUserMapper;
 
-	@Override
-	protected BaseMapper<OauthUser, Long> getMapper() {
-		return oauthUserMapper;
-	}
+    @Autowired
+    public void setOauthUserMapper(OauthUserMapper oauthUserMapper) {
+        this.oauthUserMapper = oauthUserMapper;
+    }
+
+    @Override
+    protected BaseMapper<OauthUser, Long> getMapper() {
+        return oauthUserMapper;
+    }
 
 }

@@ -8,9 +8,9 @@ import xyz.wongs.drunkard.common.po.BasePo;
  * @date 2020/9/9 15:27
  * @since 1.0.0
 */
-@EqualsAndHashCode(callSuper=false)
 @Builder(toBuilder=true)
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Location extends BasePo<Long> {

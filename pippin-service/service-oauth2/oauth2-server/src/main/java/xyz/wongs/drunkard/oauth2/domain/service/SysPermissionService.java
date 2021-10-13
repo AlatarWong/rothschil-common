@@ -12,12 +12,21 @@ import xyz.wongs.drunkard.oauth2.domain.mapper.SysPermissionMapper;
 import java.util.List;
 
 
+/**
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/13 - 16:49
+ * @since 1.0.0
+ */
 @Service
 @Transactional(readOnly = true)
 public class SysPermissionService extends BaseService<SysPermission, Long> {
 
-	@Autowired
 	private SysPermissionMapper sysPermissionMapper;
+
+	@Autowired
+	public void setSysPermissionMapper(SysPermissionMapper sysPermissionMapper) {
+		this.sysPermissionMapper = sysPermissionMapper;
+	}
 
 	@Override
 	protected BaseMapper<SysPermission, Long> getMapper() {

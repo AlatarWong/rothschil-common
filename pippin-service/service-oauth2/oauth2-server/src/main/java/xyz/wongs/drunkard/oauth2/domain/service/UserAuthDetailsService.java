@@ -15,20 +15,27 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Description: 加载用户的核心数据，它在整个框架中作为用户的Dao使用，被{@link org.springframework.security.authentication.dao.DaoAuthenticationProvider}使用
- * @ProjectName: spring-parent
- * @Package: com.yaomy.security.po.User
- * @Date: 2019/6/28 17:37
- * @since: 1.0
+ * 加载用户的核心数据，它在整个框架中作为用户的Dao使用，被{@link org.springframework.security.authentication.dao.DaoAuthenticationProvider}使用
+ *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2019/6/28 17:37
+ * @since 1.0
  */
 @Component
 public class UserAuthDetailsService implements UserDetailsService {
-    @Autowired
+
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     /**
-     * @Description 根据用户名查询用户角色、权限等信息
+     * 根据用户名查询用户角色、权限等信息
+     *
      * @date 2019/7/1 14:50
-     * @since  1.0
+     * @since 1.0
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -39,18 +46,12 @@ public class UserAuthDetailsService implements UserDetailsService {
         list.add("/a/c");
         list.add("/oauth/token");
         GrantedAuthority interfaces = new UserGrantedAuthority("interfaces", list);
-        /**
-         isEnabled 账户是否启用
-         isAccountNonExpired 账户没有过期
-         isCredentialsNonExpired 身份认证是否是有效的
-         isAccountNonLocked 账户没有被锁定
-         */
-         return new User(username, passwordEncoder.encode("123"),
+        return new User(username, passwordEncoder.encode("123"),
                 true,
                 true,
                 true,
                 true,
-                 Arrays.asList(authority, interfaces));
+                Arrays.asList(authority, interfaces));
     }
 
 }

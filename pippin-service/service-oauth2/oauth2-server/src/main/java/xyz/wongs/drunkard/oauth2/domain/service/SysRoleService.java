@@ -14,8 +14,13 @@ import xyz.wongs.drunkard.oauth2.domain.mapper.SysRoleMapper;
 @Transactional(readOnly = true)
 public class SysRoleService extends BaseService<SysRole, Long> {
 
-	@Autowired
+
 	private SysRoleMapper sysRoleMapper;
+
+	@Autowired
+	public void setSysRoleMapper(SysRoleMapper sysRoleMapper) {
+		this.sysRoleMapper = sysRoleMapper;
+	}
 
 	@Override
 	protected BaseMapper<SysRole, Long> getMapper() {

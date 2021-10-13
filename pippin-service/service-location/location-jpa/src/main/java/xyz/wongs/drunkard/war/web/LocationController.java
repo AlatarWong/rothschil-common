@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard.war.web.moon.controller;
+package xyz.wongs.drunkard.war.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,27 +12,28 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description
  * @author WCNGS@QQ.COM
- * 
  * @date 20/11/18 11:04
  * @since 1.0.0
-*/
+ */
 @Validated
 @RestController
 @RequestMapping(value = "/area")
-public class LocationController{
+public class LocationController {
+
+    private LocationService locationService;
 
     @Autowired
     @Qualifier("locationService")
-    private LocationService locationService;
+    public void setLocationService(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     /**
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @date 2019/11/8-14:59
      * @param lv 层级
      * @return Location
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:59
      **/
     @RequestMapping(value = "/{lv}", method = RequestMethod.GET)
     public List<Location> getLocationListByLevel(@PathVariable(value = "lv") Integer lv) {
@@ -40,10 +41,9 @@ public class LocationController{
     }
 
     /**
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @date 2019/11/8-14:59
      * @return Map
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:59
      **/
     @GetMapping("/test")
     public Map<String, Object> test() {
@@ -53,16 +53,15 @@ public class LocationController{
     }
 
     /**
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @date 2019/11/8-14:59
-     * @param userId id
+     * @param userId 主键
      * @return Map
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:59
      **/
     @GetMapping("/valid")
-    public Map<String, Object> testValidator( Integer userId) {
+    public Map<String, Object> testValidator(Integer userId) {
         HashMap<String, Object> data = new HashMap<>(3);
-        data.put("info", "测试成功 [userId]="+userId);
+        data.put("info", "测试成功 [userId]=" + userId);
         return data;
     }
 

@@ -3,13 +3,12 @@ package xyz.wongs.drunkard.oauth2.util.enums;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
- * @ClassName DateFormatEnum
- * @Description 日期格式
- * @author WCNGS@QQ.COM
+ * 日期格式
  *
+ * @author WCNGS@QQ.COM
  * @date 20/11/27 15:30
  * @since 1.0.0
-*/
+ */
 @SuppressWarnings("all")
 public enum DateFormatEnum {
     YYYY_MM("yyyy-MM"),
@@ -54,7 +53,8 @@ public enum DateFormatEnum {
 
 
     private final String format;
-    DateFormatEnum(String format){
+
+    DateFormatEnum(String format) {
         this.format = format;
     }
 
@@ -64,12 +64,13 @@ public enum DateFormatEnum {
 
     /**
      * 获取所有日期格式
+     *
      * @return
      */
-    public static String[] getAllFormats(){
+    public static String[] getAllFormats() {
         String[] formats = new String[]{};
         DateFormatEnum[] formatEnums = DateFormatEnum.values();
-        for(int i=0; i<formatEnums.length; i++){
+        for (int i = 0; i < formatEnums.length; i++) {
             formats = ArrayUtils.add(formats, formatEnums[i].getFormat());
         }
         return formats;

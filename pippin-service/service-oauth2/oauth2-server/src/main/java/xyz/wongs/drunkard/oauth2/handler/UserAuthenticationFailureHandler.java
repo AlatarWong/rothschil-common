@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: 用户认证失败处理
- * @ProjectName: spring-parent
- * @Package: com.yaomy.security.handler.AjaxAuthenticationFailureHandler
- * @Date: 2019/7/1 15:37
- * @since: 1.0
+ * 用户认证失败处理
+ *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/10/13 - 16:33
+ * @since 1.0.0
  */
 @Component
 public class UserAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
