@@ -1,4 +1,4 @@
-//package xyz.wongs.drunkard.task;
+//package xyz.wongs.drunkard.image.task;
 //
 //import org.junit.jupiter.api.Disabled;
 //import org.junit.jupiter.api.DisplayName;

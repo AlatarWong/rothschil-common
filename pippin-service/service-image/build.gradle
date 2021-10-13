@@ -2,4 +2,5 @@ archivesBaseName = 'service-image'
 dependencies {
     implementation project(':pippin-common:common-persistence:persistence-mybatis')
     implementation('javax.persistence:javax.persistence-api:2.2')
+    api group: 'net.coobird', name: 'thumbnailator', version: '0.4.14'
 }

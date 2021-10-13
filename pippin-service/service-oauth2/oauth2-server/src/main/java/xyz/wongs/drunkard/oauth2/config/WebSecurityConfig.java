@@ -31,9 +31,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * userDetailsService 获取token的时候对用户进行一些自定义过滤，并将保存用户信息（用户名，密码，角色等）
      */
+    private UserDetailsService userDetailsService;
+
     @Autowired
     @Qualifier("userDetailsServiceImpl")
-    private UserDetailsService userDetailsService;
+    public void setUserDetailsService(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     /**
      * 使用MD5对client_secreat进行加密，可以使用默认的加密方式也可以自定义，这里使用MD5加密方式

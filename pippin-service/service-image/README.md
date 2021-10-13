@@ -297,7 +297,7 @@ public class FileInfoService extends AbstractService<FileInfo, Long> {
 ![20201230140531](https://abram.oss-cn-shanghai.aliyuncs.com/blog/thread/20201230140531.png)
 
 ~~~java
-package xyz.wongs.drunkard.task;
+package xyz.wongs.drunkard.image.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -398,10 +398,11 @@ public class RunFileTask {
 ### 6.1.1. 定义实际操作接口
 
 ~~~java
-package xyz.wongs.drunkard.task.hadler;
+package xyz.wongs.drunkard.image.task.hadler;
 
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 import FileInfo;
+
 import java.security.PrivateKey;
 import java.util.List;
 
@@ -410,9 +411,9 @@ public interface IntfFileInfoHandler {
     /**  这里也就是我们实现QueueTaskHandler的处理接口
      * @Description
      * @return
-     * @throws 
+     * @throws
      * @date 20/11/19 17:09
-    */
+     */
     void processData();
 }
 
@@ -421,15 +422,16 @@ public interface IntfFileInfoHandler {
 `FileInfoHandler` 实现 `IntfFileInfoHandler` 接口，并且有一个成员变量，用于接收需要批量入库的集合。
 
 ~~~java
-package xyz.wongs.drunkard.task.hadler.impl;
+package xyz.wongs.drunkard.image.task.hadler.impl;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.task.hadler.IntfImageInfoHandler;
+import xyz.wongs.drunkard.image.task.hadler.IntfImageInfoHandler;
 import FileInfo;
 import FileInfoService;
+
 import java.util.List;
 
 @Data
@@ -442,7 +444,7 @@ public class FileInfoHandler implements IntfFileInfoHandler {
     @Autowired
     private FileInfoService fileInfoService;
 
-    public void processData(){
+    public void processData() {
         fileInfoService.insert(lists);
     }
 }
@@ -452,23 +454,24 @@ public class FileInfoHandler implements IntfFileInfoHandler {
 ### 6.1.2. 定义队列
 
 ~~~java
-package xyz.wongs.drunkard.task.queue;
+package xyz.wongs.drunkard.image.task.queue;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.task.hadler.IntfImageInfoHandler;
+import xyz.wongs.drunkard.image.task.hadler.IntfImageInfoHandler;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.*;
 
 /** 异步文件写入队列
  * @ClassName FileInfoQueue
- * @Description 
+ * @Description
  * @author WCNGS@QQ.COM
- * 
+ *
  * @date 20/11/13 16:14
  * @since 1.0.0
-*/
+ */
 @Slf4j
 @Component
 public class FileInfoQueue {
@@ -480,7 +483,7 @@ public class FileInfoQueue {
      */
     private ExecutorService service = new ThreadPoolExecutor(1, 1,
             0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>(),Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
+            new LinkedBlockingQueue<Runnable>(), Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
     /**
      * 检查服务是否运行
      */
@@ -492,15 +495,15 @@ public class FileInfoQueue {
     private Future<?> threadStatus = null;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         threadStatus = service.submit(
                 new Runnable() {
                     @Override
                     public void run() {
-                        while(running){
+                        while (running) {
                             try {
                                 // 队列中不存在元素 则不处理
-                                if(!queue.isEmpty()){
+                                if (!queue.isEmpty()) {
                                     IntfFileInfoHandler taskHandler = queue.take();
                                     taskHandler.processData();
                                 }
@@ -532,20 +535,20 @@ public class FileInfoQueue {
         }
     }
 
-    public boolean addQueue(IntfFileInfoHandler taskHandler){
-        if(!running){
+    public boolean addQueue(IntfFileInfoHandler taskHandler) {
+        if (!running) {
             log.warn("service is stop");
             return false;
         }
 
         boolean isFull = queue.offer(taskHandler);
-        if(!isFull){
+        if (!isFull) {
             log.warn("添加任务到队列失败");
         }
         return isFull;
     }
 
-    public boolean empty(){
+    public boolean empty() {
         return queue.isEmpty();
     }
 
@@ -556,7 +559,7 @@ public class FileInfoQueue {
 ### 6.1.3. 核心方法改造
 
 ~~~java
-package xyz.wongs.drunkard.task;
+package xyz.wongs.drunkard.image.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -564,8 +567,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.common.utils.file.FileUtil;
 import xyz.wongs.drunkard.common.utils.security.Md5Utils;
-import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
-import xyz.wongs.drunkard.task.queue.FileInfoQueue;
+import xyz.wongs.drunkard.image.task.hadler.impl.ImageInfoHandler;
+import xyz.wongs.drunkard.image.task.queue.FileInfoQueue;
 import FileInfo;
 import FileInfoService;
 
@@ -648,7 +651,7 @@ public class RunFileTask {
 ### 6.2.1. 异步线程定义
 
 ~~~java
-package xyz.wongs.drunkard.task.thread;
+package xyz.wongs.drunkard.image.task.thread;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import xyz.wongs.drunkard.common.utils.StringUtils;
@@ -693,7 +696,7 @@ public class FileSizeThread implements Callable<String> {
 ### 6.2.2. 核心方法改造
 
 ~~~java
-package xyz.wongs.drunkard.task;
+package xyz.wongs.drunkard.image.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -702,9 +705,9 @@ import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.common.utils.file.FileUtil;
 import xyz.wongs.drunkard.common.utils.security.Md5Utils;
 import xyz.wongs.drunkard.common.utils.thread.ThreadPoolsUtil;
-import xyz.wongs.drunkard.task.hadler.impl.ImageInfoHandler;
-import xyz.wongs.drunkard.task.queue.FileInfoQueue;
-import xyz.wongs.drunkard.task.thread.FileSizeThread;
+import xyz.wongs.drunkard.image.task.hadler.impl.ImageInfoHandler;
+import xyz.wongs.drunkard.image.task.queue.FileInfoQueue;
+import xyz.wongs.drunkard.image.task.thread.FileSizeThread;
 import FileInfo;
 import FileInfoService;
 

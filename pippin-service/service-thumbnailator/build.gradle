@@ -1,5 +1,0 @@
-archivesBaseName = 'service-thumbnailator'
-dependencies {
-    api("org.springframework.boot:spring-boot-starter-web:$SpringBootVersion")
-    api group: 'net.coobird', name: 'thumbnailator', version: '0.4.14'
-}
