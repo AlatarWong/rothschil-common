@@ -38,7 +38,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param sql 原生SQL
      * @return List
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     List<T> listBySql(String sql);
 
@@ -47,7 +47,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      *
      * @param hql HQL语句
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     List<T> listByHql(String hql);
 
@@ -57,7 +57,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param sql 原生SQL
      * @return Object
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     Object getTarget(String sql);
 
@@ -67,7 +67,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param sql  原生SQL
      * @param args 参数
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     void updateBySql(String sql, Object... args);
 
@@ -77,7 +77,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param hql  HQL语句
      * @param args 参数
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     void updateByHql(String hql, Object... args);
 
@@ -88,7 +88,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param pageable 分页信息
      * @return Page<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:35
+     * @date 2019/11/8-14:35
      **/
     Page<T> find(T t, Pageable pageable);
 
@@ -99,7 +99,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param pageable 分页信息
      * @return Page<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:35
+     * @date 2019/11/8-14:35
      **/
     Page<T> find(Specification<T> spec, Pageable pageable);
 
@@ -120,7 +120,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param sql 原生SQL语句
      * @return int
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     int batchInsert(String sql);
 
@@ -130,7 +130,7 @@ public interface BaseRepository<T extends BasePo, ID extends Serializable> exten
      * @param list 实体集合
      * @return int
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     int batchInsert(List<T> list);
 

@@ -1,7 +1,9 @@
 archivesBaseName = 'service-jwt'
+
 def env =System.getProperty('env')?:'dev'
 apply from: "dependencies-${env}.gradle"
-jar.enabled = true
+
+bootJar.enabled = true
 
 dependencies {
     implementation('com.auth0:java-jwt:3.8.0')
@@ -15,4 +17,4 @@ dependencies {
     implementation(libraries.poi)
 }
 
-bootJar.enabled = true
+

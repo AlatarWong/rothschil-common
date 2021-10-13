@@ -48,7 +48,7 @@ public class LocationService extends BaseService<Location, Long> {
 	/** 根据SQL，查询结果，获取结果列表
 	 * @author <a href="https://github.com/rothschil">Sam</a>
 	 * @Description //TODO
-	 * @date 2020/11/8-14:42
+	 * @date 2019/11/8-14:42
 	 * @param sql 原生SQL语句
 	 * @return List
 	 **/
@@ -59,7 +59,7 @@ public class LocationService extends BaseService<Location, Long> {
 	/** 根据hql，查询结果，获取结果列表
 	 * @author <a href="https://github.com/rothschil">Sam</a>
 	 * @Description //TODO
-	 * @date 2020/11/8-14:42
+	 * @date 2019/11/8-14:42
 	 * @param hql
 	 * @return List
 	 **/

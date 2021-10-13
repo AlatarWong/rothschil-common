@@ -5,10 +5,10 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import xyz.wongs.drunkard.base.response.enums.Status;
@@ -23,17 +23,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
+ * 拦截器，获取 Token，并验证 Token合法性
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @Description 拦截器，获取 Token，并验证 Token合法性
- * 
- * @date 2020/11/6 - 10:25
+ * @date 2019/11/6 - 10:25
  * @since 1.0.0
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
     static Logger LOG = LoggerFactory.getLogger(AuthenticationInterceptor.class);
-
-    private static String TOKEN = "token";
 
     @Autowired
     private UserService userService;
@@ -56,32 +54,36 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             return true;
         }
         LoginToken loginToken = method.getAnnotation(LoginToken.class);
+
+        // 需要身份验证，获取Token，验证Token合法性
         if (loginToken.required()) {
-            String token = request.getHeader(TOKEN);
-            if (StringUtils.isEmpty(token)) {
-                throw new DrunkardException(Status.USER_NOT_LOGGED_IN);
-            }
-            String id;
-            try {
-                id = JWT.decode(token).getAudience().get(0);
-            } catch (JWTDecodeException e) {
-                throw new DrunkardException(Status.TOKEN_EXPIRED);
-            }
+            return requiredLogin(request);
+        }
+        return HandlerInterceptor.super.preHandle(request, response, handler);
+    }
+
+    protected boolean requiredLogin(HttpServletRequest request){
+        String TOKEN = "token";
+        String token = request.getHeader(TOKEN);
+        // 没有 Token
+        if (ObjectUtils.isEmpty(token)) {
+            throw new DrunkardException(Status.USER_NOT_LOGGED_IN);
+        }
+        try {
+            // Token解析出 ID标识
+            String id = JWT.decode(token).getAudience().get(0);
             User user = userService.getUserById(id);
             if (null == user) {
                 throw new DrunkardException(Status.USER_NOT_LOGIN_ERROR);
             }
             // 验证 token
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getName())).build();
-            try {
-                jwtVerifier.verify(token);
-            } catch (JWTVerificationException e) {
-                throw new DrunkardException(Status.USER_SIGN_VERIFY_NOT_COMPLIANT);
-            }
-            return true;
+            jwtVerifier.verify(token);
+        } catch (JWTDecodeException e) {
+            throw new DrunkardException(Status.TOKEN_EXPIRED);
+        } catch (JWTVerificationException e) {
+            throw new DrunkardException(Status.USER_SIGN_VERIFY_NOT_COMPLIANT);
         }
-
-
-        return HandlerInterceptor.super.preHandle(request, response, handler);
+        return true;
     }
 }

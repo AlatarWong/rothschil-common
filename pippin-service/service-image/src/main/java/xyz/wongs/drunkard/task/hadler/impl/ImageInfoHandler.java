@@ -20,8 +20,12 @@ public class ImageInfoHandler implements IntfImageInfoHandler {
 
     private List<ImageInfo> lists;
 
-    @Autowired
     private ImageInfoService imageInfoService;
+
+    @Autowired
+    public void setImageInfoService(ImageInfoService imageInfoService) {
+        this.imageInfoService = imageInfoService;
+    }
 
     @Override
     public void processData() {

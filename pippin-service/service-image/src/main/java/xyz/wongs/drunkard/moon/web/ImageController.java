@@ -17,7 +17,6 @@ public class ImageController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ImageController.class);
 
-
     private RunFileTask runFileTask;
 
     @Autowired

@@ -28,7 +28,7 @@ public class FileSizeThread implements Callable<String> {
     }
 
     @Override
-    public String call() throws Exception {
+    public String call() {
         try {
             return DigestUtils.md5Hex(new FileInputStream(file));
         } catch (IOException e) {

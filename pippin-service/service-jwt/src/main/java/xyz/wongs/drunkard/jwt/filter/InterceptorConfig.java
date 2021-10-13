@@ -2,9 +2,7 @@ package xyz.wongs.drunkard.jwt.filter;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @Description //TODO
- * 
- * @date 2020/11/6 - 10:49
+ * @date 2019/11/6 - 10:49
  * @since 1.0.0
  */
 
@@ -26,6 +24,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(authenticationInterceptor())
                 .addPathPatterns("/**");
     }
+
     @Bean
     public AuthenticationInterceptor authenticationInterceptor() {
         return new AuthenticationInterceptor();

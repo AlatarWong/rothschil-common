@@ -14,31 +14,38 @@ import java.util.ArrayList;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @Description //TODO
- * 
- * @date 2020/11/7 - 19:19
+ * @date 2019/11/7 - 19:19
  * @since 1.0.0
  */
 @RestController
 @RequestMapping("api")
 public class ApiController {
 
-    @Autowired
     private UserService userService;
-    @Autowired
+
     private JwtService jwtService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setJwtService(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
 
     @Body
     @PostMapping("/login")
-    public Object login(@RequestBody User user){
-        JSONObject jsonObject=new JSONObject();
-        User userForBase=userService.findByUsername(user);
-        if(userForBase==null){
-            jsonObject.put("message","登录失败,用户不存在");
-        }else {
-            if(!userForBase.getName().equals(user.getName())){
-                jsonObject.put("message","登录失败,密码错误");
-            }else {
+    public Object login(@RequestBody User user) {
+        JSONObject jsonObject = new JSONObject();
+        User userForBase = userService.findByUsername(user);
+        if (userForBase == null) {
+            jsonObject.put("message", "登录失败,用户不存在");
+        } else {
+            if (!userForBase.getName().equals(user.getName())) {
+                jsonObject.put("message", "登录失败,密码错误");
+            } else {
                 String token = jwtService.getToken(userForBase);
                 jsonObject.put("token", token);
                 jsonObject.put("user", userForBase);
@@ -51,19 +58,18 @@ public class ApiController {
     @Body
     @LoginToken
     @GetMapping("/getMessage")
-    public String getMessage(){
+    public String getMessage() {
         return "你已通过验证";
     }
 
     @Body
     @RequestMapping(value = "/users")
     @IgnoreTokenCheck
-    public ArrayList usersList() {
-        ArrayList<String> users =  new ArrayList<String>(){{
+    public ArrayList<String> usersList() {
+        return new ArrayList<String>() {{
             add("freewolf");
             add("tom");
             add("jerry");
         }};
-        return users;
     }
 }

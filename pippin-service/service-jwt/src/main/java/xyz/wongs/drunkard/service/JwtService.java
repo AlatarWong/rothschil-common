@@ -7,20 +7,17 @@ import xyz.wongs.drunkard.jwt.po.User;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @Description //TODO
- * 
- * @date 2020/11/6 - 10:24
+ * @date 2019/11/6 - 10:24
  * @since 1.0.0
  */
 @Component
 public class JwtService {
 
     /**
+     * @param user
      * @return String
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @Description //TODO
-     * @date 2020/11/6-10:24
-     * @param user
+     * @date 2019/11/6-10:24
      **/
     public String getToken(User user) {
         String token = "";

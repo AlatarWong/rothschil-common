@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2020/11/8 - 15:18
+ * @date 2019/11/8 - 15:18
  * @since 1.0.0
  */
 public interface LocationRepository extends BaseRepository<Location, Long>,JpaSpecificationExecutor<Location> {

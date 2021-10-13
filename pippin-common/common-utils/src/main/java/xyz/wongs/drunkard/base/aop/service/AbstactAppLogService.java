@@ -16,7 +16,7 @@ import xyz.wongs.drunkard.base.aop.pojo.AppLog;
  */
 @Transactional(rollbackFor = Exception.class)
 @Service
-public abstract class AbstactAppLogService {
+public class AbstactAppLogService {
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstactAppLogService.class);
 

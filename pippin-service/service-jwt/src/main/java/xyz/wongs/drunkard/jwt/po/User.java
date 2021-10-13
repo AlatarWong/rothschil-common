@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @Description //TODO
- *
- * @date `2021/7/6` - 10:22
+ * @date 2018/1/6 - 10:22
  * @since 1.0.0
  */
 public class User implements Serializable {

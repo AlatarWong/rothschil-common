@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @date 2020/11/8 - 14:41
+ * @date 2019/11/8 - 14:41
  * @since 1.0.0
  */
 public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
@@ -37,7 +37,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      *
      * @param ids 主键数组
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public void delete(ID[] ids) {
@@ -50,7 +50,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param sql 原生SQL语句
      * @return Object
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public Object getTarget(String sql) {
@@ -64,7 +64,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param sql  原生SQL语句
      * @param args 参数
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public void updateBySql(String sql, Object... args) {
@@ -82,7 +82,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param hql  HQL语句
      * @param args 参数
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public void updateByHql(String hql, Object... args) {
@@ -100,7 +100,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param sql 原生SQL语句
      * @return List
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public List<T> listBySql(String sql) {
@@ -112,7 +112,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      *
      * @param hql HQL语句
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public List<T> listByHql(String hql) {
@@ -125,7 +125,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param sql 原生SQL语句
      * @return int
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public int batchInsert(String sql) {
@@ -139,7 +139,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param list 列表集合
      * @return int
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:42
+     * @date 2019/11/8-14:42
      **/
     @Override
     public int batchInsert(List<T> list) {
@@ -162,7 +162,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param pageable 分页信息
      * @return Page<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:35
+     * @date 2019/11/8-14:35
      **/
     @Override
     public Page<T> find(Specification<T> spec, Pageable pageable) {
@@ -176,7 +176,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param pageable 分页信息
      * @return Page<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:35
+     * @date 2019/11/8-14:35
      **/
     @Override
     public Page<T> find(T t, Pageable pageable) {
@@ -245,7 +245,7 @@ public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> exten
      * @param query 查询CriteriaQuery
      * @return int
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:37
+     * @date 2019/11/8-14:37
      **/
     private int getTotal(CriteriaQuery<T> query) {
         List<?> totals = entityManager.createQuery(query).getResultList();

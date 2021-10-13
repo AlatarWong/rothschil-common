@@ -36,7 +36,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param t 实体信息
      * @return List
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:16
+     * @date 2019/11/8-14:16
      **/
     public List<T> findByEntity(T t) {
         return jpaRepository.findAll(getExample(t));
@@ -48,7 +48,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param t    实体信息
      * @return Page
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:16
+     * @date 2019/11/8-14:16
      **/
     public Page<T> findPageByEntity(int page, int size, T t) {
         size = size == 0 ? 10 : size;
@@ -59,7 +59,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param t 实体信息
      * @return Example
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:16
+     * @date 2019/11/8-14:16
      **/
     private Example<T> getExample(T t) {
         ExampleMatcher matcher = ExampleMatcher.matching();
@@ -77,7 +77,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param t 实体
      * @return T  返回id对应的实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public T save(T t) {
@@ -90,7 +90,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param t 实体
      * @return T  返回id对应的实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public T saveAndFlush(T t) {
@@ -105,7 +105,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param id 主键
      * @author <a href="https://github.com/rothschil">Sam</a>
      * //TODO
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public void delete(ID id) {
@@ -117,7 +117,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      *
      * @param t 实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)
     public void delete(T t) {
@@ -130,7 +130,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param id id 主键
      * @return T  返回id对应的实体
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     public T findOne(ID id) {
         return jpaRepository.getById(id);
@@ -142,7 +142,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param id id 主键
      * @return boolean   存在 返回true，否则false
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     public boolean exists(ID id) {
         return findOne(id) == null;
@@ -176,7 +176,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param sort 排序实例
      * @return List<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     public List<T> findAll(Sort sort) {
         return jpaRepository.findAll(sort);
@@ -188,7 +188,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param pageable 分页及排序数据
      * @return Page<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     public Page<T> findAll(Pageable pageable) {
         return jpaRepository.findAll(pageable);
@@ -201,7 +201,7 @@ public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> 
      * @param size 每页数量
      * @return Page<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2020/11/8-14:02
+     * @date 2019/11/8-14:02
      **/
     public Page<T> findEntityNoCriteria(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
