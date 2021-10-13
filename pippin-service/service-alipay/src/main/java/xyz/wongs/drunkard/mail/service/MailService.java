@@ -14,6 +14,7 @@ import xyz.wongs.drunkard.common.utils.StringUtils;
 import xyz.wongs.drunkard.base.vo.MailVo;
 
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
@@ -25,8 +26,12 @@ public class MailService {
 
     private static final Logger logger = LoggerFactory.getLogger(MailService.class);
 
-    @Autowired
     private JavaMailSenderImpl mailSender;
+
+    @Autowired
+    public void setMailSender(JavaMailSenderImpl mailSender) {
+        this.mailSender = mailSender;
+    }
 
     /**
      * 对外提供发送邮件入口
@@ -86,7 +91,8 @@ public class MailService {
             }
             if (mailVo.getMultipartFiles() != null) {
                 for (MultipartFile multipartFile : mailVo.getMultipartFiles()) {
-                    messageHelper.addAttachment(multipartFile.getOriginalFilename(), multipartFile);
+                    Optional<MultipartFile> opt = Optional.ofNullable(multipartFile);
+                    messageHelper.addAttachment(opt.get().getOriginalFilename(), multipartFile);
                 }
             }
             if (StringUtils.isEmpty(mailVo.getSentDate())) {

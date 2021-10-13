@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.base.queue.handler.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
-import xyz.wongs.drunkard.base.aop.service.OperationLogService;
+import xyz.wongs.drunkard.base.aop.service.AbstactAppLogService;
 import xyz.wongs.drunkard.base.queue.handler.IQueueTaskHandler;
 
 /**
@@ -17,8 +17,12 @@ import xyz.wongs.drunkard.base.queue.handler.IQueueTaskHandler;
 @Component
 public class QueueTaskHandler implements IQueueTaskHandler {
 
+    private AbstactAppLogService abstactAppLogService;
+
     @Autowired
-    private OperationLogService operationLogService;
+    public void setAbstactAppLogService(AbstactAppLogService abstactAppLogService) {
+        this.abstactAppLogService = abstactAppLogService;
+    }
 
     private AppLog appLog;
 
@@ -30,7 +34,7 @@ public class QueueTaskHandler implements IQueueTaskHandler {
      **/
     @Override
     public void processData() {
-        operationLogService.insert(appLog);
+        abstactAppLogService.insert(appLog);
         // 可以加上事后处理逻辑....
     }
 

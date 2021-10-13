@@ -6,12 +6,13 @@ import xyz.wongs.drunkard.common.enums.OperatorType;
 import java.lang.annotation.*;
 
 /**
- * 应用全局日志
+ * 切面的应用日志
  *
  * @author WCNGS@QQ.COM
  * @date 2019/10/29 16:50
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})

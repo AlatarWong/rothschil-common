@@ -1,0 +1,4 @@
+archivesBaseName = 'simple-spring-boot-starter'
+dependencies {
+    implementation('xyz.wongs.gradle:demo-spring-boot-starter')
+}

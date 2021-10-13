@@ -8,7 +8,7 @@ import xyz.wongs.drunkard.base.aop.annotation.ApplicationLog;
 import xyz.wongs.drunkard.base.aop.pojo.AppLog;
 
 /**
- * 应用全局日志APO 异步日志：
+ * 应用全局日志AOP， 预计注解，并且对拦截信息进行生成基本信息，异步处理
  * 1、正常下执行次序是：@Around @Before ${METHOD} @Around @After @AfterReturning；
  * 2、异常下执行次序是：@Around @Before ${METHOD} @After @AfterThrowing;
  * 之处理 在方法上有注解
@@ -25,7 +25,7 @@ public class Aspect2Annotaion extends AbsAspect {
     private final ThreadLocal<AppLog> threadLocal = new ThreadLocal<>();
 
     /**
-     * 切面
+     * 定义需要拦截的切面，这里是基于注解进行拦截
      *
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2018/4/24-16:39

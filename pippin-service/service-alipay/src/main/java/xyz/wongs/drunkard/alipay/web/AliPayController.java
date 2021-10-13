@@ -33,14 +33,18 @@ import java.util.Map;
  * @date 2018/4/23 - 12:29
  * @since 1.0.0
  */
-
+@SuppressWarnings("unused")
 @Controller
 public class AliPayController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AliPayController.class);
 
-    @Autowired
     private AliPayService aliPayService;
+
+    @Autowired
+    public void setAliPayService(AliPayService aliPayService) {
+        this.aliPayService = aliPayService;
+    }
 
     @RequestMapping("/")
     public String index() {
@@ -101,8 +105,7 @@ public class AliPayController {
      */
     @RequestMapping("/alipay-callback")
     public String alipayCallback(HttpServletRequest request) {
-        Map<String, String> params = new HashMap<>();
-
+        Map<String, String> params = new HashMap<>(12);
         Map<String, String[]> requestParams = request.getParameterMap();
         for (String name : requestParams.keySet()) {
             String[] values = requestParams.get(name);

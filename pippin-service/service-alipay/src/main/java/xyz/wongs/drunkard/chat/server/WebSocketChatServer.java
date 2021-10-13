@@ -20,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2019/10/11 - 20:07
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @Component
 @ServerEndpoint("/chat")
 public class WebSocketChatServer {
@@ -27,7 +28,7 @@ public class WebSocketChatServer {
     /**
      * 全部在线会话  PS: 基于场景考虑 这里使用线程安全的Map存储会话对象。
      */
-    private static Map<String, Session> onlineSessions = new ConcurrentHashMap<>();
+    private static final Map<String, Session> ONLINE_SESSIONS = new ConcurrentHashMap<>();
 
 
     /**
@@ -35,8 +36,8 @@ public class WebSocketChatServer {
      */
     @OnOpen
     public void onOpen(Session session) {
-        onlineSessions.put(session.getId(), session);
-        sendMessageToAll(Message.jsonStr(Message.ENTER, "", "", onlineSessions.size()));
+        ONLINE_SESSIONS.put(session.getId(), session);
+        sendMessageToAll(Message.jsonStr(Message.ENTER, "", "", ONLINE_SESSIONS.size()));
     }
 
     /**
@@ -47,7 +48,7 @@ public class WebSocketChatServer {
     @OnMessage
     public void onMessage(Session session, String jsonStr) {
         Message message = JSON.parseObject(jsonStr, Message.class);
-        sendMessageToAll(Message.jsonStr(Message.SPEAK, message.getUsername(), message.getMsg(), onlineSessions.size()));
+        sendMessageToAll(Message.jsonStr(Message.SPEAK, message.getSender(), message.getMsg(), ONLINE_SESSIONS.size()));
     }
 
     /**
@@ -55,8 +56,8 @@ public class WebSocketChatServer {
      */
     @OnClose
     public void onClose(Session session) {
-        onlineSessions.remove(session.getId());
-        sendMessageToAll(Message.jsonStr(Message.QUIT, "", "", onlineSessions.size()));
+        ONLINE_SESSIONS.remove(session.getId());
+        sendMessageToAll(Message.jsonStr(Message.QUIT, "", "", ONLINE_SESSIONS.size()));
     }
 
     /**
@@ -71,7 +72,7 @@ public class WebSocketChatServer {
      * 公共方法：发送信息给所有人
      */
     private static void sendMessageToAll(String msg) {
-        onlineSessions.forEach((id, session) -> {
+        ONLINE_SESSIONS.forEach((id, session) -> {
             try {
                 session.getBasicRemote().sendText(msg);
             } catch (IOException e) {

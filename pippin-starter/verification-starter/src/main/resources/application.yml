@@ -1,0 +1,11 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: serivce-alipay
+oss:
+  endpoint: https://oss-cn-shanghai.aliyuncs.com
+  key: ENC(ZriXYaz+ki+/CSxWLp0oS+Sa2zhkgl0kNZanUGIwNQjMRQnNE3DTK47qyyMRBOeA)
+  secret: ENC(hRVwhtd7mbg25E6xXSBBHqXX6wryJoE79TuH/7uzcoRWba2lsKVKeVYoRqy/dsO8)
+  bucketname: ENC(yE7wrkC2l3f9Y8ZtFNlPvOlweVvmQn77)
+  directory: D:/Alipay/Temp

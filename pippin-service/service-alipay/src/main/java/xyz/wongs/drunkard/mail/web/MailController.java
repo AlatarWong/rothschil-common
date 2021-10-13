@@ -20,9 +20,13 @@ import xyz.wongs.drunkard.base.vo.MailVo;
 @Controller
 public class MailController {
 
-    @Autowired
+
     private MailService mailService;
 
+    @Autowired
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }
 
     @GetMapping("/")
     public ModelAndView index() {

@@ -7,11 +7,12 @@ import java.util.Date;
 
 /**
  * 操作日志实体，可用于持久化
+ *
  * @author WCNGS@QQ.COM
  * @date 2019/12/3 15:06
  * @since 1.0.0
-*/
-@EqualsAndHashCode(callSuper=false)
+ */
+@EqualsAndHashCode(callSuper = false)
 @Builder
 @Data
 @NoArgsConstructor
@@ -68,7 +69,7 @@ public class AppLog extends BasePo<Long> {
     private String methodName;
 
     /**
-     * 入参
+     * 入参，持久化过程中，需要 设置存储类型为 CLOB 或者
      */
     private String parameters;
 
@@ -103,12 +104,12 @@ public class AppLog extends BasePo<Long> {
     private String err;
 
     /**
-     * 请求报文
+     * 头信息，需要 设置存储类型为 CLOB 或者
      */
     private String headers;
 
     /**
-     * 响应内容
+     * 响应内容，需要 设置存储类型为 CLOB 或者
      */
     private String respContent;
 

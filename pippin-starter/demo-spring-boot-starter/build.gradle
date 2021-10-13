@@ -1,0 +1,6 @@
+archivesBaseName = 'demo-spring-boot-starter'
+dependencies {
+    api 'org.springframework.boot:spring-boot-autoconfigure'
+    api 'org.springframework.boot:spring-boot-configuration-processor'
+}
+jar.enabled=true

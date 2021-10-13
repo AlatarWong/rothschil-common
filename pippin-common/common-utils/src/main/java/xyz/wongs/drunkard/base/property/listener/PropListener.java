@@ -13,7 +13,7 @@ import xyz.wongs.drunkard.base.property.PropConfig;
  */
 public class PropListener implements ApplicationListener<ApplicationStartedEvent> {
 
-    private String propertyFileName;
+    private final String propertyFileName;
 
     public PropListener(String propertyFileName) {
         this.propertyFileName = propertyFileName;

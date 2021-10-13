@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.wongs.drunkard.base.response.annoation.Body;
 import xyz.wongs.drunkard.jwt.annotation.IgnoreTokenCheck;
+import xyz.wongs.drunkard.jwt.annotation.LoginToken;
 import xyz.wongs.drunkard.jwt.po.User;
 import xyz.wongs.drunkard.service.JwtService;
 import xyz.wongs.drunkard.service.UserService;
@@ -48,7 +49,7 @@ public class ApiController {
 
 
     @Body
-    @ApplicationLoginToken
+    @LoginToken
     @GetMapping("/getMessage")
     public String getMessage(){
         return "你已通过验证";

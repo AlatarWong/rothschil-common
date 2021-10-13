@@ -18,4 +18,8 @@ include 'pippin-service:service-thumbnailator'
 
 include 'pippin-zen:zen-war'
 
+include 'pippin-starter:simple-spring-boot-starter'
+include 'pippin-starter:demo-spring-boot-starter'
+include 'pippin-starter:verification-starter'
+
 

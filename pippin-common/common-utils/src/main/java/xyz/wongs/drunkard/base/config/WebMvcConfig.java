@@ -29,8 +29,12 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Autowired
     private ResponseBodyInterceptor responseBodyInterceptor;
+
+    @Autowired
+    public void setResponseBodyInterceptor(ResponseBodyInterceptor responseBodyInterceptor) {
+        this.responseBodyInterceptor = responseBodyInterceptor;
+    }
 
     /** 自定义消息转换器
      * @author <a href="https://github.com/rothschil">Sam</a>
@@ -43,7 +47,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converters.removeIf(converter -> converter instanceof MappingJackson2HttpMessageConverter);
         // 配置 FastJson
         FastJsonConfig config = new FastJsonConfig();
-        config.setSerializerFeatures(SerializerFeature.QuoteFieldNames, SerializerFeature.WriteEnumUsingToString,
+        config.setSerializerFeatures(SerializerFeature.PrettyFormat,SerializerFeature.QuoteFieldNames, SerializerFeature.WriteEnumUsingToString,
                 SerializerFeature.WriteMapNullValue, SerializerFeature.WriteDateUseDateFormat,
                 SerializerFeature.DisableCircularReferenceDetect);
         config.setCharset(StandardCharsets.UTF_8);
@@ -61,12 +65,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
 //        converters.add(messageConverter);
 //        converters.add(0, new FastJsonHttpMessageConverter());
+
+//        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+//        fastConverter.setFastJsonConfig(fastJsonConfig);
+//        converters.add(fastConverter);
     }
 
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(responseBodyInterceptor).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**");;
+        registry.addInterceptor(responseBodyInterceptor).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**");
     }
 
     @Override
