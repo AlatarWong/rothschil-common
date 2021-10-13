@@ -9,19 +9,19 @@ import java.util.Map;
 /**
  * 自定义GrantedAuthority接口
  *
-
- * @date  2019/7/29 16:14
+ * @author WCNGS@QQ.COM
+ * @date 2019/7/29 16:14
  * @since 1.0
  */
 public class UserGrantedAuthority implements GrantedAuthority {
-    private Map<String, Object> authoritys = Maps.newHashMap();
+    private final Map<String, Object> author = Maps.newHashMap();
 
     public UserGrantedAuthority(String name, Object value) {
-        authoritys.put(name, value);
+        author.put(name, value);
     }
 
     @Override
     public String getAuthority() {
-        return JSONUtils.toJSONString(authoritys);
+        return JSONUtils.toJSONString(author);
     }
 }

@@ -22,6 +22,7 @@ import java.io.IOException;
  * @date 20/11/27 14:59
  * @since 1.0.0
  */
+@SuppressWarnings("all")
 @Component
 public class OAuthTokenAuthenticationFilter extends GenericFilterBean {
     private static final String OAUTH_TOKEN_URL = "/oauth2/token";
@@ -40,10 +41,7 @@ public class OAuthTokenAuthenticationFilter extends GenericFilterBean {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         if (requestMatcher.matches(request)) {
-            if (false) {
-                response.getWriter().println("验证码或者图形验证码不正确");
-                return;
-            }
+
         }
         filterChain.doFilter(request, response);
     }

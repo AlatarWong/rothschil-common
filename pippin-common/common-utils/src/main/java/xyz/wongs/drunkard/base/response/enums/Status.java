@@ -63,10 +63,13 @@ public enum Status {
     USER_UNKNOWN_IDENTITY(2012, "Unknown identity"),
     UNSUCCESSFUL_AUTHENTICATION(2014, "Authentication failed"),
     ROLE_WAS_LOCK(2015, "Role Locked"),
-
+    USER_PASSWORD_ERR(2016, "密码错误"),
+    USER_SMS_ERR(2017, "短信验证码错误"),
 
     MANY_USER_LOGINS(2111, "Users are online"),
     USER_KEY_EXCEPTION(2108, "Key generation failed"),
+
+
     TOO_MANY_PASSWD_ENTER(2112, "Enter password frequently"),
     VERIFICATION_CODE_INCORRECT(2202, "Verification code error"),
     VERIFICATION_CODE_FAIL(2203, "Verification code generation failed"),

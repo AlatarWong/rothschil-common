@@ -45,7 +45,8 @@ public class Oauth2Controller {
     private TokenStore tokenStore;
 
     /**
-     * @Description /oauth/token(令牌端点) 获取用户token信息
+     * /oauth/token(令牌端点) 获取用户token信息
+     *
      * @date 2019/7/22 15:59
      * @since 1.0
      */
@@ -60,7 +61,7 @@ public class Oauth2Controller {
         resource.setAccessTokenUri(propertyService.getProperty("spring.security.oauth.token.uri"));
         resource.setUsername(username);
         resource.setPassword(password);
-        resource.setScope(Arrays.asList("all"));
+        resource.setScope(Collections.singletonList("all"));
 
         OAuth2RestTemplate template = new OAuth2RestTemplate(resource);
         ResourceOwnerPasswordAccessTokenProvider provider = new ResourceOwnerPasswordAccessTokenProvider();
@@ -88,7 +89,8 @@ public class Oauth2Controller {
     }
 
     /**
-     * @Description /oauth/token（令牌端点）刷新token信息
+     * /oauth/token（令牌端点）刷新token信息
+     *
      * @date 2019/7/25 16:13
      * @since 1.0
      */
@@ -127,7 +129,8 @@ public class Oauth2Controller {
     }
 
     /**
-     * @Description oauth/check_token（端点校验）token有效性
+     * oauth/check_token（端点校验）token有效性
+     *
      * @date 2019/7/25 16:22
      * @since 1.0
      */
@@ -150,7 +153,8 @@ public class Oauth2Controller {
     }
 
     /**
-     * @Description 账号退出
+     * 账号退出
+     *
      * @date 2019/7/25 17:47
      * @since 1.0
      */

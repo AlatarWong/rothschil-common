@@ -23,8 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/auth_user")
 public class LoginController {
+
     /**
-     * @Description 登录测试接口
+     * 登录测试接口
+     *
      * @date 2019/7/8 17:42
      * @since 1.0
      */
@@ -38,7 +40,8 @@ public class LoginController {
     }
 
     /**
-     * @Description 获取授权码
+     * 获取授权码
+     *
      * @date 2019/7/9 15:44
      * @since 1.0
      */
