@@ -1,4 +1,4 @@
-package xyz.wongs.drunkard;
+package io.github.rothschil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

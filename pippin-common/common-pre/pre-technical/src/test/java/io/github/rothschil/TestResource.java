@@ -1,4 +1,4 @@
-package xyz.wongs;
+package io.github.rothschil;
 
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
