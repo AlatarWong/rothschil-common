@@ -5,7 +5,7 @@ import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import xyz.wongs.drunkard.common.enums.OnlineStatus;
+import io.github.rothschil.common.enums.OnlineStatus;
 import xyz.wongs.drunkard.framework.manager.AsyncManager;
 import xyz.wongs.drunkard.framework.manager.factory.AsyncFactory;
 import xyz.wongs.drunkard.framework.shiro.service.SysShiroService;

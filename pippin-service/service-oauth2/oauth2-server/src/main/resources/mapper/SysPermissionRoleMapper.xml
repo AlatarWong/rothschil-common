@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.SysPermissionRoleMapper" >
-  <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.SysPermissionRole" >
+<mapper namespace="io.github.rothschil.oauth2.domain.mapper.SysPermissionRoleMapper" >
+  <resultMap id="BaseResultMap" type="io.github.rothschil.oauth2.domain.entity.SysPermissionRole" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <r column="role_id" property="roleId" jdbcType="INTEGER" />
     <r column="permission_id" property="permissionId" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     delete from sys_permission_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermissionRole" >
+  <insert id="insert" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermissionRole" >
     insert into sys_permission_role (id, role_id, permission_id
       )
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermissionRole" >
+  <insert id="insertSelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermissionRole" >
     insert into sys_permission_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermissionRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermissionRole" >
     update sys_permission_role
     <set >
       <if test="roleId != null" >
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermissionRole" >
+  <update id="updateByPrimaryKey" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermissionRole" >
     update sys_permission_role
     set role_id = #{roleId,jdbcType=INTEGER},
       permission_id = #{permissionId,jdbcType=INTEGER}

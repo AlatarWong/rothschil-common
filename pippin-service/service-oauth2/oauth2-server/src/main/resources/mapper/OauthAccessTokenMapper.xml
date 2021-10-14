@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.OauthAccessTokenMapper" >
-  <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
+<mapper namespace="io.github.rothschil.oauth2.domain.mapper.OauthAccessTokenMapper" >
+  <resultMap id="BaseResultMap" type="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" >
     <id column="authentication_id" property="authenticationId" jdbcType="VARCHAR" />
     <r column="token_id" property="tokenId" jdbcType="VARCHAR" />
     <r column="user_name" property="userName" jdbcType="VARCHAR" />
     <r column="client_id" property="clientId" jdbcType="VARCHAR" />
     <r column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" extends="BaseResultMap" >
     <r column="token" property="token" jdbcType="LONGVARBINARY" />
     <r column="authentication" property="authentication" jdbcType="LONGVARBINARY" />
   </resultMap>
@@ -30,7 +30,7 @@
     delete from oauth_access_token
     where authentication_id = #{authenticationId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
+  <insert id="insert" parameterType="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" >
     insert into oauth_access_token (authentication_id, token_id, user_name, 
       client_id, refresh_token, token, 
       authentication)
@@ -38,7 +38,7 @@
       #{clientId,jdbcType=VARCHAR}, #{refreshToken,jdbcType=VARCHAR}, #{token,jdbcType=LONGVARBINARY}, 
       #{authentication,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
+  <insert id="insertSelective" parameterType="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" >
     insert into oauth_access_token
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="authenticationId != null" >
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" >
     update oauth_access_token
     <set >
       <if test="tokenId != null" >
@@ -111,7 +111,7 @@
     </set>
     where authentication_id = #{authenticationId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" >
     update oauth_access_token
     set token_id = #{tokenId,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
@@ -121,7 +121,7 @@
       authentication = #{authentication,jdbcType=LONGVARBINARY}
     where authentication_id = #{authenticationId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.OauthAccessToken" >
+  <update id="updateByPrimaryKey" parameterType="io.github.rothschil.oauth2.domain.entity.OauthAccessToken" >
     update oauth_access_token
     set token_id = #{tokenId,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},

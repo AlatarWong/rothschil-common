@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.SysRoleMapper" >
-  <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.SysRole" >
+<mapper namespace="io.github.rothschil.oauth2.domain.mapper.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="io.github.rothschil.oauth2.domain.entity.SysRole" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <r column="role_name" property="roleName" jdbcType="VARCHAR" />
   </resultMap>
@@ -18,11 +18,11 @@
     delete from sys_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRole" >
+  <insert id="insert" parameterType="io.github.rothschil.oauth2.domain.entity.SysRole" >
     insert into sys_role (id, role_name)
     values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRole" >
+  <insert id="insertSelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysRole" >
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -41,7 +41,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysRole" >
     update sys_role
     <set >
       <if test="roleName != null" >
@@ -50,7 +50,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRole" >
+  <update id="updateByPrimaryKey" parameterType="io.github.rothschil.oauth2.domain.entity.SysRole" >
     update sys_role
     set role_name = #{roleName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.wongs.drunkard.image.mapper.ImageInfoMapper" >
-  <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.image.entity.ImageInfo" >
+<mapper namespace="io.github.rothschil.image.mapper.ImageInfoMapper" >
+  <resultMap id="BaseResultMap" type="io.github.rothschil.image.entity.ImageInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <r column="file_name" property="fileName" jdbcType="VARCHAR" />
     <r column="file_path" property="filePath" jdbcType="VARCHAR" />
@@ -35,7 +35,7 @@
     delete from tb_file_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xyz.wongs.drunkard.image.entity.ImageInfo" >
+  <insert id="insert" parameterType="io.github.rothschil.image.entity.ImageInfo" >
     insert into tb_file_info (id, file_name, file_path, 
       file_size, suffix_name, md5
       )
@@ -43,7 +43,7 @@
       #{fileSize,jdbcType=BIGINT}, #{suffixName,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xyz.wongs.drunkard.image.entity.ImageInfo" >
+  <insert id="insertSelective" parameterType="io.github.rothschil.image.entity.ImageInfo" >
     insert into tb_file_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -86,7 +86,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.wongs.drunkard.image.entity.ImageInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.image.entity.ImageInfo" >
     update tb_file_info
     <set >
       <if test="fileName != null" >
@@ -107,7 +107,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.wongs.drunkard.image.entity.ImageInfo" >
+  <update id="updateByPrimaryKey" parameterType="io.github.rothschil.image.entity.ImageInfo" >
     update tb_file_info
     set file_name = #{fileName,jdbcType=VARCHAR},
       file_path = #{filePath,jdbcType=VARCHAR},

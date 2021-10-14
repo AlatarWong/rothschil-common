@@ -2,9 +2,9 @@ package xyz.wongs.drunkard.framework.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.wongs.drunkard.war.core.domain.SysDictData;
-import xyz.wongs.drunkard.war.core.service.ISysDictDataService;
-import xyz.wongs.drunkard.war.core.service.ISysDictTypeService;
+import io.github.rothschil.war.core.domain.SysDictData;
+import io.github.rothschil.war.core.service.ISysDictDataService;
+import io.github.rothschil.war.core.service.ISysDictTypeService;
 
 import java.util.List;
 

@@ -10,14 +10,13 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.wongs.drunkard.common.utils.ShiroUtils;
-import xyz.wongs.drunkard.common.utils.StringUtils;
+import io.github.rothschil.common.utils.ShiroUtils;
+import io.github.rothschil.common.utils.StringUtils;
 import xyz.wongs.drunkard.framework.shiro.service.SysLoginService;
-import xyz.wongs.drunkard.war.core.domain.SysUser;
-import xyz.wongs.drunkard.war.core.service.ISysMenuService;
-import xyz.wongs.drunkard.war.core.service.ISysRoleService;
+import io.github.rothschil.war.core.domain.SysUser;
+import io.github.rothschil.war.core.service.ISysMenuService;
+import io.github.rothschil.war.core.service.ISysRoleService;
 
-import java.util.Objects;
 import java.util.Set;
 
 /**

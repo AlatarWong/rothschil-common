@@ -2,7 +2,7 @@ package xyz.wongs.drunkard.framework.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.wongs.drunkard.war.core.service.ISysConfigService;
+import io.github.rothschil.war.core.service.ISysConfigService;
 
 /**
  * html调用 thymeleaf 实现参数管理

@@ -9,11 +9,11 @@ import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
-import xyz.wongs.drunkard.common.core.domain.AjaxResult;
-import xyz.wongs.drunkard.common.utils.ServletUtils;
-import xyz.wongs.drunkard.common.utils.ShiroUtils;
-import xyz.wongs.drunkard.war.constant.ShiroConstants;
-import xyz.wongs.drunkard.war.core.domain.SysUser;
+import io.github.rothschil.common.core.domain.AjaxResult;
+import io.github.rothschil.common.utils.ServletUtils;
+import io.github.rothschil.common.utils.ShiroUtils;
+import io.github.rothschil.war.constant.ShiroConstants;
+import io.github.rothschil.war.core.domain.SysUser;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

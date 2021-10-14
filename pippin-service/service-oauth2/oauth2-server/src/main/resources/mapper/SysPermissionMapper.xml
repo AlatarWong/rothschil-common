@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.SysPermissionMapper" >
-  <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.SysPermission" >
+<mapper namespace="io.github.rothschil.oauth2.domain.mapper.SysPermissionMapper" >
+  <resultMap id="BaseResultMap" type="io.github.rothschil.oauth2.domain.entity.SysPermission" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <r column="perm_name" property="permName" jdbcType="VARCHAR" />
     <r column="descritpion" property="descritpion" jdbcType="VARCHAR" />
@@ -33,13 +33,13 @@
     delete from sys_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermission" >
+  <insert id="insert" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermission" >
     insert into sys_permission (id, perm_name, descritpion, 
       url, pid)
     values (#{id,jdbcType=BIGINT}, #{permName,jdbcType=VARCHAR}, #{descritpion,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermission" >
+  <insert id="insertSelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermission" >
     insert into sys_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -76,7 +76,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermission" >
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermission" >
     update sys_permission
     <set >
       <if test="permName != null" >
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysPermission" >
+  <update id="updateByPrimaryKey" parameterType="io.github.rothschil.oauth2.domain.entity.SysPermission" >
     update sys_permission
     set perm_name = #{permName,jdbcType=VARCHAR},
       descritpion = #{descritpion,jdbcType=VARCHAR},

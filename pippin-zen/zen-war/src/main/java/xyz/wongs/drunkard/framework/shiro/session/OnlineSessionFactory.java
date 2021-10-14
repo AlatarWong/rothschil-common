@@ -6,8 +6,8 @@ import org.apache.shiro.session.mgt.SessionContext;
 import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.web.session.mgt.WebSessionContext;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.common.utils.IpUtils;
-import xyz.wongs.drunkard.common.utils.ServletUtils;
+import io.github.rothschil.common.utils.IpUtils;
+import io.github.rothschil.common.utils.ServletUtils;
 
 import javax.servlet.http.HttpServletRequest;
 

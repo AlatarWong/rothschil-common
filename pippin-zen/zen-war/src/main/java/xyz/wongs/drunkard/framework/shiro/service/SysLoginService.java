@@ -4,20 +4,20 @@ package xyz.wongs.drunkard.framework.shiro.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import xyz.wongs.drunkard.common.constant.Constants;
-import xyz.wongs.drunkard.base.response.enums.Status;
-import xyz.wongs.drunkard.common.exception.DrunkardException;
-import xyz.wongs.drunkard.common.utils.DateUtils;
-import xyz.wongs.drunkard.common.utils.MessageUtils;
-import xyz.wongs.drunkard.common.utils.ServletUtils;
-import xyz.wongs.drunkard.common.enums.UserStatus;
-import xyz.wongs.drunkard.common.utils.ShiroUtils;
+import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.base.response.enums.Status;
+import io.github.rothschil.common.exception.DrunkardException;
+import io.github.rothschil.common.utils.DateUtils;
+import io.github.rothschil.common.utils.MessageUtils;
+import io.github.rothschil.common.utils.ServletUtils;
+import io.github.rothschil.common.enums.UserStatus;
+import io.github.rothschil.common.utils.ShiroUtils;
 import xyz.wongs.drunkard.framework.manager.AsyncManager;
 import xyz.wongs.drunkard.framework.manager.factory.AsyncFactory;
-import xyz.wongs.drunkard.war.constant.ShiroConstants;
-import xyz.wongs.drunkard.war.constant.UserConstants;
-import xyz.wongs.drunkard.war.core.domain.SysUser;
-import xyz.wongs.drunkard.war.core.service.ISysUserService;
+import io.github.rothschil.war.constant.ShiroConstants;
+import io.github.rothschil.war.constant.UserConstants;
+import io.github.rothschil.war.core.domain.SysUser;
+import io.github.rothschil.war.core.service.ISysUserService;
 
 /**
  * 登录校验方法

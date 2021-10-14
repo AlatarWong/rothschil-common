@@ -72,7 +72,7 @@ CREATE TABLE tb_file_info (
 package xyz.wongs.drunkard.war.moon.entity;
 
 import lombok.*;
-import xyz.wongs.drunkard.common.po.BasePo;
+import BasePo;
 
 @EqualsAndHashCode(callSuper = false)
 @Builder(toBuilder = true)
@@ -102,7 +102,7 @@ public class FileInfo extends AbstractEntity<Long> {
 ~~~java
 package xyz.wongs.drunkard.war.moon.mapper;
 
-import xyz.wongs.drunkard.base.persistence.mybatis.mapper.BaseMapper;
+import BaseMapper;
 import FileInfo;
 
 import java.util.List;
@@ -253,8 +253,8 @@ package xyz.wongs.drunkard.war.moon.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.wongs.drunkard.base.persistence.mybatis.mapper.BaseMapper;
-import xyz.wongs.drunkard.base.persistence.mybatis.service.BaseService;
+import BaseMapper;
+import BaseService;
 import FileInfo;
 import FileInfoMapper;
 import java.util.List;
@@ -302,8 +302,8 @@ package xyz.wongs.drunkard.image.task;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.common.utils.file.FileUtil;
-import xyz.wongs.drunkard.common.utils.security.Md5Utils;
+import FileUtil;
+import Md5Utils;
 import FileInfo;
 import FileInfoService;
 
@@ -400,7 +400,7 @@ public class RunFileTask {
 ~~~java
 package xyz.wongs.drunkard.image.task.hadler;
 
-import xyz.wongs.drunkard.base.aop.pojo.AppLog;
+import AppLog;
 import FileInfo;
 
 import java.security.PrivateKey;
@@ -428,7 +428,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.image.task.hadler.IntfImageInfoHandler;
+import IntfImageInfoHandler;
 import FileInfo;
 import FileInfoService;
 
@@ -458,7 +458,7 @@ package xyz.wongs.drunkard.image.task.queue;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.image.task.hadler.IntfImageInfoHandler;
+import IntfImageInfoHandler;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -565,9 +565,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.common.utils.file.FileUtil;
-import xyz.wongs.drunkard.common.utils.security.Md5Utils;
-import xyz.wongs.drunkard.image.task.hadler.impl.ImageInfoHandler;
+import FileUtil;
+import Md5Utils;
+import ImageInfoHandler;
 import xyz.wongs.drunkard.image.task.queue.FileInfoQueue;
 import FileInfo;
 import FileInfoService;
@@ -654,7 +654,7 @@ public class RunFileTask {
 package xyz.wongs.drunkard.image.task.thread;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import xyz.wongs.drunkard.common.utils.StringUtils;
+import StringUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -702,12 +702,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.common.utils.file.FileUtil;
-import xyz.wongs.drunkard.common.utils.security.Md5Utils;
-import xyz.wongs.drunkard.common.utils.thread.ThreadPoolsUtil;
-import xyz.wongs.drunkard.image.task.hadler.impl.ImageInfoHandler;
+import FileUtil;
+import Md5Utils;
+import ThreadPoolsUtil;
+import ImageInfoHandler;
 import xyz.wongs.drunkard.image.task.queue.FileInfoQueue;
-import xyz.wongs.drunkard.image.task.thread.FileSizeThread;
+import FileSizeThread;
 import FileInfo;
 import FileInfoService;
 

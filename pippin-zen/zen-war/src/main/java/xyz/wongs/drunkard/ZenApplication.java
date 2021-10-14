@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 */
 @ServletComponentScan
 @EnableAsync
-@MapperScan(basePackages = {"xyz.wongs.drunkard.**.mapper"})
+@MapperScan(basePackages = {"io.github.rothschil.**.mapper"})
 @SpringBootApplication
 public class ZenApplication {
 

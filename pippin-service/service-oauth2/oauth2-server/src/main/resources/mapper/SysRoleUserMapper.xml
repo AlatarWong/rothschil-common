@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.wongs.drunkard.oauth2.domain.mapper.SysRoleUserMapper" >
-  <resultMap id="BaseResultMap" type="xyz.wongs.drunkard.oauth2.domain.entity.SysRoleUser" >
+<mapper namespace="io.github.rothschil.oauth2.domain.mapper.SysRoleUserMapper" >
+  <resultMap id="BaseResultMap" type="io.github.rothschil.oauth2.domain.entity.SysRoleUser" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <r column="user_id" property="userId" jdbcType="INTEGER" />
     <r column="role_id" property="roleId" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     delete from sys_role_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRoleUser" >
+  <insert id="insert" parameterType="io.github.rothschil.oauth2.domain.entity.SysRoleUser" >
     insert into sys_role_user (id, user_id, role_id
       )
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRoleUser" >
+  <insert id="insertSelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysRoleUser" >
     insert into sys_role_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRoleUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.oauth2.domain.entity.SysRoleUser" >
     update sys_role_user
     <set >
       <if test="userId != null" >
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xyz.wongs.drunkard.oauth2.domain.entity.SysRoleUser" >
+  <update id="updateByPrimaryKey" parameterType="io.github.rothschil.oauth2.domain.entity.SysRoleUser" >
     update sys_role_user
     set user_id = #{userId,jdbcType=INTEGER},
       role_id = #{roleId,jdbcType=INTEGER}

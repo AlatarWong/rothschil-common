@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.framework.shiro.session;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.session.mgt.SimpleSession;
-import xyz.wongs.drunkard.common.enums.OnlineStatus;
+import io.github.rothschil.common.enums.OnlineStatus;
 
 /**
  * 在线用户会话属性

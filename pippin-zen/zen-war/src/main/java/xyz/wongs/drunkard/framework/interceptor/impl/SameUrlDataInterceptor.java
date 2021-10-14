@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.framework.interceptor.impl;
 
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.common.json.JSON;
+import io.github.rothschil.common.json.JSON;
 import xyz.wongs.drunkard.framework.interceptor.RepeatSubmitInterceptor;
 
 import javax.servlet.http.HttpServletRequest;

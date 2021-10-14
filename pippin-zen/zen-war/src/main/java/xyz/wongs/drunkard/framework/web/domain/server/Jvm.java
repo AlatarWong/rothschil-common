@@ -1,7 +1,7 @@
 package xyz.wongs.drunkard.framework.web.domain.server;
 
-import xyz.wongs.drunkard.common.utils.Arith;
-import xyz.wongs.drunkard.common.utils.DateUtils;
+import io.github.rothschil.common.utils.Arith;
+import io.github.rothschil.common.utils.DateUtils;
 
 import java.lang.management.ManagementFactory;
 

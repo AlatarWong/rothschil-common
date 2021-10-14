@@ -3,7 +3,7 @@ package xyz.wongs.drunkard.framework.shiro.web.filter.sync;
 import xyz.wongs.drunkard.framework.shiro.session.OnlineSession;
 import xyz.wongs.drunkard.framework.shiro.session.OnlineSessionDAO;
 import org.apache.shiro.web.filter.PathMatchingFilter;
-import xyz.wongs.drunkard.war.constant.ShiroConstants;
+import io.github.rothschil.war.constant.ShiroConstants;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

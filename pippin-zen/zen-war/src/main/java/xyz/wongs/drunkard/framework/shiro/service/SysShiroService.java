@@ -3,10 +3,10 @@ package xyz.wongs.drunkard.framework.shiro.service;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xyz.wongs.drunkard.common.utils.StringUtils;
+import io.github.rothschil.common.utils.StringUtils;
 import xyz.wongs.drunkard.framework.shiro.session.OnlineSession;
-import xyz.wongs.drunkard.war.core.domain.SysUserOnline;
-import xyz.wongs.drunkard.war.core.service.ISysUserOnlineService;
+import io.github.rothschil.war.core.domain.SysUserOnline;
+import io.github.rothschil.war.core.service.ISysUserOnlineService;
 
 import java.io.Serializable;
 
