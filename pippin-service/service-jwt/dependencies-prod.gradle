@@ -1,3 +1,0 @@
-ext.libraries =[
-    'poi':    "org.apache.poi:poi:4.1.2"
-]

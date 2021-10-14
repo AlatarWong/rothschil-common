@@ -1,22 +1,10 @@
-rootProject.name = 'pippin'
+rootProject.name = 'rothschil-common'
 
 include 'groovy-demo'
 
-include 'pippin-common:common-utils'
-include 'pippin-common:common-pre:pre-technical'
-include 'pippin-common:common-persistence:persistence-jpa'
-include 'pippin-common:common-persistence:persistence-mybatis'
-include 'pippin-service:service-alipay'
-include 'pippin-service:service-image'
-include 'pippin-service:service-jwt'
-include 'pippin-service:service-location:location-jpa'
-include 'pippin-service:service-location:location-mybatis'
-include 'pippin-service:service-oauth2:oauth2-resource'
-include 'pippin-service:service-oauth2:oauth2-server'
-include 'pippin-zen:zen-war'
+include 'common-utils'
+include 'common-persistence:persistence-jpa'
+include 'common-persistence:persistence-mybatis'
 
-include 'pippin-starter:simple-spring-boot-starter'
-include 'pippin-starter:demo-spring-boot-starter'
-//include 'pippin-starter:verification-starter'
 
 

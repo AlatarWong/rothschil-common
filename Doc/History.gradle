@@ -1,0 +1,361 @@
+// 1、原型创建
+def task1 = task(task1)
+task1.doLast {
+    println '【1、原型创建】最后执行'
+}
+
+// 2、任务属性创建
+def task2 = task([description: ' Is My Task2', group: 'xyz.wongs'], task2)
+task2.doLast {
+    println '【2、任务属性创建】最后执行'
+}
+
+// 3、闭包机制
+task task3 {
+    description(' Is My Task3')
+    group('xyz.wongs')
+    doLast {
+        println '【3、闭包机制】最后执行'
+    }
+}
+
+// 4、任务容器 TaskContainer
+tasks.create('task4') {
+    description(' Is My Task4')
+    group('xyz.wongs')
+
+    doLast {
+        println '【4、任务容器 TaskContainer】最后执行'
+    }
+}
+
+// 5、任务容器 TaskContainer
+tasks.register('task5') {
+    description(' Is My Task5')
+    group('xyz.wongs')
+
+    doLast {
+        println '【4、任务容器 TaskContainer】register 最后执行'
+    }
+}
+
+// 一、属性：
+task taskPro {
+    description('Properties Demo')
+    group('xyz.wongs.gradle')
+    doLast {
+        println '【1、Propertie】属性设置'
+    }
+}
+
+
+task funExcu {
+    group('xyz.wongs.gradle')
+    doLast {
+        fileList('./groovy-demo/src/gvy01').each {
+            File file ->
+                ant.checksum(file: file, property: "cs_$file.name")
+                println "$file.name Checksum: ${ant.properties["cs_$file.name"]}"
+        }
+    }
+}
+
+File[] fileList(String path) {
+    file(path).listFiles({ file -> file.isFile() } as FileFilter).sort()
+}
+
+
+// 一、属性(补充)：
+task taskAaddAction {
+    description('Adding behaviour Demo')
+    group('xyz.wongs.gradle')
+    doLast {
+        println '【1、Adding behaviour】属性设置'
+    }
+}
+
+tasks.named('taskAaddAction') {
+    doFirst {
+        println '【1、Adding behaviour】 doFirst 追加的动作'
+    }
+}
+
+tasks.named('taskAaddAction') {
+    doLast {
+        println '【1、Adding behaviour】 doLast 追加的动作'
+    }
+}
+
+
+// 二、控制
+task taskControl {
+    description('Control Demo')
+    doLast {
+        println '【2、Control】控制设置'
+    }
+}
+taskControl {
+    group(BasePlugin.BUILD_GROUP)
+    enabled = false
+}
+
+// 二、继承
+// 定义Java程序类
+class CustomerTask extends DefaultTask {
+
+    // TaskAction 任务执行注解
+    @TaskAction
+    def doSelf() {
+        // 实现的主体
+        println '【3、Extends-doSelf】 Operation Body'
+    }
+
+    @TaskAction
+    def doLast() {
+        println '【3、Extends-doLast】 doLast Operation'
+    }
+
+    @TaskAction
+    def doWolf() {
+        println '【3、Extends-doWolf】 doWolf Operation'
+    }
+}
+
+task taskExtends(type: CustomerTask) {
+    description('Extends Demo')
+    doFirst {
+        println '【3、Extends】Extend'
+    }
+
+    doLast {
+        println '【3、Extends】Extend'
+    }
+}
+
+taskExtends {
+    group('xyz.wongs.gradle')
+    enabled = true
+}
+
+// 三、onlyIf
+task taskOnlyIf() {
+    group("xyz.wongs.gradle")
+    description('Extends Demo')
+    onlyIf {
+        def excute = false
+        if (project.hasProperty('flag')) {
+            def pro = project.property('flag')
+            if (pro == 'wongs') {
+                excute = true
+            }
+        }
+        return excute
+    }
+
+    doFirst {
+        println '【4、onlyIf】 doFirst'
+    }
+
+    doLast {
+        println '【4、onlyIf】 doLast'
+    }
+}
+
+// 任务依赖
+
+task taskDependsOnC() {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【5、DependsOnC】 doFirst'
+    }
+}
+
+task taskDependsOnD() {
+    // 任务禁用
+    enabled = true
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【5、DependsOnD】 doFirst'
+    }
+}
+
+task taskDependsOnB(dependsOn: [taskDependsOnD, taskDependsOnC]) {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【5、DependsOnB】 doFirst'
+    }
+}
+
+task taskDependsOnA(dependsOn: [taskDependsOnB]) {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【5、DependsOnA】 doFirst'
+    }
+}
+
+
+// 1、依赖错误
+task taskDependsWrong1() {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【6、Wrong1】 doFirst'
+    }
+}
+
+task taskDependsWrong2() {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【6、Wrong2】 doFirst'
+    }
+}
+
+taskDependsWrong1.dependsOn(taskDependsWrong2)
+// 任务2 在 任务1 后执行
+taskDependsWrong2.mustRunAfter taskDependsWrong1
+
+// 2、执行顺序
+task taskDependsShort1() {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【2、Short1】 doFirst'
+    }
+}
+
+task taskDependsShort2() {
+    group("xyz.wongs.gradle")
+    doFirst {
+        println '【2、Short2】 doFirst'
+    }
+}
+// 任务2 在 任务1 后执行
+taskDependsShort1.dependsOn(taskDependsShort2)
+// 任务2 在 任务1 后执行
+taskDependsShort2.shouldRunAfter taskDependsShort1
+
+// 3、任务替换
+//task build(overwrite: true){
+//    doFirst {
+//        println '【3、任务替换】 build doFirst'
+//    }
+//}
+//
+//def Task task = task([overwrite: true],build){
+//    doFirst {
+//        println '【3、任务替换】 build doFirst'
+//    }
+//}
+
+// 4、任务失败
+def Task taskFailedA = task(taskFailed) {
+    doFirst {
+        if (true) {
+            throw new StopExecutionException('taskFailed 异常')
+        }
+    }
+}
+
+def Task taskFailedB = task(taskFailedB) {
+    dependsOn(taskFailedA)
+    doFirst {
+        println(' [taskFailedB] ')
+    }
+}
+
+// 文件处理任务
+// 1、本地文件
+def Task taskLocalFile = task(taskLocalFile) {
+    doFirst {
+        // 使用相对路径
+        File configFile = file('src/main/resources/config.xml')
+        configFile.createNewFile();
+
+        def _path = 'D:/Code/98_Github/Gradle/grad/src/main/resources/config.xml'
+        // 使用绝对路径
+        configFile = file(_path)
+        println('【1、本地文件  使用绝对路径】' + configFile.absolutePath)
+
+        // 使用一个文件对象
+        configFile = file(new File(_path))
+        println('【1、本地文件  使用文件对象】' + configFile.exists())
+    }
+}
+
+// 2、文件集合
+def Task taskCollectionFile = task(taskCollectionFile) {
+    doFirst {
+        File _fileList = file('groovy-demo/src/gvy01')
+        def FileCollection collection = files(_fileList.listFiles())    // 获取文件列表
+        collection.each { println(it) }   // 遍历文件列表
+        Set _set1 = collection.files        // 文件集合转为 Set
+        Set _set2 = collection as Set
+        List _list = collection as List     // 文件集合转为 List
+        String _path = collection.asPath    // 文件集合转为 String
+    }
+}
+
+// 3、文件树
+def Task taskFileTree = task(taskFileTree) {
+    doFirst {
+        FileTree _fileTree = fileTree('groovy-demo/src/gvy01')  // 1、指定目录创建文件树对象
+        _fileTree.include '**/*.groovy'     // 添加包含指定文件
+        _fileTree.exclude '**/del*'         // 添加排除指定文件
+        // 2、使用路径创建文件树对象，同时指定包含的文件
+        _fileTree = fileTree('gvy/src').include('**/*.groovy')
+
+        _fileTree = fileTree('gvy/src') {   // 3、通过闭包创建文件树
+            include '**/*.groovy'
+        }
+
+        _fileTree = fileTree(dir: 'groovy-demo/src/gvy01', include: '**/*.groovy')  // 通过map创建文件树
+        _fileTree = fileTree(dir: 'groovy-demo/src/gvy01', includes: ['**/*.groovy', '**/*.xml'])
+        _fileTree = fileTree(dir: 'groovy-demo/src/gvy01', include: '**/*.groovy', exclude: '**/*del*/**')
+
+        _fileTree.each { File file ->        // 遍历文件树的所有文件
+            println(file)
+        }
+    }
+}
+
+// 4、文件拷贝
+task taskFileCopy(type: Copy) {
+    from 'src/main/resources/config.log'
+    // 从Zip压缩文件中拷贝内容
+    from zipTree('src/main/resources/00.zip')
+    into 'src/main/java/'
+    // 添加过虑条件来指定包含或排除的文件
+    include '**/*.png'
+}
+
+// 5、归档文件
+//task taskPlaceFile(type: Zip){
+//    from 'gvoovy-demo/src/gvy01'
+//    archiveBaseName = 'placeFile'
+//}
+//
+//task taskEach(){
+//    FileTree tar = zipTree('build/distributions/placeFile-1.0-SNAPSHOT.zip')
+//    ta
+
+apply plugin: WorkPlugin
+
+abstract class WorkPluginExtension {
+    abstract Property<String> getMessage()
+
+    WorkPluginExtension() {
+        message.convention('Hello from GreetingPlugin')
+    }
+}
+
+class WorkPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        // 添加 属性扩展类
+        def extension = project.extensions.create('work', WorkPluginExtension)
+
+        project.task('sayWorld') {
+            doLast {
+                println extension.message.get()
+            }
+        }
+    }
+}
