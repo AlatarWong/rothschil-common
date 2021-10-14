@@ -1,4 +1,8 @@
 archivesBaseName = 'simple-spring-boot-starter'
 dependencies {
-    implementation('xyz.wongs.gradle:demo-spring-boot-starter')
+    implementation(project(':pippin-common:common-utils')){
+        exclude group:'com.alibaba', module: 'druid-spring-boot-starter'
+        exclude group:'com.oracle', module: 'ojdbc6'
+        exclude group:'mysql', module: 'mysql-connector-java'
+    }
 }
