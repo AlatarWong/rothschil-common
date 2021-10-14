@@ -1,10 +1,10 @@
-//package xyz.wongs.drunkard.image.task.unit;
+//package io.github.rothschil.image.task.unit;
 //
 //import org.junit.Test;
 //import org.springframework.util.Assert;
-//import xyz.wongs.drunkard.base.BaseTest;
-//import xyz.wongs.drunkard.war3.domain.entity.Location;
-//import xyz.wongs.drunkard.war3.domain.service.LocationService;
+//import io.github.rothschil.base.BaseTest;
+//import io.github.rothschil.war3.domain.entity.Location;
+//import io.github.rothschil.war3.domain.service.LocationService;
 //
 //import javax.annotation.Resource;
 //import java.util.List;

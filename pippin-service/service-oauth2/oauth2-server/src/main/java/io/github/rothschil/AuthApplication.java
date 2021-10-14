@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * @since 1.0.0
  */
 @EnableCaching
-@MapperScan(basePackages = {"xyz.wongs.drunkard.**.mapper"})
+@MapperScan(basePackages = {"io.github.rothschil.**.mapper"})
 @SpringBootApplication
 public class AuthApplication {
     public static void main(String[] args) {

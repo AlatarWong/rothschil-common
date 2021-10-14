@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * <p>
  * EnableJpaAuditing SpringBootApplication
- * EnableJpaRepositories(basePackages = {"xyz.wongs.drunkard"},
+ * EnableJpaRepositories(basePackages = {"io.github.rothschil"},
  * repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class//Specify your own factory class
  * )
  * </p>

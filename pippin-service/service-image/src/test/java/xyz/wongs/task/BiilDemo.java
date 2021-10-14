@@ -1,4 +1,4 @@
-//package xyz.wongs.drunkard.image.task;
+//package io.github.rothschil.image.task;
 //
 //import org.junit.jupiter.api.Disabled;
 //import org.junit.jupiter.api.DisplayName;
@@ -6,7 +6,7 @@
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
-//import xyz.wongs.drunkard.base.BaseTest;
+//import io.github.rothschil.base.BaseTest;
 //
 //@DisplayName("忽略测试")
 //public class BiilDemo extends BaseTest {

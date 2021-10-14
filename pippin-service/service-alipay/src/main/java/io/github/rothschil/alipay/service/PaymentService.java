@@ -1,12 +1,12 @@
-//package xyz.wongs.drunkard.alipay.service;
+//package io.github.rothschil.alipay.service;
 //
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
-//import xyz.wongs.drunkard.alipay.pojo.AlipayProperty;
-//import xyz.wongs.drunkard.oss.bo.OssBed;
-//import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
+//import io.github.rothschil.alipay.pojo.AlipayProperty;
+//import io.github.rothschil.oss.bo.OssBed;
+//import io.github.rothschil.alipay.pojo.form.OrderInfo;
 //
 ///**
 // * @author <a href="https://github.com/rothschil">Sam</a>

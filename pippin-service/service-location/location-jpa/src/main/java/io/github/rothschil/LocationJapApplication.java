@@ -13,7 +13,7 @@ import io.github.rothschil.base.persistence.jpa.repository.factory.BaseRepositor
 */
 @EnableJpaAuditing
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = {"xyz.wongs"},
+@EnableJpaRepositories(basePackages = {"io.github"},
         repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class
 )
 public class LocationJapApplication {

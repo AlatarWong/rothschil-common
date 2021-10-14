@@ -4,7 +4,7 @@
 //import org.junit.jupiter.api.Test;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
-//import xyz.wongs.drunkard.image.task.RunFileTask;
+//import io.github.rothschil.image.task.RunFileTask;
 //
 //
 //public class ImageInfoCase extends BaseTest {

@@ -1,4 +1,4 @@
-//package xyz.wongs.drunkard.base;
+//package io.github.rothschil.base;
 //
 //import lombok.extern.slf4j.Slf4j;
 //import org.junit.runner.RunWith;

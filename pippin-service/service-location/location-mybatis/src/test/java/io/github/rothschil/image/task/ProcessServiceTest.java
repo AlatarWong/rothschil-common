@@ -1,4 +1,4 @@
-//package xyz.wongs.drunkard.image.task;
+//package io.github.rothschil.image.task;
 //
 //import com.github.pagehelper.PageInfo;
 //import lombok.extern.slf4j.Slf4j;
@@ -7,11 +7,11 @@
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
-//import xyz.wongs.drunkard.base.BaseTest;
-//import xyz.wongs.drunkard.war3.domain.entity.Location;
-//import xyz.wongs.drunkard.war3.domain.service.LocationService;
-//import xyz.wongs.drunkard.war3.web.util.AreaCodeStringUtils;
-//import xyz.wongs.drunkard.war3.web.area.task.ProcessService;
+//import io.github.rothschil.base.BaseTest;
+//import io.github.rothschil.war3.domain.entity.Location;
+//import io.github.rothschil.war3.domain.service.LocationService;
+//import io.github.rothschil.war3.web.util.AreaCodeStringUtils;
+//import io.github.rothschil.war3.web.area.task.ProcessService;
 //
 //import java.util.Iterator;
 //import java.util.List;

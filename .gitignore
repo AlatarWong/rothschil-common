@@ -5,10 +5,14 @@
 **/auto-generate-code/
 **/resources/alioss.properties
 
+
+
 # IntelliJ project files
 .idea
 *.iml
 out
+gradle.properties
+
 gen### MicrosoftOffice template
 *.tmp
 *.yml-bak

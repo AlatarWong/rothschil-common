@@ -12,7 +12,7 @@ import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
 import io.github.rothschil.common.utils.Arith;
 import io.github.rothschil.common.utils.IpUtils;
-import xyz.wongs.drunkard.framework.web.domain.server.*;
+import io.github.rothschil.framework.web.domain.server.*;
 
 import java.util.LinkedList;
 import java.util.List;

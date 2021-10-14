@@ -1,6 +1,5 @@
 package io.github.rothschil.common.text;
 
-import io.github.rothschil.common.enums.SystemOsProperty;
 import io.github.rothschil.common.utils.StringUtils;
 
 /**
@@ -76,10 +75,5 @@ public class StrFormatter {
         sbuf.append(strPattern, handledPosition, strPattern.length());
 
         return sbuf.toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(System.getProperty(SystemOsProperty.OS_NAME.getCode()));
-        System.out.println(System.getProperty(SystemOsProperty.USER_NAME.getCode()));
     }
 }

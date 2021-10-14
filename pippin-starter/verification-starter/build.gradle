@@ -1,7 +1,0 @@
-archivesBaseName = 'verification-starter'
-bootJar.enabled = true
-dependencies {
-    implementation('xyz.wongs.gradle:demo-spring-boot-starter:1.0.0-SNAPSHOT')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-
-}

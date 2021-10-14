@@ -4,6 +4,9 @@ plugins {
     id 'org.springframework.boot' version '2.5.0'
 }
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'signing'
+apply plugin: 'maven-publish'
+
 
 
 version project_version
@@ -30,6 +33,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
+    apply plugin: 'signing'
     apply plugin: 'idea'
     apply plugin: 'jacoco'
     apply plugin: 'org.springframework.boot'
@@ -50,10 +54,10 @@ subprojects {
     }
 
     repositories {
-        maven {
-            allowInsecureProtocol true
-            url 'http://localhost:8081/repository/maven-public/'
-        }
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:8081/repository/maven-public/'
+//        }
         mavenLocal()
         mavenCentral()
 
@@ -118,6 +122,8 @@ subprojects {
         options.links("http://docs.oracle.com/javase/8/docs/api/")
         //是否保留作者
         options.author = true
+        options.version = true
+        options.header = project.name
         //是否生成树状结构
         options.noTree = true
         options.noIndex = true
@@ -131,6 +137,13 @@ subprojects {
         //报错不中断
         failOnError = false
     }
+
+//    configurations {
+//        [apiElements, runtimeElements].each {
+//            it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
+//            it.outgoing.artifact(bootJar)
+//        }
+//    }
 
     task javaDocJar(type: Jar, dependsOn: javaDoc) {
         // 文件标记
@@ -151,42 +164,84 @@ subprojects {
     //最终打包任务操作，将所有任务放入build
     artifacts {
         archives(sourceTask)
-        archives(javaDocJar)
+//        archives(javaDocJar)
     }
 
     publishing {
         publications {
-            myMaven(MavenPublication) {
+            toSonaType(MavenPublication) {
                 groupId = "$project.group"
                 artifactId = "$project.name"
                 version = "$project.version"
                 from components.java
+                artifact bootJar
                 artifact sourceTask
-                artifact javaDocJar
+//                artifact javaDocJar
+
+                pom {
+                    name = "pippin"
+                    description = "Pippin, was a Hobbit of the Shire, and one of Frodo Baggins' youngest, but closest friends. He was a member of the Fellowship of the Ring and later became the thirty-second Thain of the Shire"
+                    url = "https://github.com/rothschil/pippin"
+
+                    // 添加你的 git 仓库 信息
+                    scm {
+                        connection= "scm:git:https://github.com/rothschil/pippin.git"
+                        developerConnection= "scm:git:https://github.com/rothschil/pippin.git"
+                        url= "https://github.com/rothschil/pippin"
+                    }
+
+                    licenses {
+                        license {
+                            name= "The Apache License, Version 2.0"
+                            url= "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    developers {
+                        // 添加开发者描述，这个id不知道是什么
+                        developer {
+                            id= "rothschil"
+                            name= "rothschil"
+                            email= "wcngs@qq.com"
+                        }
+                    }
+
+                }
             }
         }
         repositories {
+
             maven {
-                def releasesRepoUrl = "http://localhost:8081/repository/gradle-release/"
-                def snapshotsRepoUrl = "http://localhost:8081/repository/gradle-snapshot/"
-                url = this.version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-                allowInsecureProtocol true
+                name 'snapshotRepo'
+                url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
                 credentials {
-                    username('wongs')
-                    password('123')
+                    username(oss_name)
+                    password(oss_password)
+                }
+            }
+
+            maven {
+                name 'releaseRepo'
+                url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username(oss_name)
+                    password(oss_password)
                 }
             }
         }
     }
 
+    signing {
+        sign publishing.publications.toSonaType
+    }
+
     // 所有操作准备好触发该任务
-//    gradle.taskGraph.whenReady {
-//        tasks.each {
-//            if (it.getName().contains('test')) {
-//                it.enabled(false)
-//            }
-//        }
-//    }
+    gradle.taskGraph.whenReady {
+        tasks.each {
+            if (it.getName().contains('test')) {
+                it.enabled(false)
+            }
+        }
+    }
 }
 
 

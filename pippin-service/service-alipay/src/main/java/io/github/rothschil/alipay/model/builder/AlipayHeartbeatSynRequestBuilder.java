@@ -2,9 +2,8 @@ package io.github.rothschil.alipay.model.builder;
 
 import com.google.gson.annotations.SerializedName;
 import io.github.rothschil.alipay.model.hb.*;
-import org.apache.commons.lang.StringUtils;
-import xyz.wongs.drunkard.alipay.model.hb.*;
 import io.github.rothschil.common.utils.Utils;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +11,6 @@ import java.util.Map;
 
 /** 服务保障接口请求bizContent结构体
  * @author <a href="https://github.com/rothschil">Sam</a>
- * @description //TODO
- *
  * @date 2018/4/23 - 10:22
  * @since 1.0.0
  */

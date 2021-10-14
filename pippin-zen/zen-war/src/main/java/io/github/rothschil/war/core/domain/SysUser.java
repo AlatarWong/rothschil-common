@@ -1,15 +1,19 @@
 package io.github.rothschil.war.core.domain;
 
-import java.util.Date;
-import java.util.List;
-import javax.validation.constraints.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.github.rothschil.common.annotation.Excel;
+import io.github.rothschil.common.annotation.Excel.ColumnType;
+import io.github.rothschil.common.annotation.Excel.Type;
+import io.github.rothschil.common.annotation.Excels;
+import io.github.rothschil.common.po.BasePo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.rothschil.common.po.BasePo;
-import io.github.rothschil.common.annotation.Excel;
-import io.github.rothschil.common.annotation.Excels;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
 
 /** 用户对象 sys_user
  * @author <a href="https://github.com/rothschil">Sam</a>

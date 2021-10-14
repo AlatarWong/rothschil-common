@@ -5,6 +5,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Controller
 public class SysLoginController extends BaseController {
+    protected final Logger LOG = LoggerFactory.getLogger(BaseController.class);
+
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) {
         // 如果是Ajax请求，返回Json字符串。
@@ -41,7 +45,7 @@ public class SysLoginController extends BaseController {
     @PostMapping("/login")
     @ResponseBody
     public AjaxResult ajaxLogin(String username, String password) {
-        log.warn("username={},password={}",username,password);
+        LOG.warn("username={},password={}",username,password);
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, true);
         Subject subject = SecurityUtils.getSubject();
         try {

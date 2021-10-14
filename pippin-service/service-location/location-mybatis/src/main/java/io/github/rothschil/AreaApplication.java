@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * @since 1.0.0
  */
 @EnableCaching
-@MapperScan(basePackages = {"xyz.wongs.**.mapper"})
+@MapperScan(basePackages = {"io.github.**.mapper"})
 @SpringBootApplication
 public class AreaApplication {
 

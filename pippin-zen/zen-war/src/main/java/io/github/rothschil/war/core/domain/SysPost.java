@@ -1,11 +1,13 @@
 package io.github.rothschil.war.core.domain;
 
-import javax.validation.constraints.*;
-
+import io.github.rothschil.common.annotation.Excel;
+import io.github.rothschil.common.annotation.Excel.ColumnType;
+import io.github.rothschil.common.po.BasePo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import io.github.rothschil.common.po.BasePo;
-import io.github.rothschil.common.annotation.Excel;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * 岗位实体
@@ -20,7 +22,7 @@ public class SysPost extends BasePo<Long> {
     /**
      * 岗位序号
      */
-    @Excel(name = "岗位序号", cellType = ColumnType.NUMERIC)
+    @Excel(name = "岗位序号", cellType = Excel.ColumnType.NUMERIC)
     private Long id;
 
     /**

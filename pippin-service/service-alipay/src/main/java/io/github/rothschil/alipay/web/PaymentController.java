@@ -1,4 +1,4 @@
-//package xyz.wongs.drunkard.alipay.web;
+//package io.github.rothschil.alipay.web;
 //
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -7,8 +7,8 @@
 //import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.servlet.ModelAndView;
-//import xyz.wongs.drunkard.alipay.pojo.form.OrderInfo;
-//import xyz.wongs.drunkard.alipay.service.PaymentService;
+//import io.github.rothschil.alipay.pojo.form.OrderInfo;
+//import io.github.rothschil.alipay.service.PaymentService;
 //
 //import java.util.HashMap;
 //import java.util.Map;

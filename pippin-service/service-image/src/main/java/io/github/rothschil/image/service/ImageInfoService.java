@@ -1,4 +1,4 @@
-package io.github.rothschil.image.service;//package xyz.wongs.drunkard.war3.domain.service;
+package io.github.rothschil.image.service;//package io.github.rothschil.war3.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -180,19 +180,6 @@ public class SignatureUtils {
      */
     public static final String MAC_ALGORITHM_DEFAULT = "HmacSHA1";
 
-    public static void main(String[] args) {
-        // 第一步：为每一个应用分配一个secretKey，共享给发送方和接受方
-        String appId = "awdjoijh231jh12";
-        String secretKey = getSecretKey(appId);
-        System.out.println(secretKey);
-        // 第二步：发送方将待发送消息用HMACSHA1算法进行签名
-        String msg = "hello world";
-        String signatrue = getSignature(msg, secretKey);
-        System.out.println("签名："+signatrue);
-        // 第三步：将消息和签名结果同时传送，接收方进行校验签名
-        assert(verifySignature(appId, signatrue, msg));
-    }
-
     /**
      * 为每个appid生成唯一的secret_key（签名密钥）
      * @param appId 应用唯一标识

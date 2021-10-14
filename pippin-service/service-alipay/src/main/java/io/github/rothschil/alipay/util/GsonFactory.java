@@ -1,10 +1,9 @@
 package io.github.rothschil.alipay.util;
 
-import io.github.rothschil.alipay.model.hb.*;
-import xyz.wongs.drunkard.alipay.model.hb.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import io.github.rothschil.alipay.model.hb.*;
 
 import java.lang.reflect.Type;
 import java.util.List;
