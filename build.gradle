@@ -177,15 +177,15 @@ subprojects {
                 artifact javaDocJar
 
                 pom {
-                    name = "pippin"
+                    name = "rothschil-common"
                     description = "Pippin, was a Hobbit of the Shire, and one of Frodo Baggins' youngest, but closest friends. He was a member of the Fellowship of the Ring and later became the thirty-second Thain of the Shire"
-                    url = "https://github.com/rothschil/pippin"
+                    url = "https://github.com/rothschil/rothschil-common"
 
                     // 添加你的 git 仓库 信息
                     scm {
-                        connection= "scm:git:https://github.com/rothschil/pippin.git"
-                        developerConnection= "scm:git:https://github.com/rothschil/pippin.git"
-                        url= "https://github.com/rothschil/pippin"
+                        connection= "scm:git:https://github.com/rothschil/rothschil-common.git"
+                        developerConnection= "scm:git:https://github.com/rothschil/rothschil-common.git"
+                        url= "https://github.com/rothschil/rothschil-common"
                     }
 
                     licenses {

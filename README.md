@@ -25,7 +25,7 @@
 - [8. Gradle进阶](#8-gradle进阶)
   - [8.1. 构建JAVA项目](#81-构建java项目)
   - [8.2. 多任务并行](#82-多任务并行)
-    - [创建自定义任务类](#创建自定义任务类)
+    - [8.2.1. 创建自定义任务类](#821-创建自定义任务类)
   - [8.3. 生命周期](#83-生命周期)
     - [8.3.1. 构建阶段](#831-构建阶段)
     - [8.3.2. 配置文件](#832-配置文件)
@@ -99,23 +99,6 @@
 |   \---common-utils    ------------------常用工具包，集成通用基类，供其他模块引入
 │      │  build.gradle  ------------------工具包的构建文件
 │      │  dependencies.gradle   ----------配置
-|---pippin-service      ------------------样例服务
-|   \---service-jwt     ------------------JWT服务示例
-|       └─src
-|   |       ├─main
-|   |       │  └─resources
-|   |       │     ├─application.yml
-|   |       │       ├─config.properties
-|   |       │  ├─config
-|   |       │  │  ├─dev
-|   |       │  │  │ ├─application.prperties ----开发环境配置
-|   |       │  │  │      
-|   |       │  │  └─prod
-|   |       │  │    ├─application.prperties ----生产环境配置
-|   |   │  build.gradle     ------------------构建文件
-|   │   |  dependencies-dev.gradle  ----------开发环境配置
-|   │   |  dependencies-prod.gradle ----------生产环境配置
-|   │   |  dependencies-test.gradle ----------测试环境配置
 │  .gitignore           ------------------配置git忽略索要文件
 │  build.gradle         ------------------根目录的构建核心文件
 │  gradle.properties    ------------------根目录的属性文件，这是默认命名
@@ -458,7 +441,7 @@ task taskFileCopy(type: Copy) {
 
 这里通过一个例子来说，这个例子对文件生成相应 `MD5` 校验值，在此过程中我们使用 `Worker API` ，阐述不通隔离级别下多任务并行。
 
-#### 创建自定义任务类
+#### 8.2.1. 创建自定义任务类
 
 
 ### 8.3. 生命周期
