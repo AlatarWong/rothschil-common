@@ -19,7 +19,7 @@ import io.github.rothschil.common.core.domain.AjaxResult;
 import io.github.rothschil.common.text.Convert;
 import io.github.rothschil.common.utils.CookieUtils;
 import io.github.rothschil.common.utils.ShiroUtils;
-import xyz.wongs.drunkard.framework.shiro.service.SysPasswordService;
+import io.github.rothschil.framework.shiro.service.SysPasswordService;
 import io.github.rothschil.war.constant.ShiroConstants;
 import io.github.rothschil.war.core.service.ISysMenuService;
 

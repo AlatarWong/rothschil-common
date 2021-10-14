@@ -16,7 +16,7 @@ import io.github.rothschil.common.exception.DrunkardException;
 import io.github.rothschil.jwt.annotation.IgnoreTokenCheck;
 import io.github.rothschil.jwt.annotation.LoginToken;
 import io.github.rothschil.jwt.po.User;
-import io.github.rothschil.service.UserService;
+import io.github.rothschil.starter.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

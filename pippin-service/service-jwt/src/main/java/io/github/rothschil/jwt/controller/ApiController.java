@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.github.rothschil.base.response.annoation.Body;
 import io.github.rothschil.jwt.annotation.LoginToken;
-import io.github.rothschil.service.JwtService;
-import io.github.rothschil.service.UserService;
+import io.github.rothschil.starter.service.JwtService;
+import io.github.rothschil.starter.service.UserService;
 
 import java.util.ArrayList;
 

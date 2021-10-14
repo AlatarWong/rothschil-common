@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import io.github.rothschil.common.annotation.RequestLimit;
-import xyz.wongs.drunkard.framework.interceptor.LimitInterceptor;
+import io.github.rothschil.framework.interceptor.LimitInterceptor;
 
 /**
  * 控制访问频率，防止恶意行为，需要定义哪些服务需要控制，在类/方法 通过 注解 {@link RequestLimit}

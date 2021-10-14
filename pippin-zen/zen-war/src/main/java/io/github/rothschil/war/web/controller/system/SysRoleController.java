@@ -17,7 +17,7 @@ import io.github.rothschil.common.core.page.TableDataInfo;
 import io.github.rothschil.common.enums.BusinessType;
 import io.github.rothschil.common.utils.ShiroUtils;
 import io.github.rothschil.common.utils.poi.ExcelUtil;
-import xyz.wongs.drunkard.framework.shiro.util.AuthorizationUtils;
+import io.github.rothschil.framework.shiro.util.AuthorizationUtils;
 import io.github.rothschil.war.constant.UserConstants;
 import io.github.rothschil.war.core.service.ISysRoleService;
 

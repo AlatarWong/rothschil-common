@@ -2,7 +2,7 @@ package io.github.rothschil.common.utils;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.RealmSecurityManager;
-import xyz.wongs.drunkard.framework.shiro.realm.UserRealm;
+import io.github.rothschil.framework.shiro.realm.UserRealm;
 
 /**
  * 用户授权信息

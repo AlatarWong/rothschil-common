@@ -15,8 +15,8 @@ import io.github.rothschil.common.core.page.TableDataInfo;
 import io.github.rothschil.common.enums.OnlineStatus;
 import io.github.rothschil.common.text.Convert;
 import io.github.rothschil.common.utils.ShiroUtils;
-import xyz.wongs.drunkard.framework.shiro.session.OnlineSession;
-import xyz.wongs.drunkard.framework.shiro.session.OnlineSessionDAO;
+import io.github.rothschil.framework.shiro.session.OnlineSession;
+import io.github.rothschil.framework.shiro.session.OnlineSessionDAO;
 import io.github.rothschil.war.core.service.ISysUserOnlineService;
 
 import java.util.List;

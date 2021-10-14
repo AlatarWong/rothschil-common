@@ -6,7 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.github.rothschil.common.core.controller.BaseController;
-import xyz.wongs.drunkard.framework.web.domain.Server;
+import io.github.rothschil.framework.web.domain.Server;
 
 /**
  * 服务器监控

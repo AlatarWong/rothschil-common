@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import io.github.rothschil.common.core.controller.BaseController;
 import io.github.rothschil.common.core.domain.AjaxResult;
-import xyz.wongs.drunkard.framework.shiro.service.SysRegisterService;
+import io.github.rothschil.framework.shiro.service.SysRegisterService;
 
 
 /**

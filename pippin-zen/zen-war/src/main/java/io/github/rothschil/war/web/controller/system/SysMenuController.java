@@ -14,7 +14,7 @@ import io.github.rothschil.common.core.domain.AjaxResult;
 import io.github.rothschil.common.core.domain.Ztree;
 import io.github.rothschil.common.enums.BusinessType;
 import io.github.rothschil.common.utils.ShiroUtils;
-import xyz.wongs.drunkard.framework.shiro.util.AuthorizationUtils;
+import io.github.rothschil.framework.shiro.util.AuthorizationUtils;
 import io.github.rothschil.war.constant.UserConstants;
 import io.github.rothschil.war.core.service.ISysMenuService;
 

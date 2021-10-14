@@ -17,7 +17,7 @@ import io.github.rothschil.common.core.domain.AjaxResult;
 import io.github.rothschil.common.enums.BusinessType;
 import io.github.rothschil.common.utils.FileUploadUtils;
 import io.github.rothschil.common.utils.ShiroUtils;
-import xyz.wongs.drunkard.framework.shiro.service.SysPasswordService;
+import io.github.rothschil.framework.shiro.service.SysPasswordService;
 
 
 /**
