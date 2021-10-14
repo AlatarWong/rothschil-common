@@ -103,7 +103,6 @@ subprojects {
         }
     }
 
-
     // 删除所有输出目录
     task cleanBuildDir(type: Delete) {
         delete "${projectDir}/build"
@@ -162,7 +161,7 @@ subprojects {
     //最终打包任务操作，将所有任务放入build
     artifacts {
         archives(sourceTask)
-//        archives(javaDocJar)
+        archives(javaDocJar)
     }
 
     publishing {

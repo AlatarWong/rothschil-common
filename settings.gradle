@@ -1,7 +1,5 @@
 rootProject.name = 'rothschil-common'
 
-include 'groovy-demo'
-
 include 'common-utils'
 include 'common-persistence:persistence-jpa'
 include 'common-persistence:persistence-mybatis'

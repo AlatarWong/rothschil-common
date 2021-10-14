@@ -1,6 +1,5 @@
 apply from: 'dependencies.gradle'
 archivesBaseName = 'common-utils'
-description = 'common-utils'
 
 jar.enabled = true
 
