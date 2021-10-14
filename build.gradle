@@ -174,7 +174,7 @@ subprojects {
                 from components.java
                 artifact bootJar
                 artifact sourceTask
-//                artifact javaDocJar
+                artifact javaDocJar
 
                 pom {
                     name = "pippin"
