@@ -19,6 +19,7 @@ import io.github.rothschil.base.property.PropConfig;
  * @date 2018/9/24 - 21:58
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class PropListener implements ApplicationListener<ApplicationStartedEvent> {
 
     private final String propertyFileName;

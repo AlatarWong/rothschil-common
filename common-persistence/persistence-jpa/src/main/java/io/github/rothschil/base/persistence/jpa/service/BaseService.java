@@ -3,7 +3,7 @@ package io.github.rothschil.base.persistence.jpa.service;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
-import io.github.rothschil.base.persistence.jpa.entity.BasePo;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import io.github.rothschil.common.utils.Reflections;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Transactional(readOnly = true, rollbackFor = Exception.class)
-public abstract class BaseService<T extends BasePo<?>, ID extends Serializable> {
+public abstract class BaseService<T extends BaseJpaPo<?>, ID extends Serializable> {
 
     protected JpaRepository<T, ID> jpaRepository;
 

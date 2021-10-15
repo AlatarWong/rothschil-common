@@ -1,35 +1,32 @@
 package io.github.rothschil.base.persistence.jpa.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.domain.Persistable;
-import io.github.rothschil.common.po.SuperPo;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
- * 抽象实体基类，如果主键是数据库端自动生成 请使用 {@link io.github.rothschil.common.po.BasePo} ，
- * 如果是Oracle 请使用 {@link BaseOrcDate}
+ * 抽象实体基类，不提供基础属性
+ * <p/>
+ * 数据库是Oracle子类只需要在类头上加 @SequenceGenerator(name="seq", sequenceName="你的sequence名字")
+ * <p/>
  *
  * @author WCNGS@QQ.COM
  * @date 20/12/18 10:53
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 @MappedSuperclass
-public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> implements Persistable<ID> {
+public abstract class BaseJpaPo<ID extends Serializable> implements Persistable<ID> {
 
     private static final long serialVersionUID = 1L;
 
-    @Override
-    public abstract ID getId();
-
-    /**
-     * Sets the id of the entity.
-     *
-     * @param id the id to set
-     */
-    @Override
-    public abstract void setId(final ID id);
+    @Transient
+    @JSONField(serialize = false)
+    private String dbType;
 
     @Override
     public boolean isNew() {
@@ -49,10 +46,18 @@ public abstract class BasePo<ID extends Serializable> extends SuperPo<ID> implem
         if (!getClass().equals(obj.getClass())) {
             return false;
         }
-        BasePo<?> that = (BasePo<?>) obj;
+        BaseJpaPo<?> that = (BaseJpaPo<?>) obj;
         return null != this.getId() && this.getId().equals(that.getId());
     }
 
+
+    public String getDbType() {
+        return dbType;
+    }
+
+    public void setDbType(String dbType) {
+        this.dbType = dbType;
+    }
 
     @Override
     public int hashCode() {

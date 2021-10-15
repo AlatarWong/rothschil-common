@@ -1,6 +1,6 @@
 package io.github.rothschil.base.persistence.jpa.util;
 
-import io.github.rothschil.base.persistence.jpa.entity.BasePo;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 import io.github.rothschil.common.constant.Constants;
@@ -26,9 +26,9 @@ import java.util.List;
  * @since V1.0
  **/
 @Slf4j
-public class JpaMethodUtil<T extends BasePo> {
+public class JpaMethodUtil<T extends BaseJpaPo> {
 
-    public static Specification<BasePo> getSpecification(BasePo t) {
+    public static Specification<BaseJpaPo> getSpecification(BaseJpaPo t) {
         return (root, query, cb) -> {
             List<Predicate> list = JpaMethodUtil.getFieldValue(t, root, cb);
             Predicate[] pre = new Predicate[list.size()];
@@ -44,7 +44,7 @@ public class JpaMethodUtil<T extends BasePo> {
      * @param cb     CriteriaBuilder
      * @date 20/12/18 10:12
      */
-    public static List<Predicate> getFieldValue(BasePo entity, Root<?> root, CriteriaBuilder cb) {
+    public static List<Predicate> getFieldValue(BaseJpaPo entity, Root<?> root, CriteriaBuilder cb) {
         List<Predicate> lp = new ArrayList<>();
         Class<?> cls = entity.getClass();
         Field[] fields = cls.getDeclaredFields();

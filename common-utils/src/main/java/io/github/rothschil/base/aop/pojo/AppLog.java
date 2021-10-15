@@ -1,7 +1,7 @@
 package io.github.rothschil.base.aop.pojo;
 
-import lombok.*;
 import io.github.rothschil.common.po.BasePo;
+import lombok.*;
 
 import java.util.Date;
 

@@ -35,9 +35,15 @@ import java.util.Date;
 @Slf4j
 public abstract class AbsAspect {
 
+    /**
+     * 队列中定义的处理
+     */
     @Autowired
     protected QueueTaskHandler queueTaskHandler;
 
+    /**
+     * 日志处理的异步队列
+     */
     @Autowired
     protected AppLogQueue appLogQueue;
 
@@ -70,12 +76,31 @@ public abstract class AbsAspect {
     }
 
 
+    /**
+     * 获取封装 {@link AppLog} 的实例
+     *
+     * @param applicationLog 实例
+     * @param joinPoint      切入点
+     * @return AppLog
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/14-22:14
+     **/
     protected AppLog getOperationLog(ApplicationLog applicationLog, JoinPoint joinPoint) {
         return getOperationLog(joinPoint, applicationLog.value(), applicationLog.key());
     }
 
-
+    /**
+     * 获取封装 {@link AppLog} 的实例
+     *
+     * @param joinPoint    切入点
+     * @param businessName 业务操作名称
+     * @param key          业务操作的唯一标识
+     * @return AppLog
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/14-22:15
+     **/
     protected AppLog getOperationLog(JoinPoint joinPoint, String businessName, String key) {
+
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) requestAttributes;
         Assert.notNull(sra, "The ServletRequestAttributes must not be null");

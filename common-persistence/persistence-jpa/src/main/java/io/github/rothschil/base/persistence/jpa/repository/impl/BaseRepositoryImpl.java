@@ -5,7 +5,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import io.github.rothschil.base.persistence.jpa.entity.BasePo;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
 import io.github.rothschil.base.persistence.jpa.util.JpaMethodUtil;
 
@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2019/11/8 - 14:41
  * @since 1.0.0
  */
-public class BaseRepositoryImpl<T extends BasePo, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
+public class BaseRepositoryImpl<T extends BaseJpaPo, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
     private final EntityManager entityManager;
 

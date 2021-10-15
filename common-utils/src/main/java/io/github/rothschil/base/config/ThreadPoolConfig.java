@@ -24,8 +24,17 @@ public class ThreadPoolConfig {
      */
     private final int corePoolSize = 50;
 
+
+    /**
+     * 定义线程池任务
+     *
+     * @return ThreadPoolTaskExecutor
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/15-8:37
+     **/
     @Bean(name = "threadPoolTaskExecutor")
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
+
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setMaxPoolSize(200);
         executor.setCorePoolSize(corePoolSize);
@@ -36,11 +45,17 @@ public class ThreadPoolConfig {
         return executor;
     }
 
+
     /**
      * 执行周期性或定时任务
-     */
+     *
+     * @return ScheduledExecutorService
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/15-8:36
+     **/
     @Bean(name = "scheduledExecutorService")
     protected ScheduledExecutorService scheduledExecutorService() {
+
         return new ScheduledThreadPoolExecutor(corePoolSize,
                 new BasicThreadFactory.Builder().namingPattern("schedule-pool-%d").daemon(true).build()) {
             @Override

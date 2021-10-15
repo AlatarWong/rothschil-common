@@ -12,6 +12,7 @@ package io.github.rothschil.base.response.enums;
  * @date 2017/12/2 13:31
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public enum Status {
 
     /**
@@ -23,67 +24,104 @@ public enum Status {
      **/
     FAILURE(-1, "FAILURE"),
 
-    EXCEPTION(201, "未知异常"),
+    /**
+     * 常见错误的定义
+     */
+
+    SYSTEM_EXCEPTION(200, "系统异常"),
+
+
     RUNTIME_EXCEPTION(202, "运行时异常"),
     NULL_POINTER_EXCEPTION(203, "空指针异常"),
-    CLASS_CAST_EXCEPTION(204, "类型转换异常"),
+
     IO_EXCEPTION(205, "IO异常"),
-    SYSTEM_EXCEPTION(210, "系统异常"),
+
+
     NOT_FOUND(404, "Not Found"),
-    CONTENT_IS_NULL(405, "Content is empty"),
+    TARGET_IS_NULL(405, "TARGET is Null"),
+    TARGET_IS_EMPTY(405, "TARGET is empty"),
+    TARGET_IS_BANK(405, "TARGET is Blank"),
+
+
+    LACK_RESOURCES(501, "资源不足"),
+    READ_FAIL(502, "读取资源异常"),
+    RESOURCE_NOT_FOUND(503, "资源不存在异常"),
+
+    CLASS_CAST_EXCEPTION(601, "类型转换异常"),
+    DATE_PARSE_EXCEPTION(602, "日期转换异常"),
+    DATA_PARSE_EXCEPTION(603, "数据转换异常"),
+
+    ENCODE_EXCEPTION(701, "编码异常"),
+    ENCODE_UNSUPPORTED_EXCEPTION(702, "编码不支持异常"),
+
+    ARRAY_EXCEPTION(710, "数组异常"),
+
+    ARRAY_OUT_BOUNDS(711, "数组越界异常"),
+
+    SERIALIZE_FAIL(720, "序列化数据失败"),
+    DESERIALIZE_FAIL(721, "反序列化数据"),
+
+    COMPRESS_FAIL(732, "数据压缩异常"),
+    DE_COMPRESS_FAIL(733, "数据解压缩异常"),
+
+    DATA_EXISTED(741, "数据已存在"),
+    DATA_NOT_EXIST(742, "数据不存在"),
+
+    EXCEPTION(777, "未知异常"),
+
+
 
     FILE_NAME_LIMIT(801, "The file Name is too long"),
     FILE_SIZE_LIMIT(802, "The file size too big"),
     INIT_FAIL_PROPERTIE(804, "资源文件初始化失败"),
 
+
     /**
      * 1000～1999 区间表示参数错误
      */
     PARAMS_IS_INVALID(1001, "参数无效"),
-    PARAMS_IS_BANK(1002, "参数为空"),
     PARAMS_TYPE_BIND_ERROR(1003, "参数类型错误"),
     PARAMS_NOT_COMPLETE(1004, "参数缺失"),
     NUMBER_FORMAT(1005, "[The Character to number failed]"),
     QR_CODE_ERR(1006, "[The QR CODE Generation failed]"),
-    LIST_EMPTY(1007, "[The List Empty]"),
+
     /**
      * 2000～2999 区间表示用户错误
      */
-    USER_NOT_LOGGED_IN(2001, "Access to Resources Requires Identity! Please Sign In"),
-    USER_NOT_LOGIN_ERROR(2002, "The User does not exist Or the password is wrong"),
-    USER_ACCOUNT_FORBIDDEN(2003, "Account is disabled"),
-    USER_NOT_EXIST(2004, "Account not exists"),
-    USER_HAS_EXISTED(2005, "Account exists"),
-    USER_IS_EXPIRED(2006, "Account expired"),
-    USER_FIRST_LANDING(2007, "Login for the first time"),
-    USER_WAS_DEL(2008, "Account deleted"),
-    USER_WAS_LOCK(2009, "Account Locked"),
-    USER_SIGN_VERIFY_NOT_COMPLIANT(2010, "Signature does not match"),
-    USER_PASSWORD_RESET_FAILED(2011, "Password reset failed"),
-    USER_UNKNOWN_IDENTITY(2012, "Unknown identity"),
-    UNSUCCESSFUL_AUTHENTICATION(2014, "Authentication failed"),
-    ROLE_WAS_LOCK(2015, "Role Locked"),
-    USER_PASSWORD_ERR(2016, "密码错误"),
-    USER_SMS_ERR(2017, "短信验证码错误"),
+    USER_NOT_LOGGED_IN(2101, "Access to Resources Requires Identity! Please Sign In"),
+    USER_NOT_LOGIN_ERROR(2102, "The User Does Not Exist Or The PassWord Is Wrong"),
 
-    MANY_USER_LOGINS(2111, "Users are online"),
-    USER_KEY_EXCEPTION(2108, "Key generation failed"),
+    USER_ACCOUNT_FORBIDDEN(2203, "Account is disabled"),
+    USER_NOT_EXIST(2204, "Account not exists"),
+    USER_HAS_EXISTED(2205, "Account exists"),
+    USER_IS_EXPIRED(2206, "Account expired"),
+    USER_FIRST_LANDING(2207, "Login for the first time"),
+    USER_WAS_DEL(2208, "Account deleted"),
+    USER_WAS_LOCK(2209, "Account Locked"),
+    USER_UNKNOWN_IDENTITY(2210, "Unknown Identity"),
 
 
-    TOO_MANY_PASSWD_ENTER(2112, "Enter password frequently"),
-    VERIFICATION_CODE_INCORRECT(2202, "Verification code error"),
-    VERIFICATION_CODE_FAIL(2203, "Verification code generation failed"),
+    USER_SIGN_VERIFY_NOT_COMPLIANT(2310, "Signature does not match"),
+    USER_PASSWORD_RESET_FAILED(2311, "Password reset failed"),
+    UNSUCCESSFUL_AUTHENTICATION(2314, "Authentication failed"),
+    ROLE_WAS_LOCK(2315, "Role Locked"),
+    USER_PASSWORD_ERR(2316, "密码错误"),
+    USER_SMS_ERR(2317, "短信验证码错误"),
 
-    MANY_ERRORS_OPT(2204, "用户操作错误次数过多"),
+    MANY_USER_LOGINS(2411, "Users are online"),
+    USER_KEY_EXCEPTION(2408, "Key generation failed"),
 
+    TOO_MANY_PASSWD_ENTER(2412, "Enter password frequently"),
+    VERIFICATION_CODE_INCORRECT(2402, "Verification code error"),
+    VERIFICATION_CODE_FAIL(2403, "Verification code generation failed"),
 
+    MANY_ERRORS_OPT(2504, "用户操作错误次数过多"),
 
-
-    TOKEN_EXPIRED(2308, "Token Expired"),
-    TOKEN_GENERATION_FAIL(2309, "The Token generation failed"),
-    TOKEN_INVALID(2310, "The Token is invalid"),
-    TOKEN_VERIFICATION_FAIL(2311, "The Token verification failed"),
-    TOKEN_VERIFICATION_PROCESS_ERR(2311, "The Token verification process error"),
+    TOKEN_EXPIRED(2608, "Token Expired"),
+    TOKEN_GENERATION_FAIL(2609, "The Token generation failed"),
+    TOKEN_INVALID(2610, "The Token is invalid"),
+    TOKEN_VERIFICATION_FAIL(2611, "The Token verification failed"),
+    TOKEN_VERIFICATION_PROCESS_ERR(2612, "The Token verification process error"),
     /**
      * 3000～3999 区间表示接口异常
      */
@@ -96,35 +134,14 @@ public enum Status {
     API_METHOD_NOT_SUPPORTED_EXCEPTION(3007, "不支持的Method类型"),
     API_METHOD_PARAM_TYPE_EXCEPTION(3008, "参数类型不匹配"),
 
-    ARRAY_EXCEPTION(11001, "数组异常"),
-    ARRAY_OUT_OF_BOUNDS_EXCEPTION(11002, "数组越界异常"),
-
-    JSON_SERIALIZE_EXCEPTION(30000, "序列化数据异常"),
-    JSON_DESERIALIZE_EXCEPTION(30001, "反序列化数据异常"),
-
-    READ_RESOURCE_EXCEPTION(31002, "读取资源异常"),
-    READ_RESOURCE_NOT_FOUND_EXCEPTION(31003, "资源不存在异常"),
-
     DATA_EXCEPTION(32004, "数据异常"),
     DATA_NOT_FOUND_EXCEPTION(32005, "未找到符合条件的数据异常"),
     DATA_CALCULATION_EXCEPTION(32006, "数据计算异常"),
-    DATA_COMPRESS_EXCEPTION(32007, "数据压缩异常"),
-    DATA_DE_COMPRESS_EXCEPTION(32008, "数据解压缩异常"),
-    DATA_HAS_EXISTED(32010, "已存在"),
-    DATA_NOT_EXIST(32010, "不存在"),
-    DATA_PARSE_EXCEPTION(32009, "数据转换异常"),
-
-    ENCODING_EXCEPTION(33006, "编码异常"),
-    ENCODING_UNSUPPORTED_EXCEPTION(33006, "编码不支持异常"),
-
-    DATE_PARSE_EXCEPTION(34001, "日期转换异常"),
-
-    MALE_SEND_EXCEPTION(35001, "邮件发送异常"),
-
-    SYNC_LOCK_FAILURE(4001, "获取锁失败"),
-    SYNC_LOCK_SUCCESS(4002, "获取锁成功"),
+    MALE_SEND_FAIL(35001, "邮件发送异常"),
+    GET_SYNC_LOCK_FAILURE(4001, "获取锁失败"),
+    GET_SYNC_LOCK_SUCCESS(4002, "获取锁成功"),
     SYNC_LOCK_MANY_REQ(4003, "请求太多"),
-    SYNC_LOCK_NOT_ENOUGH_STOCK(4004, "库存不够"),
+
 
     PAY_ACTUAL_PRICE(5010, "The discount amount is greater than the actual price");
 

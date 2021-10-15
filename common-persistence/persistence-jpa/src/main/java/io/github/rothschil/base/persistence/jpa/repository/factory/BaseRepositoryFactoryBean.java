@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
-import io.github.rothschil.base.persistence.jpa.entity.BasePo;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import io.github.rothschil.base.persistence.jpa.repository.impl.BaseRepositoryImpl;
 
 import javax.persistence.EntityManager;
@@ -20,7 +20,7 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 @SuppressWarnings({"rawtypes","unchecked"})
-public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T extends BasePo,I extends Serializable> extends JpaRepositoryFactoryBean<R, T, I> {
+public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T extends BaseJpaPo,I extends Serializable> extends JpaRepositoryFactoryBean<R, T, I> {
 
 
     public BaseRepositoryFactoryBean(Class<? extends R> repositoryInterface) {

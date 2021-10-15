@@ -30,7 +30,7 @@ public @interface ApplicationLog {
 
 
     /**
-     * 模块
+     * 模块名称
      */
     String title() default "";
 

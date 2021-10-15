@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import io.github.rothschil.base.persistence.jpa.entity.BasePo;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 
 import javax.persistence.criteria.Predicate;
 import java.io.Serializable;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NoRepositoryBean
-public interface BaseRepository<T extends BasePo, ID extends Serializable> extends JpaRepository<T, ID> {
+public interface BaseRepository<T extends BaseJpaPo, ID extends Serializable> extends JpaRepository<T, ID> {
 
     /**
      * 根据主键删除

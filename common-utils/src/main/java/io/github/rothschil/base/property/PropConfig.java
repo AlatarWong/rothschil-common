@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-/** 获取 {@link Properties} 的属性内容，首次使用，将所有属性内容 加载到内存中的 {@link Map} 中，后续再使用，直接从内存中获取
+/**
+ * 获取 {@link Properties} 的属性内容，首次使用，将所有属性内容 加载到内存中的 {@link Map} 中，后续再使用，直接从内存中获取
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2017/9/24 - 21:42
@@ -24,10 +25,12 @@ public class PropConfig {
 
     public static Map<String, String> propertiesMap;
 
-    /** 加载并且处理 Properties 文件
+    /**
+     * 加载并且处理 Properties 文件
+     *
+     * @param props Properties 文件
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/13-11:37
-     * @param props Properties 文件
      **/
     private static void processProperties(Properties props) {
         propertiesMap = new HashMap<>(32);
@@ -49,7 +52,7 @@ public class PropConfig {
             Properties properties = PropertiesLoaderUtils.loadAllProperties(propertyFileName);
             processProperties(properties);
         } catch (DrunkardException e) {
-            throw new DrunkardException(Status.INIT_FAIL_PROPERTIE,propertyFileName);
+            throw new DrunkardException(Status.INIT_FAIL_PROPERTIE, propertyFileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
