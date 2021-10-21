@@ -6,13 +6,13 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 通用Mapper
+ * 通用 Mapper
  *
  * @author WCNGS@QQ.COM
  * @date 2019/11/21 17:40
  * @since 1.0.0
  */
-public interface BaseMapper<T extends BasePo, ID extends Serializable> {
+public interface BaseMapper<T extends BasePo<ID>, ID extends Serializable> {
 
     /**
      * 持久化一个对象

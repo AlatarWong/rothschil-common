@@ -25,9 +25,18 @@ import java.util.List;
  * @date 2018/7/4 20:54
  * @since V1.0
  **/
+@SuppressWarnings("all")
 @Slf4j
 public class JpaMethodUtil<T extends BaseJpaPo> {
 
+    /**
+     * 按照实例对象，封装 {@link Specification}
+     *
+     * @param t 实例对象
+     * @return BaseJpaPo>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/15-16:02
+     **/
     public static Specification<BaseJpaPo> getSpecification(BaseJpaPo t) {
         return (root, query, cb) -> {
             List<Predicate> list = JpaMethodUtil.getFieldValue(t, root, cb);
@@ -39,6 +48,8 @@ public class JpaMethodUtil<T extends BaseJpaPo> {
     }
 
     /**
+     * 按照实例对象，判断符合性
+     *
      * @param entity 实体基类
      * @param root   root
      * @param cb     CriteriaBuilder

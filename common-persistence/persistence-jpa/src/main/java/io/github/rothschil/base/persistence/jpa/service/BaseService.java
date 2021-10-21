@@ -19,7 +19,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Transactional(readOnly = true, rollbackFor = Exception.class)
-public abstract class BaseService<T extends BaseJpaPo<?>, ID extends Serializable> {
+public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializable> {
 
     protected JpaRepository<T, ID> jpaRepository;
 
@@ -28,6 +28,7 @@ public abstract class BaseService<T extends BaseJpaPo<?>, ID extends Serializabl
 
     /**
      * 重要
+     *
      * @author <a href="https://github.com/rothschil">Sam</a>
      **/
     public abstract void setJpaRepository(JpaRepository<T, ID> jpaRepository);
@@ -43,6 +44,8 @@ public abstract class BaseService<T extends BaseJpaPo<?>, ID extends Serializabl
     }
 
     /**
+     * 没有分页信息，默认是10
+     *
      * @param page 页
      * @param size 每页数量
      * @param t    实体信息
@@ -51,11 +54,13 @@ public abstract class BaseService<T extends BaseJpaPo<?>, ID extends Serializabl
      * @date 2019/11/8-14:16
      **/
     public Page<T> findPageByEntity(int page, int size, T t) {
-        size = size == 0 ? 10 : size;
+        size = size == 0 ? 0xa : size;
         return jpaRepository.findAll(getExample(t), PageRequest.of(page, size));
     }
 
     /**
+     * 按照 {@link Example} 查询
+     *
      * @param t 实体信息
      * @return Example
      * @author <a href="https://github.com/rothschil">Sam</a>
@@ -104,7 +109,6 @@ public abstract class BaseService<T extends BaseJpaPo<?>, ID extends Serializabl
      *
      * @param id 主键
      * @author <a href="https://github.com/rothschil">Sam</a>
-     * //TODO
      * @date 2019/11/8-14:02
      **/
     @Transactional(rollbackFor = Exception.class)

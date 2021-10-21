@@ -4,11 +4,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
 import io.github.rothschil.base.persistence.jpa.util.JpaMethodUtil;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -17,19 +20,51 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
+ *
+ * 继承 {@link SimpleJpaRepository}  和 实现 {@link JpaRepository}, 所以具备二者各自的特性，如：
+ * <ul>
+ *  <li>即对 <b>CrudRepository</b> 默认实现，默认中带 {@link Transactional}，并且 readOnly = true</li>
+ * <li>提供 {@link EntityManager} 可以更自由的实现个性化业务，方便了拓展</li>
+ * </ul>
+ *
+ *  通过继承 {@link SimpleJpaRepository}，拿到它的构造函数，
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/11/8 - 14:41
  * @since 1.0.0
  */
-public class BaseRepositoryImpl<T extends BaseJpaPo, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
+public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
     private final EntityManager entityManager;
 
+    private final Class<T> domainClass;
+
     public BaseRepositoryImpl(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
+        this.domainClass = domainClass;
         this.entityManager = em;
+    }
+
+
+    /**
+     * 判断该 Repository 是否为 modelType 类型，实际使用在单元测试领域，根据 {@link Entity} 实例的 class 名称，获取对应的 Repository。
+     * <ul>
+     *     <li>通过依赖注入 <b>private {@link List}<{@link BaseRepository}> repositories</b> 获得一个 Repository 列表</li>
+     *     <li>循环上述列表，利用 support(modelType) 作为判断条件，获取 Repository</li>
+     *     <li>根据 Repository 做出实际操作</li>
+     *
+     * </ul>
+     *
+     *
+     * @param modelType 类型
+     * @return  boolean
+     */
+    @Override
+    public boolean support(String modelType){
+        return domainClass.getName().equals(modelType);
     }
 
     /**
@@ -95,15 +130,15 @@ public class BaseRepositoryImpl<T extends BaseJpaPo, ID extends Serializable> ex
     }
 
     /**
-     * 根据SQL，查询结果，获取结果列表
+     * 根据SQL，查询结果，获取结果列表，返回的是按照实例的属性数组 最终合并成一个列表返回。
      *
-     * @param sql 原生SQL语句
+     * @param sql 原生SQL
      * @return List
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/11/8-14:42
      **/
     @Override
-    public List<T> listBySql(String sql) {
+    public List<?> listBySql(String sql) {
         return entityManager.createNativeQuery(sql).getResultList();
     }
 

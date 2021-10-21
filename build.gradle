@@ -194,7 +194,7 @@ subprojects {
                         }
                     }
                     developers {
-                        // 添加开发者描述，这个id不知道是什么
+                        // 添加开发者描述
                         developer {
                             id= "rothschil"
                             name= "rothschil"

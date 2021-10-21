@@ -1,21 +1,29 @@
 package io.github.rothschil.base.persistence.jpa.repository;
 
+import io.github.rothschil.base.persistence.jpa.repository.factory.BaseRepositoryFactoryBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.NoRepositoryBean;
 import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 
+import javax.persistence.Entity;
 import javax.persistence.criteria.Predicate;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
- * <p>抽象DAO层基类 提供一些简便方法<br/>
- * 想要使用该接口需要在spring配置文件的jpa:repositories中添加
+ * <p>
+ * 抽象DAO层基类 提供一些简便和自定义的方法
+ * 想要使用该接口需要在 <b>SpringBoot 启动类中</b> 配置我们自定义的 {@link BaseRepositoryFactoryBean} :
+ * <hr/>
+ * <b>@{@link EnableJpaRepositories}(repositoryFactoryBeanClass = {@link BaseRepositoryFactoryBean})</b>
+ * <hr/>
  * <p/>
- * <p>泛型 ： M 表示实体类型；ID表示主键类型
+ * <p>泛型 ： T 表示实体类型；ID表示主键类型
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2017/7/8 - 13:59
@@ -23,7 +31,23 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NoRepositoryBean
-public interface BaseRepository<T extends BaseJpaPo, ID extends Serializable> extends JpaRepository<T, ID> {
+public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable> extends JpaRepository<T, ID> {
+
+
+    /**
+     * 判断该 Repository 是否为 modelType 类型，实际使用在单元测试领域，根据 {@link Entity} 实例的 class 名称，获取对应的 Repository。
+     * <ul>
+     *     <li>通过依赖注入 <b>private {@link List}<{@link BaseRepository}> repositories</b> 获得一个 Repository 列表</li>
+     *     <li>循环上述列表，利用 support(modelType) 作为判断条件，获取 Repository</li>
+     *     <li>根据 Repository 做出实际操作</li>
+     *
+     * </ul>
+     *
+     *
+     * @param modelType 类型
+     * @return  boolean
+     */
+    boolean support(String modelType);
 
     /**
      * 根据主键删除
@@ -33,14 +57,14 @@ public interface BaseRepository<T extends BaseJpaPo, ID extends Serializable> ex
     void delete(ID[] ids);
 
     /**
-     * 根据SQL，查询结果，获取结果列表
+     * 根据SQL，查询结果，获取结果列表，返回的是按照实例的属性数组 最终合并成一个列表返回。
      *
      * @param sql 原生SQL
      * @return List
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/11/8-14:42
      **/
-    List<T> listBySql(String sql);
+    List<?> listBySql(String sql);
 
     /**
      * 根据HQL，查询结果，获取结果列表

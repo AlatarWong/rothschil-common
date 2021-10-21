@@ -147,6 +147,17 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return sb.toString();
     }
 
+
+    public static String intToHex(int n) {
+        StringBuilder sb = new StringBuilder(8);
+        char []b = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        while(n != 0){
+            sb = sb.append(b[n%16]);
+            n = n/16;
+        }
+        return sb.reverse().toString();
+    }
+
     /**
      * 判断是否基本类型、基本封装类型
      *

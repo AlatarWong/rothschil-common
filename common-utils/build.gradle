@@ -11,7 +11,7 @@ dependencies {
             libraries.'commons-lang3',
             libraries.'commons-codec',
             libraries.'commons-configuration',
-            libraries.'mysql-connector-java',
+//            libraries.'mysql-connector-java',
             libraries.'javax.servlet-api',
             libraries.'fastjson',
             libraries.'guava',
