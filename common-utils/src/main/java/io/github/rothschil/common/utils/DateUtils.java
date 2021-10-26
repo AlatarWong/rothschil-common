@@ -1,50 +1,77 @@
-package io.github.rothschil.common.utils;
+package cn.ffcs.up.base.util;
 
-import cn.hutool.core.date.DateField;
-import cn.hutool.core.date.DateUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 日期工具类, 继承 {@link org.apache.commons.lang.time.DateUtils }类
+ * 日期工具类, 继承 {@link org.apache.commons.lang3.time.DateUtils }类
+ *
  * @author WCNGS@QQ.COM
  * @since 2014-4-15
  */
+@SuppressWarnings("unused")
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
-    public static String YYYY = "yyyy";
+    public static final Date DEFAULT_DATE = DateUtils.parseByDayPattern("1970-01-01");
 
-    public static String YYYY_MM = "yyyy-MM";
+    public static final String SINGLE_MONTH_PATTERN = "MM";
+    public static final String SINGLE_DAY_PATTERN = "dd";
 
-    public static String YYYY_MM_DD = "yyyy-MM-dd";
+    public static final String YYYY_PATTERN = "yyyy";
+    public static final String MONTH_PATTERN = "yyyy-MM";
+    public static final String HOUR_PATTERN = "HH:mm:ss";
+    public static final String DAY_PATTERN = "yyyy-MM-dd";
 
-    public static String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
+    public static final String TRANS_DAY_PATTERN = "yyyyMMdd";
+    public static final String TRANS_MONTH_PATTERN = "yyyyMM";
 
-    public static String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+    public static final String TRANS_PATTERN = "yyyyMMddHHmmss";
+    public static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public static final String STAND_OS_PATTERN = "yyyy/MM/dd";
 
     public static Date getNowDate() {
         return new Date();
     }
 
 
-    /** 返回 yyyyMMddHHmmss 时间格式加上 6位随机数字
+    /**
+     * 返回 yyyyMMddHHmmss 时间格式
+     *
+     * @return String
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2018/4/24-20:47
-     * @param
-     * @return String
      **/
-    public static String getTransId(){
+    public static String getTransId() {
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern(YYYYMMDDHHMMSS);
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern(TRANS_PATTERN);
         return dtf2.format(dateTime);
     }
+
+    private final static int SALT = 0X989680;
+
+
+    /**
+     * 返回 yyyyMMddHHmmss 时间格式，具体使用还需 加上 6/7/8 位随机数字
+     *
+     * @return String
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2018/4/24-20:47
+     **/
+    public static String transId() {
+        String time = DateUtils.getTransId();
+        long dom = (long) (Math.random() * SALT);
+        return time + dom;
+    }
+
 
     /**
      * 计算相差天数
@@ -85,27 +112,22 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 日期路径 即年/月/日 如2018/08/08
      */
-    public static final String datePath() {
+    public static String datePath() {
         Date now = new Date();
-        return DateFormatUtils.format(now, "yyyy/MM/dd");
+        return DateFormatUtils.format(now, STAND_OS_PATTERN);
     }
 
-    public static String getBeforeTime(int minute) {
-        Date newDate = DateUtil.offset(new Date(), DateField.MINUTE, -minute);
-        return DateUtil.formatDateTime(newDate);
-    }
-
-    private static String[] parsePatterns = {
+    private static final String[] PARSE_PATTERNS = {
             "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
             "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
             "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
 
 
-    public static final String dateTimeNow(final String format) {
+    public static String dateTimeNow(final String format) {
         return parseDateToStr(format, new Date());
     }
 
-    public static final String parseDateToStr(final String format, final Date date) {
+    public static String parseDateToStr(final String format, final Date date) {
         return new SimpleDateFormat(format).format(date);
     }
 
@@ -113,7 +135,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * 得到当前日期字符串 格式（yyyy-MM-dd）
      */
     public static String getDate() {
-        return getDate("yyyy-MM-dd");
+        return getDate(DAY_PATTERN);
     }
 
     /**
@@ -125,20 +147,21 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 得到日期字符串 默认格式（yyyy-MM-dd） patternDateUtil.java可以为："yyyy-MM-dd" "HH:mm:ss" "E"
+     *
+     * @param date    输入日期
+     * @param pattern 格式化的规则列表
+     * @return 对给定日期按照输入格式进行格式化
      */
     public static String formatDate(Date date, Object... pattern) {
-        String formatDate = null;
+        String formatDate;
         if (pattern != null && pattern.length > 0) {
             formatDate = DateFormatUtils.format(date, pattern[0].toString());
         } else {
-            formatDate = DateFormatUtils.format(date, "yyyy-MM-dd");
+            formatDate = DateFormatUtils.format(date, DAY_PATTERN);
         }
         return formatDate;
     }
 
-    public static final Date DEFAULT_DATE = DateUtils.parseByDayPattern("1970-01-01");
-
-    public static final String DAY_PATTERN = "yyyy-MM-dd";
 
     public static Date parseByDayPattern(String str) {
         return parseDate(str, DAY_PATTERN);
@@ -156,24 +179,26 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * 得到日期时间字符串，转换格式（yyyy-MM-dd HH:mm:ss）
      */
     public static String formatDateTime(Date date) {
-        return formatDate(date, "yyyy-MM-dd HH:mm:ss");
-    }
-
-    /**
-     * 得到当前时间字符串 格式（HH:mm:ss）
-     */
-    public static String getTime() {
-        return formatDate(new Date(), "HH:mm:ss");
+        return formatDate(date, DATETIME_PATTERN);
     }
 
     /**
      * 得到当前日期和时间字符串 格式（yyyy-MM-dd HH:mm:ss）
+     *
+     * @return String  yyyy-MM-dd HH:mm:ss 标准格式 格式
      */
-    public static String getDateTime() {
-        return formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+    public static String formatCurrentDateTime() {
+        return formatDate(new Date(), DATETIME_PATTERN);
     }
 
-    public static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 得到当前时间字符串 格式（HH:mm:ss）
+     *
+     * @return String  HH:mm:ss 标准格式 格式
+     */
+    public static String formatCurrentTime() {
+        return formatDate(new Date(), HOUR_PATTERN);
+    }
 
     public static String formatByDateTimePattern(Date date) {
         return DateFormatUtils.format(date, DATETIME_PATTERN);
@@ -182,8 +207,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 根据格式产生时间
      *
-     * @param format
-     * @return
+     * @param format 格式化表达式
+     * @return 格式化的字符串时间戳
      */
     public static String getDateTime(String format) {
         return formatDate(new Date(), format);
@@ -191,23 +216,27 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 得到当前年份字符串 格式（yyyy）
+     *
+     * @return YYYY格式的年份
      */
     public static String getYear() {
-        return formatDate(new Date(), "yyyy");
+        return formatDate(new Date(), YYYY_PATTERN);
     }
 
     /**
      * 得到当前月份字符串 格式（MM）
+     *
+     * @return MM格式的月份
      */
     public static String getMonth() {
-        return formatDate(new Date(), "MM");
+        return formatDate(new Date(), SINGLE_MONTH_PATTERN);
     }
 
     /**
      * 得到当天字符串 格式（dd）
      */
     public static String getDay() {
-        return formatDate(new Date(), "dd");
+        return formatDate(new Date(), SINGLE_DAY_PATTERN);
     }
 
     /**
@@ -228,7 +257,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
             return null;
         }
         try {
-            return parseDate(str.toString(), parsePatterns);
+            return parseDate(str.toString(), PARSE_PATTERNS);
         } catch (ParseException e) {
             return null;
         }
@@ -238,8 +267,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @param date1 第一个时间
      * @param date2 第二个时间
      * @return long
-     * @throws
-     * @Description
      * @date 2019/12/4 9:35
      */
     public static long getMills(Date date1, Date date2) {
@@ -256,8 +283,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取过去的天数
      *
-     * @param date
-     * @return
+     * @param date 给定日期
+     * @return 日期之间相差的天数
      */
     public static long pastDays(Date date) {
         long t = System.currentTimeMillis() - date.getTime();
@@ -267,8 +294,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取过去的小时
      *
-     * @param date
-     * @return
+     * @param date 给定日期
+     * @return 日期之间相差的小时数
      */
     public static long pastHour(Date date) {
         long t = System.currentTimeMillis() - date.getTime();
@@ -278,8 +305,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取过去的分钟
      *
-     * @param date
-     * @return
+     * @param date 给定日期
+     * @return 日期之间相差的分钟数
      */
     public static long pastMinutes(Date date) {
         long t = System.currentTimeMillis() - date.getTime();
@@ -289,8 +316,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 转换为时间（天,时:分:秒.毫秒）
      *
-     * @param timeMillis
-     * @return
+     * @param timeMillis 毫秒数
+     * @return yyyy-MM-dd HH:mm:ss:sss 格式时间戳
      */
     public static String formatDateTime(long timeMillis) {
         long day = timeMillis / (24 * 60 * 60 * 1000);
@@ -304,39 +331,50 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取两个日期之间的天数
      *
-     * @param before
-     * @param after
-     * @return
+     * @param before 第一日期，代表相对于第二日期来说是以前
+     * @param after  第二日期
+     * @return 日期之间相差的天数
      */
-    public static double getDistanceOfTwoDate(Date before, Date after) {
-        long beforeTime = before.getTime();
-        long afterTime = after.getTime();
-        return (afterTime - beforeTime) / (1000 * 60 * 60 * 24);
+    public static long distanceOfDayByDate(Date before, Date after) {
+        return (after.getTime() - before.getTime()) / (1000 * 60 * 60 * 24);
     }
 
+    /**
+     * 获取两个日期之间的秒
+     *
+     * @param date1 第一日期
+     * @param date2 第二日期
+     * @return long 二者下相差的秒
+     * @author WCNGS@QQ.COM
+     * @date 2018/4/12 19:53
+     */
+    public static long distanceOfSecondByDate(Date date1, Date date2) {
+        long time1 = date1.getTime();
+        long time2 = date2.getTime();
+        return (time2 - time1) / (1000 * 3600 * 24);
+    }
 
     /**
-     * @param i 与当天的偏移，负数 则是往前
-     * @Author: WCNGS@QQ.COM
-     * @Date: 2017/12/22 9:10
-     * @Description:
-     * @Mod:
+     * offset 与当天的偏移，负数 则是往前
+     *
+     * @param offset 偏移数值
+     * @return String yyyyMMdd 格式日期戳
      */
-    public static String getDaySimple(int i) {
+    public static String offset(int offset) {
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, i);
+        cal.add(Calendar.DATE, offset);
         Date time = cal.getTime();
-        return new SimpleDateFormat("yyyyMMdd").format(time);
+        return new SimpleDateFormat(TRANS_DAY_PATTERN).format(time);
     }
 
     /**
-     * 日期时间偏移
+     * 日期时间偏移，在给定日期上做偏移，负数 则是往前
      * offset = 1,date=2018-11-02 16:47:00
      * 结果：2018-11-03 16:47:00
      *
-     * @param date
-     * @param offset
-     * @return
+     * @param date   给定日期
+     * @param offset 偏移的数值
+     * @return Date 目标日期
      */
     public static Date offset(Date date, int offset) {
         Calendar cal = Calendar.getInstance();
@@ -346,20 +384,14 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
-     * 日期偏移
+     * 日期偏移，负数 则是往前
      *
-     * @param date
-     * @param offset
-     * @param calendar
+     * @param date     给定日期
+     * @param offset   偏移量
+     * @param calendar 日历
      * @return java.util.Date
-     * @throws
-     * @author WCNGS@QQ.COM
-     * @See
-     * @date 2019/9/25 18:01
-     * @since
      */
     public static Date offset(Date date, int offset, int calendar) {
-
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(calendar, offset);
@@ -367,17 +399,16 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
-     * @param i 与当前月份的偏移，负数 则是往前
-     * @Author: WCNGS@QQ.COM
-     * @Date: 2017/12/22 9:10
-     * @Description:
-     * @Mod:
+     * 月份偏移
+     *
+     * @param offset 与当前月份的偏移，负数 则是往前
+     * @return String   yyyyMM 格式的日期戳
      */
-    public static String getMonth(int i) {
+    public static String monthOffset(int offset) {
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, i);
+        cal.add(Calendar.MONTH, offset);
         Date time = cal.getTime();
-        return new SimpleDateFormat("yyyyMM").format(time);
+        return new SimpleDateFormat(TRANS_MONTH_PATTERN).format(time);
     }
 
     public static boolean isValidDate(String str, String pattern) {
@@ -397,19 +428,13 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 根据输入字符串，转换日期
      *
-     * @param str
-     * @param pattern
+     * @param str     日期时间戳
+     * @param pattern 格式化 pattern
      * @return java.utils.Date
-     * @throws
-     * @method getDatebystr
      * @author WCNGS@QQ.COM
-     * @since
-     * @date 2018/4/12 19:55
-     * @see
      */
-    public static Date getDatebystr(String str, String pattern) {
-
-        if (str == null || str == "") {
+    public static Date parseDateByInput(String str, String pattern) {
+        if (StringUtils.isBlank(str)) {
             return null;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -421,27 +446,14 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
-     * 方法实现说明
+     * 日期格式转换
      *
-     * @param date1
-     * @param date2
-     * @return int
-     * @throws
-     * @method dateVali
-     * @author WCNGS@QQ.COM
-     * @since
-     * @date 2018/4/12 19:53
-     * @see
-     */
-    public static int dateValiSeconds(Date date1, Date date2) {
-
-        long time1 = date1.getTime();
-        long time2 = date2.getTime();
-        long betweenDays = (time2 - time1) / (1000 * 3600 * 24);
-        return Integer.parseInt(String.valueOf(betweenDays));
-    }
-
+     * @param aDate util类型Date
+     * @return Date SQL类型 Date
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     **/
     public static java.sql.Date util2sql(Date aDate) {
+
         if (aDate == null) {
             return null;
         }
@@ -449,80 +461,82 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
-     * 获取上n个小时整点小时时间
+     * 根据当前时间，获取上 N 个小时整点小时，格式为 yyyy-MM-dd HH:00:00
      *
-     * @param date
-     * @return
+     * @param n 偏移量
+     * @return 返回 小时
      */
-    public static String getLastHourTime(Date date, int n) {
+    public static String hourOffset(int n) {
         Calendar ca = Calendar.getInstance();
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATETIME_PATTERN);
         ca.set(Calendar.HOUR_OF_DAY, ca.get(Calendar.HOUR_OF_DAY) - n);
-        date = ca.getTime();
-        return sdf.format(date);
+        return sdf.format(ca.getTime());
     }
+
     /**
-     * @param date
-     * @return
+     * 两时间的相差的秒
+     *
+     * @param bef 日期时间1
+     * @param end 日期时间2
+     * @return long 返回 秒
      */
+    public static long secondOffset(LocalDateTime bef, LocalDateTime end) {
+        Duration duration = Duration.between(bef, end);
+        return duration.getSeconds();
+    }
+
+    /**
+     * 给定时间与当前时间之间的相差的秒
+     *
+     * @param bef 日期时间1
+     * @return long 返回 秒
+     */
+    public static long secondOffset(LocalDateTime bef) {
+        return secondOffset(bef, LocalDateTime.now());
+    }
 
     /**
      * 获取当前时间的整点小时时间，默认格式为yyyy-MM-dd HH:mm:ss
      *
-     * @param date    必填
      * @param pattern 可为空
      * @return java.lang.String
-     * @throws
-     * @author WCNGS@QQ.COM
-     * @See
      * @date 2019/10/23 23:59
-     * @since
      */
-    public static String getCurrHourTime(Date date, String pattern) {
-
+    public static String getCurrHourTime(String pattern) {
         Calendar ca = Calendar.getInstance();
         ca.set(Calendar.MINUTE, 0);
         ca.set(Calendar.SECOND, 0);
-        date = ca.getTime();
         if (null == pattern) {
-            pattern = "yyyy-MM-dd HH:mm:ss";
+            pattern = DATETIME_PATTERN;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        return sdf.format(date);
+        return sdf.format(ca.getTime());
     }
 
 
     /**
-     * 判断两个日期是否相等
+     * 判断两个日期的年月日是否相等
      *
-     * @param date1
-     * @param date2
-     * @return boolean
-     * @throws
+     * @param date1 第一日期
+     * @param date2 第二日期
+     * @return boolean 真：True，假：False
      * @author WCNGS@QQ.COM
-     * @See
      * @date 2019/10/23 23:58
-     * @since
      */
     public static boolean isSameDate(Date date1, Date date2) {
-
         try {
             Calendar cal1 = Calendar.getInstance();
             cal1.setTime(date1);
             Calendar cal2 = Calendar.getInstance();
             cal2.setTime(date2);
-
             boolean isSameYear = cal1.get(Calendar.YEAR) == cal2
                     .get(Calendar.YEAR);
             boolean isSameMonth = isSameYear
                     && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
-            boolean isSameDate = isSameMonth
-                    && cal1.get(Calendar.DAY_OF_MONTH) == cal2
-                    .get(Calendar.DAY_OF_MONTH);
-
-            return isSameDate;
+            return isSameMonth
+                    && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
         } catch (Exception e) {
             e.printStackTrace();
         }

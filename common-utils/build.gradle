@@ -11,7 +11,7 @@ dependencies {
             libraries.'commons-lang3',
             libraries.'commons-codec',
             libraries.'commons-configuration',
-//            libraries.'mysql-connector-java',
+            libraries.'mysql-connector-java',
             libraries.'javax.servlet-api',
             libraries.'fastjson',
             libraries.'guava',
@@ -41,6 +41,8 @@ dependencies {
     api(libraries.'spring-boot-starter-logging') {
         exclude group: '*', module: '*'
     }
+
+    implementation 'com.zaxxer:HikariCP:3.4.5'
 
     api(libraries.'spring-boot-starter-web') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
@@ -75,7 +77,7 @@ dependencies {
         exclude group: 'commons-codec', module: 'commons-codec'
     }
 
-
+    api 'cn.smallbun.screw:screw-core:1.0.5'
 }
 
 
