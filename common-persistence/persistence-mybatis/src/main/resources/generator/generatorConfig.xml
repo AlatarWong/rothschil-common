@@ -7,7 +7,7 @@
     <properties resource="generator/generator.properties"></properties>
     -->
     <!--数据库驱动-->
-    <classPathEntry location="G:\\Devp_Repository\\Jar\\mysql-connector-java-5.1.46.jar"/>
+    <classPathEntry location="D:\\Jar\\mysql-connector-java-5.1.46.jar"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
         <commentGenerator>
@@ -15,7 +15,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.244.128:3306/area20?autoReconnect=true&amp;failOverReadOnly=false"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:13306/au_app?autoReconnect=true&amp;failOverReadOnly=false"
                         userId="root" password="123456">
         </jdbcConnection>
 
@@ -37,7 +37,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="tb_file_info"  schema="FileInfo"
+        <table tableName="at_file_list"  schema="FileList"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

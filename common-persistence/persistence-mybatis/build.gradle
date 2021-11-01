@@ -1,4 +1,8 @@
 archivesBaseName = 'persistence-mybatis'
+configurations {
+    mybatisGenerator
+}
+
 dependencies {
     api(project(':common-utils'))
 
@@ -13,5 +17,9 @@ dependencies {
         exclude group:'org.springframework.boot', module: 'spring-boot-starter'
         exclude group:'org.springframework.boot', module: 'spring-boot-autoconfigure'
     }
+
+    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.5'
+    mybatisGenerator 'mysql:mysql-connector-java:5.1.40'
+    mybatisGenerator 'tk.mybatis:mapper:3.3.9'
 }
 jar.enabled = true
