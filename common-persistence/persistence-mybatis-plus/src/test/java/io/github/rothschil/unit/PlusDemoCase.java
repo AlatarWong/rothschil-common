@@ -1,6 +1,5 @@
 package io.github.rothschil.unit;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.github.rothschil.BaseTest;
 import io.github.rothschil.demo.entity.AtConfSource;
 import io.github.rothschil.demo.service.AtConfSourceService;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @DisplayName("Plus处理")
