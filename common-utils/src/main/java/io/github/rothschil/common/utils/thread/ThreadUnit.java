@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2017/12/2 14:51
  * @since 1.0.0
 */
+@SuppressWarnings("unused")
 public class ThreadUnit implements Runnable{
 
     private String value;

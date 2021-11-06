@@ -7,18 +7,22 @@ import java.util.concurrent.*;
 
 /**
  * 线程相关工具类.
+ *
  * @author WCNGS@QQ.COM
  * @date 2020/6/19 17:31
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class Threads {
 
     private static final Logger log = LoggerFactory.getLogger(Threads.class);
 
-    /** sleep等待,单位毫秒
+    /**
+     * sleep等待,单位毫秒
+     *
+     * @param milliseconds 毫秒
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-12:17
-     * @param milliseconds 毫秒
      **/
     public static void sleep(long milliseconds) {
         try {
@@ -27,10 +31,12 @@ public class Threads {
         }
     }
 
-    /** sleep等待,单位为秒
+    /**
+     * sleep等待,单位为秒
+     *
+     * @param seconds 秒
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-12:17
-     * @param seconds 秒
      **/
     public static void sleep(int seconds) {
         try {
@@ -47,9 +53,10 @@ public class Threads {
      * </ui>
      * <li>如果仍人超時，則強制退出.</li>
      * 另对在shutdown时线程本身被调用中断做了处理.
+     *
+     * @param pool {@link ExecutorService}
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-12:15
-     * @param pool {@link ExecutorService}
      **/
     public static void shutdownAndAwaitTermination(ExecutorService pool) {
 

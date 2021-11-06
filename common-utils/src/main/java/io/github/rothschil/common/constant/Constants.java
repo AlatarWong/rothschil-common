@@ -15,6 +15,19 @@ public class Constants {
     private Constants() {
     }
 
+    public static final String MULTI_CHARACTER = "*";
+
+    public final static int QUEUE_SAFE = 0XA;
+
+    public final static int DEFAULT_QUEUE_SIZE = 0X1F4;
+
+    public final static int DEFAULT_QUEUE_LEVEL_1 = 0XC8;
+
+    public final static int DEFAULT_QUEUE_LEVEL_2 = 0X190;
+
+    public static String CONN_BO = "conn";
+    public static String DOWN_REULT = "result";
+
     public static String ADMIN_UNIX = "root";
 
     public static String ADMIN_WIN = "admmin";
@@ -26,6 +39,11 @@ public class Constants {
     public static String DEFAULT_DATABASE = "mysql";
 
     public static String USER_TYPE = "user-Agent";
+
+
+    public static String CONNECT_PO = "conn";
+    public static String CONNECT_CLINET = "client";
+    public static String CONNECT_STATUS = "status";
 
     /**
      * 英文字符数字，用于随机生成字符串

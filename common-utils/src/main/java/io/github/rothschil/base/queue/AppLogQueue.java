@@ -138,4 +138,29 @@ public class AppLogQueue {
         return ThreadPoolsUtil.doCreate(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), this.getClass().getName());
     }
 
+    /**
+     * 手工中断，防止占用资源过多
+     *
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/14-22:21
+     **/
+    public void interrupted() {
+        if (!running) {
+            LOG.warn("service is stop");
+        } else{
+            queue.clear();
+            running=false;
+        }
+    }
+
+    /**
+     * 获取当前队列中的元素个数
+     *
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/14-22:21
+     **/
+    public int getQueueSize() {
+        return queue.size();
+    }
+
 }

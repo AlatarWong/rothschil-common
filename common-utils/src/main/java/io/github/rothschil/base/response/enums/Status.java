@@ -1,15 +1,10 @@
 package io.github.rothschil.base.response.enums;
 
 /**
- * 定义的接口状态码
- * <ul>
- * <li> 1000～1999 区间表示参数错误</li>
- * <li> 2000～2999 区间表示用户错误</li>
- * <li> 3000～3999 区间表示接口异常</li>
- * </ul>
+ * 常量信息，可以在此基础上拓展
  *
- * @author WCNGS@QQ.COM
- * @date 2017/12/2 13:31
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2015/8/15 - 11:25
  * @since 1.0.0
  */
 @SuppressWarnings("unused")
@@ -19,24 +14,38 @@ public enum Status {
      * 成功
      **/
     SUCCESS(0, "SUCCESS"),
+
     /**
      * 失败
      **/
     FAILURE(-1, "FAILURE"),
 
     /**
-     * 常见错误的定义
+     * 文件处理完毕
      */
+    PRCESS_SUCESS(1, "文件处理完毕"),
 
+    /**
+     * 系统异常
+     */
     SYSTEM_EXCEPTION(200, "系统异常"),
 
-
     RUNTIME_EXCEPTION(202, "运行时异常"),
+
+    /**
+     * 空指针异常
+     */
     NULL_POINTER_EXCEPTION(203, "空指针异常"),
 
+    /**
+     * IO异常
+     */
     IO_EXCEPTION(205, "IO异常"),
 
 
+    /**
+     * Not Found
+     */
     NOT_FOUND(404, "Not Found"),
     TARGET_IS_NULL(405, "TARGET is Null"),
     TARGET_IS_EMPTY(405, "TARGET is empty"),
@@ -67,8 +76,9 @@ public enum Status {
     DATA_EXISTED(741, "数据已存在"),
     DATA_NOT_EXIST(742, "数据不存在"),
 
-    EXCEPTION(777, "未知异常"),
+    CHANGE_DIR_ERR(745, "用户切换目录错误"),
 
+    EXCEPTION(777, "未知异常"),
 
 
     FILE_NAME_LIMIT(801, "The file Name is too long"),
@@ -138,10 +148,25 @@ public enum Status {
     DATA_NOT_FOUND_EXCEPTION(32005, "未找到符合条件的数据异常"),
     DATA_CALCULATION_EXCEPTION(32006, "数据计算异常"),
     MALE_SEND_FAIL(35001, "邮件发送异常"),
+
+    SYNC_LOCKED(4000, "资源锁定"),
     GET_SYNC_LOCK_FAILURE(4001, "获取锁失败"),
     GET_SYNC_LOCK_SUCCESS(4002, "获取锁成功"),
     SYNC_LOCK_MANY_REQ(4003, "请求太多"),
 
+    FILE_NOT_EXIST(4021, "文件不存在"),
+
+    ELASTIC_ERR(4022, "写入Elastic Search失败"),
+    REMOTE_EMPTY(4020, "远程目录为空"),
+    FTP_SESSION(4019, "Session获取或者连接失败"),
+    FTP_CONNET_FAIL(4009, "连接不成功"),
+    FTP_IP_ERR(4005, "FTP IP 错误"),
+    FTP_PORT_ERR(4005, "FTP Port 错误"),
+    DOWNLOAD_ERR(4006, "文件下载失败"),
+    UNMATCHED_FILE(4007, "没有符合条件的文件"),
+
+    QUEUE_CAPACITY(4101, "队列中元素占比已超过定义容量的一半"),
+    QUEUE_FULL(4102, "队列中元素已超过上限，启动保护机制"),
 
     PAY_ACTUAL_PRICE(5010, "The discount amount is greater than the actual price");
 

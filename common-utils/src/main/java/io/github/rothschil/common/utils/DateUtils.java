@@ -1,4 +1,4 @@
-package cn.ffcs.up.base.util;
+package io.github.rothschil.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -7,6 +7,7 @@ import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -70,6 +71,18 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         String time = DateUtils.getTransId();
         long dom = (long) (Math.random() * SALT);
         return time + dom;
+    }
+
+    /**
+     * 返回 yyyyMMddHHmmss 时间格式，具体使用还需 加上 7 位随机数字
+     *
+     * @return String
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2018/4/24-20:47
+     **/
+    public static String transIdSalt() {
+        Long dom = (long) (Math.random() * SALT);
+        return dom.toString();
     }
 
 
@@ -143,6 +156,10 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      */
     public static String getDate(String pattern) {
         return DateFormatUtils.format(new Date(), pattern);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(offset(-1));
     }
 
     /**
@@ -368,6 +385,20 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
+     * offset 与当天的偏移，负数 则是往前
+     *
+     * @param offset  偏移数值
+     * @param pattern 使用传入的格式
+     * @return String yyyyMMdd 格式日期戳
+     */
+    public static String offset(int offset, String pattern) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, offset);
+        Date time = cal.getTime();
+        return new SimpleDateFormat(pattern).format(time);
+    }
+
+    /**
      * 日期时间偏移，在给定日期上做偏移，负数 则是往前
      * offset = 1,date=2018-11-02 16:47:00
      * 结果：2018-11-03 16:47:00
@@ -382,6 +413,39 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         cal.add(Calendar.DAY_OF_MONTH, offset);
         return cal.getTime();
     }
+
+    /**
+     * 日期时间偏移，在给定日期上做偏移，负数 则是往前
+     * offset = 1,date=2018-11-02 16:47:00
+     * 结果：2018-11-03 16:47:00
+     *
+     * @param inputDate   YYYY-MM-DD 格式字符
+     * @param offset 偏移的数值
+     * @return Date 目标日期
+     */
+    public static String offset(String inputDate, int offset) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DAY_PATTERN);
+        LocalDate date = LocalDate.parse(inputDate, dtf);
+        date.plusDays(-1);
+        return dtf.format(date);
+    }
+
+    /**
+     * 当前时间日期时间偏移，在给定日期上做偏移，负数 则是往前
+     * offset = 1,date=2018-11-02 16:47:00
+     * 结果：2018-11-03 16:47:00
+     *
+     * @param offset 偏移的数值
+     * @return Date 目标日期
+     */
+    public static String offsetByDateNow(int offset) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DAY_PATTERN);
+        LocalDate localDate = LocalDate.now();
+        localDate.plusDays(offset);
+        System.out.println(localDate.getDayOfMonth());
+        return dtf.format(localDate);
+    }
+
 
     /**
      * 日期偏移，负数 则是往前
