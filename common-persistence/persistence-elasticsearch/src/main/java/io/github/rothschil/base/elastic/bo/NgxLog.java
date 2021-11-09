@@ -1,7 +1,8 @@
 package io.github.rothschil.base.elastic.bo;
 
 import io.github.rothschil.base.elastic.util.EsFlag;
-import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 日志的结构
@@ -10,7 +11,7 @@ import lombok.Data;
  * @date 2021/10/21 - 12:19
  * @since 1.0.0
  */
-public class NgxLog {
+public class NgxLog implements Serializable {
 
     private String logId;
     private String time;

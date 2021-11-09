@@ -199,18 +199,6 @@ public abstract class AbstractElasticIndexManger {
     }
 
     /**
-     * 对条件删除反馈内容进行解析处理
-     *
-     * @param response bulk的响应
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-10:12
-     **/
-    @Deprecated
-    public void repsone(BulkByScrollResponse response) {
-
-    }
-
-    /**
      * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
      *
      * @param isClean    默认为 True
