@@ -5,7 +5,9 @@ dependencies {
         exclude group:'com.oracle', module: 'ojdbc6'
         exclude group:'mysql', module: 'mysql-connector-java'
     }
-    api("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+    api("org.springframework.boot:spring-boot-starter-data-elasticsearch"){
+        exclude(group:"org.hdrhistogram",module:"HdrHistogram")
+    }
 
 
 }
