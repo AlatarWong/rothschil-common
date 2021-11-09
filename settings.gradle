@@ -3,7 +3,6 @@ rootProject.name = 'rothschil-common'
 include 'common-utils'
 include 'common-persistence:persistence-jpa'
 include 'common-persistence:persistence-mybatis'
-include 'common-persistence:persistence-mybatis-plus'
 include 'common-persistence:persistence-elasticsearch'
 
 
