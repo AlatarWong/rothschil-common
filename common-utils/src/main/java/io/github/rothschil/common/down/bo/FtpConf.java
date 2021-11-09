@@ -1,9 +1,13 @@
 package io.github.rothschil.common.down.bo;
 
+import io.github.rothschil.common.enums.FtpEnum;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 定义 FTP 和 SFTP 的连接信息
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/11/6 - 10:57
  * @since 1.0.0
@@ -33,7 +37,7 @@ public class FtpConf implements Serializable {
     private String localDic;
 
     /**
-     * 类型(FTP/SFTP)
+     * 类型(FTP/SFTP)，详情定义，参考 {@link FtpEnum} 说明，默认为 FTP方式
      */
     private Integer ftpType;
 
@@ -103,6 +107,9 @@ public class FtpConf implements Serializable {
     }
 
     public Integer getFtpType() {
+        if (null == ftpType) {
+            return FtpEnum.FTP.getCode();
+        }
         return ftpType;
     }
 

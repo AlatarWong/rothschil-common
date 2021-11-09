@@ -1,9 +1,9 @@
 package io.github.rothschil.base.property.listener;
 
+import io.github.rothschil.base.property.PropConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
-import io.github.rothschil.base.property.PropConfig;
 
 /**
  * 配置文件监听器，用来加载自定义配置文件，需要在 {@link SpringApplication} 中注册该监听器。

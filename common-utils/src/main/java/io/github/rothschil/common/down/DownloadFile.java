@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class DownloadTask extends AbstractDownloadTask {
+public class DownloadFile extends AbstractDownloadFile {
 
 
     /**

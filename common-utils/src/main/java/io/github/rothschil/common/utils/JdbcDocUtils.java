@@ -74,39 +74,4 @@ public class JdbcDocUtils {
         }
         return tables;
     }
-
-    public static void main(String[] args) {
-        /**
-         * 生成的文档本地路径
-         */
-        final String LOCAL_PATH = "D:\\Temp";
-
-        DataSource dataSource = JdbcDocUtils.getDataSourceConfig();
-        EngineConfig engineConfig = EngineConfig.builder()
-                //导出文件地址
-                .fileOutputDir(LOCAL_PATH)
-                //是否打开文件夹
-                .openOutputDir(true)
-                //文件类型:html、doc、mockdown
-                .fileType(EngineFileType.MD)
-                //模板引擎
-                .produceType(EngineTemplateType.freemarker).build();
-        ProcessConfig processConfig = ProcessConfig.builder()
-                //指定生成逻辑、当存在指定表、指定表前缀、指定表后缀时，将生成指定表，其余表不生成、并跳过忽略表配置
-                //根据名称指定表生成
-                .designatedTableName(JdbcDocUtils.getTablesNames())
-                //根据表前缀生成
-                .designatedTablePrefix(new ArrayList<>())
-                //根据表后缀生成
-                .designatedTableSuffix(new ArrayList<>()).build();
-
-        //设置生成pojo相关配置
-        Configuration config = Configuration.builder()
-                .version("1.0.0")
-                .description("数据库设计文档")
-                .dataSource(dataSource)
-                .engineConfig(engineConfig)
-                .produceConfig(processConfig).build();
-        new DocumentationExecute(config).execute();
-    }
 }

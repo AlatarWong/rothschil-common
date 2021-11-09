@@ -158,10 +158,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return DateFormatUtils.format(new Date(), pattern);
     }
 
-    public static void main(String[] args) {
-        System.out.println(offset(-1));
-    }
-
     /**
      * 得到日期字符串 默认格式（yyyy-MM-dd） patternDateUtil.java可以为："yyyy-MM-dd" "HH:mm:ss" "E"
      *

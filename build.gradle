@@ -3,30 +3,8 @@ plugins {
     id 'java-library'
     id 'org.springframework.boot' version '2.5.0'
 }
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'signing'
-apply plugin: 'maven-publish'
 
-version project_version
-group project_group
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
-jar {
-    enabled = false
-    // 禁用档案后缀，处理 **-plain.jar
-    archiveClassifier = ''
-}
-// 默认不需要打可执行jar包
-bootJar {
-    enabled = false
-}
-
-// 只针对子目录进行生效
-subprojects {
+allprojects {
 
     apply plugin: 'java'
     apply plugin: 'java-library'
@@ -42,6 +20,31 @@ subprojects {
 
     sourceCompatibility = project_jdk
     targetCompatibility = project_jdk
+
+    repositories {
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://localhost:8081/repository/maven-public/'
+//        }
+        mavenLocal()
+        mavenCentral()
+    }
+
+    jar {
+        enabled = false
+        // 禁用档案后缀，处理 **-plain.jar
+        archiveClassifier = ''
+    }
+// 默认不需要打可执行jar包
+    bootJar {
+        enabled = false
+    }
+    
+    
+}
+
+// 只针对子目录进行生效
+subprojects {
     // 程序编译的任务编码
     tasks.withType(JavaCompile) {
         options.encoding('UTF-8')
@@ -51,20 +54,11 @@ subprojects {
         options.addStringOption('Xdoclint:none', '-quiet')
     }
 
-    repositories {
-//        maven {
-//            allowInsecureProtocol true
-//            url 'http://localhost:8081/repository/maven-public/'
-//        }
-        mavenLocal()
-        mavenCentral()
-
-    }
-
     dependencies {
-        annotationProcessor('org.projectlombok:lombok:1.18.20')
-        testImplementation('org.projectlombok:lombok:1.18.20')
-        testAnnotationProcessor('org.projectlombok:lombok:1.18.20')
+        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+        testImplementation("org.projectlombok:lombok:$lombokVersion")
+        testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+        implementation("org.projectlombok:lombok:$lombokVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion") {
 //            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 //            exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
@@ -72,22 +66,10 @@ subprojects {
 //            exclude group: 'net.bytebuddy', module: 'byte-buddy'
 //            exclude group: 'net.bytebuddy', module: 'byte-buddy-agent'
         }
-        implementation('org.projectlombok:lombok:1.18.20')
     }
 
     test {
 //        useJUnitPlatform()
-    }
-
-    jar {
-        enabled = false
-        // 禁用档案后缀，处理 **-plain.jar
-        archiveClassifier = ''
-    }
-
-    // 默认不需要打可执行jar包
-    bootJar {
-        enabled = false
     }
 
 

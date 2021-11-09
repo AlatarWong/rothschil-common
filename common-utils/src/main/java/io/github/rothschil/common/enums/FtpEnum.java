@@ -5,7 +5,6 @@ package io.github.rothschil.common.enums;
  * @date 2021/10/23 - 14:37
  * @since 1.0.0
  */
-@SuppressWarnings("unused")
 public enum FtpEnum {
 
     /**

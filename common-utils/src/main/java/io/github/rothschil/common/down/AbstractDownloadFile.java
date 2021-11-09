@@ -32,7 +32,7 @@ import java.util.*;
  */
 @SuppressWarnings("unused")
 @Slf4j
-public abstract class AbstractDownloadTask {
+public abstract class AbstractDownloadFile {
 
 
     /**
