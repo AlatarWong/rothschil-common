@@ -1,0 +1,12 @@
+archivesBaseName = 'persistence-elasticsearch'
+
+dependencies {
+    api(project(':common-utils')){
+        exclude group:'com.oracle', module: 'ojdbc6'
+        exclude group:'mysql', module: 'mysql-connector-java'
+    }
+    api("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+
+
+}
+jar.enabled = true
