@@ -128,7 +128,7 @@ public abstract class AbsAspect {
 
 
     /**
-     * 获取 ApplicationLog 注解
+     * 获取 {@link ApplicationLog} 注解
      *
      * @param joinPoint 切点
      * @return ApplicationLog

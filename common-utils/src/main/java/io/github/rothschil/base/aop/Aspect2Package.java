@@ -31,7 +31,7 @@ public class Aspect2Package extends AbsAspect {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2018/4/24-16:39
      **/
-    @Pointcut("execution(public * xyz.wongs..*.web.*Controller.*(..))")
+    @Pointcut("execution(public * io.github..*.*Controller.*(..))")
     public void cutService() {
 
     }
