@@ -1,19 +1,27 @@
-package io.github.rothschil.common.down.bo;
+package io.github.rothschil.common.remote.bo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * 被下载文件的列表
+ *
+ * @author <a href="https://github.com/rothschil">Sam</a>
+ * @date 2021/11/11 - 22:31
+ * @since 1.0.0
+ */
 @Data
-public class FileList {
+public class FileEntry implements Serializable {
 
     private static final long serialVersionUID = 3347631520408163595L;
 
-    public FileList() {
+    public FileEntry() {
     }
 
 
-    public FileList(String transId, String fileName, String remotePath, String localPath, Long id) {
+    public FileEntry(String transId, String fileName, String remotePath, String localPath, Long id) {
         this.transId = transId;
         this.fileName = fileName;
         this.remotePath = remotePath;

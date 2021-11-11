@@ -1,11 +1,11 @@
-package io.github.rothschil.base.aop;
+package io.github.rothschil.base.aop.core;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import io.github.rothschil.base.aop.annotation.ApplicationLog;
-import io.github.rothschil.base.aop.pojo.AppLog;
+import io.github.rothschil.base.aop.entity.AppLog;
 
 /**
  * 应用全局日志APO 异步日志：

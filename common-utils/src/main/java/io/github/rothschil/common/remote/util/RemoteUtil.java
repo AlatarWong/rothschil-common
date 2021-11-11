@@ -1,11 +1,11 @@
-package io.github.rothschil.common.down.util;
+package io.github.rothschil.common.remote.util;
 
 import com.google.common.collect.ImmutableMap;
 import com.jcraft.jsch.*;
 import io.github.rothschil.base.response.enums.Status;
 import io.github.rothschil.common.constant.Constants;
-import io.github.rothschil.common.down.bo.FtpConf;
-import io.github.rothschil.common.down.bo.LogConnect;
+import io.github.rothschil.common.remote.bo.RemoteConf;
+import io.github.rothschil.common.remote.bo.RemoteLogConnect;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
@@ -25,7 +25,7 @@ import java.util.Properties;
  * @since 1.0.0
  */
 @Slf4j
-public class FileDownloadUtil {
+public class RemoteUtil {
 
     /**
      * 已经连接次数
@@ -43,8 +43,8 @@ public class FileDownloadUtil {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-13:59
      **/
-    public static Map<String, Object> ftpClient(FtpConf source) {
-        LogConnect connect = new LogConnect();
+    public static Map<String, Object> ftpClient(RemoteConf source) {
+        RemoteLogConnect connect = new RemoteLogConnect();
         connect.setConfId(source.getId());
         connect.setConnTime(LocalDateTime.now());
         FTPClient ftpClient = null;
@@ -103,8 +103,8 @@ public class FileDownloadUtil {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-17:27
      **/
-    public static Map<String, Object> connect(FtpConf source) {
-        LogConnect connect = new LogConnect();
+    public static Map<String, Object> connect(RemoteConf source) {
+        RemoteLogConnect connect = new RemoteLogConnect();
         connect.setConfId(source.getId());
         connect.setConnTime(LocalDateTime.now());
         Status status = Status.SUCCESS;
@@ -142,7 +142,7 @@ public class FileDownloadUtil {
     }
 
 
-    public static void buildLogConnect(LogConnect connect,Status status){
+    public static void buildLogConnect(RemoteLogConnect connect, Status status){
         connect.setReponTime(LocalDateTime.now());
         connect.setResult(status.getStatus());
         connect.setReq(status.getMsg());

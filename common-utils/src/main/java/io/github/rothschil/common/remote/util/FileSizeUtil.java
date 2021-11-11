@@ -1,4 +1,4 @@
-package io.github.rothschil.common.down.util;
+package io.github.rothschil.common.remote.util;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,17 +1,17 @@
-package io.github.rothschil.common.down;
+package io.github.rothschil.common.remote.core;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpATTRS;
 import com.jcraft.jsch.SftpException;
 import io.github.rothschil.base.response.enums.Status;
 import io.github.rothschil.common.constant.Constants;
-import io.github.rothschil.common.down.bo.DownloadBo;
-import io.github.rothschil.common.down.bo.FileList;
-import io.github.rothschil.common.down.bo.FtpConf;
-import io.github.rothschil.common.down.bo.LogConnect;
-import io.github.rothschil.common.down.filter.GrpFilter;
-import io.github.rothschil.common.down.util.FileDownloadUtil;
-import io.github.rothschil.common.down.util.FileSizeUtil;
+import io.github.rothschil.common.remote.bo.DownloadingBo;
+import io.github.rothschil.common.remote.bo.FileEntry;
+import io.github.rothschil.common.remote.bo.RemoteConf;
+import io.github.rothschil.common.remote.bo.RemoteLogConnect;
+import io.github.rothschil.common.remote.filter.GrpFilter;
+import io.github.rothschil.common.remote.util.RemoteUtil;
+import io.github.rothschil.common.remote.util.FileSizeUtil;
 import io.github.rothschil.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
@@ -59,7 +59,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:47
      **/
-    public boolean vilateName(FtpConf source, String fileName) {
+    public boolean vilateName(RemoteConf source, String fileName) {
         String contains = getContains(source);
         // 文件列表中不包含当前日期的文件
         if (!checkFileName(fileName, contains)) {
@@ -78,7 +78,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:47
      **/
-    public String getLocalFileName(FtpConf source, String fileName) {
+    public String getLocalFileName(RemoteConf source, String fileName) {
         String localPath = source.getLocalDic();
         return checkPath(localPath) + fileName;
     }
@@ -91,7 +91,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:47
      **/
-    public String getContains(FtpConf source) {
+    public String getContains(RemoteConf source) {
         return Constants.HF_PERIOD + DateUtils.offset(-1,DateUtils.DAY_PATTERN);
     }
 
@@ -137,7 +137,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:56
      **/
-    protected FTPFile[] getFtpFiles(FtpConf source, FTPClient ftpClient) {
+    protected FTPFile[] getFtpFiles(RemoteConf source, FTPClient ftpClient) {
         String contains = getContains(source);
         FTPFile[] files = new FTPFile[0];
         try {
@@ -148,9 +148,9 @@ public abstract class AbstractDownloadFile {
         return files;
     }
 
-    protected FileList build(String transId, FtpConf source, FTPFile tmpFile) {
+    protected FileEntry build(String transId, RemoteConf source, FTPFile tmpFile) {
         String fileName = tmpFile.getName();
-        FileList file = new FileList();
+        FileEntry file = new FileEntry();
         file.setFileName(fileName);
         file.setFileSize(tmpFile.getSize()+"");
         file.setRemotePath(source.getRemoteDir());
@@ -159,12 +159,12 @@ public abstract class AbstractDownloadFile {
         return file;
     }
 
-    public void insertRecord(DownloadBo bo) {
-        List<FileList> lists = bo.getLists();
+    public void insertRecord(DownloadingBo bo) {
+        List<FileEntry> lists = bo.getLists();
         if (!lists.isEmpty()) {
             return;
         }
-        LogConnect connect = bo.getLogConnect();
+        RemoteLogConnect connect = bo.getRemoteLogConnect();
         Status status = bo.getStatus();
         connect.setDownStatus(status.getStatus());
         connect.setTransId(bo.getTransId());
@@ -181,7 +181,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-23:11
      **/
-    protected String checkPath(FtpConf source) {
+    protected String checkPath(RemoteConf source) {
         String temp = source.getLocalDic();
         return checkPath(temp);
     }
@@ -212,15 +212,15 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-3:08
      **/
-    protected DownloadBo downloadFtp(String transId, FtpConf source) {
-        Map<String, Object> map = FileDownloadUtil.ftpClient(source);
-        List<FileList> lists = new ArrayList<>();
+    protected DownloadingBo downloadFtp(String transId, RemoteConf source) {
+        Map<String, Object> map = RemoteUtil.ftpClient(source);
+        List<FileEntry> lists = new ArrayList<>();
         OutputStream outputStream = null;
         Status status = (Status)map.get(Constants.CONNECT_STATUS);
-        LogConnect logConnect = (LogConnect) map.get(Constants.CONN_BO);
+        RemoteLogConnect remoteLogConnect = (RemoteLogConnect) map.get(Constants.CONN_BO);
         try {
             if(!status.getStatus().equals(Status.SUCCESS.getStatus())){
-                return DownloadBo.builder().logConnect(logConnect).status(status).lists(Collections.emptyList()).build();
+                return DownloadingBo.builder().remoteLogConnect(remoteLogConnect).status(status).lists(Collections.emptyList()).build();
             }
             FTPClient ftpClient = (FTPClient) map.get(Constants.CONNECT_CLINET);
             String contains = getContains(source);
@@ -235,7 +235,7 @@ public abstract class AbstractDownloadFile {
                 status = Status.UNMATCHED_FILE;
             } else {
                 String localPath = checkPath(source);
-                FileDownloadUtil.createDir(source.getLocalDic());
+                RemoteUtil.createDir(source.getLocalDic());
                 for (FTPFile tmpFile : files) {
                     String fileName = tmpFile.getName();
                     String localFilePath = localPath + fileName;
@@ -256,7 +256,7 @@ public abstract class AbstractDownloadFile {
         } finally {
             closeStream(outputStream);
         }
-        return DownloadBo.builder().logConnect(logConnect).lists(lists).status(status).build();
+        return DownloadingBo.builder().remoteLogConnect(remoteLogConnect).lists(lists).status(status).build();
     }
 
     /**
@@ -267,23 +267,23 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-3:08
      **/
-    protected DownloadBo downloadSftp(String transId,FtpConf source) {
-        Map<String, Object> map = FileDownloadUtil.connect(source);
-        LogConnect logConnect = (LogConnect) map.get(Constants.CONN_BO);
+    protected DownloadingBo downloadSftp(String transId, RemoteConf source) {
+        Map<String, Object> map = RemoteUtil.connect(source);
+        RemoteLogConnect remoteLogConnect = (RemoteLogConnect) map.get(Constants.CONN_BO);
         Status status = (Status)map.get(Constants.CONNECT_STATUS);
-        List<FileList> lists = new ArrayList<>();
+        List<FileEntry> lists = new ArrayList<>();
         try {
             if(!status.getStatus().equals(Status.SUCCESS.getStatus())){
-                return DownloadBo.builder().logConnect(logConnect).status(status).lists(Collections.emptyList()).build();
+                return DownloadingBo.builder().remoteLogConnect(remoteLogConnect).status(status).lists(Collections.emptyList()).build();
             }
             ChannelSftp chSftp = (ChannelSftp)map.get(Constants.CONNECT_CLINET);
             String remote = source.getRemoteDir();
             Vector<ChannelSftp.LsEntry> vectors = chSftp.ls(remote);
             if (vectors.isEmpty()) {
                 status = Status.REMOTE_EMPTY;
-                return DownloadBo.builder().logConnect(logConnect).status(status).lists(Collections.emptyList()).build();
+                return DownloadingBo.builder().remoteLogConnect(remoteLogConnect).status(status).lists(Collections.emptyList()).build();
             }
-            FileDownloadUtil.createDir(source.getLocalDic());
+            RemoteUtil.createDir(source.getLocalDic());
             for (ChannelSftp.LsEntry entry : vectors) {
                 SftpATTRS attrs = entry.getAttrs();
                 if (attrs.isDir()) {
@@ -313,7 +313,7 @@ public abstract class AbstractDownloadFile {
                 //本地路径+文件名
                 String remoteFilePath = getRemoteFilePath(remote, fileName);
 
-                FileList file = new FileList();
+                FileEntry file = new FileEntry();
                 file.setTransId(transId);
                 file.setFileName(fileName);
                 file.setRemotePath(remoteFilePath);
@@ -323,10 +323,10 @@ public abstract class AbstractDownloadFile {
                 log.debug("fileName={},remoteFilePath={},localFilePath={},fileSize={}", fileName, remoteFilePath, localFilePath,fileSize);
                 chSftp.get(remoteFilePath, localFilePath);
             }
-            FileDownloadUtil.disConnect(chSftp);
+            RemoteUtil.disConnect(chSftp);
         } catch (SftpException e) {
             status = Status.DOWNLOAD_ERR;
         }
-        return DownloadBo.builder().logConnect(logConnect).lists(lists).status(status).build();
+        return DownloadingBo.builder().remoteLogConnect(remoteLogConnect).lists(lists).status(status).build();
     }
 }

@@ -1,11 +1,11 @@
-package io.github.rothschil.base.aop;
+package io.github.rothschil.base.aop.core;
 
 import cn.hutool.core.util.URLUtil;
 import com.alibaba.fastjson.JSON;
 import io.github.rothschil.base.aop.annotation.ApplicationLog;
-import io.github.rothschil.base.aop.pojo.AppLog;
-import io.github.rothschil.base.queue.AppLogQueue;
-import io.github.rothschil.base.queue.handler.impl.QueueTaskHandler;
+import io.github.rothschil.base.aop.entity.AppLog;
+import io.github.rothschil.base.aop.queue.AppLogQueue;
+import io.github.rothschil.base.aop.queue.handler.impl.QueueTaskHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;

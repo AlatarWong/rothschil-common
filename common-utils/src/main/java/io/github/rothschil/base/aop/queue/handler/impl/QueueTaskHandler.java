@@ -1,10 +1,10 @@
-package io.github.rothschil.base.queue.handler.impl;
+package io.github.rothschil.base.aop.queue.handler.impl;
 
+import io.github.rothschil.base.aop.entity.AppLog;
+import io.github.rothschil.base.aop.queue.handler.IQueueTaskHandler;
+import io.github.rothschil.base.aop.service.AbstactAppLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import io.github.rothschil.base.aop.pojo.AppLog;
-import io.github.rothschil.base.aop.service.AbstactAppLogService;
-import io.github.rothschil.base.queue.handler.IQueueTaskHandler;
 
 /**
  * 针对队列的任务处理者

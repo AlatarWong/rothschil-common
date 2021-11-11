@@ -1,6 +1,6 @@
-package io.github.rothschil.base.aop;
+package io.github.rothschil.base.aop.core;
 
-import io.github.rothschil.base.aop.pojo.AppLog;
+import io.github.rothschil.base.aop.entity.AppLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;

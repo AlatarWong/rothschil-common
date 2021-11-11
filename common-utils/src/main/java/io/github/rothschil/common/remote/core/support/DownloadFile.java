@@ -1,8 +1,9 @@
-package io.github.rothschil.common.down;
+package io.github.rothschil.common.remote.core.support;
 
-import io.github.rothschil.common.down.bo.DownloadBo;
-import io.github.rothschil.common.down.bo.FtpConf;
+import io.github.rothschil.common.remote.bo.DownloadingBo;
+import io.github.rothschil.common.remote.bo.RemoteConf;
 import io.github.rothschil.common.enums.FtpEnum;
+import io.github.rothschil.common.remote.core.AbstractDownloadFile;
 import io.github.rothschil.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -29,8 +30,8 @@ public class DownloadFile extends AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-16:29
      **/
-    public void download(FtpConf conf) {
-        DownloadBo bo;
+    public void download(RemoteConf conf) {
+        DownloadingBo bo;
         String transId = DateUtils.transId();
         if (conf.getFtpType() == FtpEnum.FTP.getCode()) {
             bo = downloadFtp(transId,conf);
@@ -48,8 +49,8 @@ public class DownloadFile extends AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-16:29
      **/
-    public void download(List<FtpConf> confSources) {
-        for (FtpConf conf : confSources) {
+    public void download(List<RemoteConf> confSources) {
+        for (RemoteConf conf : confSources) {
             download(conf);
         }
     }

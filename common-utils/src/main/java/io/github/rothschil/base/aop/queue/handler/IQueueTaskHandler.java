@@ -1,4 +1,4 @@
-package io.github.rothschil.base.queue.handler;
+package io.github.rothschil.base.aop.queue.handler;
 
 /**
  * 针对队列的任务处理者

@@ -1,4 +1,4 @@
-package io.github.rothschil.common.down.bo;
+package io.github.rothschil.common.remote.bo;
 
 import io.github.rothschil.base.response.enums.Status;
 import lombok.Builder;
@@ -15,25 +15,22 @@ import java.util.List;
  */
 @Data
 @Builder
-public class DownloadBo {
+public class DownloadingBo {
 
     private String transId;
     /**
      * 连接记录
      */
-    private LogConnect logConnect;
+    private RemoteLogConnect remoteLogConnect;
 
     /**
      * 文件列表
      */
-    private List<FileList> lists;
+    private List<FileEntry> lists;
 
     /**
      * 下载处理状态
      */
     private Status status;
 
-    public String getTransId() {
-        return transId;
-    }
 }

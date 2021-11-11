@@ -1,4 +1,4 @@
-package io.github.rothschil.common.down.bo;
+package io.github.rothschil.common.remote.bo;
 
 import io.github.rothschil.common.enums.FtpEnum;
 
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @date 2021/11/6 - 10:57
  * @since 1.0.0
  */
-public class FtpConf implements Serializable {
+public class RemoteConf implements Serializable {
 
     private Long id;
 

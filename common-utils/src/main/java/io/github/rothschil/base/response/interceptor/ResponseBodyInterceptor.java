@@ -1,12 +1,12 @@
 package io.github.rothschil.base.response.interceptor;
 
+import io.github.rothschil.common.constant.Constants;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import io.github.rothschil.common.constant.Constants;
 
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,6 @@ public class ResponseBodyInterceptor implements HandlerInterceptor {
             if (clazz.isAnnotationPresent(RestController.class)) {
                 request.setAttribute(Constants.RESPONSE_RESULT_ANN, clazz.getAnnotation(RestController.class));
             }
-
         }
         return true;
     }

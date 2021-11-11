@@ -1,4 +1,4 @@
-package io.github.rothschil.common.down.bo;
+package io.github.rothschil.common.remote.bo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @date 2021-10-23
  * @since 1.0.0 
  */
-public class LogConnect implements Serializable {
+public class RemoteLogConnect implements Serializable {
 
 	private static final long serialVersionUID = 417784064800161131L;
 	/**

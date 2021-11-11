@@ -1,6 +1,6 @@
-package io.github.rothschil.base.queue;
+package io.github.rothschil.base.aop.queue;
 
-import io.github.rothschil.base.queue.handler.IQueueTaskHandler;
+import io.github.rothschil.base.aop.queue.handler.IQueueTaskHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

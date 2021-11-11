@@ -1,4 +1,4 @@
-package io.github.rothschil.base.aop.pojo;
+package io.github.rothschil.base.aop.entity;
 
 import io.github.rothschil.common.po.BasePo;
 import lombok.*;

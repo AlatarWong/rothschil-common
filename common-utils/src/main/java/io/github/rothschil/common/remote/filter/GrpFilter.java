@@ -1,4 +1,4 @@
-package io.github.rothschil.common.down.filter;
+package io.github.rothschil.common.remote.filter;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPFileFilter;
