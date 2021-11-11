@@ -1,0 +1,9 @@
+archivesBaseName = 'framework-limit'
+
+dependencies {
+    implementation(project(':common-utils'))
+
+    api("org.redisson:redisson-spring-boot-starter:3.16.4")
+
+}
+jar.enabled = true

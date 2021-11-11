@@ -18,6 +18,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 限流拦截器，对 访问 IP 和 URL 做为凭据，去 Redis查询访问在有效时间内的访问次数
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/11/11 - 15:43
  * @since 1.0.0

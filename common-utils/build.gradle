@@ -82,8 +82,6 @@ dependencies {
 
     api 'cn.smallbun.screw:screw-core:1.0.5'
 
-    api("org.redisson:redisson-spring-boot-starter:3.16.4")
-
 }
 
 
