@@ -42,6 +42,8 @@ dependencies {
         exclude group: '*', module: '*'
     }
 
+    implementation 'com.zaxxer:HikariCP:3.4.5'
+
     api(libraries.'spring-boot-starter-web') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
 //        exclude group:'org.hibernate.validator', module: 'hibernate-validator'
