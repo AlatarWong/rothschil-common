@@ -1,6 +1,6 @@
-package io.github.rothschil.base.persistence.jpa.util;
+package io.github.rothschil.base.persistence.redis.util;
 
-import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 import io.github.rothschil.common.constant.Constants;

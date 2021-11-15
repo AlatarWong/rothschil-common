@@ -8,6 +8,9 @@
 
 ## 2. 目录结构
 
+
+
+
 ~~~
 |---.gradle
 |---Doc                 ------------------文档
@@ -15,6 +18,7 @@
 │  └─wrapper
 │          gradle-wrapper.jar           --gradle-wrapper 主题功能
 │          gradle-wrapper.properties    --Gradle当前配置的版本，以及从哪里获取
+|---common-framework    ------------------常用框架模块
 |---common-utils    ----------------------常用工具包，集成通用基类，供其他模块引入
 |   │---build.gradle  --------------------工具包的构建文件
 |   │---dependencies.gradle   ------------配置

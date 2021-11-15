@@ -1,9 +1,9 @@
-package io.github.rothschil.base.persistence.jpa.service;
+package io.github.rothschil.base.persistence.redis.service;
 
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
-import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
 import io.github.rothschil.common.utils.Reflections;
 
 import java.io.Serializable;

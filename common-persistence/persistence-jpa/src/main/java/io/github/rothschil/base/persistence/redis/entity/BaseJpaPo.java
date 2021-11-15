@@ -1,4 +1,4 @@
-package io.github.rothschil.base.persistence.jpa.entity;
+package io.github.rothschil.base.persistence.redis.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;

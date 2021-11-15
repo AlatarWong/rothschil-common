@@ -1,4 +1,4 @@
-package io.github.rothschil.base.persistence.jpa.repository.impl;
+package io.github.rothschil.base.persistence.redis.repository.impl;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -6,9 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
-import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
-import io.github.rothschil.base.persistence.jpa.util.JpaMethodUtil;
+import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.redis.repository.BaseRepository;
+import io.github.rothschil.base.persistence.redis.util.JpaMethodUtil;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  *

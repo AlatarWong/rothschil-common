@@ -1,19 +1,18 @@
-package io.github.rothschil.base.persistence.jpa.repository;
+package io.github.rothschil.base.persistence.redis.repository;
 
-import io.github.rothschil.base.persistence.jpa.repository.factory.BaseRepositoryFactoryBean;
+import io.github.rothschil.base.persistence.redis.repository.factory.BaseRepositoryFactoryBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.NoRepositoryBean;
-import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
 
 import javax.persistence.Entity;
 import javax.persistence.criteria.Predicate;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
