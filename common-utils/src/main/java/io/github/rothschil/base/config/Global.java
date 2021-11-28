@@ -46,22 +46,26 @@ public class Global {
         return GLOBAL_ATTR_MAP.get(key);
     }
 
+    /**
+     * 初始化属性
+     *
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/27-15:35
+     **/
     private synchronized static void init() {
+
         try {
             Properties props = PropertiesLoaderUtils.loadAllProperties("config.properties");
             for (Object o : props.keySet()) {
                 String key = o.toString();
-                try {
-                    // PropertiesLoaderUtils的默认编码是ISO-8859-1,在这里转码一下
-                    String value = new String(props.getProperty(key).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-                    LOG.error("[key] {} \t [value] {}", key, value);
-                    GLOBAL_ATTR_MAP.put(key, value);
-                } catch (DrunkardException e) {
-                    LOG.error("[key]={}, [errMsg]={}", key, e.getMessage());
-                }
+                // PropertiesLoaderUtils的默认编码是ISO-8859-1,在这里转码一下
+                String value = new String(props.getProperty(key).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+                LOG.warn("[key] {} \t [value] {}", key, value);
+                GLOBAL_ATTR_MAP.put(key, value);
             }
         } catch (IOException e) {
             e.printStackTrace();
+            LOG.error("[ Global property initialization exception ] {}", e.getMessage());
         }
 
     }

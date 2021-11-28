@@ -17,12 +17,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class QueueTaskHandler implements IQueueTaskHandler {
 
-    private AbstactAppLogService abstactAppLogService;
-
-    @Autowired
-    public void setAbstactAppLogService(AbstactAppLogService abstactAppLogService) {
-        this.abstactAppLogService = abstactAppLogService;
-    }
+//    private AbstactAppLogService abstactAppLogService;
+//
+//    @Autowired
+//    public void setAbstactAppLogService(AbstactAppLogService abstactAppLogService) {
+//        this.abstactAppLogService = abstactAppLogService;
+//    }
 
     private AppLog appLog;
 
@@ -34,7 +34,7 @@ public class QueueTaskHandler implements IQueueTaskHandler {
      **/
     @Override
     public void processData() {
-        abstactAppLogService.insert(appLog);
+//        abstactAppLogService.insert(appLog);
         // 可以加上事后处理逻辑....
     }
 

@@ -15,6 +15,39 @@ public class Constants {
     private Constants() {
     }
 
+    /**
+     * 精确匹配
+     */
+    public static final int TERM_QUERY=11;
+    /**
+     * 前缀匹配
+     */
+    public static final int PREFIX_QUERY =12;
+    /**
+     * 后缀匹配，多字段
+     */
+    public static final int SUFFIX_QUERY=13;
+
+    /**
+     * 后缀匹配，单字段
+     */
+    public static final int SUFFIX_SINGLE_QUERY=14;
+
+    /**
+     * 正则匹配
+     */
+    public static final int REG_QUERY=15;
+
+    /**
+     * 区间匹配
+     */
+    public static final int RANGE_QUERY=16;
+
+    /**
+     * 通配符 匹配单个字段
+     */
+    public static final String SINGLE_CHARACTER = "?";
+
     public static final String MULTI_CHARACTER = "*";
 
     public final static int QUEUE_SAFE = 0XA;
@@ -197,6 +230,11 @@ public class Constants {
      * application/json
      */
     public static final String APPLICATION_JSON = "application/json";
+
+    /**
+     * application/json
+     */
+    public static final String CONTENT_TYPE = APPLICATION_JSON+";charset=UTF-8";
 
     /**
      * X-Requested-With

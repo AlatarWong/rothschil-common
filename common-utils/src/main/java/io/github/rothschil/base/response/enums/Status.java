@@ -19,7 +19,6 @@ public enum Status {
      * 失败
      **/
     FAILURE(-1, "FAILURE"),
-
     /**
      * 文件处理完毕
      */

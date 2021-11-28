@@ -1,4 +1,4 @@
-package io.github.rothschil.base.persistence.redis.repository.impl;
+package io.github.rothschil.base.persistence.jpa.repository.impl;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -6,9 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
-import io.github.rothschil.base.persistence.redis.repository.BaseRepository;
-import io.github.rothschil.base.persistence.redis.util.JpaMethodUtil;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
+import io.github.rothschil.base.persistence.jpa.util.JpaMethodUtil;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
@@ -17,9 +17,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -182,11 +180,75 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
             i++;
             entityManager.persist(t);
             if (i % 1000 == 0) {
-                entityManager.flush();
-                entityManager.clear();
+                flush(entityManager);
             }
         }
         return 0;
+    }
+
+    @Override
+    public Iterable<T> batchInsertList(List<T> list) {
+        Iterable<T> iterable = buildIterable(list);
+        return batchInsert(iterable);
+    }
+
+    protected Iterable<T> buildIterable(List<T> list){
+        return () -> new Iterator<T>() {
+            final ListIterator<T> listIter = list.listIterator(list.size());
+            @Override
+            public boolean hasNext() { return listIter.hasPrevious(); }
+            @Override
+            public T next() { return listIter.previous(); }
+            @Override
+            public void remove() { listIter.remove(); }
+        };
+    }
+
+    public Iterable<T> batchInsert(Iterable<T> iter) {
+        Iterator<T> iterator = iter.iterator();
+        int index = 0;
+        while (iterator.hasNext()){
+            entityManager.persist(iterator.next());
+            index++;
+            if (index % BATCH_SIZE == 0){
+                flush(entityManager);
+            }
+        }
+        if (index % BATCH_SIZE != 0){
+            flush(entityManager);
+        }
+        return iter;
+    }
+
+    private final static int BATCH_SIZE=100;
+
+
+    @Override
+    public Iterable<T> batchUpdate(List<T> list){
+        Iterable<T> iterable = buildIterable(list);
+        return batchUpdate(iterable);
+    }
+
+    @Override
+    public Iterable<T> batchUpdate(Iterable<T> iter){
+        Iterator<T> iterator = iter.iterator();
+        int index = 0;
+        while (iterator.hasNext()){
+            entityManager.merge(iterator.next());
+            index++;
+            if (index % BATCH_SIZE == 0){
+                flush(entityManager);
+            }
+        }
+        if (index % BATCH_SIZE != 0){
+            flush(entityManager);
+        }
+        return iter;
+    }
+
+    private void flush(EntityManager entityManager){
+        entityManager.flush();
+        entityManager.clear();
     }
 
     /**
@@ -288,4 +350,6 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
         }
         return totals.size();
     }
+
+
 }

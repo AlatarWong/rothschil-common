@@ -1,13 +1,13 @@
-package io.github.rothschil.base.persistence.redis.repository;
+package io.github.rothschil.base.persistence.jpa.repository;
 
-import io.github.rothschil.base.persistence.redis.repository.factory.BaseRepositoryFactoryBean;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.jpa.repository.factory.BaseRepositoryFactoryBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.NoRepositoryBean;
-import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
 
 import javax.persistence.Entity;
 import javax.persistence.criteria.Predicate;
@@ -156,5 +156,11 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
      * @date 2019/11/8-14:42
      **/
     int batchInsert(List<T> list);
+
+    Iterable<T> batchInsertList(List<T> list);
+
+    Iterable<T> batchUpdate(Iterable<T> iter);
+
+    Iterable<T> batchUpdate(List<T> list);
 
 }

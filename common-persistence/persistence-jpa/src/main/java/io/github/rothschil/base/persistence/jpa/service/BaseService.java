@@ -1,17 +1,18 @@
-package io.github.rothschil.base.persistence.redis.service;
+package io.github.rothschil.base.persistence.jpa.service;
 
-import org.springframework.data.domain.*;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.transaction.annotation.Transactional;
-import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
 import io.github.rothschil.common.utils.Reflections;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * JPA 中封装的Service基类
+ * JPA 中封装的 Service 基类
  *
  * @author WCNGS@QQ.COM
  * @date 20/12/18 11:05
@@ -19,19 +20,22 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Transactional(readOnly = true, rollbackFor = Exception.class)
-public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializable> {
-
-    protected JpaRepository<T, ID> jpaRepository;
+public abstract class BaseService<R extends BaseRepository<T, ID>, T extends BaseJpaPo<ID>, ID extends Serializable> {
 
     public BaseService() {
     }
 
-    /**
-     * 重要
-     *
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     **/
-    public abstract void setJpaRepository(JpaRepository<T, ID> jpaRepository);
+
+    protected R baseRepository;
+
+    @Autowired
+    public void setBaseRepository(R baseRepository) {
+        this.baseRepository = baseRepository;
+    }
+
+    public R getBaseRepository() {
+        return this.baseRepository;
+    }
 
     /**
      * @param t 实体信息
@@ -40,7 +44,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      * @date 2019/11/8-14:16
      **/
     public List<T> findByEntity(T t) {
-        return jpaRepository.findAll(getExample(t));
+        return baseRepository.findAll(getExample(t));
     }
 
     /**
@@ -55,7 +59,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      **/
     public Page<T> findPageByEntity(int page, int size, T t) {
         size = size == 0 ? 0xa : size;
-        return jpaRepository.findAll(getExample(t), PageRequest.of(page, size));
+        return baseRepository.findAll(getExample(t), PageRequest.of(page, size));
     }
 
     /**
@@ -86,7 +90,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      **/
     @Transactional(rollbackFor = Exception.class)
     public T save(T t) {
-        return jpaRepository.save(t);
+        return baseRepository.save(t);
     }
 
     /**
@@ -100,7 +104,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
     @Transactional(rollbackFor = Exception.class)
     public T saveAndFlush(T t) {
         t = save(t);
-        jpaRepository.flush();
+        baseRepository.flush();
         return t;
     }
 
@@ -113,7 +117,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      **/
     @Transactional(rollbackFor = Exception.class)
     public void delete(ID id) {
-        jpaRepository.delete(findOne(id));
+        baseRepository.delete(findOne(id));
     }
 
     /**
@@ -125,7 +129,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      **/
     @Transactional(rollbackFor = Exception.class)
     public void delete(T t) {
-        jpaRepository.delete(t);
+        baseRepository.delete(t);
     }
 
     /**
@@ -137,7 +141,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      * @date 2019/11/8-14:02
      **/
     public T findOne(ID id) {
-        return jpaRepository.getById(id);
+        return baseRepository.getById(id);
     }
 
     /**
@@ -160,7 +164,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      * @date 2018/7/3 22:07
      **/
     public long count() {
-        return jpaRepository.count();
+        return baseRepository.count();
     }
 
     /**
@@ -171,7 +175,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      * @date 2018/7/3 22:07
      **/
     public List<T> findAll() {
-        return jpaRepository.findAll();
+        return baseRepository.findAll();
     }
 
     /**
@@ -183,7 +187,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      * @date 2019/11/8-14:02
      **/
     public List<T> findAll(Sort sort) {
-        return jpaRepository.findAll(sort);
+        return baseRepository.findAll(sort);
     }
 
     /**
@@ -195,7 +199,7 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
      * @date 2019/11/8-14:02
      **/
     public Page<T> findAll(Pageable pageable) {
-        return jpaRepository.findAll(pageable);
+        return baseRepository.findAll(pageable);
     }
 
     /**
@@ -210,6 +214,11 @@ public abstract class BaseService<T extends BaseJpaPo<ID>, ID extends Serializab
     public Page<T> findEntityNoCriteria(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return findAll(pageable);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public Iterable<T> bantch(List<T> companies){
+        return baseRepository.batchInsertList(companies);
     }
 
 }

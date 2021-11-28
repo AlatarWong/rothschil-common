@@ -1,17 +1,19 @@
 package io.github.rothschil.base.elastic.service;
 
 
-import io.github.rothschil.base.elastic.bo.NgxLog;
-import io.github.rothschil.base.elastic.queue.AsynchOperateElastic;
-import io.github.rothschil.base.elastic.queue.handler.impl.QueueTaskHandler;
+import io.github.rothschil.base.elastic.entity.BoolCondition;
+import io.github.rothschil.base.elastic.entity.Conditions;
 import io.github.rothschil.base.elastic.util.EsFlag;
+import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.po.BasePo;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.common.collect.Tuple;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.AbstractQueryBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
@@ -31,6 +33,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 索引抽象管理结构，提供基本属性注入 和 基本操作
@@ -44,11 +47,12 @@ public abstract class AbstractElasticIndexManger {
     /**
      * 默认需要查询的字段
      */
-    public static final String DEFAULT_FIELD = "uri";
-    public static final String IDEN_FIELD = "_id";
+//    public static final String DEFAULT_FIELD = "uri";
+//    public static final String IDEN_FIELD = "_id";
+//
+//    public static final String DEFAULT_FIELD_RULE = "rule";
+//    public static final String DEFAULT_FIELD_CLENN = "clean";
 
-    public static final String DEFAULT_FIELD_RULE = "rule";
-    public static final String DEFAULT_FIELD_CLENN = "clean";
     /**
      * 通配符 匹配单个字段
      */
@@ -63,20 +67,6 @@ public abstract class AbstractElasticIndexManger {
 
     protected RestHighLevelClient restHighLevelClient;
 
-    protected AsynchOperateElastic asynchOperateElastic;
-
-    protected QueueTaskHandler queueTaskHandler;
-
-    @Autowired
-    public void setAsynchOperateElastic(AsynchOperateElastic asynchOperateElastic) {
-        this.asynchOperateElastic = asynchOperateElastic;
-    }
-
-    @Autowired
-    public void setQueueTaskHandler(QueueTaskHandler queueTaskHandler) {
-        this.queueTaskHandler = queueTaskHandler;
-    }
-
     @Autowired
     public void setRestHighLevelClient(RestHighLevelClient restHighLevelClient) {
         this.restHighLevelClient = restHighLevelClient;
@@ -85,47 +75,6 @@ public abstract class AbstractElasticIndexManger {
     @Autowired
     public void setElasticsearchRestTemplate(ElasticsearchRestTemplate elasticsearchRestTemplate) {
         this.elasticsearchRestTemplate = elasticsearchRestTemplate;
-    }
-
-    /**
-     * 构建匹配的 Query
-     *
-     * @return BoolQueryBuilder
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/7-15:18
-     **/
-    protected BoolQueryBuilder buildMatched() {
-        BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        builder.mustNot(QueryBuilders.termQuery(DEFAULT_FIELD_RULE, EsFlag.DEFAULT_FLAG));
-        builder.must(QueryBuilders.termQuery(DEFAULT_FIELD_CLENN, EsFlag.DEFAULT_FLAG));
-        return builder;
-    }
-
-    /**
-     * 构建未匹配的 Query
-     *
-     * @return BoolQueryBuilder
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/7-15:18
-     **/
-    protected BoolQueryBuilder buildNotMatched() {
-        BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        builder.must(QueryBuilders.termQuery(DEFAULT_FIELD_RULE, EsFlag.DEFAULT_FLAG));
-        return builder;
-    }
-
-    /**
-     * 构建清理的 Query
-     *
-     * @return BoolQueryBuilder
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/7-15:18
-     **/
-    protected BoolQueryBuilder buildCleanUp() {
-        BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        builder.mustNot(QueryBuilders.termQuery(DEFAULT_FIELD_RULE, EsFlag.DEFAULT_FLAG));
-        builder.must(QueryBuilders.termQuery(DEFAULT_FIELD_CLENN, EsFlag.CLEAN_UP));
-        return builder;
     }
 
     /**
@@ -160,34 +109,36 @@ public abstract class AbstractElasticIndexManger {
      * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
      *
      * @param builder    BoolQueryBuilder类型查询实例
+     * @param clazz      Class对象
      * @param indexNames 索引名，可以一次性查询多个
      * @return long 最终数量
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
-    protected SearchHits search(BoolQueryBuilder builder, String... indexNames) {
+    protected SearchHits search(BoolQueryBuilder builder, Class<? extends BasePo> clazz, String... indexNames) {
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withQuery(builder);
         Pageable pageable = PageRequest.of(1, 20);
         nativeSearchQueryBuilder.withPageable(pageable);
-        return elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(), NgxLog.class, IndexCoordinates.of(indexNames));
+        return elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(), clazz, IndexCoordinates.of(indexNames));
     }
 
     /**
      * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
      *
      * @param builder    BoolQueryBuilder类型查询实例
+     * @param clazz      Class对象
      * @param indexNames 索引名，可以一次性查询多个
      * @return long 最终数量
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
-    protected SearchHits<NgxLog> searchPage(int page, int size, BoolQueryBuilder builder, String... indexNames) {
+    protected SearchHits<? extends BasePo> searchPage(int page, int size, BoolQueryBuilder builder, Class<? extends BasePo> clazz, String... indexNames) {
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withQuery(builder);
         Pageable pageable = PageRequest.of(page, size);
         nativeSearchQueryBuilder.withPageable(pageable);
-        return elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(), NgxLog.class, IndexCoordinates.of(indexNames));
+        return elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(), clazz, IndexCoordinates.of(indexNames));
     }
 
     protected DeleteByQueryRequest builderDeleteRequest(QueryBuilder builder, String... indexNames) {
@@ -201,26 +152,15 @@ public abstract class AbstractElasticIndexManger {
     /**
      * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
      *
-     * @param isClean    默认为 True
+     * @param params     Map形式的 字段名 和 字段内容 组成的条件
      * @param builder    BoolQueryBuilder类型查询实例
      * @param indexNames 索引名，可以一次性查询多个
      * @return long 最终数量
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
-    protected BulkByScrollResponse update(boolean isClean,Long ruleId, BoolQueryBuilder builder, String... indexNames) {
-        Map<String, Object> params = new HashMap<>(4);
-        params.put(DEFAULT_FIELD_RULE, ruleId);
-        String code;
-        if(!isClean){
-            code = "ctx._source.rule=params.rule;";
-        } else{
-            params.put(DEFAULT_FIELD_CLENN, EsFlag.CLEAN_UP);
-            code = "ctx._source.rule=params.rule;ctx._source.clean=params.clean;";
-        }
-        ScriptType type = ScriptType.INLINE;
-        //使用脚本进行更新字段值
-        Script script = new Script(type, Script.DEFAULT_SCRIPT_LANG, code, params);
+    protected BulkByScrollResponse update(Map<String, Object> params, BoolQueryBuilder builder, String... indexNames) {
+        Script script = buildScriptType(params);
         UpdateByQueryRequest request = new UpdateByQueryRequest(indexNames);
         request.setQuery(builder);
         request.setScript(script);
@@ -234,151 +174,133 @@ public abstract class AbstractElasticIndexManger {
         }
         return null;
     }
-//
-//    /**
-//     * 逻辑 与 的条件封装
-//     *
-//     * @param builder builder构建
-//     * @param details 条目
-//     * @author <a href="https://github.com/rothschil">Sam</a>
-//     * @date 2021/11/1-10:13
-//     **/
-//    protected void logicalAnd(BoolQueryBuilder builder, List<AtDetailsVO> details) {
-//        for (AtDetailsVO detail : details) {
-//            Integer type = detail.getDetailsType();
-//            switch (type) {
-//                case 11:
-//                    // 前匹配
-//                    builder.must(QueryBuilders.prefixQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 12:
-//                    // 后匹配 通配符 多字符模式
-//                    builder.must(QueryBuilders.wildcardQuery(DEFAULT_FIELD, MULTI_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                case 13:
-//                    // 精确匹配
-//                    builder.must(QueryBuilders.termQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 16:
-//                    // 后匹配 通配 单字符符模式
-//                    builder.must(QueryBuilders.wildcardQuery(DEFAULT_FIELD, SINGLE_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                default:
-//                    // 正则 待补充
-//                    builder.must(QueryBuilders.matchQuery(DEFAULT_FIELD, detail.getDetailsValue()).operator(Operator.AND));
-//                    break;
-//            }
-//        }
-//    }
-//
-//
-//
-//    /**
-//     * 逻辑 或 的条件封装
-//     *
-//     * @param builder builder构建
-//     * @param details 条目
-//     * @author <a href="https://github.com/rothschil">Sam</a>
-//     * @date 2021/11/1-10:13
-//     **/
-//    protected void LogicalOr(BoolQueryBuilder builder, List<AtDetailsVO> details) {
-//        for (AtDetailsVO detail : details) {
-//            Integer type = detail.getDetailsType();
-//            switch (type) {
-//                case 11:
-//                    // 前匹配
-//                    builder.should(QueryBuilders.prefixQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 12:
-//                    // 后匹配 通配符 多字符模式
-//                    builder.should(QueryBuilders.wildcardQuery(DEFAULT_FIELD, MULTI_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                case 13:
-//                    // 精确匹配
-//                    builder.should(QueryBuilders.termQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 16:
-//                    // 后匹配 通配 单字符符模式
-//                    builder.should(QueryBuilders.wildcardQuery(DEFAULT_FIELD, SINGLE_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                default:
-//                    // 正则 待补充
-//                    builder.should(QueryBuilders.matchQuery(DEFAULT_FIELD, detail.getDetailsValue()).operator(Operator.AND));
-//                    break;
-//            }
-//        }
-//    }
-//
-//    /**
-//     * 逻辑 与 的条件封装
-//     *
-//     * @param builder builder构建
-//     * @param details 条目
-//     * @author <a href="https://github.com/rothschil">Sam</a>
-//     * @date 2021/11/1-10:13
-//     **/
-//    protected void logicalAndBetter(BoolQueryBuilder builder, List<AtDetailsEntity> details) {
-//        for (AtDetailsEntity detail : details) {
-//            Integer type = detail.getDetailsType();
-//            switch (type) {
-//                case 11:
-//                    // 前匹配
-//                    builder.must(QueryBuilders.prefixQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 12:
-//                    // 后匹配 通配符 多字符模式
-//                    builder.must(QueryBuilders.wildcardQuery(DEFAULT_FIELD, MULTI_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                case 13:
-//                    // 精确匹配
-//                    builder.must(QueryBuilders.termQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 16:
-//                    // 后匹配 通配 单字符符模式
-//                    builder.must(QueryBuilders.wildcardQuery(DEFAULT_FIELD, SINGLE_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                default:
-//                    // 正则 待补充
-//                    builder.must(QueryBuilders.matchQuery(DEFAULT_FIELD, detail.getDetailsValue()).operator(Operator.AND));
-//                    break;
-//            }
-//        }
-//    }
-//
-//
-//    /**
-//     * 逻辑 或 的条件封装
-//     *
-//     * @param builder builder构建
-//     * @param details 条目
-//     * @author <a href="https://github.com/rothschil">Sam</a>
-//     * @date 2021/11/1-10:13
-//     **/
-//    protected void LogicalOrBetter(BoolQueryBuilder builder, List<AtDetailsEntity> details) {
-//        for (AtDetailsEntity detail : details) {
-//            Integer type = detail.getDetailsType();
-//            switch (type) {
-//                case 11:
-//                    // 前匹配
-//                    builder.should(QueryBuilders.prefixQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 12:
-//                    // 后匹配 通配符 多字符模式
-//                    builder.should(QueryBuilders.wildcardQuery(DEFAULT_FIELD, MULTI_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                case 13:
-//                    // 精确匹配
-//                    builder.should(QueryBuilders.termQuery(DEFAULT_FIELD, detail.getDetailsValue()));
-//                    break;
-//                case 16:
-//                    // 后匹配 通配 单字符符模式
-//                    builder.should(QueryBuilders.wildcardQuery(DEFAULT_FIELD, SINGLE_CHARACTER + detail.getDetailsValue()));
-//                    break;
-//                default:
-//                    // 正则 待补充
-//                    builder.should(QueryBuilders.matchQuery(DEFAULT_FIELD, detail.getDetailsValue()).operator(Operator.AND));
-//                    break;
-//            }
-//        }
-//    }
+
+    /**
+     * 以 K-V键值对 方式构建条件 Script
+     *
+     * @param params Map形式的 字段名 和 字段内容 组成的条件
+     * @return Script
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-13:19
+     **/
+    protected Script buildScriptType(Map<String, Object> params) {
+        Set<String> keys = params.keySet();
+        StringBuffer idOrCodeStb = new StringBuffer();
+        for (String key : keys) {
+            idOrCodeStb.append("ctx._source.").append(key).append("=params.").append(key).append(";");
+        }
+        ScriptType type = ScriptType.INLINE;
+        return new Script(type, Script.DEFAULT_SCRIPT_LANG, idOrCodeStb.toString(), params);
+    }
+
+    /**
+     * @param builder BoolQueryBuilder
+     * @param bool    布尔类条件
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-14:45
+     **/
+    protected void setBuilders(BoolQueryBuilder builder, BoolCondition bool) {
+        mustBuilders(builder, bool);
+        mustNotBuilders(builder, bool);
+        shouldBuilders(builder, bool);
+        filterBuilders(builder, bool);
+    }
+
+    /**
+     * 构建满足 必须 条件 的方法
+     *
+     * @param builder BoolQueryBuilder
+     * @param bool    布尔类条件
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-14:45
+     **/
+    protected void mustBuilders(BoolQueryBuilder builder, BoolCondition bool) {
+        List<Conditions> must = bool.getMustConditon();
+        if (must.isEmpty()) {
+            return;
+        }
+        for (Conditions cds : must) {
+            builder.must(getQueryBuilder(cds));
+        }
+    }
+
+    /**
+     * 构建满足 非必须 条件 的方法
+     *
+     * @param builder BoolQueryBuilder
+     * @param bool    布尔类条件
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-14:45
+     **/
+    protected void mustNotBuilders(BoolQueryBuilder builder, BoolCondition bool) {
+        List<Conditions> mustNot = bool.getMustConditon();
+        if (mustNot.isEmpty()) {
+            return;
+        }
+        for (Conditions cds : mustNot) {
+            builder.mustNot(getQueryBuilder(cds));
+        }
+    }
+
+    /**
+     * 构建满足 可选 条件 的方法
+     *
+     * @param builder BoolQueryBuilder
+     * @param bool    布尔类条件
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-14:45
+     **/
+    protected void shouldBuilders(BoolQueryBuilder builder, BoolCondition bool) {
+        List<Conditions> should = bool.getMustConditon();
+        if (should.isEmpty()) {
+            return;
+        }
+        for (Conditions cds : should) {
+            builder.should(getQueryBuilder(cds));
+        }
+    }
+
+    /**
+     * 构建满足 必须 条件 的方法，推荐使用
+     *
+     * @param builder BoolQueryBuilder
+     * @param bool    布尔类条件
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-14:45
+     **/
+    protected void filterBuilders(BoolQueryBuilder builder, BoolCondition bool) {
+        List<Conditions> filter = bool.getMustConditon();
+        if (filter.isEmpty()) {
+            return;
+        }
+        for (Conditions cds : filter) {
+            builder.filter(getQueryBuilder(cds));
+        }
+    }
+
+    public QueryBuilder getQueryBuilder(Conditions cds) {
+        QueryBuilder queryBuilder;
+        Tuple tuple = cds.getTuple();
+        switch (cds.getStatus()) {
+            case (Constants.SUFFIX_QUERY):
+                queryBuilder = QueryBuilders.wildcardQuery(cds.getField(), Constants.MULTI_CHARACTER + tuple.v1());
+                break;
+            case (Constants.SUFFIX_SINGLE_QUERY):
+                queryBuilder = QueryBuilders.wildcardQuery(cds.getField(), Constants.SINGLE_CHARACTER + tuple.v1());
+                break;
+            case (Constants.RANGE_QUERY):
+                queryBuilder = QueryBuilders.rangeQuery(cds.getField()).from(tuple.v1()).to(tuple.v2());
+                break;
+            case (Constants.PREFIX_QUERY):
+                queryBuilder = QueryBuilders.prefixQuery(cds.getField(), tuple.v1().toString());
+                break;
+            case (Constants.REG_QUERY):
+                queryBuilder = QueryBuilders.regexpQuery(cds.getField(), tuple.v1().toString());
+                break;
+            default:
+                queryBuilder = QueryBuilders.termQuery(cds.getField(), tuple.v1().toString());
+                break;
+        }
+        return queryBuilder;
+    }
 }

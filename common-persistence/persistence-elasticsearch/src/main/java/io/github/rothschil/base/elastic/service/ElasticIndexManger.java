@@ -2,10 +2,9 @@ package io.github.rothschil.base.elastic.service;
 
 
 import com.alibaba.fastjson.JSON;
-import io.github.rothschil.base.elastic.bo.EsData;
-import io.github.rothschil.base.elastic.bo.NgxLog;
-import io.github.rothschil.base.elastic.bo.PendingData;
 import io.github.rothschil.base.elastic.entity.ElasticEntity;
+import io.github.rothschil.common.po.BasePo;
+import io.github.rothschil.common.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.ElasticsearchStatusException;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -33,7 +32,6 @@ import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Component;
@@ -79,32 +77,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
         createIndex(indexName, mapping, 0, 1);
     }
 
-
-    /**
-     * 创建索引，默认分片数量为 1，即一个主片，副本数量为 0
-     *
-     * @param indexName 索引名称
-     * @param replicas  副本的数量
-     * @author WCNGS@QQ.COM
-     * @date 2019/10/17 17:30
-     */
-    public void createIndex(String indexName, int replicas) {
-        createIndex(indexName, EsData.DEFAULT_SETTING, replicas, 1);
-    }
-
-
-    /**
-     * 用默认的 索引结构创建索引
-     *
-     * @param indexName 索引名称
-     * @param replicas  副本的数量
-     * @param shards    分片数量
-     * @author WCNGS@QQ.COM
-     * @date 2019/10/17 17:30
-     */
-    public void createIndex(String indexName, int replicas, int shards) {
-        createIndex(indexName, EsData.DEFAULT_SETTING, replicas, shards);
-    }
 
     /**
      * 指定索引结构创建索引
@@ -272,11 +244,11 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @author WCNGS@QQ.COM
      * @date 2019/10/17 17:26
      */
-    public void batch(String indexName, List<NgxLog> list) throws IOException {
+    public void batch(String indexName, List<? extends BasePo> list) throws IOException {
         int sleep = 15;
         BulkRequest request = new BulkRequest();
         list.forEach(item -> request.add(new IndexRequest(indexName)
-                .id(item.getLogId())
+                .id(item.getId().toString())
                 .source(JSON.toJSONString(item), XContentType.JSON)));
         try {
             BulkResponse bulkResponse = bulk(request);
@@ -292,7 +264,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
                 TimeUnit.SECONDS.sleep(sleep);
                 bulkResponse = bulk(request);
                 if (bulkResponse.hasFailures()) {
-                    addLinkedQueue(indexName, list);
+                    // 再次提交失败，需要写入MQ
                 }
             }
         } catch (InterruptedException | IOException e) {
@@ -300,20 +272,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
         }
     }
 
-    /**
-     * 写入异步队列
-     *
-     * @param indexName index
-     * @param list      列表
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/24-15:50
-     **/
-    private void addLinkedQueue(String indexName, List<NgxLog> list) {
-        PendingData pendingData = new PendingData(indexName, list);
-        queueTaskHandler.setPendingData(pendingData);
-        asynchOperateElastic.addQueue(queueTaskHandler);
-        log.error("[二次提交一次 bulk 操作结果失败 写入异步队列]");
-    }
 
     /**
      * bulk 方式批量提交
@@ -335,14 +293,21 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index
      * @param list      列表
+     * @param created   当索引不存在，则创建索引，默认为 true，即索引不存在，创建该索引，此时 mapping 应该不为空
+     * @param mapping   索引定义，JSON形式的字符串
      * @author WCNGS@QQ.COM
      * @date 2019/10/17 17:26
      */
-    public void batch(List<NgxLog> list, String indexName) throws Exception {
+    public void batch(List<? extends BasePo> list, String indexName, boolean created, String mapping) throws Exception {
         try {
             if (!isIndexExists(indexName)) {
                 log.error("[Index does not exist] Rebuilding index. IndexName ={}", indexName);
-                createIndex(indexName, EsData.DEFAULT_SETTING);
+                if (created && StringUtils.isNotBlank(mapping)) {
+                    createIndex(indexName, mapping);
+                } else {
+                    log.error("[Index does not exist , No index creation] IndexName ={}", indexName);
+                    return;
+                }
             }
             batch(indexName, list);
         } catch (InterruptedException | IOException e) {
@@ -374,12 +339,12 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index
      * @param builder   查询参数
-     * @param c         结果类对象
+     * @param clazz         结果类对象
      * @return java.util.List<T>
      * @author WCNGS@QQ.COM
      * @date 2019/10/17 17:14
      */
-    public <T> List<T> search(String indexName, SearchSourceBuilder builder, Class<T> c) {
+    public <T> List<T> search(String indexName, SearchSourceBuilder builder, Class<T> clazz) {
         List res = Collections.EMPTY_LIST;
         try {
             SearchRequest request = new SearchRequest(indexName);
@@ -388,7 +353,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
             SearchHit[] hits = response.getHits().getHits();
             res = new ArrayList<>(hits.length);
             for (SearchHit hit : hits) {
-                res.add(JSON.parseObject(hit.getSourceAsString(), c));
+                res.add(JSON.parseObject(hit.getSourceAsString(), clazz));
             }
         } catch (IOException e) {
             log.error("[ElasticSearch] connect err ,err-msg {}", e.getMessage());
@@ -494,31 +459,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
         return count(builder, indexNames);
     }
 
-    /**
-     * 默认字段 uri 按照前缀进行匹配，返回匹配的数量
-     *
-     * @param prefix     前缀
-     * @param indexNames 索引名
-     * @return long 数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/1-10:49
-     **/
-    public long prefixByDefaultField(String prefix, String... indexNames) {
-        return prefix(DEFAULT_FIELD, prefix, indexNames);
-    }
-
-    /**
-     * 默认 uri 字段对 内容进行后缀匹配，返回匹配的数量
-     *
-     * @param suffix     后缀
-     * @param indexNames 索引名
-     * @return long 数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/1-10:56
-     **/
-    public long suffixByDefaultField(String suffix, String... indexNames) {
-        return suffix(DEFAULT_FIELD, suffix, indexNames);
-    }
 
     /**
      * 按照字段对 内容进行后缀匹配，返回匹配的数量
@@ -535,20 +475,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
         return count(builder, indexNames);
     }
 
-
-    /**
-     * uri 字段的前缀和后缀都必须满足条件
-     *
-     * @param prefix     前缀
-     * @param suffix     后缀
-     * @param indexNames 索引名
-     * @return long 数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/1-10:59
-     **/
-    public long prefixAndSuffixByDefaultField(String prefix, String suffix, String... indexNames) {
-        return prefixAndSuffix(DEFAULT_FIELD, prefix, suffix, indexNames);
-    }
 
     /**
      * 字段的前缀和后缀都必须满足条件
@@ -584,20 +510,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
         builder.should(QueryBuilders.prefixQuery(field, prefix));
         builder.should(QueryBuilders.wildcardQuery(field, MULTI_CHARACTER + suffix));
         return count(builder, indexNames);
-    }
-
-    /**
-     * 默认 uri 字段的前缀和后缀都满足一个条件按即可
-     *
-     * @param prefix     前缀
-     * @param suffix     后缀
-     * @param indexNames 索引名
-     * @return long 数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/11/1-10:59
-     **/
-    public long prefixOrSuffixByDefaultField(String prefix, String suffix, String... indexNames) {
-        return prefixOrSuffix(DEFAULT_FIELD, prefix, suffix, indexNames);
     }
 
     /**
@@ -648,90 +560,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     public long total(String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         return count(builder, indexNames);
-    }
-
-    /**
-     * 匹配总数
-     *
-     * @param indexNames 索引文档名称，可以是多个
-     * @return long 匹配的数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-21:11
-     **/
-    public long matched(String... indexNames) {
-        BoolQueryBuilder builder = buildMatched();
-        return count(builder, indexNames);
-    }
-
-    /**
-     * 匹配总数
-     *
-     * @param indexNames 索引文档名称，可以是多个
-     * @return long 匹配的数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-21:11
-     **/
-    public long notMatched(String... indexNames) {
-        BoolQueryBuilder builder = buildNotMatched();
-        return count(builder, indexNames);
-    }
-
-    /**
-     * 清理总数
-     *
-     * @param indexNames 索引文档名称，可以是多个
-     * @return long 匹配的数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-21:11
-     **/
-    public long cleanUp(String... indexNames) {
-        BoolQueryBuilder builder = buildCleanUp();
-        return count(builder, indexNames);
-    }
-
-    /**
-     * 清理的日志明细
-     *
-     * @param page       当前页
-     * @param size       每页大小
-     * @param indexNames 索引文档名称，可以是多个
-     * @return long 匹配的数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-21:11
-     **/
-    public SearchHits<NgxLog> matched(int page, int size, String... indexNames) {
-        BoolQueryBuilder builder = buildMatched();
-        return searchPage(page, size, builder, indexNames);
-    }
-
-    /**
-     * 未匹配的日志明细
-     *
-     * @param page       当前页
-     * @param size       每页大小
-     * @param indexNames 索引文档名称，可以是多个
-     * @return long 匹配的数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-21:11
-     **/
-    public SearchHits<NgxLog> notMatched(int page, int size, String... indexNames) {
-        BoolQueryBuilder builder = buildNotMatched();
-        return searchPage(page, size, builder, indexNames);
-    }
-
-    /**
-     * 清理的日志明细
-     *
-     * @param page       当前页
-     * @param size       每页大小
-     * @param indexNames 索引文档名称，可以是多个
-     * @return long 匹配的数量
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/29-21:11
-     **/
-    public SearchHits<NgxLog> cleanUp(int page, int size, String... indexNames) {
-        BoolQueryBuilder builder = buildCleanUp();
-        return searchPage(page, size, builder, indexNames);
     }
 
 }

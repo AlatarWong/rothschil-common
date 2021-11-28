@@ -1,5 +1,6 @@
-package io.github.rothschil.base.persistence.redis.repository.factory;
+package io.github.rothschil.base.persistence.jpa.repository.factory;
 
+import io.github.rothschil.base.persistence.jpa.repository.impl.BaseRepositoryImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
@@ -8,8 +9,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
-import io.github.rothschil.base.persistence.redis.entity.BaseJpaPo;
-import io.github.rothschil.base.persistence.redis.repository.impl.BaseRepositoryImpl;
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
