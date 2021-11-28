@@ -104,6 +104,8 @@ public abstract class AbstractElasticIndexManger {
     /**
      * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
      *
+     * @param page       当前页
+     * @param size       每页大小
      * @param builder    BoolQueryBuilder类型查询实例
      * @param clazz      Class对象
      * @param indexNames 索引名，可以一次性查询多个

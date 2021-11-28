@@ -2,6 +2,7 @@ package io.github.rothschil.base.elastic.service;
 
 
 import com.alibaba.fastjson.JSON;
+import io.github.rothschil.base.elastic.entity.BoolCondition;
 import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.po.BasePo;
 import io.github.rothschil.common.utils.StringUtils;
@@ -31,7 +32,11 @@ import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Component;
@@ -282,7 +287,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index
      * @param builder   查询参数
-     * @param clazz         结果类对象
+     * @param clazz     结果类对象
      * @return java.util.List<T>
      * @author WCNGS@QQ.COM
      * @date 2019/10/17 17:14
@@ -503,6 +508,39 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     public long total(String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         return count(builder, indexNames);
+    }
+
+    /**
+     * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
+     *
+     * @param params     Map形式的 字段名 和 字段内容 组成的条件
+     * @param bool      复合条件封装
+     * @param indexNames 索引名，可以一次性查询多个
+     * @return long 最终数量
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/1-9:26
+     **/
+    public BulkByScrollResponse update(Map<String, Object> params, BoolCondition bool, String... indexNames) {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        setBuilders(builder,bool);
+        return update(params,builder,indexNames);
+    }
+
+    /**
+     * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
+     *
+     * @param page    当前页
+     * @param size    每页大小
+     * @param clazz      Class对象
+     * @param indexNames 索引名，可以一次性查询多个
+     * @return long 最终数量
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/1-9:26
+     **/
+    protected SearchHits<? extends BasePo> searchPage(int page, int size, BoolCondition bool,Class<? extends BasePo> clazz, String... indexNames) {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        setBuilders(builder,bool);
+        return searchPage(page,size,builder, clazz, indexNames);
     }
 
 }

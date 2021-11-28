@@ -3,7 +3,7 @@ package io.github.rothschil.base.elastic.entity;
 import java.util.List;
 
 /**
- * 条件封装
+ * 复合条件封装
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/11/28 - 13:59
