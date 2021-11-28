@@ -109,7 +109,7 @@ public abstract class AbstractElasticIndexManger {
      * @param builder    BoolQueryBuilder类型查询实例
      * @param clazz      Class对象
      * @param indexNames 索引名，可以一次性查询多个
-     * @return long 最终数量
+     * @return SearchHits 命中结果的数据集
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
@@ -140,6 +140,26 @@ public abstract class AbstractElasticIndexManger {
      * @date 2021/11/1-9:26
      **/
     protected BulkByScrollResponse update(Map<String, Object> params, BoolQueryBuilder builder, String... indexNames) {
+        UpdateByQueryRequest request = buildUpdateByQueryReq(params, builder, indexNames);
+        try {
+            return restHighLevelClient.updateByQuery(request, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 构建更新 QueryRequest
+     *
+     * @param params     参数
+     * @param builder    布尔构建
+     * @param indexNames 索引
+     * @return UpdateByQueryRequest
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/11/28-15:50
+     **/
+    protected UpdateByQueryRequest buildUpdateByQueryReq(Map<String, Object> params, BoolQueryBuilder builder, String... indexNames) {
         Script script = buildScriptType(params);
         UpdateByQueryRequest request = new UpdateByQueryRequest(indexNames);
         request.setQuery(builder);
@@ -147,12 +167,7 @@ public abstract class AbstractElasticIndexManger {
         request.setConflicts("proceed");
         request.setRefresh(true);
         request.setTimeout(TimeValue.timeValueMinutes(3));
-        try {
-            return restHighLevelClient.updateByQuery(request, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return request;
     }
 
     /**

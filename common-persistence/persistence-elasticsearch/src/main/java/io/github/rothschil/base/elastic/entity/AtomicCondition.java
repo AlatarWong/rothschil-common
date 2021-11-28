@@ -3,7 +3,7 @@ package io.github.rothschil.base.elastic.entity;
 import org.elasticsearch.common.collect.Tuple;
 
 /**
- * 构建布尔类查询基础的基本单元
+ * 构建布尔类查询基础的基本单元，当前匹配可支持的类型有：前缀、后缀、精确、正则、区间五大类
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/11/28 - 13:37
@@ -12,7 +12,7 @@ import org.elasticsearch.common.collect.Tuple;
 public class AtomicCondition {
 
     /**
-     * 条件
+     * 匹配的基本类型，
      */
     private int status;
 
@@ -22,7 +22,7 @@ public class AtomicCondition {
     private String field;
 
     /**
-     * 元组内容，两个值
+     * 元组，可随意存储两个值
      */
     private Tuple tuple;
 

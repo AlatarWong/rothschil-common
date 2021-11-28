@@ -32,11 +32,8 @@ import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHits;
-import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Component;
@@ -120,7 +117,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @date 2021/10/30-11:54
      **/
     public List getAllIndex() {
-        return getAllIndex("*");
+        return getAllIndex(Constants.MULTI_CHARACTER);
     }
 
     /**
@@ -131,7 +128,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/30-11:54
      **/
-    public List getAllIndex(String inPattern) {
+    public List<String> getAllIndex(String inPattern) {
         GetIndexRequest getIndexRequest = new GetIndexRequest(inPattern);
         try {
             GetIndexResponse getIndexResponse = restHighLevelClient.indices().get(getIndexRequest, RequestOptions.DEFAULT);
@@ -139,11 +136,10 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
             return Arrays.asList(indices);
         } catch (IOException e) {
             log.error("获取索引失败 {} 已经存在", e.getMessage());
-            return Collections.EMPTY_LIST;
         } catch (ElasticsearchStatusException e) {
             log.error("获取索引失败 {} 索引本身不存在", e.getMessage());
-            return Collections.EMPTY_LIST;
         }
+        return Collections.EMPTY_LIST;
     }
 
     /**
@@ -212,7 +208,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
                 TimeUnit.SECONDS.sleep(sleep);
                 bulkResponse = bulk(request);
                 if (bulkResponse.hasFailures()) {
-                    // 再次提交失败，需要写入MQ
+                    log.error("再次提交失败，需要写入MQ ， 文件大小 {} ", list.size());
                 }
             }
         } catch (InterruptedException | IOException e) {
@@ -533,7 +529,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @param size    每页大小
      * @param clazz      Class对象
      * @param indexNames 索引名，可以一次性查询多个
-     * @return long 最终数量
+     * @return SearchHits 命中结果的数据集
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
