@@ -2,8 +2,7 @@ package io.github.rothschil.base.elastic.service;
 
 
 import io.github.rothschil.base.elastic.entity.BoolCondition;
-import io.github.rothschil.base.elastic.entity.Conditions;
-import io.github.rothschil.base.elastic.util.EsFlag;
+import io.github.rothschil.base.elastic.entity.AtomicCondition;
 import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.po.BasePo;
 import org.elasticsearch.client.RequestOptions;
@@ -12,7 +11,6 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.common.collect.Tuple;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.index.query.AbstractQueryBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -30,7 +28,6 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,25 +40,6 @@ import java.util.Set;
  * @since 1.0.0
  */
 public abstract class AbstractElasticIndexManger {
-
-    /**
-     * 默认需要查询的字段
-     */
-//    public static final String DEFAULT_FIELD = "uri";
-//    public static final String IDEN_FIELD = "_id";
-//
-//    public static final String DEFAULT_FIELD_RULE = "rule";
-//    public static final String DEFAULT_FIELD_CLENN = "clean";
-
-    /**
-     * 通配符 匹配单个字段
-     */
-    public static final String SINGLE_CHARACTER = "?";
-
-    /**
-     * 通配符 匹配多字段
-     */
-    public static final String MULTI_CHARACTER = "*";
 
     protected ElasticsearchRestTemplate elasticsearchRestTemplate;
 
@@ -215,11 +193,11 @@ public abstract class AbstractElasticIndexManger {
      * @date 2021/11/28-14:45
      **/
     protected void mustBuilders(BoolQueryBuilder builder, BoolCondition bool) {
-        List<Conditions> must = bool.getMustConditon();
+        List<AtomicCondition> must = bool.getMust();
         if (must.isEmpty()) {
             return;
         }
-        for (Conditions cds : must) {
+        for (AtomicCondition cds : must) {
             builder.must(getQueryBuilder(cds));
         }
     }
@@ -233,11 +211,11 @@ public abstract class AbstractElasticIndexManger {
      * @date 2021/11/28-14:45
      **/
     protected void mustNotBuilders(BoolQueryBuilder builder, BoolCondition bool) {
-        List<Conditions> mustNot = bool.getMustConditon();
+        List<AtomicCondition> mustNot = bool.getMustNot();
         if (mustNot.isEmpty()) {
             return;
         }
-        for (Conditions cds : mustNot) {
+        for (AtomicCondition cds : mustNot) {
             builder.mustNot(getQueryBuilder(cds));
         }
     }
@@ -251,11 +229,11 @@ public abstract class AbstractElasticIndexManger {
      * @date 2021/11/28-14:45
      **/
     protected void shouldBuilders(BoolQueryBuilder builder, BoolCondition bool) {
-        List<Conditions> should = bool.getMustConditon();
+        List<AtomicCondition> should = bool.getShould();
         if (should.isEmpty()) {
             return;
         }
-        for (Conditions cds : should) {
+        for (AtomicCondition cds : should) {
             builder.should(getQueryBuilder(cds));
         }
     }
@@ -269,16 +247,16 @@ public abstract class AbstractElasticIndexManger {
      * @date 2021/11/28-14:45
      **/
     protected void filterBuilders(BoolQueryBuilder builder, BoolCondition bool) {
-        List<Conditions> filter = bool.getMustConditon();
+        List<AtomicCondition> filter = bool.getFilter();
         if (filter.isEmpty()) {
             return;
         }
-        for (Conditions cds : filter) {
+        for (AtomicCondition cds : filter) {
             builder.filter(getQueryBuilder(cds));
         }
     }
 
-    public QueryBuilder getQueryBuilder(Conditions cds) {
+    public QueryBuilder getQueryBuilder(AtomicCondition cds) {
         QueryBuilder queryBuilder;
         Tuple tuple = cds.getTuple();
         switch (cds.getStatus()) {

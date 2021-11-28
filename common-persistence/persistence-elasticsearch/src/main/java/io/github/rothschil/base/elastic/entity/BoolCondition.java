@@ -14,54 +14,54 @@ public class BoolCondition {
     /**
      * 必须符合的条件
      */
-    private List<Conditions> mustConditon;
+    private List<AtomicCondition> must;
 
     /**
      * 不需要符合
      */
-    private List<Conditions> mustNotConditon;
+    private List<AtomicCondition> mustNot;
 
     /**
-     * 非必要 可选择行符合
+     * 非必要 可选
      */
-    private List<Conditions> shouldConditon;
+    private List<AtomicCondition> should;
 
     /**
      * 条件，效率高，推荐使用
      */
-    private List<Conditions> filterConditon;
+    private List<AtomicCondition> filter;
 
 
-    public List<Conditions> getMustConditon() {
-        return mustConditon;
+    public List<AtomicCondition> getMust() {
+        return must;
     }
 
-    public void setMustConditon(List<Conditions> mustConditon) {
-        this.mustConditon = mustConditon;
+    public void setMust(List<AtomicCondition> must) {
+        this.must = must;
     }
 
-    public List<Conditions> getMustNotConditon() {
-        return mustNotConditon;
+    public List<AtomicCondition> getMustNot() {
+        return mustNot;
     }
 
-    public void setMustNotConditon(List<Conditions> mustNotConditon) {
-        this.mustNotConditon = mustNotConditon;
+    public void setMustNot(List<AtomicCondition> mustNot) {
+        this.mustNot = mustNot;
     }
 
-    public List<Conditions> getShouldConditon() {
-        return shouldConditon;
+    public List<AtomicCondition> getShould() {
+        return should;
     }
 
-    public void setShouldConditon(List<Conditions> shouldConditon) {
-        this.shouldConditon = shouldConditon;
+    public void setShould(List<AtomicCondition> should) {
+        this.should = should;
     }
 
-    public List<Conditions> getFilterConditon() {
-        return filterConditon;
+    public List<AtomicCondition> getFilter() {
+        return filter;
     }
 
-    public void setFilterConditon(List<Conditions> filterConditon) {
-        this.filterConditon = filterConditon;
+    public void setFilter(List<AtomicCondition> filter) {
+        this.filter = filter;
     }
 }
 

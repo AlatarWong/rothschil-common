@@ -2,7 +2,7 @@ package io.github.rothschil.base.elastic.service;
 
 
 import com.alibaba.fastjson.JSON;
-import io.github.rothschil.base.elastic.entity.ElasticEntity;
+import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.po.BasePo;
 import io.github.rothschil.common.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -177,63 +177,6 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      */
     public boolean isIndexExists(String indexName) throws Exception {
         return restHighLevelClient.indices().exists(new GetIndexRequest(indexName), RequestOptions.DEFAULT);
-    }
-
-    /**
-     * 根据 主键信息 更新或者新增该数据
-     *
-     * @param indexName index
-     * @param entity    对象
-     * @author WCNGS@QQ.COM
-     * @date 2019/10/17 17:27
-     */
-    public void insertOrUpdateOne(String indexName, ElasticEntity entity) {
-        IndexRequest request = new IndexRequest(indexName);
-        request.id(entity.getId());
-        request.source(JSON.toJSONString(entity.getData()), XContentType.JSON);
-        try {
-            restHighLevelClient.index(request, RequestOptions.DEFAULT);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 根据 主键 信息 删除该数据
-     *
-     * @param indexName index
-     * @param entity    对象
-     * @author WCNGS@QQ.COM
-     * @date 2019/10/17 17:27
-     */
-    public void deleteOne(String indexName, ElasticEntity entity) {
-        DeleteRequest request = new DeleteRequest(indexName);
-        request.id(entity.getId());
-        try {
-            restHighLevelClient.delete(request, RequestOptions.DEFAULT);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 批量插入数据，这是通过一个 {@link ElasticEntity} 包装类实现，需要在这里手工拆箱
-     *
-     * @param indexName index
-     * @param list      插入列表，格式需要为 {@link ElasticEntity} 实体
-     * @author WCNGS@QQ.COM
-     * @date 2019/10/17 17:26
-     */
-    public void insertBatch(String indexName, List<ElasticEntity> list) {
-        BulkRequest request = new BulkRequest();
-        list.forEach(item -> request.add(new IndexRequest(indexName).id(item.getId())
-                .source(JSON.toJSONString(item.getData()), XContentType.JSON)));
-        try {
-            BulkResponse bulkResponse = restHighLevelClient.bulk(request, RequestOptions.DEFAULT);
-            log.error("[验证 bulkResponse.status 操作结果] {}", bulkResponse.status());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
@@ -471,7 +414,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      **/
     public long suffix(String field, String suffix, String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        builder.must(QueryBuilders.wildcardQuery(field, MULTI_CHARACTER + suffix));
+        builder.must(QueryBuilders.wildcardQuery(field, Constants.MULTI_CHARACTER + suffix));
         return count(builder, indexNames);
     }
 
@@ -490,7 +433,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     public long prefixAndSuffix(String field, String prefix, String suffix, String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         builder.must(QueryBuilders.prefixQuery(field, prefix));
-        builder.must(QueryBuilders.wildcardQuery(field, MULTI_CHARACTER + suffix));
+        builder.must(QueryBuilders.wildcardQuery(field, Constants.MULTI_CHARACTER + suffix));
         return count(builder, indexNames);
     }
 
@@ -508,7 +451,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     public long prefixOrSuffix(String field, String prefix, String suffix, String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         builder.should(QueryBuilders.prefixQuery(field, prefix));
-        builder.should(QueryBuilders.wildcardQuery(field, MULTI_CHARACTER + suffix));
+        builder.should(QueryBuilders.wildcardQuery(field, Constants.MULTI_CHARACTER + suffix));
         return count(builder, indexNames);
     }
 
@@ -526,7 +469,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     public long prefixMustSuffixShould(String field, String prefix, String suffix, String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         builder.must(QueryBuilders.prefixQuery(field, prefix));
-        builder.should(QueryBuilders.wildcardQuery(field, MULTI_CHARACTER + suffix));
+        builder.should(QueryBuilders.wildcardQuery(field, Constants.MULTI_CHARACTER + suffix));
         return count(builder, indexNames);
     }
 
@@ -544,7 +487,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     public long prefixShouldSuffixMust(String field, String prefix, String suffix, String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         builder.should(QueryBuilders.prefixQuery(field, prefix));
-        builder.must(QueryBuilders.wildcardQuery(field, MULTI_CHARACTER + suffix));
+        builder.must(QueryBuilders.wildcardQuery(field, Constants.MULTI_CHARACTER + suffix));
         return count(builder, indexNames);
     }
 

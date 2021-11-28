@@ -3,11 +3,13 @@ package io.github.rothschil.base.elastic.entity;
 import org.elasticsearch.common.collect.Tuple;
 
 /**
+ * 构建布尔类查询基础的基本单元
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/11/28 - 13:37
  * @since 1.0.0
  */
-public class Conditions {
+public class AtomicCondition {
 
     /**
      * 条件
@@ -20,10 +22,9 @@ public class Conditions {
     private String field;
 
     /**
-     * 内容，两个值
+     * 元组内容，两个值
      */
     private Tuple tuple;
-
 
 
     public int getStatus() {
@@ -41,24 +42,6 @@ public class Conditions {
     public void setField(String field) {
         this.field = field;
     }
-
-//    public String getValue() {
-//        switch (status){
-//            case(Constants.SUFFIX_QUERY):
-//                value= Constants.MULTI_CHARACTER +value;
-//                break;
-//            case(Constants.SUFFIX_SINGLE_QUERY):
-//                value= Constants.SINGLE_CHARACTER +value;
-//                break;
-//            default:
-//                break;
-//        }
-//        return value;
-//    }
-//
-//    public void setValue(String value) {
-//        this.value = value;
-//    }
 
     public Tuple getTuple() {
         return tuple;
