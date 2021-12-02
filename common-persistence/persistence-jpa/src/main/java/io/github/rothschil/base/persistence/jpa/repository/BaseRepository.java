@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.persistence.Entity;
-import javax.persistence.criteria.Predicate;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
 
@@ -42,9 +43,8 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
      *
      * </ul>
      *
-     *
      * @param modelType 类型
-     * @return  boolean
+     * @return boolean
      */
     boolean support(String modelType);
 
@@ -63,16 +63,17 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/11/8-14:42
      **/
-    List<?> listBySql(String sql);
+    List<?> simpleListBySql(String sql);
 
     /**
      * 根据HQL，查询结果，获取结果列表
      *
      * @param hql HQL语句
+     * @return List<T>
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/11/8-14:42
      **/
-    List<T> listByHql(String hql);
+    List<T> simpleListByHql(String hql);
 
     /**
      * 根据SQL语句获取目标
@@ -83,6 +84,27 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
      * @date 2019/11/8-14:42
      **/
     Object getTarget(String sql);
+
+    /**
+     * 根据SQL语句获取目标
+     *
+     * @param hql 将 HQL 转换为 Query，供 应用查询使用
+     * @return Query
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:42
+     **/
+    Query getQueryByHql(String hql);
+
+    /**
+     * 根据SQL语句获取目标
+     *
+     * @param hql 将 HQL 转换为 TypedQuery，供 应用查询使用
+     * @param clazz 类对象
+     * @return TypedQuery
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:42
+     **/
+    TypedQuery getQueryByHql(String hql, Class<?> clazz);
 
     /**
      * 按照SQL执行修改命令
@@ -97,11 +119,23 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
     /**
      * 按照HQL执行修改命令
      *
+     * @param hql HQL语句
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:42
+     **/
+    void updateBySimpleHql(String hql);
+
+    /**
+     * 按照 HQL 执行修改命令，根据
+     * <p>字段名、字段值、字段类型</p>
+     * 不推荐使用，当 参数为日期 等复合类型 的场景，就不支持
+     *
      * @param hql  HQL语句
      * @param args 参数
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/11/8-14:42
      **/
+    @Deprecated
     void updateByHql(String hql, Object... args);
 
     /**
@@ -126,16 +160,6 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
      **/
     Page<T> find(Specification<T> spec, Pageable pageable);
 
-    /**
-     * 按照分页方式查询
-     *
-     * @param t        非空
-     * @param pageable 非空
-     * @param list     多种查询条件,可以自定义实现，拓展为动态查询，可以为空，为空时候，自动从实体的属性中获取
-     * @return org.springframework.data.domain.Page<T>
-     * @date 20/12/22 16:25
-     */
-    Page<T> findByCriteriaQuery(T t, Pageable pageable, List<Predicate> list);
 
     /**
      * 以SQL方式，执行批量插入
@@ -157,10 +181,34 @@ public interface BaseRepository<T extends BaseJpaPo<ID>, ID extends Serializable
      **/
     int batchInsert(List<T> list);
 
+    /**
+     * 批量处理对象集合 ，并进行提交
+     *
+     * @param list 集合
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     Iterable<T> batchInsertList(List<T> list);
 
+    /**
+     * 批量处理对象集合 ，并进行更新
+     *
+     * @param iter 迭代器
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     Iterable<T> batchUpdate(Iterable<T> iter);
 
+    /**
+     * 批量处理对象集合 ，并进行更新
+     *
+     * @param list 集合
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     Iterable<T> batchUpdate(List<T> list);
 
 }

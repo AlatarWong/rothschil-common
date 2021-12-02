@@ -19,9 +19,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+import springfox.documentation.swagger.web.SwaggerResource;
+import springfox.documentation.swagger.web.UiConfiguration;
 
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 
 /**
@@ -35,7 +38,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @EnableWebMvc
 @Configuration
-@ControllerAdvice(basePackages = "xyz.wongs",annotations = {Controller.class})
+@ControllerAdvice(basePackages = "xyz.wongs", annotations = {Controller.class})
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
     /**
@@ -52,12 +55,12 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
         Assert.notNull(sra, "The ServletRequestAttributes must not be null");
         Assert.notNull(returnType, "The MethodParameter must not be null");
         // 先将 Controller 中含有 的 ResponseBody 注解优先甄别出来
-        if(returnType.hasMethodAnnotation(ResponseBody.class)){
+        if (returnType.hasMethodAnnotation(ResponseBody.class)) {
             return true;
         }
         HttpServletRequest request = sra.getRequest();
         RestController cller = (RestController) request.getAttribute(Constants.RESPONSE_RESULT_ANN);
-        return cller!=null;
+        return cller != null;
     }
 
     /**
@@ -75,7 +78,7 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
      **/
     @Override
     public Object beforeBodyWrite(Object body, @Nullable MethodParameter returnType, @Nullable MediaType selectContentType, @Nullable Class<? extends HttpMessageConverter<?>> selectConverterType, @Nullable ServerHttpRequest request, @Nullable ServerHttpResponse response) {
-        if (body instanceof R || body instanceof ErR) {
+        if (body instanceof R || body instanceof ErR || body instanceof UiConfiguration || (body instanceof ArrayList && ((ArrayList) body).get(0) instanceof SwaggerResource)) {
             return body;
         }
         return R.success(body);

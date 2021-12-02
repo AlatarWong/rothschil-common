@@ -77,6 +77,8 @@ dependencies {
         exclude group: 'commons-codec', module: 'commons-codec'
     }
 
+    api group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    api group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     api("commons-net:commons-net:3.8.0")
     api("com.jcraft:jsch:0.1.55")
 

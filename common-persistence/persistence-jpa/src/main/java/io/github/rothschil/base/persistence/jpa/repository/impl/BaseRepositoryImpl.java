@@ -1,32 +1,32 @@
 package io.github.rothschil.base.persistence.jpa.repository.impl;
 
+import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
+import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
+import io.github.rothschil.base.persistence.jpa.util.JpaMethodUtil;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
-import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
-import io.github.rothschil.base.persistence.jpa.util.JpaMethodUtil;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
- *
  * 继承 {@link SimpleJpaRepository}  和 实现 {@link JpaRepository}, 所以具备二者各自的特性，如：
  * <ul>
  *  <li>即对 <b>CrudRepository</b> 默认实现，默认中带 {@link Transactional}，并且 readOnly = true</li>
  * <li>提供 {@link EntityManager} 可以更自由的实现个性化业务，方便了拓展</li>
  * </ul>
- *
+ * <p>
  *  通过继承 {@link SimpleJpaRepository}，拿到它的构造函数，
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
@@ -55,12 +55,11 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
      *
      * </ul>
      *
-     *
      * @param modelType 类型
-     * @return  boolean
+     * @return boolean
      */
     @Override
-    public boolean support(String modelType){
+    public boolean support(String modelType) {
         return domainClass.getName().equals(modelType);
     }
 
@@ -91,6 +90,33 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
     }
 
     /**
+     * 根据SQL语句获取目标
+     *
+     * @param hql 将 HQL 转换为 Query，供 应用查询使用
+     * @return Query
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:42
+     **/
+    @Override
+    public Query getQueryByHql(String hql) {
+        return entityManager.createQuery(hql);
+    }
+
+    /**
+     * 根据SQL语句获取目标
+     *
+     * @param hql 将 HQL 转换为 TypedQuery，供 应用查询使用
+     * @param clazz 类对象
+     * @return TypedQuery
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:42
+     **/
+    @Override
+    public TypedQuery getQueryByHql(String hql,Class<?> clazz) {
+        return entityManager.createQuery(hql,clazz);
+    }
+
+    /**
      * 按照SQL执行修改命令
      *
      * @param sql  原生SQL语句
@@ -111,20 +137,36 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
     /**
      * 按照HQL执行修改命令
      *
+     * @param hql HQL语句
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2019/11/8-14:42
+     **/
+    @Override
+    public void updateBySimpleHql(String hql) {
+        entityManager.createQuery(hql).executeUpdate();
+    }
+
+    /**
+     * 按照 HQL 执行修改命令，根据
+     * <p>字段名、字段值、字段类型</p>
+     * 不推荐使用，当 参数为日期 等复合类型 的场景，就不支持
+     *
      * @param hql  HQL语句
      * @param args 参数
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/11/8-14:42
      **/
+    @Deprecated
     @Override
     public void updateByHql(String hql, Object... args) {
-        Query query = entityManager.createQuery(hql);
+        Query query = getQueryByHql(hql);
         int i = 0;
         for (Object arg : args) {
             query.setParameter(++i, arg);
         }
         query.executeUpdate();
     }
+
 
     /**
      * 根据SQL，查询结果，获取结果列表，返回的是按照实例的属性数组 最终合并成一个列表返回。
@@ -135,7 +177,7 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
      * @date 2019/11/8-14:42
      **/
     @Override
-    public List<?> listBySql(String sql) {
+    public List<?> simpleListBySql(String sql) {
         return entityManager.createNativeQuery(sql).getResultList();
     }
 
@@ -147,8 +189,8 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
      * @date 2019/11/8-14:42
      **/
     @Override
-    public List<T> listByHql(String hql) {
-        return entityManager.createQuery(hql).getResultList();
+    public List<T> simpleListByHql(String hql) {
+        return getQueryByHql(hql).getResultList();
     }
 
     /**
@@ -186,67 +228,117 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
         return 0;
     }
 
+    /**
+     * 批量处理对象集合 ，并进行提交
+     *
+     * @param list 集合
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     @Override
     public Iterable<T> batchInsertList(List<T> list) {
         Iterable<T> iterable = buildIterable(list);
         return batchInsert(iterable);
     }
 
-    protected Iterable<T> buildIterable(List<T> list){
+
+    /**
+     * 利用 List 构建一个迭代器
+     *
+     * @param list 集合
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
+    protected Iterable<T> buildIterable(List<T> list) {
         return () -> new Iterator<T>() {
             final ListIterator<T> listIter = list.listIterator(list.size());
+
             @Override
-            public boolean hasNext() { return listIter.hasPrevious(); }
+            public boolean hasNext() {
+                return listIter.hasPrevious();
+            }
+
             @Override
-            public T next() { return listIter.previous(); }
+            public T next() {
+                return listIter.previous();
+            }
+
             @Override
-            public void remove() { listIter.remove(); }
+            public void remove() {
+                listIter.remove();
+            }
         };
     }
 
+    /**
+     * 批量处理对象集合 ，并进行提交
+     *
+     * @param iter 迭代器
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     public Iterable<T> batchInsert(Iterable<T> iter) {
         Iterator<T> iterator = iter.iterator();
         int index = 0;
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             entityManager.persist(iterator.next());
             index++;
-            if (index % BATCH_SIZE == 0){
+            if (index % BATCH_SIZE == 0) {
                 flush(entityManager);
             }
         }
-        if (index % BATCH_SIZE != 0){
+        if (index % BATCH_SIZE != 0) {
             flush(entityManager);
         }
         return iter;
     }
 
-    private final static int BATCH_SIZE=100;
+    private final static int BATCH_SIZE = 100;
 
 
+    /**
+     * 批量处理对象集合 ，并进行更新
+     *
+     * @param list 集合
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     @Override
-    public Iterable<T> batchUpdate(List<T> list){
+    public Iterable<T> batchUpdate(List<T> list) {
         Iterable<T> iterable = buildIterable(list);
         return batchUpdate(iterable);
     }
 
+    /**
+     * 批量处理对象集合 ，并进行更新
+     *
+     * @param iter 迭代器
+     * @return Iterable<T>
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/1-15:27
+     **/
     @Override
-    public Iterable<T> batchUpdate(Iterable<T> iter){
+    public Iterable<T> batchUpdate(Iterable<T> iter) {
         Iterator<T> iterator = iter.iterator();
         int index = 0;
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             entityManager.merge(iterator.next());
             index++;
-            if (index % BATCH_SIZE == 0){
+            if (index % BATCH_SIZE == 0) {
                 flush(entityManager);
             }
         }
-        if (index % BATCH_SIZE != 0){
+        if (index % BATCH_SIZE != 0) {
             flush(entityManager);
         }
         return iter;
     }
 
-    private void flush(EntityManager entityManager){
+    private void flush(EntityManager entityManager) {
         entityManager.flush();
         entityManager.clear();
     }
@@ -280,60 +372,6 @@ public class BaseRepositoryImpl<T extends BaseJpaPo<ID>, ID extends Serializable
         return find(spec, pageable);
     }
 
-
-    /**
-     * 根据实体信息查询
-     *
-     * @param t        非空
-     * @param pageable 非空
-     * @param list     多种查询条件,可以自定义实现，拓展为动态查询，可以为空，为空时候，自动从实体的属性中获取
-     * @return org.springframework.data.domain.Page<T>
-     * @date 20/12/22 16:25
-     */
-    @Override
-    public Page<T> findByCriteriaQuery(T t, Pageable pageable, List<Predicate> list) {
-
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery query = cb.createQuery();
-        // Root 定义查询的From子句中能出现的类型
-        Root<T> root = query.from(t.getClass());
-
-        // 多种查询条件,可以自定义实现，拓展为动态查询，可以为空，为空时候，自动从实体的属性中获取
-        if (list.isEmpty()) {
-            list = JpaMethodUtil.getFieldValue(t, root, cb);
-        }
-
-        List<Expression<?>> grouping = new ArrayList<Expression<?>>();
-        grouping.add(root.get("id"));
-        grouping.add(root.get("flag"));
-        grouping.add(root.get("localCode"));
-        grouping.add(root.get("localName"));
-        grouping.add(root.get("lv"));
-        grouping.add(root.get("supLocalCode"));
-        grouping.add(root.get("url"));
-        query.multiselect(
-                root.get("id"),
-                root.get("flag"),
-                root.get("localCode"),
-                root.get("localName"),
-                root.get("lv"),
-                root.get("supLocalCode"),
-                root.get("url"),
-                cb.sum(root.get("id")));
-
-
-        query.where(list.toArray(new Predicate[list.size()]));
-        query.groupBy(grouping);
-
-        TypedQuery<T> typedQuery = entityManager.createQuery(query);
-//        typedQuery.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
-//        typedQuery.setMaxResults(pageable.getPageSize());
-
-
-        long total = getTotal(query);
-        List<T> content = total > typedQuery.getFirstResult() ? typedQuery.getResultList() : Collections.<T>emptyList();
-        return new PageImpl<T>(content, pageable, total);
-    }
 
     /**
      * 获取数量

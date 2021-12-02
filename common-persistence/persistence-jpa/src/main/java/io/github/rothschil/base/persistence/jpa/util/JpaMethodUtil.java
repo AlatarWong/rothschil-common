@@ -1,12 +1,9 @@
 package io.github.rothschil.base.persistence.jpa.util;
 
+import io.github.rothschil.base.persistence.jpa.Constants;
 import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
-import io.github.rothschil.common.constant.Constants;
-import io.github.rothschil.common.utils.DateUtils;
-import io.github.rothschil.common.utils.StringUtils;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
