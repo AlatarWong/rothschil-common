@@ -454,6 +454,7 @@ public class Reflections {
      */
     public static int getFieldValueMap(String[] s, Object bean, Boolean isCheck) {
 
+
         int num = 0;
         // 取出bean里的所有方法
         Class<?> cls = bean.getClass();
@@ -461,31 +462,42 @@ public class Reflections {
         /**
          * 此处判断下发表字段数量
          */
-        if (isCheck && s.length > fields.length) {
+        if(isCheck && s.length > fields.length){
             num = s.length - fields.length;
         }
         Method[] methods = cls.getDeclaredMethods();
-        for (int i = 0; i < s.length; i++) {
-            Object value;
+        for (int i=0;i<s.length;i++) {
+            Object value = null;
             try {
                 String fieldType = fields[i].getType().getSimpleName();
-                String fieldGetName = StringUtils.parGetName(fields[i].getName());
+                String fieldSetName = StringUtils.parSetName(fields[i].getName());
                 //校验是否有GETTER、SETTER的方法
-                if (!StringUtils.checkGetMet(methods, fieldGetName)) {
+                if (!StringUtils.checkGetMet(methods, fieldSetName)) {
                     continue;
                 }
                 //Type conversion
-                value = getValue(s[i], fieldType);
-                Method fieldSetMet = cls.getMethod(fieldGetName, new Class[]{fields[i].getType()});
-                fieldSetMet.invoke(bean, new Object[]{value});
+                if ("Integer".equals(fieldType)) {
+                    value=Integer.valueOf(s[i]);
+                } else if("BigDecimal".equals(fieldType)) {
+                    value=new BigDecimal(s[i]);
+                } else if("Long".equals(fieldType)) {
+                    value=Long.valueOf(s[i]);
+                } else if("Date".equals(fieldType)) {
+                    value = DateUtils.parseDate(s[i]);
+                } else if("int".equals(fieldType)) {
+                    value = Integer.parseInt(s[i]);
+                } else{
+                    value=s[i];
+                }
+                Method fieldSetMet = cls.getMethod(fieldSetName, new Class[] {fields[i].getType()});
+                fieldSetMet.invoke(bean, new Object[] {value});
             } catch (Exception e) {
+                logger.error(bean.getClass().getName()+" ;动态赋值异常=>"+s[i]);
                 continue;
             }
         }
-
         return num;
     }
-
 
     public static void getField(Object bean, List<String> retFields) {
         try {

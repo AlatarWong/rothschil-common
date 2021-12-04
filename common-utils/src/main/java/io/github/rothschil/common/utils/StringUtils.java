@@ -1,16 +1,13 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://wongs.xyz">UECC</a> All rights reserved.
- */
 package io.github.rothschil.common.utils;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import io.github.rothschil.common.constant.Constants;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.web.multipart.MultipartFile;
 import io.github.rothschil.base.response.enums.Status;
-import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.exception.DrunkardException;
 import io.github.rothschil.common.text.StrFormatter;
 

@@ -1,10 +1,11 @@
 rootProject.name = 'rothschil-common'
 
-//include 'common-utils'
+include 'common-utils'
 include 'common-persistence:persistence-jpa'
-//include 'common-persistence:persistence-mybatis'
-//include 'common-persistence:persistence-elasticsearch'
-//include 'common-persistence:persistence-redis'
-//include 'common-framework:framework-limit'
+include 'common-persistence:persistence-mybatis'
+include 'common-persistence:persistence-elasticsearch'
+include 'common-persistence:persistence-redis'
+include 'common-framework:framework-limit'
+include 'rothschil-common-starter:spring-boot-starter-jpa'
 
 

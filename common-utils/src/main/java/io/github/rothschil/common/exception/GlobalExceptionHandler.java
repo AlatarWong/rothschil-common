@@ -12,7 +12,7 @@ import io.github.rothschil.base.response.po.ErR;
 
 
 /**
- * 全局异常处理 Handler
+ * 全局异常处理 对统一返回实体 进行封装 Handler
  *
  * @author WCNGS@QQ.COM
  * @date 2019/9/23 15:03

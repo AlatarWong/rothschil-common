@@ -2,7 +2,6 @@ package io.github.rothschil.base.persistence.jpa.service;
 
 import io.github.rothschil.base.persistence.jpa.entity.BaseJpaPo;
 import io.github.rothschil.base.persistence.jpa.repository.BaseRepository;
-import io.github.rothschil.base.persistence.jpa.util.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,7 +72,7 @@ public abstract class BaseService<R extends BaseRepository<T, ID>, T extends Bas
     private Example<T> getExample(T t) {
         ExampleMatcher matcher = ExampleMatcher.matching();
         List<String> fields = new ArrayList<>();
-        Reflections.getField(t, fields);
+        io.github.rothschil.common.utils.Reflections.getField(t, fields);
         for (String fld : fields) {
             matcher.withMatcher(fld, ExampleMatcher.GenericPropertyMatchers.exact());
         }
