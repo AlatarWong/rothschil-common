@@ -1,9 +1,7 @@
-package io.github.rothschil.base.aop.queue.handler.impl;
+package io.github.rothschil.common.queue;
 
 import io.github.rothschil.base.aop.entity.AppLog;
-import io.github.rothschil.base.aop.queue.handler.IQueueTaskHandler;
-import io.github.rothschil.base.aop.service.AbstactAppLogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.github.rothschil.base.aop.queue.handler.TaskHandlerble;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @SuppressWarnings("unused")
 @Component
-public class QueueTaskHandler implements IQueueTaskHandler {
+public class AppLogHandler implements TaskHandlerble {
 
 //    private AbstactAppLogService abstactAppLogService;
 //
@@ -33,8 +31,7 @@ public class QueueTaskHandler implements IQueueTaskHandler {
      * @date 20/11/13 16:32
      **/
     @Override
-    public void processData() {
-//        abstactAppLogService.insert(appLog);
+    public void process() {
         // 可以加上事后处理逻辑....
     }
 

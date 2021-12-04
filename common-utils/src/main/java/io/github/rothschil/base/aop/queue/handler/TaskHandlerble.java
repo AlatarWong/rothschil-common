@@ -7,12 +7,7 @@ package io.github.rothschil.base.aop.queue.handler;
  * @date 20/11/13 16:18
  * @since 1.0.0
  */
-public interface IQueueTaskHandler {
+public interface TaskHandlerble {
 
-    /**
-     * 实现QueueTaskHandler的处理接口
-     *
-     * @date 20/11/19 17:09
-     */
-    void processData();
+    void process();
 }

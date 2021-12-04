@@ -4,8 +4,8 @@ import cn.hutool.core.util.URLUtil;
 import com.alibaba.fastjson.JSON;
 import io.github.rothschil.base.aop.annotation.ApplicationLog;
 import io.github.rothschil.base.aop.entity.AppLog;
-import io.github.rothschil.base.aop.queue.AppLogQueue;
-import io.github.rothschil.base.aop.queue.handler.impl.QueueTaskHandler;
+import io.github.rothschil.common.queue.AppLogQueue;
+import io.github.rothschil.common.queue.AppLogHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -26,7 +26,7 @@ import java.time.Instant;
 import java.util.Date;
 
 /**
- * 定义AOP处理通用方法，引入 {@link AppLogQueue} 异步队列模块 和 {@link QueueTaskHandler}
+ * 定义AOP处理通用方法，引入 {@link AppLogQueue} 异步队列模块 和 {@link AppLogHandler}
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2018/4/24 - 16:31
@@ -39,7 +39,7 @@ public abstract class AbsAspect {
      * 队列中定义的处理
      */
     @Autowired
-    protected QueueTaskHandler queueTaskHandler;
+    protected AppLogHandler appLogHandler;
 
     /**
      * 日志处理的异步队列
@@ -71,8 +71,8 @@ public abstract class AbsAspect {
         appLog.setSucceed(success);
         appLog.setCost(DateUtils.getMills(appLog.getBeginTime(), endTime));
         threadLocal.remove();
-        queueTaskHandler.setOperationLog(appLog);
-        appLogQueue.addQueue(queueTaskHandler);
+        appLogHandler.setOperationLog(appLog);
+        appLogQueue.addQueue(appLogHandler);
     }
 
 
