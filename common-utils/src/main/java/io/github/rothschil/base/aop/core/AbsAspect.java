@@ -4,8 +4,12 @@ import cn.hutool.core.util.URLUtil;
 import com.alibaba.fastjson.JSON;
 import io.github.rothschil.base.aop.annotation.ApplicationLog;
 import io.github.rothschil.base.aop.entity.AppLog;
-import io.github.rothschil.common.queue.AppLogQueue;
+import io.github.rothschil.base.aop.queue.AbstractQueue;
+import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.queue.AppLogHandler;
+import io.github.rothschil.common.utils.DateUtils;
+import io.github.rothschil.common.utils.IpUtils;
+import io.github.rothschil.common.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -15,10 +19,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import io.github.rothschil.common.constant.Constants;
-import io.github.rothschil.common.utils.DateUtils;
-import io.github.rothschil.common.utils.IpUtils;
-import io.github.rothschil.common.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -26,7 +26,7 @@ import java.time.Instant;
 import java.util.Date;
 
 /**
- * 定义AOP处理通用方法，引入 {@link AppLogQueue} 异步队列模块 和 {@link AppLogHandler}
+ * 定义AOP处理通用方法，引入 {@link AbstractQueue} 异步队列模块 和 {@link AppLogHandler}
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2018/4/24 - 16:31
@@ -45,7 +45,7 @@ public abstract class AbsAspect {
      * 日志处理的异步队列
      */
     @Autowired
-    protected AppLogQueue appLogQueue;
+    protected AbstractQueue abstractQueue;
 
     /**
      * 发送到队列中用于异步
@@ -72,7 +72,7 @@ public abstract class AbsAspect {
         appLog.setCost(DateUtils.getMills(appLog.getBeginTime(), endTime));
         threadLocal.remove();
         appLogHandler.setOperationLog(appLog);
-        appLogQueue.addQueue(appLogHandler);
+        abstractQueue.addQueue(appLogHandler);
     }
 
 

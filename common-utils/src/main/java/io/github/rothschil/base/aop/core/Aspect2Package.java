@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
  */
 @Order(2)
 @Aspect
-@Component
 public class Aspect2Package extends AbsAspect {
 
     protected final ThreadLocal<AppLog> threadLocal = new ThreadLocal<>();

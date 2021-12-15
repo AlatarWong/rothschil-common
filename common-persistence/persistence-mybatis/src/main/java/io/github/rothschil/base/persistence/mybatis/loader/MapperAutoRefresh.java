@@ -81,16 +81,13 @@ public class MapperAutoRefresh implements ApplicationContextAware {
 
     private static final String XML_RESOURCE_PATTERN = "**/*.xml";
 
-    private String basePackage = "/mapper";
-
-    private static String FILE_NAME = "/conf/mybatis-refresh.properties";
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 
     static {
+        String FILE_NAME = "/conf/mybatis-refresh.properties";
         try {
             prop.load(MapperAutoRefresh.class.getResourceAsStream(FILE_NAME));
         } catch (Exception e) {
@@ -107,10 +104,12 @@ public class MapperAutoRefresh implements ApplicationContextAware {
         sleepSeconds = sleepSeconds == 0 ? 3 : sleepSeconds;
         mappingPath = StringUtils.isBlank(mappingPath) ? "mappings" : mappingPath;
 
-        log.debug("[enabled] " + enabled);
-        log.debug("[delaySeconds] " + delaySeconds);
-        log.debug("[sleepSeconds] " + sleepSeconds);
-        log.debug("[mappingPath] " + mappingPath);
+        if(log.isDebugEnabled()){
+            log.debug("[enabled] " + enabled);
+            log.debug("[delaySeconds] " + delaySeconds);
+            log.debug("[sleepSeconds] " + sleepSeconds);
+            log.debug("[mappingPath] " + mappingPath);
+        }
     }
 
 
@@ -118,6 +117,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
     public void start() throws IOException {
         SqlSessionFactory sessionFactory = applicationContext.getBean(SqlSessionFactory.class);
         this.configuration = sessionFactory.getConfiguration();
+        String basePackage = "/mapper";
         mapperLocations = getResource(basePackage, XML_RESOURCE_PATTERN);
         exeTask();
     }
@@ -211,7 +211,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
      * @param beforeTime 开始时间
      * @date 20/11/17 11:06
      */
-    public void refresh(String filePath, long beforeTime) throws FileNotFoundException {
+    public void refresh(String filePath, long beforeTime) {
         // 本次刷新时间
         long refrehTime = System.currentTimeMillis();
         // 获取需要刷新的Mapper文件列表
@@ -287,7 +287,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
      */
     private List<File> getRefreshFile(File dir, Long beforeTime) {
 
-        List<File> fileList = new ArrayList<File>();
+        List<File> fileList = new ArrayList<>();
 
         File[] files = dir.listFiles();
         if (files != null) {
@@ -400,15 +400,10 @@ public class MapperAutoRefresh implements ApplicationContextAware {
      * @param file       文件
      * @param beforeTime 上次刷新时间
      * @return boolean
-     * @throws
-     * @Description
      * @date 20/11/17 11:17
      */
     private boolean checkFile(File file, Long beforeTime) {
-        if (file.lastModified() > beforeTime) {
-            return true;
-        }
-        return false;
+        return file.lastModified() > beforeTime;
     }
 
 
@@ -431,7 +426,7 @@ public class MapperAutoRefresh implements ApplicationContextAware {
      * @date 20/11/17 10:37
      */
     private static String getPropString(String key) {
-        return prop == null ? null : prop.getProperty(key);
+        return prop.getProperty(key);
     }
 
 }

@@ -22,7 +22,9 @@ import org.springframework.context.ApplicationListener;
 @SuppressWarnings("unused")
 public class PropListener implements ApplicationListener<ApplicationStartedEvent> {
 
-    private final String propertyFileName;
+    private String propertyFileName;
+
+    public PropListener(){}
 
     public PropListener(String propertyFileName) {
         this.propertyFileName = propertyFileName;

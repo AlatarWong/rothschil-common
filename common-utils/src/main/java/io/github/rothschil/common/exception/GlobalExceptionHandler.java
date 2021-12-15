@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import io.github.rothschil.base.response.enums.Status;
 import io.github.rothschil.base.response.po.ErR;
 
+import javax.annotation.Priority;
+
 
 /**
  * 全局异常处理 对统一返回实体 进行封装 Handler
@@ -17,6 +19,7 @@ import io.github.rothschil.base.response.po.ErR;
  * @author WCNGS@QQ.COM
  * @date 2019/9/23 15:03
  */
+@Priority(value=1)
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     private static final Logger LOG = LoggerFactory.getLogger(GlobalExceptionHandler.class);

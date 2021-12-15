@@ -21,7 +21,6 @@ import java.util.Properties;
  * @date 2018/4/26 - 17:08
  * @since 1.0.0
  */
-@Component
 public class Global {
 
     private static final Logger LOG = LoggerFactory.getLogger(Global.class);

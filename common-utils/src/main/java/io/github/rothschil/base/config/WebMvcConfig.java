@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -26,7 +27,6 @@ import java.util.List;
  * @date 20/11/18 11:13
  * @since 1.0.0
 */
-@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private ResponseBodyInterceptor responseBodyInterceptor;
@@ -60,15 +60,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converter.setSupportedMediaTypes(fastMediaTypes);
         converters.add(converter);
         // 添加 StringHttpMessageConverter，解决中文乱码问题
-//        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
-//        converters.add(messageConverter);
-//        converters.add(0, new FastJsonHttpMessageConverter());
-
-//        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
-//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-//        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
-//        fastConverter.setFastJsonConfig(fastJsonConfig);
-//        converters.add(fastConverter);
+        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
+        converters.add(messageConverter);
+        converters.add(0, new FastJsonHttpMessageConverter());
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        converters.add(fastConverter);
     }
 
 

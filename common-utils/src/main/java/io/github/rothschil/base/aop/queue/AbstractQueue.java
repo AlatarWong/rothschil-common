@@ -23,11 +23,14 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractQueue.class);
 
+    protected final static String CLASS_NAME="QUEUE";
 
     private LinkedBlockingQueue<T> queue;
+    private ThreadPoolExecutor pool;
 
     public AbstractQueue(){
-
+        this.queue = new LinkedBlockingQueue<>(200);
+        this.pool = new ThreadPoolExecutor(4, 3, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
     }
 
     public AbstractQueue(LinkedBlockingQueue<T> queue){
@@ -44,10 +47,6 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
      */
     private Future<?> threadStatus = null;
 
-    private final ThreadPoolExecutor threadPoolExecutor = getThread();
-
-
-
     /**
      * 上下文加载之前处理，且只被执行一次
      *
@@ -56,7 +55,8 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
      **/
     @PostConstruct
     public void init() {
-        threadStatus = threadPoolExecutor.submit(() -> {
+
+        threadStatus = pool.submit(() -> {
             while (running) {
                 try {
                     // 队列中不存在元素 则不处理
@@ -82,7 +82,7 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
     @PreDestroy
     public void destroys() {
         running = false;
-        threadPoolExecutor.shutdownNow();
+        pool.shutdownNow();
     }
 
     /**
@@ -93,7 +93,7 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
      **/
     public void activeService() {
         running = true;
-        if (threadPoolExecutor.isShutdown()) {
+        if (pool.isShutdown()) {
             init();
             LOG.info("线程池关闭，重新初始化线程池及任务");
         }
@@ -129,16 +129,6 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
      **/
     public boolean empty() {
         return queue.isEmpty();
-    }
-
-    /**
-     * 获取定义的线程池
-     *
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     * @date 2021/10/14-22:21
-     **/
-    private ThreadPoolExecutor getThread() {
-        return ThreadPoolsUtil.doCreate(3, 1, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), this.getClass().getName());
     }
 
     /**

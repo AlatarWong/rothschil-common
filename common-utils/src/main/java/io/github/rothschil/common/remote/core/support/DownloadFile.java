@@ -19,7 +19,6 @@ import java.util.List;
  * @since 1.0.0
  */
 @Slf4j
-@Component
 public class DownloadFile extends AbstractDownloadFile {
 
 

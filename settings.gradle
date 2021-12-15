@@ -7,5 +7,6 @@ include 'common-persistence:persistence-elasticsearch'
 include 'common-persistence:persistence-redis'
 include 'common-framework:framework-limit'
 include 'rothschil-common-starter:spring-boot-starter-jpa'
+include 'rothschil-common-starter:spring-boot-starter-jpa-demo'
 
 

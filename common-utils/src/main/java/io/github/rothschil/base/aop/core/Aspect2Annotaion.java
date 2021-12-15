@@ -21,7 +21,6 @@ import io.github.rothschil.base.aop.entity.AppLog;
  */
 @Order(1)
 @Aspect
-@Component
 public class Aspect2Annotaion extends AbsAspect {
 
     private final ThreadLocal<AppLog> threadLocal = new ThreadLocal<>();

@@ -4,7 +4,7 @@ import io.github.rothschil.base.response.interceptor.ResponseBodyInterceptor;
 import io.github.rothschil.base.response.po.ErR;
 import io.github.rothschil.base.response.po.R;
 import io.github.rothschil.common.constant.Constants;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.UiConfiguration;
@@ -36,9 +35,10 @@ import java.util.ArrayList;
  * @date 2018/4/26 - 16:23
  * @since 1.0.0
  */
-@EnableWebMvc
-@Configuration
-@ControllerAdvice(basePackages = "xyz.wongs", annotations = {Controller.class})
+// @EnableWebMvc
+// @ControllerAdvice(annotations = {Controller.class})
+@Primary
+@ControllerAdvice
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
     /**
@@ -78,9 +78,19 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
      **/
     @Override
     public Object beforeBodyWrite(Object body, @Nullable MethodParameter returnType, @Nullable MediaType selectContentType, @Nullable Class<? extends HttpMessageConverter<?>> selectConverterType, @Nullable ServerHttpRequest request, @Nullable ServerHttpResponse response) {
-        if (body instanceof R || body instanceof ErR || body instanceof UiConfiguration || (body instanceof ArrayList && ((ArrayList) body).get(0) instanceof SwaggerResource)) {
+        if (vail(body)) {
             return body;
         }
         return R.success(body);
+    }
+
+    /**
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/12/15-9:52
+     * @param body  响应消息
+     * @return boolean
+     **/
+    private boolean vail(Object body){
+        return (body instanceof R || body instanceof ErR || body instanceof UiConfiguration || (body instanceof ArrayList && ((ArrayList<?>) body).get(0) instanceof SwaggerResource));
     }
 }

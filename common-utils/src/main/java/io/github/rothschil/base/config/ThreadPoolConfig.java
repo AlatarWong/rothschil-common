@@ -17,7 +17,6 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @date 2017/12/2 15:19
  * @since 1.0.0
  */
-@Configuration
 public class ThreadPoolConfig {
     /**
      * 核心线程池大小

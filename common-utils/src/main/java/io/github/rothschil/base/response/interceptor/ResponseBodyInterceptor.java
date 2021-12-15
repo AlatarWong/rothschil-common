@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  * @date 20/10/30 22:08
  * @since 1.0.0
  */
-@Component
 public class ResponseBodyInterceptor implements HandlerInterceptor {
 
     /**
