@@ -7,9 +7,10 @@ import java.lang.annotation.*;
 
 /**
  * 用于定义统一响应内容的格式，在标签上加入该注解，即可被识别，不推荐使用该模式，可以参看 {@link ResponseBodyHandler}
- * 和 {@link ResponseBodyInterceptor} 已经可以满足对 Spring MVC 层面的响应做统一处理
+ * 和 {@link ResponseBodyInterceptor} 已经可以满足对 Spring MVC 层面的响应做统一处理，
+ * 已不推荐使用，将会在未来的版本中移除。
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 19/8/30 21:57
  * @since 1.0.0
  */

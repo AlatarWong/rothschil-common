@@ -7,7 +7,7 @@ import io.github.rothschil.base.response.enums.Status;
  * 属于自定义异常，使用过程中，需要注意构造函数 {@link Status} 中的定义，是否满足要求，不满足的话
  * 则扩展 {@link Status} 枚举值
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/9/21 10:07
  */
 public class DrunkardException extends RuntimeException {

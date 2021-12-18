@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 通用 Mapper
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/11/21 17:40
  * @since 1.0.0
  */
@@ -37,7 +37,7 @@ public interface BaseMapper<T extends BasePo<ID>, ID extends Serializable> {
      *
      * @param t 实体对象
      * @return List
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/7/23 19:27
      */
     List<T> getList(T t);

@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * 日期工具类, 继承 {@link org.apache.commons.lang3.time.DateUtils }类
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @since 2014-4-15
  */
 @SuppressWarnings("unused")
@@ -358,7 +358,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @param date1 第一日期
      * @param date2 第二日期
      * @return long 二者下相差的秒
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2018/4/12 19:53
      */
     public static long distanceOfSecondByDate(Date date1, Date date2) {
@@ -491,7 +491,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @param str     日期时间戳
      * @param pattern 格式化 pattern
      * @return java.utils.Date
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      */
     public static Date parseDateByInput(String str, String pattern) {
         if (StringUtils.isBlank(str)) {
@@ -582,7 +582,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * @param date1 第一日期
      * @param date2 第二日期
      * @return boolean 真：True，假：False
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/23 23:58
      */
     public static boolean isSameDate(Date date1, Date date2) {

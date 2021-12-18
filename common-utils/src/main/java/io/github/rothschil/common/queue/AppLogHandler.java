@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * 针对队列的任务处理者
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/11/18 11:04
  * @since 1.0.0
  */

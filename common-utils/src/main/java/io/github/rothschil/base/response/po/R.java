@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 定义正常响应实体类
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2017/12/2 13:48
  * @since 1.0.0
  */

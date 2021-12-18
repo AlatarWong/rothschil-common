@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * JPA 中封装的 Service 基类
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/12/18 11:05
  * @since 1.0.0
  */

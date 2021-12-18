@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import io.github.rothschil.base.persistence.mybatis.mapper.BaseMapper;
 import io.github.rothschil.base.persistence.mybatis.page.PaginationInfo;
 import io.github.rothschil.common.po.BasePo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -20,18 +21,23 @@ import java.util.List;
  * </ul>
  *
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2017/12/2 13:34
  * @since 1.0.0
  */
 @SuppressWarnings("unused")
 @Transactional(readOnly = true)
-public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable> {
+public abstract class BaseService<R extends BaseMapper<T, ID>,T extends BasePo<ID>, ID extends Serializable> {
 
     /**
      * 需要注入 Mapper
      */
-    protected abstract BaseMapper<T, ID> getMapper();
+    protected R baseMpper;
+
+    @Autowired
+    public void setBaseMpper(R baseMpper) {
+        this.baseMpper = baseMpper;
+    }
 
     /**
      * 持久化一个实例
@@ -42,7 +48,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      */
     @Transactional(rollbackFor = Exception.class)
     int insert(T t) {
-        return getMapper().insert(t);
+        return baseMpper.insert(t);
     }
 
     /**
@@ -54,7 +60,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      */
     @Transactional(rollbackFor = Exception.class)
     int insertSelective(T t) {
-        return getMapper().insertSelective(t);
+        return baseMpper.insertSelective(t);
     }
 
 
@@ -69,7 +75,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     public PageInfo<T> selectPage(PaginationInfo pgInfo, T t) {
         PageHelper.startPage(pgInfo.getPageNum(), pgInfo.getPageSize());
-        List<T> lt = getMapper().getList(t);
+        List<T> lt = baseMpper.getList(t);
         return new PageInfo<>(lt);
     }
 
@@ -85,7 +91,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     public PageInfo<T> selectPageByCondition(PaginationInfo pgInfo, Object condition) {
         PageHelper.startPage(pgInfo.getPageNum(), pgInfo.getPageSize());
-        List<T> lt = getMapper().getListByCondition(condition);
+        List<T> lt = baseMpper.getListByCondition(condition);
         return new PageInfo<>(lt);
     }
 
@@ -100,7 +106,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     public PageInfo<T> selectByExample(PaginationInfo pgInfo, Object example) {
         PageHelper.startPage(pgInfo.getPageNum(), pgInfo.getPageSize());
-        List<T> lt = getMapper().getListByExample(example);
+        List<T> lt = baseMpper.getListByExample(example);
         return new PageInfo<>(lt);
     }
 
@@ -115,7 +121,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     @Transactional(rollbackFor = Exception.class)
     public int deleteByPrimaryKey(ID id) {
-        return getMapper().deleteByPrimaryKey(id);
+        return baseMpper.deleteByPrimaryKey(id);
     }
 
     /**
@@ -127,7 +133,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      * @date 2021/10/15-15:31
      **/
     public T selectByPrimaryKey(ID id) {
-        return getMapper().selectByPrimaryKey(id);
+        return baseMpper.selectByPrimaryKey(id);
     }
 
 
@@ -141,7 +147,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     @Transactional(rollbackFor = Exception.class)
     public int updateByPrimaryKeySelective(T t) {
-        return getMapper().updateByPrimaryKeySelective(t);
+        return baseMpper.updateByPrimaryKeySelective(t);
     }
 
     /**
@@ -154,7 +160,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     @Transactional(rollbackFor = Exception.class)
     public int updateByPrimaryKeyWithBlob(T t) {
-        return getMapper().updateByPrimaryKeyWithBlob(t);
+        return baseMpper.updateByPrimaryKeyWithBlob(t);
     }
 
     /**
@@ -167,7 +173,7 @@ public abstract class BaseService<T extends BasePo<ID>, ID extends Serializable>
      **/
     @Transactional(rollbackFor = Exception.class)
     public int updateByPrimaryKey(T t) {
-        return getMapper().updateByPrimaryKey(t);
+        return baseMpper.updateByPrimaryKey(t);
     }
 
 }

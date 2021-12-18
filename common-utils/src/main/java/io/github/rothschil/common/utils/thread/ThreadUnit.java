@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 /** 定义线程的基本单元
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2017/12/2 14:51
  * @since 1.0.0
 */

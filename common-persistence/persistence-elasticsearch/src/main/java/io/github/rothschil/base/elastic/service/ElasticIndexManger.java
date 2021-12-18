@@ -72,7 +72,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName 索引名称
      * @param mapping   索引定义，JSON形式的字符串
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:30
      */
     public void createIndex(String indexName, String mapping) {
@@ -87,7 +87,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @param mapping   索引定义，JSON形式的字符串
      * @param replicas  副本的数量
      * @param shards    分片数量
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:30
      */
     public void createIndex(String indexName, String mapping, int replicas, int shards) {
@@ -152,7 +152,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index名
      * @return boolean
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:27
      */
     public boolean existIndex(String indexName) throws IOException {
@@ -173,7 +173,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index名
      * @return boolean 存在为True，不存在则 False
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:27
      */
     public boolean isIndexExists(String indexName) throws Exception {
@@ -185,7 +185,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index
      * @param list      列表
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:26
      */
     public void batch(String indexName, List<? extends BasePo> list) throws IOException {
@@ -239,7 +239,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @param list      列表
      * @param created   当索引不存在，则创建索引，默认为 true，即索引不存在，创建该索引，此时 mapping 应该不为空
      * @param mapping   索引定义，JSON形式的字符串
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:26
      */
     public void batch(List<? extends BasePo> list, String indexName, boolean created, String mapping) throws Exception {
@@ -265,7 +265,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param indexName index
      * @param idList    待删除列表
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:14
      */
     public <T> void deleteBatch(String indexName, Collection<T> idList) {
@@ -285,7 +285,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * @param builder   查询参数
      * @param clazz     结果类对象
      * @return java.util.List<T>
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:14
      */
     public <T> List<T> search(String indexName, SearchSourceBuilder builder, Class<T> clazz) {
@@ -311,7 +311,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      * 删除 index，以及索引下数据
      *
      * @param indexName 索引名字
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:13
      */
     public void deleteIndex(String indexName) {
@@ -327,7 +327,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
      *
      * @param builder    条件构建模式
      * @param indexNames 索引名称列表
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 17:13
      */
     public void deleteByQuery(QueryBuilder builder, String... indexNames) {

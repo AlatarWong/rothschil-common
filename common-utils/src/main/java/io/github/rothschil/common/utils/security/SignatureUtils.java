@@ -20,7 +20,7 @@ import java.util.UUID;
 /**
  * Md5加密方法
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @ClassName Md5Utils
  * @Description
  * 

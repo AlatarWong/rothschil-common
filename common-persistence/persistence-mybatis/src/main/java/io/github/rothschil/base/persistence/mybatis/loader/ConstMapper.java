@@ -3,7 +3,7 @@ package io.github.rothschil.base.persistence.mybatis.loader;
 /**
  * 用于 Mybatis 自动扫描装配文件，所定义的常量字符
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/11/18 10:42
  * @since 1.0.0
  */

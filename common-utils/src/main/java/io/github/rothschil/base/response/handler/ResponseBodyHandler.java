@@ -35,10 +35,8 @@ import java.util.ArrayList;
  * @date 2018/4/26 - 16:23
  * @since 1.0.0
  */
-// @EnableWebMvc
-// @ControllerAdvice(annotations = {Controller.class})
+@ControllerAdvice(annotations = {Controller.class})
 @Primary
-@ControllerAdvice
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
     /**
@@ -85,12 +83,14 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
     }
 
     /**
+     * 判断返回的 body 是哪一种类型，可以按照定义被排除的部分
+     *
+     * @param body 响应消息
+     * @return boolean
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/12/15-9:52
-     * @param body  响应消息
-     * @return boolean
      **/
-    private boolean vail(Object body){
+    private boolean vail(Object body) {
         return (body instanceof R || body instanceof ErR || body instanceof UiConfiguration || (body instanceof ArrayList && ((ArrayList<?>) body).get(0) instanceof SwaggerResource));
     }
 }

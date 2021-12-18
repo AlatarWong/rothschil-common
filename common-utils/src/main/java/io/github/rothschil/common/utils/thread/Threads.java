@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * 线程相关工具类.
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2020/6/19 17:31
  * @since 1.0.0
  */

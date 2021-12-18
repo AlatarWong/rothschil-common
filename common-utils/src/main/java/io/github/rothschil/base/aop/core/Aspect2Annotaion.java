@@ -15,7 +15,7 @@ import io.github.rothschil.base.aop.entity.AppLog;
  * </ul>
  * 处理 全局Controller下面的public 方法
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/12/2 10:23
  * @since 1.0.0
  */

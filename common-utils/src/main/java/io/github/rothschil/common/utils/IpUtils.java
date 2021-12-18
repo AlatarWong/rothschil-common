@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 /**
  * 获取IP方法
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2020/6/19 18:12
  * @since 1.0.0
  */

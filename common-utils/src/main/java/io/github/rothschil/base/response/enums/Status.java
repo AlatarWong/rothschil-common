@@ -1,7 +1,7 @@
 package io.github.rothschil.base.response.enums;
 
 /**
- * 常量信息，可以在此基础上拓展
+ * Basic Constant Information，Can be extended
  *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2015/8/15 - 11:25
@@ -19,42 +19,31 @@ public enum Status {
      * 失败
      **/
     FAILURE(-1, "FAILURE"),
-    /**
-     * 文件处理完毕
-     */
-    PRCESS_SUCESS(1, "文件处理完毕"),
 
     /**
-     * 系统异常
+     * 10～99 IO处理类
+     */
+    PRCESS_COMPLETED(11, "处理完毕"),
+    IO_EXCEPTION(12, "IO异常"),
+    FILE_NOT_EXIST(13, "文件不存在"),
+
+    /**
+     * 200 ~ 999 系统异常
      */
     SYSTEM_EXCEPTION(200, "系统异常"),
-
     RUNTIME_EXCEPTION(202, "运行时异常"),
-
-    /**
-     * 空指针异常
-     */
     NULL_POINTER_EXCEPTION(203, "空指针异常"),
-
-    /**
-     * IO异常
-     */
-    IO_EXCEPTION(205, "IO异常"),
-
-
-    /**
-     * Not Found
-     */
     NOT_FOUND(404, "Not Found"),
+
+    TARGET_EXISTED(741, "目标数据已存在"),
+    TARGET_NOT_EXIST(742, "数据不存在"),
     TARGET_IS_NULL(405, "TARGET is Null"),
     TARGET_IS_EMPTY(405, "TARGET is empty"),
     TARGET_IS_BANK(405, "TARGET is Blank"),
 
-
     LACK_RESOURCES(501, "资源不足"),
     READ_FAIL(502, "读取资源异常"),
     RESOURCE_NOT_FOUND(503, "资源不存在异常"),
-
     CLASS_CAST_EXCEPTION(601, "类型转换异常"),
     DATE_PARSE_EXCEPTION(602, "日期转换异常"),
     DATA_PARSE_EXCEPTION(603, "数据转换异常"),
@@ -63,7 +52,6 @@ public enum Status {
     ENCODE_UNSUPPORTED_EXCEPTION(702, "编码不支持异常"),
 
     ARRAY_EXCEPTION(710, "数组异常"),
-
     ARRAY_OUT_BOUNDS(711, "数组越界异常"),
 
     SERIALIZE_FAIL(720, "序列化数据失败"),
@@ -72,13 +60,8 @@ public enum Status {
     COMPRESS_FAIL(732, "数据压缩异常"),
     DE_COMPRESS_FAIL(733, "数据解压缩异常"),
 
-    DATA_EXISTED(741, "数据已存在"),
-    DATA_NOT_EXIST(742, "数据不存在"),
-
     CHANGE_DIR_ERR(745, "用户切换目录错误"),
-
     EXCEPTION(777, "未知异常"),
-
 
     FILE_NAME_LIMIT(801, "The file Name is too long"),
     FILE_SIZE_LIMIT(802, "The file size too big"),
@@ -146,14 +129,13 @@ public enum Status {
     DATA_EXCEPTION(32004, "数据异常"),
     DATA_NOT_FOUND_EXCEPTION(32005, "未找到符合条件的数据异常"),
     DATA_CALCULATION_EXCEPTION(32006, "数据计算异常"),
-    MALE_SEND_FAIL(35001, "邮件发送异常"),
 
     SYNC_LOCKED(4000, "资源锁定"),
     GET_SYNC_LOCK_FAILURE(4001, "获取锁失败"),
     GET_SYNC_LOCK_SUCCESS(4002, "获取锁成功"),
     SYNC_LOCK_MANY_REQ(4003, "请求太多"),
 
-    FILE_NOT_EXIST(4021, "文件不存在"),
+
 
     ELASTIC_ERR(4022, "写入Elastic Search失败"),
     REMOTE_EMPTY(4020, "远程目录为空"),
@@ -167,15 +149,23 @@ public enum Status {
     QUEUE_CAPACITY(4101, "队列中元素占比已超过定义容量的一半"),
     QUEUE_FULL(4102, "队列中元素已超过上限，启动保护机制"),
 
+    MALE_DELIVERY_FAIL(35001, "邮件发送失败"),
+    SMS_DELIVERY_FAIL(35011, "短信发送失败"),
+    SMS_CONTENT_EXCEEDS_THE_LIMIT(35012, "短信内容长度超过限制"),
+
+
     PAY_ACTUAL_PRICE(5010, "The discount amount is greater than the actual price");
 
+
+
+
     /**
-     *
+     * Status Code
      */
     private Integer status;
 
     /**
-     *
+     * The Content Description
      */
     private String msg;
 

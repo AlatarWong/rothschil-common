@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 /**
  * 切面的应用日志
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/29 16:50
  * @since 1.0.0
  */

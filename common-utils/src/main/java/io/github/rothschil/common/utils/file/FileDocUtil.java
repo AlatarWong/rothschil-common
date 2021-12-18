@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author: WCNGS@QQ.COM
+ * @author: <a href="https://github.com/rothschil">Sam</a>
  * @create: 2017/12/29 13:12
  * @Modified By :
  **/
@@ -37,7 +37,7 @@ public class FileDocUtil {
     /**
      * 方法实现说明
      * @method      compBean
-     * @author      WCNGS@QQ.COM
+     * @author      <a href="https://github.com/rothschil">Sam</a>
      * @since
      * @see
      * @param bean   组装的Bean
@@ -56,7 +56,7 @@ public class FileDocUtil {
     /**
      * 方法实现说明：替换字符串中的换行：\r\n、\n返回一个新的字符串
      * @method      repalceEnterKey
-     * @author      WCNGS@QQ.COM
+     * @author      <a href="https://github.com/rothschil">Sam</a>
      * @since
      * @see
      * @param str
@@ -77,7 +77,7 @@ public class FileDocUtil {
     /**
      * 方法实现说明
      * @method      compBean
-     * @author      WCNGS@QQ.COM
+     * @author      <a href="https://github.com/rothschil">Sam</a>
      * @since
      * @see
      * @param bean   组装的Bean

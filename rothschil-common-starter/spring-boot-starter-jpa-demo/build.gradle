@@ -1,9 +1,0 @@
-archivesBaseName = 'spring-boot-starter-jpa-demo'
-jar.enabled = true
-dependencies {
-    api(project(':rothschil-common-starter:spring-boot-starter-jpa')){
-        exclude group:'com.oracle', module: 'com.oracle:ojdbc6'
-    }
-
-
-}

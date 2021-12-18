@@ -60,7 +60,7 @@ public abstract class AbstractElasticIndexManger {
      * 副本作用主要为了保证数据安全
      *
      * @param request 请求
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/17 19:27
      */
     protected void buildSetting(CreateIndexRequest request, int replicas, int shards) {

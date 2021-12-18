@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Root 级别的抽象对象，只单纯定义ID主键标识，考虑后续有的主键可能为字符串等多种格式，故用泛型，
  * 所有 <b>业务类实体对象</b> 不建议直接继承该 {@link BasePo} 类，建议 <b>业务类实体对象</b> 直接继承 {@link BasePo}
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2017/12/2 13:32
  * @since 1.0.0
  */

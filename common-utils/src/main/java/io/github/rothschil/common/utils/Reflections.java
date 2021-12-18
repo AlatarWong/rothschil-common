@@ -326,7 +326,7 @@ public class Reflections {
      *
      * @param clazz Class对象
      * @return java.lang.Object
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/3/5 14:32
      */
     public static Object getObjInstance(Class clazz) {
@@ -415,7 +415,7 @@ public class Reflections {
      * @param value     值
      * @param fieldType 属性类型
      * @return java.lang.Object
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/3/5 13:41
      */
     public static Object getValue(String value, String fieldType) {
@@ -448,7 +448,7 @@ public class Reflections {
      * @param bean    实体Bean
      * @param isCheck 是否需要检查
      * @return int
-     * @author WCNGS@QQ.COM
+     * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2018/4/9 10:24
      * @since
      */

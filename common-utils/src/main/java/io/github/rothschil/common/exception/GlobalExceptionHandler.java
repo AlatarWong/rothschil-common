@@ -16,7 +16,7 @@ import javax.annotation.Priority;
 /**
  * 全局异常处理 对统一返回实体 进行封装 Handler
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/9/23 15:03
  */
 @Priority(value=1)

@@ -23,7 +23,7 @@ import java.util.List;
  *  <li>将系统自带的JSON序列化改为 FastJson</li>
  *  <li>将统一处理响应消息拦截器加入到应用的上下文中</li>
  * </ul>
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/11/18 11:13
  * @since 1.0.0
 */

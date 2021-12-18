@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 /**
  * 常量信息，可以在此基础上拓展
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2020/9/9 15:00
  * @since 1.0.0
  */

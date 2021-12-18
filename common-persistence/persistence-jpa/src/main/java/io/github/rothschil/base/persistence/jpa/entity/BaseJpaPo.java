@@ -14,7 +14,7 @@ import java.io.Serializable;
  * 数据库是Oracle子类只需要在类头上加 @SequenceGenerator(name="seq", sequenceName="你的sequence名字")
  * <p/>
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/12/18 10:53
  * @since 1.0.0
  */

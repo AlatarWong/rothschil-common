@@ -13,8 +13,6 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
         exclude group: 'org.springframework.boot', module: 'spring-boot-autoconfigure'
     }
-
-
 }
 
 jar.enabled = true

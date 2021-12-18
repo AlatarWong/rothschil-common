@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 /**
  * 精确的浮点数运算
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2020/6/20 21:36
  * @since 1.0.0
  */

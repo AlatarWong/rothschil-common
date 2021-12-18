@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 定义的异常错误实体类
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 20/11/18 10:42
  * @since 1.0.0
  */

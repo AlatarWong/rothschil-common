@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 操作日志实体，可用于持久化
  *
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/12/3 15:06
  * @since 1.0.0
  */

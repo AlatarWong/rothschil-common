@@ -29,7 +29,7 @@ import java.nio.channels.FileChannel;
  *　　　┗┻┛　┗┻┛
  * @ClassName FileUtil
  * @Description 
- * @author WCNGS@QQ.COM
+ * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2018/8/31 16:37
  * @since 1.0.0
 */
