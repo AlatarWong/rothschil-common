@@ -1,7 +1,6 @@
 package io.github.rothschil.base.aop.queue;
 
 import io.github.rothschil.base.aop.queue.handler.TaskHandlerble;
-import io.github.rothschil.common.utils.thread.ThreadPoolsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
