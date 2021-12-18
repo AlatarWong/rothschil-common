@@ -25,27 +25,30 @@ dependencies {
 
     api(libraries.'spring-boot-starter-aop') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
-        exclude group: "org.springframework.boot", module: 'spring-boot-starter-logging'
+        exclude group: 'org.apache.logging.log4j', module: '*'
+        exclude group: "org.springframework.boot", module: 'spring-boot-starter'
     }
 
     api(libraries.'spring-boot-starter-thymeleaf') {
-        exclude group: 'org.thymeleaf', module: 'thymeleaf'
         exclude group: 'org.slf4j', module: 'slf4j-api'
-        exclude group: "org.springframework.boot", module: 'spring-boot-starter-logging'
+        exclude group: 'org.thymeleaf', module: 'thymeleaf'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
     }
 
     api(libraries.'thymeleaf') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
+
     }
 
     api(libraries.'spring-boot-starter-logging') {
-        exclude group: '*', module: '*'
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
     }
 
     implementation 'com.zaxxer:HikariCP:3.4.5'
 
     api(libraries.'spring-boot-starter-web') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
 //        exclude group:'org.hibernate.validator', module: 'hibernate-validator'
     }
 
@@ -63,13 +66,17 @@ dependencies {
         exclude group: 'commons-io', module: 'commons-io'
     }
 
+    api(libraries.'spring-boot-starter'){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
     compileOnly(libraries.'spring-tx')
 //    api(libraries.'spring-boot-configuration-processor'){
 //        exclude group:'commons-io', module: 'commons-io'
 //    }
 
-
     api group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+
     api group: 'org.hyperic', name: 'sigar', version: '1.6.4'
 
     api(libraries.'commons-httpclient') {
@@ -77,12 +84,28 @@ dependencies {
         exclude group: 'commons-codec', module: 'commons-codec'
     }
 
-    api group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-    api group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    api('io.springfox:springfox-swagger2:3.0.0'){
+        exclude group:  'org.springframework',module : 'spring-beans'
+        exclude group:  'org.springframework',module : 'spring-context'
+        exclude group:  'org.springframework',module : 'spring-aop'
+        exclude group: 'com.google.guava' ,module : 'guava'
+        exclude group: 'com.fasterxml',module : 'classmate'
+        exclude group:  'org.slf4j',module : 'slf4j-api'
+        exclude group:  'net.bytebuddy',module : 'byte-buddy'
+
+    }
+    api('io.springfox:springfox-swagger-ui:3.0.0'){
+        exclude group: 'com.google.guava', module : 'guava'
+        exclude group: 'com.fasterxml', module : 'classmate'
+        exclude group: 'org.slf4j',module : 'slf4j-api'
+    }
     api("commons-net:commons-net:3.8.0")
     api("com.jcraft:jsch:0.1.55")
 
-    api 'cn.smallbun.screw:screw-core:1.0.5'
+    api('cn.smallbun.screw:screw-core:1.0.5'){
+        exclude group: 'org.freemarker',module : 'freemarker'
+        exclude group: 'com.alibaba',module : 'fastjson'
+    }
 
 }
 

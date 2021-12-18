@@ -63,6 +63,7 @@ subprojects {
         testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
         implementation("org.projectlombok:lombok:$lombokVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion") {
+            exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
 //            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 //            exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
 //            exclude group: 'net.minidev', module: 'json-smart'
