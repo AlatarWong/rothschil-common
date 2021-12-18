@@ -169,26 +169,26 @@ public interface FileInfoMapper extends BaseMapper<FileInfo,Long> {
   </sql>
 
   <insert id="batchInsert" parameterType="java.util.List">
-      <--演示用-->
+      <!--演示用-->
   </insert>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    <--演示用-->
+    <!--演示用-->
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    <--演示用-->
+    <!--演示用-->
   </delete>
   <insert id="insert" parameterType="io.github.rothschil.domain.entity.FileInfo" >
-    <--演示用-->
+    <!--演示用-->
   </insert>
   <insert id="insertSelective" parameterType="io.github.rothschil.domain.entity.FileInfo" >
-    <--演示用-->    
+    <!--演示用-->    
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="io.github.rothschil.domain.entity.FileInfo" >
-    <--演示用-->
+    <!--演示用-->
   </update>
   <update id="updateByPrimaryKey" parameterType="io.github.rothschil.domain.entity.FileInfo" >
-    <--演示用-->
+    <!--演示用-->
   </update>
 </mapper>
 
