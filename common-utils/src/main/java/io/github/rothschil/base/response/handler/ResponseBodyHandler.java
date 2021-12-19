@@ -35,7 +35,7 @@ import java.util.ArrayList;
  * @date 2018/4/26 - 16:23
  * @since 1.0.0
  */
-@ControllerAdvice(annotations = {Controller.class})
+@ControllerAdvice(annotations = {Controller.class},basePackages = {"io.github"})
 @Primary
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 

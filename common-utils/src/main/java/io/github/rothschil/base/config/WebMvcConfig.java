@@ -27,6 +27,7 @@ import java.util.List;
  * @date 20/11/18 11:13
  * @since 1.0.0
 */
+@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private ResponseBodyInterceptor responseBodyInterceptor;
