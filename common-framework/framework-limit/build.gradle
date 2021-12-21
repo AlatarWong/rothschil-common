@@ -1,7 +1,7 @@
 archivesBaseName = 'framework-limit'
 
 dependencies {
-    implementation(project(':common-utils'))
-    implementation(project(':common-persistence:persistence-redis'))
+    impl(project(':common-utils'))
+    api(project(':common-persistence:persistence-redis'))
 }
 jar.enabled = true
