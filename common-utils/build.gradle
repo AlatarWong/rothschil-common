@@ -10,7 +10,7 @@ dependencies {
             libraries.'commons-io',
             libraries.'commons-lang3',
             libraries.'commons-codec',
-            libraries.'commons-configuration',
+
             libraries.'mysql-connector-java',
             libraries.'javax.servlet-api',
             libraries.'fastjson',
@@ -18,6 +18,10 @@ dependencies {
             libraries.'javax-annotation',
             libraries.'hutool-all'
     )
+
+    api(libraries.'commons-configuration') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
 
     api(libraries.'commons-text') {
         exclude group: 'org.apache.commons', module: 'commons-lang3'
@@ -42,9 +46,9 @@ dependencies {
 
     api(libraries.'spring-boot-starter-logging') {
 //        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
     }
 
-    implementation 'com.zaxxer:HikariCP:3.4.5'
 
     api(libraries.'spring-boot-starter-web') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
@@ -52,10 +56,10 @@ dependencies {
 //        exclude group:'org.hibernate.validator', module: 'hibernate-validator'
     }
 
-//    api(libraries.'hibernate-validator'){
-//        exclude group:'org.jboss.logging', module: 'jboss-logging'
-//        exclude group:'com.fasterxml', module: 'classmate'
-//    }
+    api(libraries.'hibernate-validator'){
+        exclude group:'org.jboss.logging', module: 'jboss-logging'
+        exclude group:'com.fasterxml', module: 'classmate'
+    }
 
     api(libraries.'druid-spring-boot-starter') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
@@ -70,36 +74,40 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 
+    api(libraries.'spring-boot-starter-jdbc')
+
     compileOnly(libraries.'spring-tx')
 //    api(libraries.'spring-boot-configuration-processor'){
 //        exclude group:'commons-io', module: 'commons-io'
 //    }
 
-    api group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
-
-    api group: 'org.hyperic', name: 'sigar', version: '1.6.4'
+    api(libraries.'ojdbc6')
+    api(libraries.'slf4j-api')
+    api(libraries.'sigar')
 
     api(libraries.'commons-httpclient') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'commons-codec', module: 'commons-codec'
     }
 
-    api('io.springfox:springfox-swagger2:3.0.0'){
-        exclude group:  'org.springframework',module : 'spring-beans'
-        exclude group:  'org.springframework',module : 'spring-context'
-        exclude group:  'org.springframework',module : 'spring-aop'
-        exclude group: 'com.google.guava' ,module : 'guava'
-        exclude group: 'com.fasterxml',module : 'classmate'
-        exclude group:  'org.slf4j',module : 'slf4j-api'
-        exclude group:  'net.bytebuddy',module : 'byte-buddy'
+//    api(libraries.'knife4j'){
+//        exclude group: 'org.springframework', module : 'spring-beans'
+//        exclude group: 'org.springframework', module : 'spring-context'
+//        exclude group: 'org.springframework', module : 'spring-aop'
+//        exclude group: 'io.swagger', module : 'swagger-annotations'
+//        exclude group: 'io.swagger', module : 'swagger-models'
+//        exclude group: 'org.apache.commons', module : 'commons-lang3'
+//        exclude group: 'com.fasterxml.jackson.core', module : 'jackson-annotations'
+//        exclude group: 'com.fasterxml.jackson.core', module : 'jackson-databind'
+//        exclude group: 'com.fasterxml.jackson.dataformat', module : 'jackson-dataformat-yaml'
+//        exclude group: 'javax.validation', module : 'validation-api'
+//        exclude group: 'net.bytebuddy', module : 'byte-buddy'
+//        exclude group: 'com.google.guava', module : 'guava'
+//        exclude group: 'org.slf4j',module : 'slf4j-api'
+//    }
 
-    }
-    api('io.springfox:springfox-swagger-ui:3.0.0'){
-        exclude group: 'com.google.guava', module : 'guava'
-        exclude group: 'com.fasterxml', module : 'classmate'
-        exclude group: 'org.slf4j',module : 'slf4j-api'
-    }
-    api("commons-net:commons-net:3.8.0")
+    api(libraries."commons-net")
+
     api("com.jcraft:jsch:0.1.55")
 
     api('cn.smallbun.screw:screw-core:1.0.5'){

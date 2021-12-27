@@ -18,12 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import springfox.documentation.swagger.web.SwaggerResource;
-import springfox.documentation.swagger.web.UiConfiguration;
 
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 
 
 /**
@@ -91,6 +88,6 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
      * @date 2021/12/15-9:52
      **/
     private boolean vail(Object body) {
-        return (body instanceof R || body instanceof ErR || body instanceof UiConfiguration || (body instanceof ArrayList && ((ArrayList<?>) body).get(0) instanceof SwaggerResource));
+        return (body instanceof R || body instanceof ErR);
     }
 }
