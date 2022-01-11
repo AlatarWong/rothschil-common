@@ -4,7 +4,6 @@ archivesBaseName = 'common-utils'
 jar.enabled = true
 
 dependencies {
-
     api(
             libraries.'commons-compress',
             libraries.'commons-io',
@@ -41,7 +40,6 @@ dependencies {
 
     api(libraries.'thymeleaf') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
-
     }
 
     api(libraries.'spring-boot-starter-logging') {
@@ -49,14 +47,13 @@ dependencies {
         exclude group: 'org.slf4j', module: 'slf4j-api'
     }
 
-
     api(libraries.'spring-boot-starter-web') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
-//        exclude group:'org.hibernate.validator', module: 'hibernate-validator'
+        exclude group:'org.hibernate.validator', module: 'hibernate-validator'
     }
 
-    api(libraries.'hibernate-validator'){
+    api(libraries.'hibernateValidator'){
         exclude group:'org.jboss.logging', module: 'jboss-logging'
         exclude group:'com.fasterxml', module: 'classmate'
     }

@@ -2,7 +2,6 @@ archivesBaseName = 'persistence-jpa'
 jar.enabled = true
 dependencies {
     api(project(':common-utils'))
-    implementation("com.alibaba:fastjson:1.2.78")
     api("org.springframework.boot:spring-boot-starter-data-jpa:$SpringBootVersion"){
 //        exclude group:'net.bytebuddy', module: 'byte-buddy'
 //        exclude group:'org.slf4j', module: 'slf4j-api'
