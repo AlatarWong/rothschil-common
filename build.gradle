@@ -40,8 +40,7 @@ allprojects {
     bootJar {
         enabled = false
     }
-    
-    
+
 }
 
 // 只针对子目录进行生效
@@ -73,7 +72,7 @@ subprojects {
     }
 
     test {
-//        useJUnitPlatform()
+        useJUnitPlatform()
     }
 
 

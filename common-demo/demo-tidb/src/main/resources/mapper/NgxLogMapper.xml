@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.rothschil.domain.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="io.github.rothschil.domain.entity.NgxLog">
+    <id column="log_id" jdbcType="BIGINT" property="id" />
+    <result column="log_time" jdbcType="VARCHAR" property="time" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="host" jdbcType="VARCHAR" property="host" />
+<!--    <result column="request" jdbcType="VARCHAR" property="request" />-->
+<!--    <result column="requestUri" jdbcType="VARCHAR" property="requestUri" />-->
+<!--    <result column="requestBody" jdbcType="VARCHAR" property="requestBody" />-->
+    <result column="requestMethod" jdbcType="VARCHAR" property="requestMethod" />
+    <result column="requestTime" jdbcType="VARCHAR" property="requestTime" />
+    <result column="upstreamResponseTime" jdbcType="VARCHAR" property="upstreamResponseTime" />
+<!--    <result column="isArgs" jdbcType="VARCHAR" property="isArgs" />-->
+<!--    <result column="args" jdbcType="VARCHAR" property="args" />-->
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="httpHost" jdbcType="VARCHAR" property="httpHost" />
+<!--    <result column="referer" jdbcType="VARCHAR" property="referer" />-->
+    <result column="ua" jdbcType="VARCHAR" property="ua" />
+    <result column="upstreamAddr" jdbcType="VARCHAR" property="upstreamAddr" />
+    <result column="proxyaddxforwardedFor" jdbcType="VARCHAR" property="proxyaddxforwardedFor" />
+    <result column="httpXForwardedFor" jdbcType="VARCHAR" property="httpXForwardedFor" />
+    <result column="nginxVersion" jdbcType="VARCHAR" property="nginxVersion" />
+  </resultMap>
+
+<!--  <insert id="insertBatchByOn2" parameterType="java.util.List">
+    insert into tb_ngx_log (log_time, uri, host, request, requestUri, requestBody, requestMethod, requestTime, upstreamResponseTime, isArgs, args, status, uid, httpHost, referer, ua, upstreamAddr, proxyaddxforwardedFor, httpXForwardedFor, nginxVersion) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.time,jdbcType=VARCHAR}, #{item.uri,jdbcType=VARCHAR}, #{item.host,jdbcType=VARCHAR},
+      #{item.request,jdbcType=VARCHAR}, #{item.requestUri,jdbcType=VARCHAR}, #{item.requestBody,jdbcType=VARCHAR},
+      #{item.requestMethod,jdbcType=VARCHAR}, #{item.requestTime,jdbcType=VARCHAR}, #{item.upstreamResponseTime,jdbcType=VARCHAR},
+      #{item.isArgs,jdbcType=VARCHAR}, #{item.args,jdbcType=VARCHAR}, #{item.status,jdbcType=SMALLINT},
+      #{item.uid,jdbcType=VARCHAR}, #{item.httpHost,jdbcType=VARCHAR}, #{item.referer,jdbcType=VARCHAR},
+      #{item.ua,jdbcType=VARCHAR}, #{item.upstreamAddr,jdbcType=VARCHAR}, #{item.proxyaddxforwardedFor,jdbcType=VARCHAR},
+      #{item.httpXForwardedFor,jdbcType=VARCHAR},#{item.nginxVersion,jdbcType=VARCHAR})
+    </foreach>
+  </insert>-->
+
+  <insert id="insertBatchByOn" parameterType="java.util.List">
+    insert into tb_ngx_log (log_time, uri, host, requestMethod, requestTime, upstreamResponseTime,  status, uid, httpHost,ua, upstreamAddr, proxyaddxforwardedFor, httpXForwardedFor, nginxVersion) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.time,jdbcType=VARCHAR}, #{item.uri,jdbcType=VARCHAR}, #{item.host,jdbcType=VARCHAR},
+      #{item.requestMethod,jdbcType=VARCHAR}, #{item.requestTime,jdbcType=VARCHAR}, #{item.upstreamResponseTime,jdbcType=VARCHAR},
+       #{item.status,jdbcType=SMALLINT},#{item.uid,jdbcType=VARCHAR}, #{item.httpHost,jdbcType=VARCHAR},
+      #{item.ua,jdbcType=VARCHAR}, #{item.upstreamAddr,jdbcType=VARCHAR}, #{item.proxyaddxforwardedFor,jdbcType=VARCHAR},
+      #{item.httpXForwardedFor,jdbcType=VARCHAR},#{item.nginxVersion,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+</mapper>
