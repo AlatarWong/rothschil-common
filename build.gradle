@@ -74,8 +74,6 @@ subprojects {
     test {
         useJUnitPlatform()
     }
-
-
     def env = System.getProperty('env') ?: 'dev'
     sourceSets {
         main {

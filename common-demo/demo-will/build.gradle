@@ -1,10 +1,11 @@
-archivesBaseName = 'demo-tidb'
+archivesBaseName = 'demo-will'
 dependencies {
-    implementation(project(':common-persistence:persistence-mybatis')){
+    implementation(project(':common-utils')){
         exclude(group:'org.hibernate.validator',module:'hibernate-validator')
         exclude group:'com.oracle', module: 'ojdbc6'
         exclude group:'com.alibaba', module: 'druid-spring-boot-starter'
-        exclude group:'org.glassfish.jaxb', module: 'jaxb-runtime'
+        exclude group:'org.springframework.boot', module: 'spring-boot-starter-jdbc'
+        exclude group:'mysql', module: 'mysql-connector-java'
     }
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.1.Final'
 }
