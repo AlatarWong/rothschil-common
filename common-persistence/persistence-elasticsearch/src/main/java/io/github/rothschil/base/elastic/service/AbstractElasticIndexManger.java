@@ -85,20 +85,16 @@ public abstract class AbstractElasticIndexManger {
 
     /**
      * 查询匹配条件，支持同时对多个索引进行查询，只要将索引名称按照 字符数组形式组成即可
-     *
+     *  默认为第一页，数量为 20
      * @param builder    BoolQueryBuilder类型查询实例
      * @param clazz      Class对象
      * @param indexNames 索引名，可以一次性查询多个
-     * @return long 最终数量
+     * @return SearchHits 命中结果的数据集
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
-    protected SearchHits search(BoolQueryBuilder builder, Class<? extends BasePo> clazz, String... indexNames) {
-        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        nativeSearchQueryBuilder.withQuery(builder);
-        Pageable pageable = PageRequest.of(1, 20);
-        nativeSearchQueryBuilder.withPageable(pageable);
-        return elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(), clazz, IndexCoordinates.of(indexNames));
+    protected SearchHits<? extends BasePo> search(BoolQueryBuilder builder, Class<? extends BasePo> clazz, String... indexNames) {
+        return search(1, 20,builder,clazz,indexNames);
     }
 
     /**
@@ -113,7 +109,7 @@ public abstract class AbstractElasticIndexManger {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/11/1-9:26
      **/
-    protected SearchHits<? extends BasePo> searchPage(int page, int size, BoolQueryBuilder builder, Class<? extends BasePo> clazz, String... indexNames) {
+    protected SearchHits<? extends BasePo> search(int page, int size, BoolQueryBuilder builder, Class<? extends BasePo> clazz, String... indexNames) {
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withQuery(builder);
         Pageable pageable = PageRequest.of(page, size);

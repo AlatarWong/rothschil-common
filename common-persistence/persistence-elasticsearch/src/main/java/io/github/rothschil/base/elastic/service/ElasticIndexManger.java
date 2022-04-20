@@ -536,7 +536,7 @@ public class ElasticIndexManger extends AbstractElasticIndexManger {
     protected SearchHits<? extends BasePo> searchPage(int page, int size, BoolCondition bool,Class<? extends BasePo> clazz, String... indexNames) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         setBuilders(builder,bool);
-        return searchPage(page,size,builder, clazz, indexNames);
+        return search(page,size,builder, clazz, indexNames);
     }
 
 }
