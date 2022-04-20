@@ -29,7 +29,7 @@ ext.versions = [
         springBootVersion:"$SpringBootVersion"
 ]
 ext.libraries = [
-        'hibernate-validator':"org.hibernate.validator:hibernate-validator:${versions.hibernateValidatorVersion}",
+        'hibernateValidator':"org.hibernate.validator:hibernate-validator:${versions.hibernateValidatorVersion}",
         'commons-compress':"org.apache.commons:commons-compress:${versions.commonsCompressVersion}",
         'commons-text':"org.apache.commons:commons-text:${versions.commonsTextVersion}",
         'commons-fileupload':"commons-fileupload:commons-fileupload:${versions.commonsFileuploadVersion}",

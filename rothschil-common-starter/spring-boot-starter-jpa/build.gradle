@@ -1,8 +1,0 @@
-archivesBaseName = 'spring-boot-starter-jpa'
-jar.enabled = true
-dependencies {
-    api(project(':common-persistence:persistence-jpa'))
-    api 'org.springframework.boot:spring-boot-autoconfigure'
-    api 'org.springframework.boot:spring-boot-configuration-processor'
-
-}

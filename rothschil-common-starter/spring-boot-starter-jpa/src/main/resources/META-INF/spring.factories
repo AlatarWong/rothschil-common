@@ -1,8 +1,0 @@
-# org.springframework.context.ApplicationListener=\io.github.rothschil.base.property.listener.PropListener
-
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\io.github.rothschil.base.aop.core.Aspect2Annotaion,\
-  io.github.rothschil.base.aop.core.Aspect2Package,\io.github.rothschil.base.config.ThreadPoolConfig,\
-  io.github.rothschil.base.config.Global,\io.github.rothschil.base.config.WebMvcConfig,\
-  io.github.rothschil.base.response.interceptor.ResponseBodyInterceptor,\
-  io.github.rothschil.common.queue.AppLogHandler,\io.github.rothschil.common.remote.core.support.DownloadFile,\
-  io.github.rothschil.starter.JpaAutoConfiguration,\io.github.rothschil.base.aop.queue.AbstractQueue
