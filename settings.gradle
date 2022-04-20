@@ -5,7 +5,12 @@ include 'common-persistence:persistence-jpa'
 include 'common-persistence:persistence-mybatis'
 include 'common-persistence:persistence-elasticsearch'
 include 'common-persistence:persistence-redis'
+include 'common-persistence:persistence-mongodb'
 include 'common-framework:framework-limit'
+//include 'common-demo:demo-tidb'
+//include 'common-demo:demo-will'
+
+
 
 
 

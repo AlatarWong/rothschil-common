@@ -47,7 +47,6 @@ dependencies {
         exclude group: 'org.slf4j', module: 'slf4j-api'
     }
 
-
     api(libraries.'spring-boot-starter-web') {
         exclude group: 'org.slf4j', module: 'slf4j-api'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
@@ -87,22 +86,6 @@ dependencies {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'commons-codec', module: 'commons-codec'
     }
-
-//    api(libraries.'knife4j'){
-//        exclude group: 'org.springframework', module : 'spring-beans'
-//        exclude group: 'org.springframework', module : 'spring-context'
-//        exclude group: 'org.springframework', module : 'spring-aop'
-//        exclude group: 'io.swagger', module : 'swagger-annotations'
-//        exclude group: 'io.swagger', module : 'swagger-models'
-//        exclude group: 'org.apache.commons', module : 'commons-lang3'
-//        exclude group: 'com.fasterxml.jackson.core', module : 'jackson-annotations'
-//        exclude group: 'com.fasterxml.jackson.core', module : 'jackson-databind'
-//        exclude group: 'com.fasterxml.jackson.dataformat', module : 'jackson-dataformat-yaml'
-//        exclude group: 'javax.validation', module : 'validation-api'
-//        exclude group: 'net.bytebuddy', module : 'byte-buddy'
-//        exclude group: 'com.google.guava', module : 'guava'
-//        exclude group: 'org.slf4j',module : 'slf4j-api'
-//    }
 
     api(libraries."commons-net")
 

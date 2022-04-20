@@ -4,7 +4,6 @@ import io.github.rothschil.base.persistence.redis.bo.RedisInfo;
 import io.github.rothschil.base.persistence.redis.enums.CommandEunm;
 import org.redisson.client.RedisConnection;
 import org.redisson.client.codec.StringCodec;
-import org.redisson.client.protocol.RedisCommands;
 import org.redisson.client.protocol.RedisStrictCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 

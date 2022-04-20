@@ -1,40 +1,31 @@
 package io.github.rothschil.base.aop.queue;
 
 import io.github.rothschil.base.aop.queue.handler.TaskHandlerble;
+import io.github.rothschil.common.utils.thread.PippinThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
-/** 抽象队列模式，为体现 "开闭"的设计模式，此处仅仅定义队列的通用方法，借鉴策略的思想，
+/**
+ * 抽象队列模式，为体现 "开闭"的设计模式，此处仅仅定义队列的通用方法，借鉴策略的思想，
  * 将所有关于队列中 Handler 具体要处理的任务，则交由派生类去实现 接口 {@link TaskHandlerble} 并重写 方法
  * process，达到满足不同业务场景的需求
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/12/4 - 17:45
  * @since 1.0.0
  */
-public abstract class AbstractQueue<T extends TaskHandlerble> {
+@Component
+public class AbstractQueue<T extends TaskHandlerble> {
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractQueue.class);
 
-    protected final static String CLASS_NAME="QUEUE";
-
-    private LinkedBlockingQueue<T> queue;
-    private ThreadPoolExecutor pool;
-
-    public AbstractQueue(){
-        this.queue = new LinkedBlockingQueue<>(200);
-        this.pool = new ThreadPoolExecutor(4, 3, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
-    }
-
-    public AbstractQueue(LinkedBlockingQueue<T> queue){
-        this.queue=queue;
-    }
+    private LinkedBlockingQueue<T> queue = new LinkedBlockingQueue<>(200);
+    private ThreadPoolExecutor pool = getThread();
 
     /**
      * 检查服务是否运行
@@ -54,13 +45,12 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
      **/
     @PostConstruct
     public void init() {
-
         threadStatus = pool.submit(() -> {
             while (running) {
                 try {
-                    // 队列中不存在元素 则不处理
                     if (!queue.isEmpty()) {
-                        T handler = (T)queue.take();
+                        LOG.error("QUEUE IS NOT EMPTY");
+                        T handler = (T) queue.take();
                         handler.process();
                     }
                 } catch (InterruptedException e) {
@@ -81,6 +71,7 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
     @PreDestroy
     public void destroys() {
         running = false;
+        LOG.error("服务停止，对象销毁");
         pool.shutdownNow();
     }
 
@@ -139,9 +130,9 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
     public void interrupted() {
         if (!running) {
             LOG.warn("service is stop");
-        } else{
+        } else {
             queue.clear();
-            running=false;
+            running = false;
         }
     }
 
@@ -153,6 +144,32 @@ public abstract class AbstractQueue<T extends TaskHandlerble> {
      **/
     public int getQueueSize() {
         return queue.size();
+    }
+
+    /**
+     * 队列运行状态
+     *
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/14-22:21
+     **/
+    public boolean isRunning() {
+        return running;
+    }
+
+    /**
+     * 队列运行状态
+     *
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     * @date 2021/10/14-22:21
+     **/
+    public Future<?> threadStatus() {
+        return threadStatus;
+    }
+
+    private ThreadPoolExecutor getThread() {
+        ThreadFactory threadFactory = new PippinThreadFactory("QUEUE");
+        RejectedExecutionHandler policy = new ThreadPoolExecutor.AbortPolicy();
+        return new ThreadPoolExecutor(1, 6, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(300), threadFactory, policy);
     }
 
 }
