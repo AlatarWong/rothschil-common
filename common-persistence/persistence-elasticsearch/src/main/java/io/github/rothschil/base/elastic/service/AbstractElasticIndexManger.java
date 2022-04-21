@@ -1,16 +1,16 @@
 package io.github.rothschil.base.elastic.service;
 
 
-import io.github.rothschil.base.elastic.entity.BoolCondition;
 import io.github.rothschil.base.elastic.entity.AtomicCondition;
+import io.github.rothschil.base.elastic.entity.BoolCondition;
 import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.po.BasePo;
+import io.github.rothschil.common.tuple.ReTwoTuple;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.common.collect.Tuple;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.core.TimeValue;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -271,25 +271,25 @@ public abstract class AbstractElasticIndexManger {
 
     public QueryBuilder getQueryBuilder(AtomicCondition cds) {
         QueryBuilder queryBuilder;
-        Tuple tuple = cds.getTuple();
+        ReTwoTuple tuple = cds.getTuple();
         switch (cds.getStatus()) {
             case (Constants.SUFFIX_QUERY):
-                queryBuilder = QueryBuilders.wildcardQuery(cds.getField(), Constants.MULTI_CHARACTER + tuple.v1());
+                queryBuilder = QueryBuilders.wildcardQuery(cds.getField(), Constants.MULTI_CHARACTER + tuple.fp);
                 break;
             case (Constants.SUFFIX_SINGLE_QUERY):
-                queryBuilder = QueryBuilders.wildcardQuery(cds.getField(), Constants.SINGLE_CHARACTER + tuple.v1());
+                queryBuilder = QueryBuilders.wildcardQuery(cds.getField(), Constants.SINGLE_CHARACTER + tuple.fp);
                 break;
             case (Constants.RANGE_QUERY):
-                queryBuilder = QueryBuilders.rangeQuery(cds.getField()).from(tuple.v1()).to(tuple.v2());
+                queryBuilder = QueryBuilders.rangeQuery(cds.getField()).from(tuple.fp).to(tuple.st);
                 break;
             case (Constants.PREFIX_QUERY):
-                queryBuilder = QueryBuilders.prefixQuery(cds.getField(), tuple.v1().toString());
+                queryBuilder = QueryBuilders.prefixQuery(cds.getField(), tuple.fp.toString());
                 break;
             case (Constants.REG_QUERY):
-                queryBuilder = QueryBuilders.regexpQuery(cds.getField(), tuple.v1().toString());
+                queryBuilder = QueryBuilders.regexpQuery(cds.getField(), tuple.fp.toString());
                 break;
             default:
-                queryBuilder = QueryBuilders.termQuery(cds.getField(), tuple.v1().toString());
+                queryBuilder = QueryBuilders.termQuery(cds.getField(), tuple.fp.toString());
                 break;
         }
         return queryBuilder;

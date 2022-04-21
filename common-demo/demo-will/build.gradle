@@ -7,6 +7,8 @@ dependencies {
         exclude group:'org.springframework.boot', module: 'spring-boot-starter-jdbc'
         exclude group:'mysql', module: 'mysql-connector-java'
     }
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.1.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 bootJar.enabled = true

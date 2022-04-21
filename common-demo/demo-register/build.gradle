@@ -1,5 +1,6 @@
 archivesBaseName = 'demo-register'
 dependencies {
-    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.1.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 }
 bootJar.enabled = true

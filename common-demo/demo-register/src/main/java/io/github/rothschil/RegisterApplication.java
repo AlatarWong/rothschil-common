@@ -1,19 +1,20 @@
 package io.github.rothschil;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2021/11/6 - 21:27
  * @since 1.0.0
  */
-@MapperScan("io.github.rothschil.**.mapper")
+
+@EnableEurekaServer
 @SpringBootApplication
-public class TidbApplication {
+public class RegisterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TidbApplication.class, args);
+        SpringApplication.run(RegisterApplication.class, args);
     }
 }

@@ -1,6 +1,6 @@
 package io.github.rothschil.base.elastic.entity;
 
-import org.elasticsearch.common.collect.Tuple;
+import io.github.rothschil.common.tuple.ReTwoTuple;
 
 /**
  * 构建布尔类查询基础的基本单元，当前匹配可支持的类型有：前缀、后缀、精确、正则、区间五大类
@@ -24,7 +24,7 @@ public class AtomicCondition {
     /**
      * 元组，可随意存储两个值
      */
-    private Tuple tuple;
+    private ReTwoTuple tuple;
 
 
     public int getStatus() {
@@ -43,11 +43,11 @@ public class AtomicCondition {
         this.field = field;
     }
 
-    public Tuple getTuple() {
+    public ReTwoTuple getTuple() {
         return tuple;
     }
 
-    public void setTuple(Tuple tuple) {
+    public void setTuple(ReTwoTuple tuple) {
         this.tuple = tuple;
     }
 }
