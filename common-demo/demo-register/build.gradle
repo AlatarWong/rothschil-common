@@ -1,0 +1,5 @@
+archivesBaseName = 'demo-register'
+dependencies {
+    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.1.Final'
+}
+bootJar.enabled = true
