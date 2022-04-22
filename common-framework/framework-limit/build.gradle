@@ -3,5 +3,6 @@ archivesBaseName = 'framework-limit'
 dependencies {
     api(project(':common-utils'))
     api(project(':common-persistence:persistence-redis'))
+    api('cn.keking.project:kk-anti-reptile:1.0.0-RELEASE')
 }
 jar.enabled = true
