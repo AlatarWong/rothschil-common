@@ -133,13 +133,10 @@ public class ThreadPoolsUtil {
      * @date 20/11/19 16:13
      */
     public static int getCorePoolSize(int corePoolSize) {
-        int cess = Runtime.getRuntime().availableProcessors();
+        int ceases = Runtime.getRuntime().availableProcessors();
         //核心线程池大小 超出 CPU数量两倍
         int bic = 2;
-        if (corePoolSize > cess * bic) {
-            corePoolSize = cess * bic;
-        }
-        return corePoolSize;
+        return ceases * bic;
     }
 
     /**
