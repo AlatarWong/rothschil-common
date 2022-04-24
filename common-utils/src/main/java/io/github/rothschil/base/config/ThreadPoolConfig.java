@@ -32,8 +32,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 public class ThreadPoolConfig implements AsyncConfigurer {
 
-
-
     /**
      * 定义线程池任务
      *

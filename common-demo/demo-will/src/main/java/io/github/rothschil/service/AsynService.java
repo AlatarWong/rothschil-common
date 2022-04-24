@@ -34,7 +34,6 @@ public class AsynService {
             e.printStackTrace();
         }
         log.warn(selector);
-        int s = 3/0;
         return CompletableFuture.completedFuture("Update "+ Thread.currentThread().getName());
 
     }
