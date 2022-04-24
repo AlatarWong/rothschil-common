@@ -9,7 +9,7 @@ include 'common-persistence:persistence-mongodb'
 include 'common-framework:framework-limit'
 include 'common-demo:demo-register'
 include 'common-demo:demo-will'
-
+include 'common-demo:demo-gateway'
 
 
 
