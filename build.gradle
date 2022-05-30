@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'java-library'
-    id 'org.springframework.boot' version '2.6.3'
+    id 'org.springframework.boot' version '2.6.8'
 }
 
 
@@ -59,7 +59,7 @@ subprojects {
     dependencyManagement {
 
         imports {
-            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+//            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${SpringCloudVersion}"
         }
 
