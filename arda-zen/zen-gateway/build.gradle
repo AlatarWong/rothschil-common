@@ -1,0 +1,9 @@
+archivesBaseName = 'zen-liquibase'
+dependencies {
+    implementation(project(':arda-common:common-persistence:persistence-jpa')){
+        exclude group:'mysql', module: 'mysql-connector-java'
+    }
+    implementation('org.liquibase:liquibase-core:4.15.0')
+    implementation('com.github.wenhao:jpa-spec:3.1.0')
+}
+bootJar.enabled = true
