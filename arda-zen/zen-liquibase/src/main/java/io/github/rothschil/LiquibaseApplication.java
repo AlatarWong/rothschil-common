@@ -2,7 +2,6 @@ package io.github.rothschil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
@@ -11,11 +10,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @since 1.0.0
  */
 @EnableAsync
-@EnableDiscoveryClient
 @SpringBootApplication
-public class WillApplication {
+public class LiquibaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WillApplication.class, args);
+        SpringApplication.run(LiquibaseApplication.class, args);
     }
 }

@@ -1,10 +1,8 @@
 package io.github.rothschil.web;
 
-import cn.keking.anti_reptile.annotation.AntiReptile;
 import io.github.rothschil.service.AsynService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,13 +18,12 @@ public class AntiReptileController {
     @Autowired
     private AsynService asynService;
 
-    @AntiReptile
-    @GetMapping("")
+    @RequestMapping("")
     public String demo(){
         return "demo";
     }
 
-    @GetMapping("/asyn")
+    @RequestMapping("/asyn")
     public String asyn(){
         String selector = asynService.selector();
         asynService.update(selector);
@@ -34,7 +31,7 @@ public class AntiReptileController {
         return selector;
     }
 
-    @GetMapping("/asyn2")
+    @RequestMapping("/asyn2")
     public String asyn2(){
         String selector = asynService.selector();
         CompletableFuture<String> future = asynService.modification(selector);

@@ -7,9 +7,7 @@ include 'arda-common:common-persistence:persistence-elasticsearch'
 include 'arda-common:common-persistence:persistence-redis'
 include 'arda-common:common-persistence:persistence-mongodb'
 include 'arda-common:common-framework:framework-limit'
-include 'common-demo:demo-register'
-include 'common-demo:demo-will'
-include 'common-demo:demo-gateway'
+include 'arda-zen:zen-liquibase'
 
 
 
