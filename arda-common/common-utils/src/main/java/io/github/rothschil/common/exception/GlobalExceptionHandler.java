@@ -1,5 +1,6 @@
 package io.github.rothschil.common.exception;
 
+import io.github.rothschil.base.response.po.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import io.github.rothschil.base.response.enums.Status;
-import io.github.rothschil.base.response.po.ErR;
 
 import javax.annotation.Priority;
 
@@ -35,9 +35,9 @@ public class GlobalExceptionHandler {
      **/
     @ExceptionHandler(DrunkardException.class)
     @ResponseBody
-    public ErR handleWeathertopException(DrunkardException ex) {
+    public R handleWeathertopException(DrunkardException ex) {
         LOG.error("WeathertopRuntimeException code:{},msg:{}", ex.getStatus(), ex.getMessage());
-        return ErR.fail(ex.getStatus(), ex.getMessage());
+        return R.fail(ex.getStatus(), ex.getMessage());
     }
 
 
@@ -65,14 +65,14 @@ public class GlobalExceptionHandler {
      * @date 2018/4/26-16:54
      **/
     @ExceptionHandler(BindException.class)
-    public ErR handleBindException(BindException e) {
+    public R handleBindException(BindException e) {
         LOG.error("发生参数校验异常！原因是：", e);
-        return ErR.fail(Status.API_PARAM_EXCEPTION, e, e.getAllErrors().get(0).getDefaultMessage());
+        return R.fail(Status.API_PARAM_EXCEPTION, e, e.getAllErrors().get(0).getDefaultMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErR handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public R handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         LOG.error("发生参数校验异常！原因是：{}", e);
-        return ErR.fail(Status.API_PARAM_EXCEPTION, e, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        return R.fail(Status.API_PARAM_EXCEPTION, e, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 }

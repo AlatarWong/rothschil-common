@@ -1,7 +1,6 @@
 package io.github.rothschil.base.response.handler;
 
 import io.github.rothschil.base.response.interceptor.ResponseBodyInterceptor;
-import io.github.rothschil.base.response.po.ErR;
 import io.github.rothschil.base.response.po.R;
 import io.github.rothschil.common.constant.Constants;
 import org.springframework.context.annotation.Primary;
@@ -59,7 +58,7 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
     }
 
     /**
-     * 如果响应内容已经是 定义 {@link R} 和 {@link ErR} ，就不需要再额外处理，否则需要再包装一层
+     * 如果响应内容已经是 定义 {@link R} 和 {@link R} ，就不需要再额外处理，否则需要再包装一层
      *
      * @param body                响应消息
      * @param returnType          响应类型
@@ -88,6 +87,6 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
      * @date 2021/12/15-9:52
      **/
     private boolean vail(Object body) {
-        return (body instanceof R || body instanceof ErR);
+        return (body instanceof R);
     }
 }

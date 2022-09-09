@@ -20,6 +20,11 @@ public class R extends Result implements Serializable {
      */
     private Object data;
 
+    /**
+     * 错误
+     **/
+    private String exception;
+
     private R() {
     }
 
@@ -62,6 +67,27 @@ public class R extends Result implements Serializable {
         return r;
     }
 
+    public static R fail(Status status, Throwable e, String message) {
+        R erR = R.fail(status, e);
+        erR.setMessage(message);
+        return erR;
+    }
+
+    public static R fail(Status status, Throwable e) {
+        R erR = new R();
+        erR.setCode(status.getStatus());
+        erR.setMessage(status.getMsg());
+        erR.setException(e.getClass().getName());
+        return erR;
+    }
+
+    public static R fail(Integer code, String message) {
+        R erR = new R();
+        erR.setCode(code);
+        erR.setMessage(message);
+        return erR;
+    }
+
     public Object getData() {
         return data;
     }
@@ -69,4 +95,13 @@ public class R extends Result implements Serializable {
     public void setData(Object data) {
         this.data = data;
     }
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
+    }
+
 }
