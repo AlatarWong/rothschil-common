@@ -1,0 +1,15 @@
+archivesBaseName = 'zen-face-ai'
+dependencies {
+    api(project(':arda-common:common-utils')){
+        exclude group:'com.oracle', module: 'ojdbc6'
+        exclude group:'mysql', module: 'mysql-connector-java'
+        exclude group:'org.hibernate', module: 'hibernate-validator'
+        exclude group:'com.alibaba', module: 'druid-spring-boot-starter'
+        exclude group:'org.springframework.boot', module: 'spring-boot-starter-jdbc'
+    }
+    implementation('com.baidu.aip:java-sdk:4.16.11'){
+        exclude group:'org.slf4j', module: 'slf4j-simple'
+    }
+//    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '5.3.6.Final'
+}
+bootJar.enabled = true

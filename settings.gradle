@@ -2,7 +2,7 @@ rootProject.name = 'arda'
 
 
 include 'arda-common:common-utils'
-include 'arda-common:common-feign'
+//include 'arda-common:common-feign'
 include 'arda-common:common-persistence:persistence-jpa'
 include 'arda-common:common-persistence:persistence-mybatis'
 include 'arda-common:common-persistence:persistence-elasticsearch'
@@ -12,6 +12,7 @@ include 'arda-common:common-framework:framework-limit'
 //include 'arda-zen:zen-liquibase'
 //include 'arda-zen:zen-auth'
 //include 'arda-zen:zen-gateway'
+include 'arda-zen:zen-face-ai'
 
 
 
