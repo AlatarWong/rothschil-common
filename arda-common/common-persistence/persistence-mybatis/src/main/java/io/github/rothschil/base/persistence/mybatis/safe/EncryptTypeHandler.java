@@ -68,9 +68,15 @@ public class EncryptTypeHandler extends BaseTypeHandler<Encrypt> {
         return decrypt(rs.getString(columnIndex));
     }
 
+
     /**
-     * 获取值
-     */
+     * 根据在查询结果的位置来获取属性值
+     *
+     * @param cs         调用已储存过程的方法
+     * @param columnIndex 列在返回结果的位置
+     * @return Encrypt
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     **/
     @Override
     public Encrypt getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         return decrypt(cs.getString(columnIndex));
