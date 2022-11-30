@@ -1,8 +1,0 @@
-archivesBaseName = 'zen-liquibase'
-dependencies {
-    api(platform('io.github.rothschil:arda-common-bom:2.0.1.RELEASE'))
-    implementation('com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery')
-    implementation('com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config')
-    implementation('org.springframework.boot:spring-boot-starter-freemarker')
-}
-bootJar.enabled = true

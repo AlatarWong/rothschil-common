@@ -12,7 +12,7 @@ include 'arda-common:common-framework:framework-limit'
 //include 'arda-zen:zen-liquibase'
 //include 'arda-zen:zen-auth'
 //include 'arda-zen:zen-gateway'
-include 'arda-zen:zen-face-ai'
+//include 'arda-zen:zen-face-ai'
 
 
 
