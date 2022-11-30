@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * 对属性进行加密的密文逻辑
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2022/1/19 - 16:30
  * @since 1.0.0
@@ -38,17 +40,29 @@ public class EncryptTypeHandler extends BaseTypeHandler<Encrypt> {
         ps.setString(i, encrypt);
     }
 
+
     /**
-     * 获取值
-     */
+     * 根据列名称来获取属性值
+     *
+     * @param rs         存储查询结果的对象
+     * @param columnName 根据列的名称
+     * @return Encrypt
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     **/
     @Override
     public Encrypt getNullableResult(ResultSet rs, String columnName) throws SQLException {
+
         return decrypt(rs.getString(columnName));
     }
 
     /**
-     * 获取值
-     */
+     * 根据在查询结果的位置来获取属性值
+     *
+     * @param rs         存储查询结果的对象
+     * @param columnIndex 列在返回结果的位置
+     * @return Encrypt
+     * @author <a href="https://github.com/rothschil">Sam</a>
+     **/
     @Override
     public Encrypt getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         return decrypt(rs.getString(columnIndex));
