@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 业务基类，需要被实际使用的 Service 继承。
+ * 业务基类，需要被实际使用的 Service 继承。<br/>
  * 对于 Mybatis 中的 update 操作中的 int 返回值，如果需要该返回值为 受影响的行数，需要在 数据库连接的配置信息中，增加 &useAffectedRows=true
  * <ul>
  *     <li><b>insert：</b>插入 <b>n</b> 条记录，返回影响行数 <b>n</b> 。（n>=1， <b>n</b> 为  <b>0</b>  时实际为插入失败）</li>
