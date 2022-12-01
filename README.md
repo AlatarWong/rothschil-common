@@ -227,4 +227,4 @@ public class FileInfoService extends BaseService<FileInfoMapper,FileInfo, Long> 
 
 ### 4.2. persistence-jpa
 
-待补充
+Spring JPA
