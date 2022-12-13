@@ -50,6 +50,23 @@ public class ThreadPoolsUtil {
      * @param maximumPoolSize 允许并行最大核心线程数
      * @param keepAliveTime   当线程数大于内核数时，这是多余的空闲线程将在终止之前等待新任务的最长时间
      * @param unit            时间的单位 秒 毫秒等
+     * @param theadName       指定线程名字
+     * @return java.util.concurrent.ExecutorService
+     * @date 20/11/19 16:23
+     */
+    public static ThreadPoolExecutor doCreate(int corePoolSize, int maximumPoolSize,
+                                              int keepAliveTime, TimeUnit unit,
+                                              String theadName) {
+        return doCreate(corePoolSize, maximumPoolSize, keepAliveTime, unit, 0, theadName);
+    }
+
+    /**
+     * 创建自定义线程池
+     *
+     * @param corePoolSize    核心线程数
+     * @param maximumPoolSize 允许并行最大核心线程数
+     * @param keepAliveTime   当线程数大于内核数时，这是多余的空闲线程将在终止之前等待新任务的最长时间
+     * @param unit            时间的单位 秒 毫秒等
      * @param queueSize       有界队列的大小
      * @param theadName       指定线程名字
      * @return java.util.concurrent.ExecutorService

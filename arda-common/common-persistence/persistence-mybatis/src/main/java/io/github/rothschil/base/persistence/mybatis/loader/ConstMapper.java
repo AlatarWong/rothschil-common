@@ -11,12 +11,12 @@ package io.github.rothschil.base.persistence.mybatis.loader;
 public class ConstMapper {
 
     public static final String ENABLED_TRUE = "true";
+
     public static final String ENABLED = "enabled";
 
     public static final String DELAY_SECONDS = "delaySeconds";
 
     public static final String SLEEP_SECONDS = "sleepSeconds";
-
 
     public static final String MAPPING_PATH = "mappingPath";
 
