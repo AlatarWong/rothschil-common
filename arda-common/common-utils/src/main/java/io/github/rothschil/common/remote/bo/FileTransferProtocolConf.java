@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @date 2021/11/6 - 10:57
  * @since 1.0.0
  */
-public class RemoteConf implements Serializable {
+public class FileTransferProtocolConf implements Serializable {
 
     private Long id;
 

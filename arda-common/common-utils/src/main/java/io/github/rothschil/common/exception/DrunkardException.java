@@ -17,7 +17,7 @@ public class DrunkardException extends RuntimeException {
     /**
      * 错误码
      */
-    private Integer status;
+    private int status;
 
     /**
      * 错误信息
@@ -105,7 +105,7 @@ public class DrunkardException extends RuntimeException {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-12:00
      **/
-    public DrunkardException(Integer status, String message) {
+    public DrunkardException(int status, String message) {
         super(message);
         this.status = status;
         this.message = message;
@@ -120,7 +120,7 @@ public class DrunkardException extends RuntimeException {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2019/10/8-12:00
      **/
-    public DrunkardException(Integer status, String message, Throwable cause) {
+    public DrunkardException(int status, String message, Throwable cause) {
         super(message, cause);
         this.status = status;
         this.message = message;
@@ -131,11 +131,11 @@ public class DrunkardException extends RuntimeException {
         return this;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

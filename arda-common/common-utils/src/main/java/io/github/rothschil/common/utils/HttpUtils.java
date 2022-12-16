@@ -1,8 +1,12 @@
 package io.github.rothschil.common.utils;
 
+import io.github.rothschil.common.enums.HttpMethodEnum;
+import io.github.rothschil.common.remote.bo.RemoteIntf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.github.rothschil.common.constant.Constants;
+import org.springframework.http.HttpMethod;
+
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.ConnectException;
@@ -11,13 +15,16 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.cert.X509Certificate;
 
-/** 通用http发送方法
+/**
+ * 通用http发送方法
+ *
  * @author <a href="https://github.com/rothschil">Sam</a>
  * @date 2019/10/9 - 21:39
  * @since 1.0.0
  */
 public class HttpUtils {
     private static final Logger log = LoggerFactory.getLogger(HttpUtils.class);
+
 
     /**
      * 向指定 URL 发送GET方法的请求
@@ -29,6 +36,20 @@ public class HttpUtils {
     public static String sendGet(String url, String param) {
         return sendGet(url, param, Constants.UTF8);
     }
+
+    public static HttpMethod httpMethod(RemoteIntf intf) {
+        if (intf.getMethod().equalsIgnoreCase(HttpMethodEnum.GET.getCode())) {
+            return HttpMethod.GET;
+        } else if (intf.getMethod().equalsIgnoreCase(HttpMethodEnum.POST.getCode())) {
+            return HttpMethod.POST;
+        } else if (intf.getMethod().equalsIgnoreCase(HttpMethodEnum.DELETE.getCode())) {
+            return HttpMethod.DELETE;
+        } else if (intf.getMethod().equalsIgnoreCase(HttpMethodEnum.PUT.getCode())) {
+            return HttpMethod.PUT;
+        }
+        return HttpMethod.GET;
+    }
+
 
     /**
      * 向指定 URL 发送GET方法的请求

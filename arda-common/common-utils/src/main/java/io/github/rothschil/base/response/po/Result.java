@@ -12,17 +12,17 @@ public abstract class Result {
     /**
      * 结果编码
      **/
-    Integer code;
+    int code;
     /**
      * 消息描述
      **/
     String message;
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

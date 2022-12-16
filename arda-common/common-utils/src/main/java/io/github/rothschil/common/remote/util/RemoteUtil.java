@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.jcraft.jsch.*;
 import io.github.rothschil.base.response.enums.Status;
 import io.github.rothschil.common.constant.Constants;
-import io.github.rothschil.common.remote.bo.RemoteConf;
+import io.github.rothschil.common.remote.bo.FileTransferProtocolConf;
 import io.github.rothschil.common.remote.bo.RemoteLogConnect;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
@@ -43,7 +43,7 @@ public class RemoteUtil {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-13:59
      **/
-    public static Map<String, Object> ftpClient(RemoteConf source) {
+    public static Map<String, Object> ftpClient(FileTransferProtocolConf source) {
         RemoteLogConnect connect = new RemoteLogConnect();
         connect.setConfId(source.getId());
         connect.setConnTime(LocalDateTime.now());
@@ -103,7 +103,7 @@ public class RemoteUtil {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-17:27
      **/
-    public static Map<String, Object> connect(RemoteConf source) {
+    public static Map<String, Object> connect(FileTransferProtocolConf source) {
         RemoteLogConnect connect = new RemoteLogConnect();
         connect.setConfId(source.getId());
         connect.setConnTime(LocalDateTime.now());

@@ -162,14 +162,14 @@ public enum Status {
     /**
      * Status Code
      */
-    private Integer status;
+    private int status;
 
     /**
      * The Content Description
      */
     private String msg;
 
-    Status(Integer status, String msg) {
+    Status(int status, String msg) {
         this.status = status;
         this.msg = msg;
     }
@@ -178,7 +178,7 @@ public enum Status {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

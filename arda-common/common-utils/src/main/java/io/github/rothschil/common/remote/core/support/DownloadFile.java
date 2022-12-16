@@ -1,12 +1,11 @@
 package io.github.rothschil.common.remote.core.support;
 
 import io.github.rothschil.common.remote.bo.DownloadingBo;
-import io.github.rothschil.common.remote.bo.RemoteConf;
+import io.github.rothschil.common.remote.bo.FileTransferProtocolConf;
 import io.github.rothschil.common.enums.FtpEnum;
 import io.github.rothschil.common.remote.core.AbstractDownloadFile;
 import io.github.rothschil.common.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class DownloadFile extends AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-16:29
      **/
-    public void download(RemoteConf conf) {
+    public void download(FileTransferProtocolConf conf) {
         DownloadingBo bo;
         String transId = DateUtils.transId();
         if (conf.getFtpType() == FtpEnum.FTP.getCode()) {
@@ -48,8 +47,8 @@ public class DownloadFile extends AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-16:29
      **/
-    public void download(List<RemoteConf> confSources) {
-        for (RemoteConf conf : confSources) {
+    public void download(List<FileTransferProtocolConf> confSources) {
+        for (FileTransferProtocolConf conf : confSources) {
             download(conf);
         }
     }

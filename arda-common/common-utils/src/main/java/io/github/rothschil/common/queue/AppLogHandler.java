@@ -2,7 +2,6 @@ package io.github.rothschil.common.queue;
 
 import io.github.rothschil.base.aop.entity.AppLog;
 import io.github.rothschil.base.aop.queue.handler.TaskHandlerble;
-import org.springframework.stereotype.Component;
 
 /**
  * 针对队列的任务处理者

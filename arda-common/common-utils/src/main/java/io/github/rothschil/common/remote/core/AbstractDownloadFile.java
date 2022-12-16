@@ -7,7 +7,7 @@ import io.github.rothschil.base.response.enums.Status;
 import io.github.rothschil.common.constant.Constants;
 import io.github.rothschil.common.remote.bo.DownloadingBo;
 import io.github.rothschil.common.remote.bo.FileEntry;
-import io.github.rothschil.common.remote.bo.RemoteConf;
+import io.github.rothschil.common.remote.bo.FileTransferProtocolConf;
 import io.github.rothschil.common.remote.bo.RemoteLogConnect;
 import io.github.rothschil.common.remote.filter.GrpFilter;
 import io.github.rothschil.common.remote.util.RemoteUtil;
@@ -59,7 +59,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:47
      **/
-    public boolean vilateName(RemoteConf source, String fileName) {
+    public boolean vilateName(FileTransferProtocolConf source, String fileName) {
         String contains = getContains(source);
         // 文件列表中不包含当前日期的文件
         if (!checkFileName(fileName, contains)) {
@@ -78,7 +78,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:47
      **/
-    public String getLocalFileName(RemoteConf source, String fileName) {
+    public String getLocalFileName(FileTransferProtocolConf source, String fileName) {
         String localPath = source.getLocalDic();
         return checkPath(localPath) + fileName;
     }
@@ -91,7 +91,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:47
      **/
-    public String getContains(RemoteConf source) {
+    public String getContains(FileTransferProtocolConf source) {
         return Constants.HF_PERIOD + DateUtils.offset(-1,DateUtils.DAY_PATTERN);
     }
 
@@ -137,7 +137,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-2:56
      **/
-    protected FTPFile[] getFtpFiles(RemoteConf source, FTPClient ftpClient) {
+    protected FTPFile[] getFtpFiles(FileTransferProtocolConf source, FTPClient ftpClient) {
         String contains = getContains(source);
         FTPFile[] files = new FTPFile[0];
         try {
@@ -148,7 +148,7 @@ public abstract class AbstractDownloadFile {
         return files;
     }
 
-    protected FileEntry build(String transId, RemoteConf source, FTPFile tmpFile) {
+    protected FileEntry build(String transId, FileTransferProtocolConf source, FTPFile tmpFile) {
         String fileName = tmpFile.getName();
         FileEntry file = new FileEntry();
         file.setFileName(fileName);
@@ -181,7 +181,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/23-23:11
      **/
-    protected String checkPath(RemoteConf source) {
+    protected String checkPath(FileTransferProtocolConf source) {
         String temp = source.getLocalDic();
         return checkPath(temp);
     }
@@ -212,7 +212,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-3:08
      **/
-    protected DownloadingBo downloadFtp(String transId, RemoteConf source) {
+    protected DownloadingBo downloadFtp(String transId, FileTransferProtocolConf source) {
         Map<String, Object> map = RemoteUtil.ftpClient(source);
         List<FileEntry> lists = new ArrayList<>();
         OutputStream outputStream = null;
@@ -267,7 +267,7 @@ public abstract class AbstractDownloadFile {
      * @author <a href="https://github.com/rothschil">Sam</a>
      * @date 2021/10/24-3:08
      **/
-    protected DownloadingBo downloadSftp(String transId, RemoteConf source) {
+    protected DownloadingBo downloadSftp(String transId, FileTransferProtocolConf source) {
         Map<String, Object> map = RemoteUtil.connect(source);
         RemoteLogConnect remoteLogConnect = (RemoteLogConnect) map.get(Constants.CONN_BO);
         Status status = (Status)map.get(Constants.CONNECT_STATUS);
