@@ -1,16 +1,12 @@
-rootProject.name = 'rothschil-common'
+rootProject.name = 'arda'
 
 include 'common-utils'
-include 'common-register'
 include 'common-persistence:persistence-jpa'
 include 'common-persistence:persistence-mybatis'
 include 'common-persistence:persistence-elasticsearch'
 include 'common-persistence:persistence-redis'
 include 'common-persistence:persistence-mongodb'
 include 'common-framework:framework-limit'
-include 'common-demo:demo-register'
-include 'common-demo:demo-will'
-include 'common-demo:demo-gateway'
 
 
 

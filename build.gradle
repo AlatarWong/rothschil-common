@@ -24,10 +24,10 @@ allprojects {
     targetCompatibility = project_jdk
 
     repositories {
-//        maven {
-//            allowInsecureProtocol true
-//            url 'http://localhost:8081/repository/maven-public/'
-//        }
+        maven {
+            allowInsecureProtocol true
+            url 'http://localhost:8081/repository/maven-public/'
+        }
         mavenLocal()
         mavenCentral()
     }
@@ -37,11 +37,16 @@ allprojects {
         // 禁用档案后缀，处理 **-plain.jar
         archiveClassifier = ''
     }
-// 默认不需要打可执行jar包
+    // 默认不需要打可执行jar包
     bootJar {
         enabled = false
     }
-
+    // 删除所有输出目录
+    task cleanBuildDir(type: Delete) {
+        delete "${projectDir}/build"
+        delete "${projectDir}/out"
+        delete "${projectDir}/bin"
+    }
 }
 
 // 只针对子目录进行生效
@@ -50,10 +55,13 @@ subprojects {
     // 程序编译的任务编码
     tasks.withType(JavaCompile) {
         options.encoding('UTF-8')
+
     }
 
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
     }
 
     dependencyManagement {
@@ -95,12 +103,6 @@ subprojects {
                 srcDirs = ['src/main/resources', "src/main/config/${env}", "*.gradle"]
             }
         }
-    }
-
-    // 删除所有输出目录
-    task cleanBuildDir(type: Delete) {
-        delete "${projectDir}/build"
-        delete "${projectDir}/out"
     }
 
     task javaDoc(type: Javadoc) {
@@ -154,7 +156,7 @@ subprojects {
 
     //最终打包任务操作，将所有任务放入build
     artifacts {
-        archives(sourceTask)
+        archives sourceTask
         archives(javaDocJar)
     }
 

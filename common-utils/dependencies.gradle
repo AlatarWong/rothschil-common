@@ -7,7 +7,7 @@ ext.versions = [
         commonsLang3Version:'3.12.0',
         commonsCodecVersion:'1.15',
         commonsNetVersion: '3.8.0',
-        commonsconfigurationVersion:'1.10',
+        commonsconfiguration:'1.10',
 
         hutoolVersion:'5.7.12',
         guavaVersion:'30.1.1-jre',
@@ -25,10 +25,13 @@ ext.versions = [
         springVersion:'5.3.7',
         thymeleafVersion:'3.0.12.RELEASE',
         knife4jVersion: '3.0.3',
+        commonsconfigurationVersion: '1.6',
         // SPRING-BOOT
         springBootVersion:"$SpringBootVersion"
+//        asyncToolVersion: '1.0.0'
 ]
 ext.libraries = [
+//        'asyncTool': "com.tlcsdm:tlcsdm-asyncTool:${versions.asyncToolVersion}",
         'hibernateValidator':"org.hibernate.validator:hibernate-validator:${versions.hibernateValidatorVersion}",
         'commons-compress':"org.apache.commons:commons-compress:${versions.commonsCompressVersion}",
         'commons-text':"org.apache.commons:commons-text:${versions.commonsTextVersion}",
