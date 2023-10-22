@@ -1,0 +1,7 @@
+archivesBaseName = 'common-feign'
+dependencies {
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("io.github.openfeign:feign-okhttp")
+    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+}
+jar.enabled = true

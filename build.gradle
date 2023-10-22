@@ -1,12 +1,10 @@
 plugins {
-    id 'java'
     id 'java-library'
-    id 'org.springframework.boot' version '2.6.8'
+    id 'org.springframework.boot' version '2.6.8'  apply false
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 }
 
-
 allprojects {
-
     apply plugin: 'java'
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
@@ -14,8 +12,8 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'jacoco'
     apply plugin: 'org.springframework.boot'
+    /* 依赖管理，用来传递spring的依赖 */
     apply plugin: 'io.spring.dependency-management'
-
 
     version project_version
     group project_group
@@ -24,18 +22,20 @@ allprojects {
     targetCompatibility = project_jdk
 
     repositories {
-        maven {
-            allowInsecureProtocol true
-            url 'http://localhost:8081/repository/maven-public/'
-        }
-        mavenLocal()
+//        mavenLocal()
         mavenCentral()
+        google()
+//        jcenter()
+//        maven {
+//            allowInsecureProtocol true
+//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+//        }
     }
 
     jar {
         enabled = false
         // 禁用档案后缀，处理 **-plain.jar
-        archiveClassifier = ''
+        archiveClassifier=""
     }
     // 默认不需要打可执行jar包
     bootJar {
@@ -65,13 +65,11 @@ subprojects {
     }
 
     dependencyManagement {
-
         imports {
-//            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${SpringCloudVersion}"
+            mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+//            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${SpringCloudVersion}")
+//            mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${SpringCloudAlibabaVersion}")
         }
-
-
     }
 
     // 自定义配置第三方依赖
@@ -82,11 +80,6 @@ subprojects {
         implementation("org.projectlombok:lombok:${lombokVersion}")
         testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion") {
             exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
-//            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-//            exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
-//            exclude group: 'net.minidev', module: 'json-smart'
-//            exclude group: 'net.bytebuddy', module: 'byte-buddy'
-//            exclude group: 'net.bytebuddy', module: 'byte-buddy-agent'
         }
     }
 
@@ -140,7 +133,7 @@ subprojects {
 
     task javaDocJar(type: Jar, dependsOn: javaDoc) {
         // 文件标记
-        archiveClassifier = "javadoc"
+        archiveClassifier="javadoc"
         // 通过javaDocTask 找到目标路径
         from javaDoc.destinationDir
     }
@@ -163,9 +156,9 @@ subprojects {
     publishing {
         publications {
             toSonaType(MavenPublication) {
-                groupId = "$project.group"
-                artifactId = "$project.name"
-                version = "$project.version"
+                groupId  "$project.group"
+                artifactId "$project.name"
+                version "$project.version"
                 from components.java
                 artifact bootJar
                 artifact sourceTask
@@ -185,16 +178,16 @@ subprojects {
 
                     licenses {
                         license {
-                            name= "The Apache License, Version 2.0"
-                            url= "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                            name ="The Apache License, Version 2.0"
+                            url ="http://www.apache.org/licenses/LICENSE-2.0.txt"
                         }
                     }
                     developers {
                         // 添加开发者描述
                         developer {
-                            id= "rothschil"
-                            name= "rothschil"
-                            email= "wcngs@qq.com"
+                            id ="rothschil"
+                            name ="rothschil"
+                            email ="wcngs@qq.com"
                         }
                     }
                 }

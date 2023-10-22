@@ -1,0 +1,9 @@
+archivesBaseName = 'common-utils'
+jar.enabled = true
+
+dependencies {
+    api(platform('io.github.rothschil:arda-common-bom:2.0.2.RELEASE'))
+}
+
+
+
