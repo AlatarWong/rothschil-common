@@ -1,128 +1,126 @@
 plugins {
-    id 'java-library'
-    id 'org.springframework.boot' version '2.6.8'  apply false
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'java-library'
+	id 'org.springframework.boot' version '3.0.12'
+	id 'io.spring.dependency-management' version '1.1.3'
 }
 
 allprojects {
-    apply plugin: 'java'
-    apply plugin: 'java-library'
-    apply plugin: 'maven-publish'
-    apply plugin: 'signing'
-    apply plugin: 'idea'
-    apply plugin: 'jacoco'
-    apply plugin: 'org.springframework.boot'
-    /* 依赖管理，用来传递spring的依赖 */
-    apply plugin: 'io.spring.dependency-management'
 
-    version project_version
-    group project_group
+	apply plugin: 'java'
+	apply plugin: 'java-library'
+	apply plugin: 'maven-publish'
+	apply plugin: 'signing'
+	apply plugin: 'idea'
+	apply plugin: 'jacoco'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
 
-    sourceCompatibility = project_jdk
-    targetCompatibility = project_jdk
 
-    repositories {
-//        mavenLocal()
-        mavenCentral()
-        google()
-//        jcenter()
+	version project_version
+	group project_group
+
+	sourceCompatibility = project_jdk
+	targetCompatibility = project_jdk
+
+	repositories {
 //        maven {
 //            allowInsecureProtocol true
-//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+//            url 'http://localhost:8081/repository/maven-public/'
 //        }
-    }
+		mavenLocal()
+		mavenCentral()
+	}
 
-    jar {
-        enabled = false
-        // 禁用档案后缀，处理 **-plain.jar
-        archiveClassifier=""
-    }
-    // 默认不需要打可执行jar包
-    bootJar {
-        enabled = false
-    }
-    // 删除所有输出目录
-    task cleanBuildDir(type: Delete) {
-        delete "${projectDir}/build"
-        delete "${projectDir}/out"
-        delete "${projectDir}/bin"
-    }
+	jar {
+		enabled = false
+		// 禁用档案后缀，处理 **-plain.jar
+		archiveClassifier = ''
+	}
+// 默认不需要打可执行jar包
+	bootJar {
+		enabled = false
+	}
+
+
 }
 
 // 只针对子目录进行生效
 subprojects {
 
-    // 程序编译的任务编码
-    tasks.withType(JavaCompile) {
-        options.encoding('UTF-8')
 
-    }
+	// 程序编译的任务编码
+	tasks.withType(JavaCompile) {
+		options.encoding('UTF-8')
+	}
 
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-        options.addStringOption('encoding', 'UTF-8')
-        options.addStringOption('charSet', 'UTF-8')
-    }
+	tasks.withType(Javadoc) {
+		options.addStringOption('Xdoclint:none', '-quiet')
+	}
 
-    dependencyManagement {
-        imports {
-            mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
-//            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${SpringCloudVersion}")
-//            mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${SpringCloudAlibabaVersion}")
-        }
-    }
+	dependencies {
+		annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+		testImplementation("org.projectlombok:lombok:$lombokVersion")
+		testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+		implementation("org.projectlombok:lombok:$lombokVersion")
+		testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion") {
+			exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
+//            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//            exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
+//            exclude group: 'net.minidev', module: 'json-smart'
+//            exclude group: 'net.bytebuddy', module: 'byte-buddy'
+//            exclude group: 'net.bytebuddy', module: 'byte-buddy-agent'
+		}
+	}
 
-    // 自定义配置第三方依赖
-    dependencies {
-        annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-        testImplementation("org.projectlombok:lombok:${lombokVersion}")
-        testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-        implementation("org.projectlombok:lombok:${lombokVersion}")
-        testImplementation("org.springframework.boot:spring-boot-starter-test:$SpringBootVersion") {
-            exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
-        }
-    }
+	test {
+//        useJUnitPlatform()
+	}
 
-    test {
-        useJUnitPlatform()
-    }
-    def env = System.getProperty('env') ?: 'dev'
-    sourceSets {
-        main {
-            java {
-                srcDirs = ['src/main/java']
-            }
-            resources {
-                srcDirs = ['src/main/resources', "src/main/config/${env}", "*.gradle"]
-            }
-        }
-    }
 
-    task javaDoc(type: Javadoc) {
-        //  delete("javadoc/")
-        options.encoding = "UTF-8"
-        options.charSet = "UTF-8"
-        //保留 public 的方法
-        options.memberLevel = JavadocMemberLevel.PRIVATE
-        options.linkSource = true
-        options.links("http://docs.oracle.com/javase/8/docs/api/")
-        //是否保留作者
-        options.author = true
-        options.version = true
-        options.header = project.name
-        //是否生成树状结构
-        options.noTree = true
-        options.noIndex = true
-        options.noNavBar = true
-        options.addStringOption('Xdoclint:none', '-quiet')
-        options.addStringOption('encoding', 'UTF-8')
-        options.addStringOption('charSet', 'UTF-8')
-        //定义所有Java源代码
-        source = sourceSets.main.allJava
-        // destinationDir = file("javadoc/") //生成 javadoc 的目标目录
-        //报错不中断
-        failOnError = false
-    }
+	def env = System.getProperty('env') ?: 'dev'
+	sourceSets {
+		main {
+			java {
+				srcDirs = ['src/main/java']
+			}
+			resources {
+				srcDirs = ['src/main/resources', "src/main/config/${env}", "*.gradle"]
+			}
+		}
+	}
+
+	// 删除所有输出目录
+	task cleanBuildDir(type: Delete) {
+		delete "${projectDir}/build"
+		delete "${projectDir}/out"
+	}
+
+	task javaDoc(type: Javadoc) {
+		//  delete("javadoc/")
+		options.encoding = "UTF-8"
+		options.charSet = "UTF-8"
+		//保留 public 的方法
+		options.memberLevel = JavadocMemberLevel.PRIVATE
+		options.linkSource = true
+		options.links("http://docs.oracle.com/javase/8/docs/api/")
+		//是否保留作者
+		options.author = true
+		options.version = true
+		options.header = project.name
+		//是否生成树状结构
+		options.noTree = true
+		options.noIndex = true
+		options.noNavBar = true
+		options.addStringOption('Xdoclint:none', '-quiet')
+		options.addStringOption('encoding', 'UTF-8')
+		options.addStringOption('charSet', 'UTF-8')
+		//定义所有Java源代码
+		source = sourceSets.main.allJava
+		// destinationDir = file("javadoc/") //生成 javadoc 的目标目录
+		//报错不中断
+		failOnError = false
+	}
 
 //    configurations {
 //        [apiElements, runtimeElements].each {
@@ -131,100 +129,100 @@ subprojects {
 //        }
 //    }
 
-    task javaDocJar(type: Jar, dependsOn: javaDoc) {
-        // 文件标记
-        archiveClassifier="javadoc"
-        // 通过javaDocTask 找到目标路径
-        from javaDoc.destinationDir
-    }
+	task javaDocJar(type: Jar, dependsOn: javaDoc) {
+		// 文件标记
+		archiveClassifier = "javadoc"
+		// 通过javaDocTask 找到目标路径
+		from javaDoc.destinationDir
+	}
 
-    //自定义打包任务，继承Jar，并且依赖classes，最终编译才打包 dependsOn: [classes]
-    task sourceTask(type: Jar, dependsOn: [classes]) {
-        //所有源码读取类型
-        from sourceSets.main.allSource
-        //定义文件后缀类型
-        classifier('sources')
-    }
+	//自定义打包任务，继承Jar，并且依赖classes，最终编译才打包 dependsOn: [classes]
+	task sourceTask(type: Jar, dependsOn: [classes]) {
+		//所有源码读取类型
+		from sourceSets.main.allSource
+		//定义文件后缀类型
+//		classifier('sources')
+	}
 
 
-    //最终打包任务操作，将所有任务放入build
-    artifacts {
-        archives sourceTask
-        archives(javaDocJar)
-    }
+	//最终打包任务操作，将所有任务放入build
+	artifacts {
+		archives(sourceTask)
+		archives(javaDocJar)
+	}
 
-    publishing {
-        publications {
-            toSonaType(MavenPublication) {
-                groupId  "$project.group"
-                artifactId "$project.name"
-                version "$project.version"
-                from components.java
-                artifact bootJar
-                artifact sourceTask
-                artifact javaDocJar
+	publishing {
+		publications {
+			toSonaType(MavenPublication) {
+				groupId = "$project.group"
+				artifactId = "$project.name"
+				version = "$project.version"
+				from components.java
+				artifact bootJar
+				artifact sourceTask
+				artifact javaDocJar
 
-                pom {
-                    name = "rothschil-common"
-                    description = "Pippin, was a Hobbit of the Shire, and one of Frodo Baggins' youngest, but closest friends. He was a member of the Fellowship of the Ring and later became the thirty-second Thain of the Shire"
-                    url = "https://github.com/rothschil/rothschil-common"
+				pom {
+					name = "rothschil-common"
+					description = "Pippin, was a Hobbit of the Shire, and one of Frodo Baggins' youngest, but closest friends. He was a member of the Fellowship of the Ring and later became the thirty-second Thain of the Shire"
+					url = "https://github.com/rothschil/rothschil-common"
 
-                    // 添加你的 git 仓库 信息
-                    scm {
-                        connection= "scm:git:https://github.com/rothschil/rothschil-common.git"
-                        developerConnection= "scm:git:https://github.com/rothschil/rothschil-common.git"
-                        url= "https://github.com/rothschil/rothschil-common"
-                    }
+					// 添加你的 git 仓库 信息
+					scm {
+						connection= "scm:git:https://github.com/rothschil/rothschil-common.git"
+						developerConnection= "scm:git:https://github.com/rothschil/rothschil-common.git"
+						url= "https://github.com/rothschil/rothschil-common"
+					}
 
-                    licenses {
-                        license {
-                            name ="The Apache License, Version 2.0"
-                            url ="http://www.apache.org/licenses/LICENSE-2.0.txt"
-                        }
-                    }
-                    developers {
-                        // 添加开发者描述
-                        developer {
-                            id ="rothschil"
-                            name ="rothschil"
-                            email ="wcngs@qq.com"
-                        }
-                    }
-                }
-            }
-        }
-        repositories {
+					licenses {
+						license {
+							name= "The Apache License, Version 2.0"
+							url= "http://www.apache.org/licenses/LICENSE-2.0.txt"
+						}
+					}
+					developers {
+						// 添加开发者描述
+						developer {
+							id= "rothschil"
+							name= "rothschil"
+							email= "wcngs@qq.com"
+						}
+					}
+				}
+			}
+		}
+		repositories {
 
-            maven {
-                name 'snapshot'
-                url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
-                credentials {
-                    username(oss_name)
-                    password(oss_password)
-                }
-            }
+			maven {
+				name 'snapshot'
+				url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+				credentials {
+					username(oss_name)
+					password(oss_password)
+				}
+			}
 
-            maven {
-                name 'release'
-                url 'https://s01.oss.sonatype.org/content/repositories/releases/'
-                credentials {
-                    username(oss_name)
-                    password(oss_password)
-                }
-            }
-        }
-    }
+			maven {
+				name 'release'
+				url 'https://s01.oss.sonatype.org/content/repositories/releases/'
+				credentials {
+					username(oss_name)
+					password(oss_password)
+				}
+			}
+		}
+	}
 
-    signing {
-        sign publishing.publications.toSonaType
-    }
+	signing {
+		sign publishing.publications.toSonaType
+	}
 
-    // 所有操作准备好触发该任务
-    gradle.taskGraph.whenReady {
-        tasks.each {
-            if (it.getName().contains('test')) {
-                it.enabled(false)
-            }
-        }
-    }
+	// 所有操作准备好触发该任务
+	gradle.taskGraph.whenReady {
+		tasks.each {
+			if (it.getName().contains('test')) {
+				it.enabled(false)
+			}
+		}
+	}
 }

@@ -1,7 +1,0 @@
-archivesBaseName = 'persistence-redis'
-dependencies {
-    implementation(project(':arda-common:common-utils'))
-    api("org.redisson:redisson-spring-boot-starter:3.15.6")
-
-}
-jar.enabled = true
