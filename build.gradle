@@ -47,8 +47,6 @@ allprojects {
 
 // 只针对子目录进行生效
 subprojects {
-
-
 	// 程序编译的任务编码
 	tasks.withType(JavaCompile) {
 		options.encoding('UTF-8')

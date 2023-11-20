@@ -3,7 +3,6 @@ archivesBaseName = 'common-utils'
 
 jar.enabled = true
 
-
 dependencies {
     api(
             libraries.'commons-compress',

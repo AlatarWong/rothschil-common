@@ -60,7 +60,6 @@ ext.libraries = [
 
         'slf4j-api':"org.slf4j:slf4j-api:${versions.slf4jVersion}",
         'sigar':"org.hyperic:sigar:${versions.sigarVersion}",
-
 //        'validation-api':'javax.validation:validation-api:2.0.1.Final',
         'javax.servlet-api':'javax.servlet:javax.servlet-api:4.0.1',
         'knife4j':"com.github.xiaoymin:knife4j-spring-boot-starter:${versions.knife4jVersion}",
