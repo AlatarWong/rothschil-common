@@ -10,27 +10,19 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
-
 version project_version
 group project_group
 
 sourceCompatibility = project_jdk
 targetCompatibility = project_jdk
-
-jar {
-	enabled = true
-	// 禁用档案后缀，处理 **-plain.jar
-	archiveClassifier = ''
-	/* 配置文件不打入jar包 */
-	excludes = ["*.yml", "*.sh", "*.xml"]
-}
+jar.enabled = true
+mainClassName = 'io.github.rothschil.RothschilApplication'
 
 // 默认不需要打可执行jar包
 //bootJar {
 //	enabled = false
 //}
 
-mainClassName = 'io.github.rothschil.RothschilApplication'
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -87,146 +79,149 @@ test {
 }
 
 jar {
+	// 禁用档案后缀，处理 **-plain.jar
+	archiveClassifier = ''
 	/* 配置文件不打入jar包 */
 	excludes = ["*.yml", "*.sh", "*.xml"]
 }
 
-// 程序编译的任务编码
-tasks.withType(JavaCompile) {
-	options.encoding('UTF-8')
-}
 
-tasks.withType(Javadoc) {
-	options.addStringOption('Xdoclint:none', '-quiet')
-}
+//// 程序编译的任务编码
+//tasks.withType(JavaCompile) {
+//	options.encoding('UTF-8')
+//}
+//
+//tasks.withType(Javadoc) {
+//	options.addStringOption('Xdoclint:none', '-quiet')
+//}
+//
+//
+//// 删除所有输出目录
+//task cleanBuildDir(type: Delete) {
+//	delete "${projectDir}/build"
+//	delete "${projectDir}/out"
+//}
+//
+//task javaDoc(type: Javadoc) {
+//	//  delete("javadoc/")
+//	options.encoding = "UTF-8"
+//	options.charSet = "UTF-8"
+//	//保留 public 的方法
+//	options.memberLevel = JavadocMemberLevel.PRIVATE
+//	options.linkSource = true
+//	options.links("http://docs.oracle.com/javase/8/docs/api/")
+//	//是否保留作者
+//	options.author = true
+//	options.version = true
+//	options.header = project.name
+//	//是否生成树状结构
+//	options.noTree = true
+//	options.noIndex = true
+//	options.noNavBar = true
+//	options.addStringOption('Xdoclint:none', '-quiet')
+//	options.addStringOption('encoding', 'UTF-8')
+//	options.addStringOption('charSet', 'UTF-8')
+//	//定义所有Java源代码
+//	source = sourceSets.main.allJava
+//	// destinationDir = file("javadoc/") //生成 javadoc 的目标目录
+//	//报错不中断
+//	failOnError = false
+//}
+//
+////    configurations {
+////        [apiElements, runtimeElements].each {
+////            it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
+////            it.outgoing.artifact(bootJar)
+////        }
+////    }
+//
+//task javaDocJar(type: Jar, dependsOn: javaDoc) {
+//	// 文件标记
+//	archiveClassifier = "javadoc"
+//	// 通过javaDocTask 找到目标路径
+//	from javaDoc.destinationDir
+//}
+//
+////自定义打包任务，继承Jar，并且依赖classes，最终编译才打包 dependsOn: [classes]
+//task sourceTask(type: Jar, dependsOn: [classes]) {
+//	//所有源码读取类型
+//	from sourceSets.main.allSource
+//	//定义文件后缀类型
+////		classifier('sources')
+//}
+//
+//
+////最终打包任务操作，将所有任务放入build
+//artifacts {
+//	archives(sourceTask)
+//	archives(javaDocJar)
+//}
 
-
-// 删除所有输出目录
-task cleanBuildDir(type: Delete) {
-	delete "${projectDir}/build"
-	delete "${projectDir}/out"
-}
-
-task javaDoc(type: Javadoc) {
-	//  delete("javadoc/")
-	options.encoding = "UTF-8"
-	options.charSet = "UTF-8"
-	//保留 public 的方法
-	options.memberLevel = JavadocMemberLevel.PRIVATE
-	options.linkSource = true
-	options.links("http://docs.oracle.com/javase/8/docs/api/")
-	//是否保留作者
-	options.author = true
-	options.version = true
-	options.header = project.name
-	//是否生成树状结构
-	options.noTree = true
-	options.noIndex = true
-	options.noNavBar = true
-	options.addStringOption('Xdoclint:none', '-quiet')
-	options.addStringOption('encoding', 'UTF-8')
-	options.addStringOption('charSet', 'UTF-8')
-	//定义所有Java源代码
-	source = sourceSets.main.allJava
-	// destinationDir = file("javadoc/") //生成 javadoc 的目标目录
-	//报错不中断
-	failOnError = false
-}
-
-//    configurations {
-//        [apiElements, runtimeElements].each {
-//            it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
-//            it.outgoing.artifact(bootJar)
-//        }
-//    }
-
-task javaDocJar(type: Jar, dependsOn: javaDoc) {
-	// 文件标记
-	archiveClassifier = "javadoc"
-	// 通过javaDocTask 找到目标路径
-	from javaDoc.destinationDir
-}
-
-//自定义打包任务，继承Jar，并且依赖classes，最终编译才打包 dependsOn: [classes]
-task sourceTask(type: Jar, dependsOn: [classes]) {
-	//所有源码读取类型
-	from sourceSets.main.allSource
-	//定义文件后缀类型
-//		classifier('sources')
-}
-
-
-//最终打包任务操作，将所有任务放入build
-artifacts {
-	archives(sourceTask)
-	archives(javaDocJar)
-}
-
-publishing {
-	publications {
-		toSonaType(MavenPublication) {
-			groupId = "$project.group"
-			artifactId = "$project.name"
-			version = "$project.version"
-			from components.java
-			artifact bootJar
-			artifact sourceTask
-			artifact javaDocJar
-
-			pom {
-				name = "rothschil-common"
-				description = "Pippin, was a Hobbit of the Shire, and one of Frodo Baggins' youngest, but closest friends. He was a member of the Fellowship of the Ring and later became the thirty-second Thain of the Shire"
-				url = "https://github.com/rothschil/rothschil-common"
-
-				// 添加你的 git 仓库 信息
-				scm {
-					connection= "scm:git:https://github.com/rothschil/rothschil-common.git"
-					developerConnection= "scm:git:https://github.com/rothschil/rothschil-common.git"
-					url= "https://github.com/rothschil/rothschil-common"
-				}
-
-				licenses {
-					license {
-						name= "The Apache License, Version 2.0"
-						url= "http://www.apache.org/licenses/LICENSE-2.0.txt"
-					}
-				}
-				developers {
-					// 添加开发者描述
-					developer {
-						id= "rothschil"
-						name= "rothschil"
-						email= "wcngs@qq.com"
-					}
-				}
-			}
-		}
-	}
-	repositories {
-
-		maven {
-			name 'snapshot'
-			url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
-			credentials {
-				username(oss_name)
-				password(oss_password)
-			}
-		}
-
-		maven {
-			name 'release'
-			url 'https://s01.oss.sonatype.org/content/repositories/releases/'
-			credentials {
-				username(oss_name)
-				password(oss_password)
-			}
-		}
-	}
-}
-
-signing {
-	sign publishing.publications.toSonaType
-}
+//publishing {
+//	publications {
+//		toSonaType(MavenPublication) {
+//			groupId = "$project.group"
+//			artifactId = "$project.name"
+//			version = "$project.version"
+//			from components.java
+//			artifact bootJar
+//			artifact sourceTask
+//			artifact javaDocJar
+//
+//			pom {
+//				name = "rothschil-common"
+//				description = "Pippin, was a Hobbit of the Shire, and one of Frodo Baggins' youngest, but closest friends. He was a member of the Fellowship of the Ring and later became the thirty-second Thain of the Shire"
+//				url = "https://github.com/rothschil/rothschil-common"
+//
+//				// 添加你的 git 仓库 信息
+//				scm {
+//					connection= "scm:git:https://github.com/rothschil/rothschil-common.git"
+//					developerConnection= "scm:git:https://github.com/rothschil/rothschil-common.git"
+//					url= "https://github.com/rothschil/rothschil-common"
+//				}
+//
+//				licenses {
+//					license {
+//						name= "The Apache License, Version 2.0"
+//						url= "http://www.apache.org/licenses/LICENSE-2.0.txt"
+//					}
+//				}
+//				developers {
+//					// 添加开发者描述
+//					developer {
+//						id= "rothschil"
+//						name= "rothschil"
+//						email= "wcngs@qq.com"
+//					}
+//				}
+//			}
+//		}
+//	}
+//	repositories {
+//
+//		maven {
+//			name 'snapshot'
+//			url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+//			credentials {
+//				username(oss_name)
+//				password(oss_password)
+//			}
+//		}
+//
+//		maven {
+//			name 'release'
+//			url 'https://s01.oss.sonatype.org/content/repositories/releases/'
+//			credentials {
+//				username(oss_name)
+//				password(oss_password)
+//			}
+//		}
+//	}
+//}
+//
+//signing {
+//	sign publishing.publications.toSonaType
+//}
 
 // 所有操作准备好触发该任务
 gradle.taskGraph.whenReady {
