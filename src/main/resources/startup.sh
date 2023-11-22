@@ -16,7 +16,7 @@ fi
 
 export SPRING_PROFILES_ACTIVE
 #SPRING_PROFILES_ACTIVE=production
-exec java $JAVA_OPTS -classpath .:./lib/* com.ffcs.mmcc.maintain.MaintainApplication -mmccMaintain &
+exec java $JAVA_OPTS -classpath .:./lib/* io.github.rothschil.RothschilApplication -mmccMaintain &
 
 PID=$!
 echo ${PID} > ${PID_FILE}
