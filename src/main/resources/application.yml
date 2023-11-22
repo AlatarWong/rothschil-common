@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: prod
+  application:
+    name: rothschil-common
 
 logging:
   config: classpath:logback-spring.xml
