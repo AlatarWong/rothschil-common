@@ -9,7 +9,6 @@ public class Version {
 
     public static void printlnVersionInfo() {
         log.info(" {} ",version);
-        log.info("");
     }
 
     public static String getVersion() {

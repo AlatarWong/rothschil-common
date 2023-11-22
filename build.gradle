@@ -99,7 +99,7 @@ jar {
 	// 禁用档案后缀，处理 **-plain.jar
 	archiveClassifier = ''
 	/* 配置文件不打入jar包 */
-	excludes = ["*.yml", "*.sh"]
+	excludes = ["*.yml", "*.sh", "*.xml"]
 }
 
 
