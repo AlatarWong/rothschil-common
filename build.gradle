@@ -57,6 +57,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation "org.projectlombok:lombok:$lombokVersion"
+	implementation "org.springframework.security:spring-security-core"
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -70,7 +71,8 @@ dependencies {
 	implementation group: 'com.google.guava', name: 'guava', version: '20.0'
 	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1'
 	implementation 'cn.hutool:hutool-all:5.8.3'
-
+	// alibaba 线程池
+	implementation 'com.alibaba:transmittable-thread-local:2.14.2'
 	// 持久化
 //	implementation "mysql:mysql-connector-java:8.0.29"
 //	implementation('com.baomidou:mybatis-plus-boot-starter:3.5.2'){

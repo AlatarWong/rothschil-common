@@ -1,6 +1,6 @@
 package io.github.rothschil;
 
-import io.github.rothschil.config.Version;
+import io.github.rothschil.common.config.Version;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

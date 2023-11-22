@@ -1,4 +1,4 @@
-package io.github.rothschil.config;
+package io.github.rothschil.common.config;
 
 import lombok.extern.slf4j.Slf4j;
 

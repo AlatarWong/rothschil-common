@@ -89,7 +89,7 @@ fi
 
 #JAVA_HOME="/usr/java/jdk1.8.0_05"
 JAVA_OPTS=" -Xms512m -Xmx1024m -Xmn512m -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=60 "
-JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -Xloggc:$GC_LOG_PATH"
+JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -Xloggc:$GC_LOG_PATH_DIC"
 
 PID_FILE=./bin/application.pid
 
