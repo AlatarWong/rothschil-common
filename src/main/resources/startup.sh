@@ -95,7 +95,10 @@ PID_FILE=./bin/application.pid
 
 if [ -e ${PID_FILE} ]; then
   log_err "restart application"
-  PID=$(cat ${PID_FILE})
+  PIDCONTENT=$(cat ${PID_FILE})
+  ARR=($PIDCONTENT)
+  log_info "${ARR[0]}:${ARR[1]}:${ARR[2]}:${ARR[3]}:${ARR[4]}"
+  PID=${ARR[4]}
   log_err "try to kill process $PID"
   kill ${PID}
   rm ${PID_FILE}
