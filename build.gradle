@@ -258,7 +258,7 @@ applicationDistribution.with {
 		include "bootstrap.yml", "application.yml", "application-dev.yml", "application-prod.yml"
 	}
 	from("src/main/resources") {
-		into "/"
+		into "/"+project.name+"-"+project_version
 		include "startup.sh", "stop.sh"
 		/* 更换脚本中的变量 */
 		filter(ReplaceTokens, tokens: [mainClassName: mainClassName])

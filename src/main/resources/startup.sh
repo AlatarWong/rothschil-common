@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # Sam Abram<WCNGS@HOTMAIL.COM>
 # Version V1.3.1
-# 使用准则 sh startup.sh $APP_NAME $PORT --spring.profiles.active=$PROD
 echo -ne "\033[0;33m"
-
 cat<<EOF
                                   _oo0oo_
                                  088888880
@@ -75,7 +73,7 @@ else
     exit 1
 fi
 
-IP_NET=`ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}'`
+IP_NET=$(ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}')
 
 ADATE=$(date +%Y%m%d%H)
 CURRENT_DIRECTORY=$(pwd)
