@@ -23,7 +23,7 @@ plugins {
 }
 
 //apply "com.gorylenko.gradle-git-properties"
-
+apply from: "$rootDir/version-commit.gradle"
 version project_version
 group project_group
 

@@ -15,6 +15,7 @@ public class Version {
                         + "Application '{}' is running! Access URLs:\t\n"
                         + "Profile(s): \t{}\t\n----------------------------------------------------------\t\n",
                 env.getProperty("spring.application.name"), env.getActiveProfiles());
+        VersionCommit.print();
         log.error("Application Network Environment {}, Enable Configuration {}", NativeUtil.ipNetworkSegment(),NativeUtil.judgmentEnv().getCode());
     }
 
