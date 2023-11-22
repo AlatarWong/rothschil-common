@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
 
+ADATE=$(date +%Y%m%d%H)
+CURRENT_DIRECTORY=$(pwd)
+ENV_DIR="$CURRENT_DIRECTORY/logs"
+
+LOG_PATH=$ENV_DIR/$ADATE.log
+GC_LOG_PATH_DIC=$ENV_DIR/gc
+
+log_info "Directory of all Log Files is: $ENV_DIR"
+
+if [ ! -d "$ENV_DIR"  ];then
+   mkdir -p $ENV_DIR
+fi
+
+
 #JAVA_HOME="/usr/java/jdk1.8.0_05"
 JAVA_OPTS=" -Xms512m -Xmx1024m -Xmn512m -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=60 "
-JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDetails -verbose:gc -Xloggc:./logs/gc.log"
+JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -Xloggc:$GC_LOG_PATH"
 
 PID_FILE=./bin/application.pid
 
