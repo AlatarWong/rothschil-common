@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
  * @version 1.0.0
  */
-@RestControllerAdvice(basePackages = "cn.ffcs.up.ivr.controller")
+@RestControllerAdvice
 @Primary
 @Slf4j
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
@@ -54,6 +54,7 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
             return true;
         }
         HttpServletRequest request = sra.getRequest();
+
         RestController cller = (RestController) request.getAttribute(Constants.RESPONSE_RESULT_ANN);
         return cller != null;
     }

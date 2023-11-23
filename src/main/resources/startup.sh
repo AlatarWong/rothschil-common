@@ -61,6 +61,8 @@ function log_always(){
 log_debug "Use as follows:"
 log_debug "sh startup.sh /APP_NAME/ /PORT/ --spring.profiles.active=/prod/"
 
+ADATE=$(date +%Y%m%d%H)
+
 # input hostname
 hostname=`hostname`
 log_debug "User Name of the Current System Operation: $hostname"
@@ -75,29 +77,49 @@ fi
 
 # 判断JDK版本
 log_info "Start to determine the JDK version and determine the startup parameters"
-version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
+JAVA_VERSION=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
+VERSION=${JAVA_VERSION%_*}
 log_err "Current Java Versions is $version"
 
-IP_NET=$(ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}')
-
-ADATE=$(date +%Y%m%d%H)
 CURRENT_DIRECTORY=$(pwd)
 ENV_DIR="$CURRENT_DIRECTORY/logs"
-
-LOG_PATH=$ENV_DIR/$ADATE.log
-GC_LOG_PATH_DIC=$ENV_DIR/gc
 
 if [ ! -d "$ENV_DIR"  ];then
    mkdir -p $ENV_DIR
 fi
 
+GC_LOG_PATH_DIC=$ENV_DIR/gc
 
-#JAVA_HOME="/usr/java/jdk1.8.0_05"
+if [ ! -d "$GC_LOG_PATH_DIC"  ];then
+   mkdir -p $GC_LOG_PATH_DIC
+fi
+
+GC_LOG_PATH=$GC_LOG_PATH_DIC/gc-$ADATE.log
+VERSION2="1.8.0"
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
+
+# 判断字符串是否相等
+if [ "$VERSION" == "$VERSION2" ];then
+#### JDK岸本为 1.8的操作
+    TEMP_JVM="-XX:+PrintGCDateStamps -XX:+UseParallelOldGC -XX:+PrintGCDetails -Xloggc:$GC_LOG_PATH"
+    log_err "Current Java Version Is $VERSION [ Equels ] $VERSION2, The JDK8 Configuration Is USED, $TEMP_JVM"
+else
+    if version_gt $VERSION $VERSION2; then
+######## 比JDK 1.8版本高的参数
+      TEMP_JVM="-Xlog:gc:$GC_LOG_PATH"
+      log_err "Current Java Version $VERSION Is Greater Than $VERSION2, The JDK Configuration Is USED $TEMP_JVM"
+    fi
+fi
+
+IP_NET=$(ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}')
+
+## JAVA_HOME="/usr/java/jdk1.8.0_05"
 JAVA_OPTS=" -Xms512m -Xmx1024m -Xmn512m -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=60 "
-JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -Xloggc:$GC_LOG_PATH_DIC"
+JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCDateStamps -verbose:gc $TEMP_JVM"
 
 PID_FILE=./bin/application.pid
 
+### 判断进程是否存在，存在则 Kill 掉
 if [ -e ${PID_FILE} ]; then
   log_err "restart application"
   PIDCONTENT=$(cat ${PID_FILE})
