@@ -73,6 +73,11 @@ else
     exit 1
 fi
 
+# 判断JDK版本
+log_info "Start to determine the JDK version and determine the startup parameters"
+version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
+log_err "Current Java Versions is $version"
+
 IP_NET=$(ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}')
 
 ADATE=$(date +%Y%m%d%H)
