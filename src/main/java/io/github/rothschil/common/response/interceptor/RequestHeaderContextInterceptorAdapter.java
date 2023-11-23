@@ -2,6 +2,7 @@ package io.github.rothschil.common.response.interceptor;
 
 import io.github.rothschil.common.base.vo.BaseReqVo;
 import io.github.rothschil.common.constant.Constant;
+import io.github.rothschil.common.utils.IpUtil;
 import io.github.rothschil.common.utils.UserTransmittableUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -31,7 +32,7 @@ public class RequestHeaderContextInterceptorAdapter extends HandlerInterceptorAd
      * @param request
      **/
     private void initHeaderContext(HttpServletRequest request){
-        String origClientIp = request.getHeader(Constant.ORIG_CLIENT_IP);
+        String origClientIp = IpUtil.getIpAddr(request);
         String userAgent = request.getHeader(Constant.USER_AGENT);
         BaseReqVo reqVo = BaseReqVo.builder().origClientIp(origClientIp).userAgent(userAgent).build();
         UserTransmittableUtils.set(reqVo);
