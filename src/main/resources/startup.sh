@@ -79,7 +79,7 @@ fi
 log_info "Start to determine the JDK version and determine the startup parameters"
 JAVA_VERSION=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
 VERSION=${JAVA_VERSION%_*}
-log_err "Current Java Versions is $version"
+log_err "Current Java Versions is $VERSION"
 
 CURRENT_DIRECTORY=$(pwd)
 ENV_DIR="$CURRENT_DIRECTORY/logs"
@@ -98,10 +98,12 @@ GC_LOG_PATH=$GC_LOG_PATH_DIC/gc-$ADATE.log
 VERSION2="1.8.0"
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
+TEMP_JVM=""
 # 判断字符串是否相等
 if [ "$VERSION" == "$VERSION2" ];then
 #### JDK岸本为 1.8的操作
-    TEMP_JVM="-XX:+PrintGCDateStamps -XX:+UseParallelOldGC -XX:+PrintGCDetails -Xloggc:$GC_LOG_PATH"
+#    TEMP_JVM="-XX:+PrintGCDateStamps -XX:+UseParallelOldGC -XX:+PrintGCDetails -Xloggc:$GC_LOG_PATH"
+    TEMP_JVM="-XX:+PrintGCDetails -Xloggc:$GC_LOG_PATH"
     log_err "Current Java Version Is $VERSION [ Equels ] $VERSION2, The JDK8 Configuration Is USED, $TEMP_JVM"
 else
     if version_gt $VERSION $VERSION2; then
@@ -114,9 +116,9 @@ fi
 IP_NET=$(ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}')
 
 ## JAVA_HOME="/usr/java/jdk1.8.0_05"
-JAVA_OPTS=" -Xms512m -Xmx1024m -Xmn512m -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=60 "
-JAVA_OPTS="$JAVA_OPTS -XX:+PrintGCDateStamps -verbose:gc $TEMP_JVM"
-
+JAVA_OPTS=" -Xms512m -Xmx1024m -Xmn512m -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$CURRENT_DIRECTORY/heapdump.hprof -XX:InitiatingHeapOccupancyPercent=60 "
+JAVA_OPTS="$JAVA_OPTS -verbose:gc $TEMP_JVM"
+log_err "Startup script: $JAVA_OPTS"
 PID_FILE=./bin/application.pid
 
 ### 判断进程是否存在，存在则 Kill 掉
