@@ -1,6 +1,6 @@
 package io.github.rothschil.common.response.interceptor;
 
-import io.github.rothschil.common.base.vo.BaseReqVo;
+import io.github.rothschil.common.base.vo.RequestHeaderVo;
 import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.utils.IpUtil;
 import io.github.rothschil.common.utils.UserTransmittableUtils;
@@ -34,7 +34,7 @@ public class RequestHeaderContextInterceptorAdapter extends HandlerInterceptorAd
     private void initHeaderContext(HttpServletRequest request){
         String origClientIp = IpUtil.getIpAddr(request);
         String userAgent = request.getHeader(Constant.USER_AGENT);
-        BaseReqVo reqVo = BaseReqVo.builder().origClientIp(origClientIp).userAgent(userAgent).build();
+        RequestHeaderVo reqVo = RequestHeaderVo.builder().origClientIp(origClientIp).userAgent(userAgent).build();
         UserTransmittableUtils.set(reqVo);
     }
 

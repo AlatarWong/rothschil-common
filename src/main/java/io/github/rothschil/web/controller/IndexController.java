@@ -1,7 +1,7 @@
 package io.github.rothschil.web.controller;
 
 import cn.hutool.json.JSONUtil;
-import io.github.rothschil.common.base.vo.BaseReqVo;
+import io.github.rothschil.common.base.vo.RequestHeaderVo;
 import io.github.rothschil.common.utils.UserTransmittableUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String index(){
-        BaseReqVo vo = (BaseReqVo)UserTransmittableUtils.get();
+        RequestHeaderVo vo = (RequestHeaderVo)UserTransmittableUtils.get();
         log.info("&& {}",JSONUtil.parse(vo));
         return active+":->"+UUID.randomUUID().toString();
     }

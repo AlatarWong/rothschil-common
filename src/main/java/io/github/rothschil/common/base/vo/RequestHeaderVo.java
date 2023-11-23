@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Builder
 @Data
-public class BaseReqVo  implements Serializable {
+public class RequestHeaderVo implements Serializable {
 
     /**
      * 客户端IP地址
