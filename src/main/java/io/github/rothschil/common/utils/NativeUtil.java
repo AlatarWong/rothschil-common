@@ -1,7 +1,7 @@
 package io.github.rothschil.common.utils;
 
 import cn.hutool.core.util.ObjectUtil;
-import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.enums.EnvironmentEnums;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class NativeUtil {
 
-    private static final String IPADDRESS_PATTERN ="[0-9]{1,3}.[0-9]{1,3}."+ Constants.IPADDRESS_MASTR+".[0-9]{1,3}";
+    private static final String IPADDRESS_PATTERN ="[0-9]{1,3}.[0-9]{1,3}."+ Constant.IPADDRESS_MASTR+".[0-9]{1,3}";
 
     private static EnvironmentEnums ENVIRON_MENT = null;
 

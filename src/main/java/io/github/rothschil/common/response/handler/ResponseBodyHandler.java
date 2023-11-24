@@ -1,7 +1,7 @@
 package io.github.rothschil.common.response.handler;
 
 
-import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.response.Result;
 import io.github.rothschil.common.response.interceptor.ResponseBodyInterceptor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +55,7 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
         }
         HttpServletRequest request = sra.getRequest();
 
-        RestController cller = (RestController) request.getAttribute(Constants.RESPONSE_RESULT_ANN);
+        RestController cller = (RestController) request.getAttribute(Constant.RESPONSE_RESULT_ANN);
         return cller != null;
     }
 

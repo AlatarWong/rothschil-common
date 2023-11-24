@@ -1,7 +1,7 @@
 package io.github.rothschil.common.enums;
 
 
-import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.constant.Constant;
 
 /**
  * 为了应对江苏大区对接口进行反向代理出来两套地址<br/>
@@ -19,12 +19,12 @@ public enum EnvironmentEnums {
     /**
      * 主环境
      */
-    MASTER(Constants.IPADDRESS_MASTR),
+    MASTER(Constant.IPADDRESS_MASTR),
 
     /**
      * 备用环境
      */
-    SLAVE(Constants.IPADDRESS_SLAVE);
+    SLAVE(Constant.IPADDRESS_SLAVE);
 
     private String code;
 

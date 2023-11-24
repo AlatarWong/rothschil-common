@@ -1,7 +1,7 @@
 package io.github.rothschil.common.intf;
 
 import cn.hutool.core.util.ObjectUtil;
-import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.exception.CommonException;
 import io.github.rothschil.common.response.enums.Status;
 import io.github.rothschil.common.utils.NativeUtil;
@@ -47,17 +47,17 @@ public class IntfConfService {
                 URL url = new URL(dbConfig);
                 String host = url.getHost();
                 // 是否为 IP 数字地址而非域名
-                if(!host.matches(Constants.IP_REGEX)){
+                if(!host.matches(Constant.IP_REGEX)){
                     return ;
                 }
-                int sourceIndex = host.lastIndexOf(Constants.POINT);
+                int sourceIndex = host.lastIndexOf(Constant.POINT);
                 String sourceUrlSuffix= host.substring(0,sourceIndex);
 
-                int targetIndex = currrent.lastIndexOf(Constants.POINT);
+                int targetIndex = currrent.lastIndexOf(Constant.POINT);
                 String targetUrlSuffix= currrent.substring(0,targetIndex);
                 conf.setAddress(conf.getAddress().replace(sourceUrlSuffix,targetUrlSuffix));
             } catch (Exception e) {
-                throw new CommonException(Status.API_NOT_FOUND_EXCEPTION,Constants.TURS_URL_ERR+":"+dbConfig);
+                throw new CommonException(Status.API_NOT_FOUND_EXCEPTION,Constant.TURS_URL_ERR+":"+dbConfig);
             }
         }
     }

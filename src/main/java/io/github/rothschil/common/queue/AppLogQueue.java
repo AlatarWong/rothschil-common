@@ -19,11 +19,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 异步处理日志的队列，将需要存储的日志放入这个队列中
- * @author WCNGS@QQ.COM
- * @Github <a>https://github.com/rothschil</a>
- * @date 16/11/13 16:14
- * @Version 1.0.0
-*/
+ * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @version 1.0.0
+ */
 @Component
 public class AppLogQueue {
 
@@ -103,6 +101,8 @@ public class AppLogQueue {
                 List lists = Arrays.asList(queue.toArray());
                 iQueueTaskHandler.processData(lists);
                 queue.clear();
+                // 清理完，把刚才漏掉的补上
+                queue.offer(intfLog);
             }
         } catch (Exception e) {
             LOG.warn("[Exception] {}",e.getMessage());

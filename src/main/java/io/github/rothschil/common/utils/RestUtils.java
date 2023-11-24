@@ -12,7 +12,7 @@ import io.github.rothschil.common.base.dto.RestBean;
 import io.github.rothschil.common.base.vo.BaseReq;
 import io.github.rothschil.common.base.vo.BaseResp;
 import io.github.rothschil.common.base.vo.RequestHeaderVo;
-import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.exception.CommonException;
 import io.github.rothschil.common.handler.IntfLog;
 import io.github.rothschil.common.intf.IntfConfEntity;
@@ -329,7 +329,7 @@ public class RestUtils {
      * @param start 开始时间
      **/
     private static void afterBuildIntfLog(IntfLog intfLog, String restBean, long start){
-        afterBuildIntfLog(intfLog,restBean,start, Constants.NUM_1);
+        afterBuildIntfLog(intfLog,restBean,start, Constant.NUM_1);
     }
 
 
@@ -639,7 +639,7 @@ public class RestUtils {
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         }
         HttpEntity<String> requestEntity = new HttpEntity<>(json, httpHeaders);
-        String errMsg=Constants.HTTP_ERR_MSG_DEFAULT;
+        String errMsg=Constant.HTTP_ERR_MSG_DEFAULT;
         long beginTime = System.currentTimeMillis();
         try {
             if (httpHeaders.containsKey("POST")) {

@@ -46,26 +46,26 @@ public class IntfConfEntity implements Serializable {
     // @TableField("method_name")
     private String methodName;
 
-    @TableField("param_name")
+    // @TableField("param_name")
     private String paramName;
 
-    @TableField("header_info")
+    // @TableField("header_info")
     private String headerInfo;
     /**
      * 状态：1在用，0停用
      */
-    @TableField("state")
+    // @TableField("state")
     private String state;
     /**
      * 超时
      */
-    @TableField("timeout")
+    // @TableField("timeout")
     private int timeout;
 
     /**
      * 命名空间
      */
-    @TableField("name_space")
+    // @TableField("name_space")
     private String namespace;
     /**
      * 备注
@@ -75,16 +75,16 @@ public class IntfConfEntity implements Serializable {
     /**
      * 私钥
      */
-    @TableField("private_key")
+    // @TableField("private_key")
     private String privateKey;
 
-    @TableField("public_key")
+    // @TableField("public_key")
     private String publicKey;
 
     /**
      * <b>参数类型</b>
      */
-    @TableField(exist=false)
+    // @TableField(exist=false)
     private ParamType paramType;
     /**
      * <b>接口类型</b>
@@ -93,14 +93,13 @@ public class IntfConfEntity implements Serializable {
      *     <li>1：WebService</li>
      * </ul>
      */
-    @TableField(exist=false)
-
+    // @TableField(exist=false)
     private Integer serviceType;
 
     /**
      * <b>WebService配置<b/>
      */
-    @TableField(exist=false)
+    // @TableField(exist=false)
     private WebServiceConf webServiceConf;
 
     @Data

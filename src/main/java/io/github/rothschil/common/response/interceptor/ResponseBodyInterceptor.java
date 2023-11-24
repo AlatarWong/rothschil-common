@@ -1,7 +1,7 @@
 package io.github.rothschil.common.response.interceptor;
 
 
-import io.github.rothschil.common.constant.Constants;
+import io.github.rothschil.common.constant.Constant;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +40,7 @@ public class ResponseBodyInterceptor implements HandlerInterceptor {
                 final HandlerMethod handlerMethod = (HandlerMethod) handler;
                 final Class<?> clazz = handlerMethod.getBeanType();
                 if (clazz.isAnnotationPresent(RestController.class)) {
-                    request.setAttribute(Constants.RESPONSE_RESULT_ANN, clazz.getAnnotation(RestController.class));
+                    request.setAttribute(Constant.RESPONSE_RESULT_ANN, clazz.getAnnotation(RestController.class));
                 }
             }
         }else{

@@ -1,6 +1,7 @@
 package io.github.rothschil.common.config;
 
 
+import io.github.rothschil.common.interceptor.LogInterceptor;
 import io.github.rothschil.common.response.interceptor.RequestHeaderContextInterceptorAdapter;
 import io.github.rothschil.common.response.interceptor.ResponseBodyInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,8 +74,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(logInterceptor());
         registry.addInterceptor(responseBodyInterceptor).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**","/mock/test/**","/iserv/**","/cache/**");
         registry.addInterceptor(requestHeaderContextInterceptorAdapter).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**");
+    }
+
+    @Bean
+    public LogInterceptor logInterceptor() {
+        return new LogInterceptor();
     }
 
     @Override
