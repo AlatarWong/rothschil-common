@@ -4,9 +4,11 @@ import io.github.rothschil.common.response.Result;
 import io.github.rothschil.common.response.enums.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +18,8 @@ import org.springframework.web.method.HandlerMethod;
 
 import javax.annotation.Priority;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -92,18 +96,26 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BindException.class)
     public Result handleBindException(BindException e) {
         LOG.error("发生参数校验异常！原因是：", e);
-        return Result.fail(Status.API_PARAM_EXCEPTION, e, e.getAllErrors().get(0).getDefaultMessage());
+        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+        List<String> collect = fieldErrors.stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.toList());
+        return Result.fail(Status.API_PARAM_EXCEPTION, collect);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result handleMethodArgumentNotValidException(HttpServletRequest request,MethodArgumentNotValidException e) {
         LOG.error("发生参数校验异常！原因是 ", e);
+        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+        List<String> collect = fieldErrors.stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.toList());
         // BindingResult bindingResult = e.getBindingResult();
         // FieldError firstFieldError = CollectionUtil.getFirst(bindingResult.getFieldErrors());
         // String exceptionStr = Optional.ofNullable(firstFieldError)
         //         .map(FieldError::getDefaultMessage)
         //         .orElse(StrUtil.EMPTY);
         // LOG.error("[{}] {} [ex] {}", request.getMethod(),"URL:", exceptionStr);
-        return Result.fail(Status.API_PARAM_EXCEPTION, e, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        return Result.fail(Status.API_PARAM_EXCEPTION, collect);
     }
 }

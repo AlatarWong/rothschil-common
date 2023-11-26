@@ -1,8 +1,10 @@
 package io.github.rothschil.common.response;
 
 
+import cn.hutool.core.util.ObjectUtil;
 import io.github.rothschil.common.response.enums.Status;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
@@ -75,17 +77,36 @@ public class Result<T> implements Serializable {
         return result;
     }
 
-    public static <T> Result<T> fail(Status status, Throwable e, String message) {
-        Result<T> erResult = Result.fail(status, e);
-        erResult.setMessage(message);
-        return erResult;
+    public static <T> Result<T> fail(Status status, Exception ex) {
+        return fail(status,null,ex,null,null);
     }
 
-    public static <T> Result<T> fail(Status status, Throwable e) {
+    public static <T> Result<T> fail(Status status,  T data) {
+        return fail(status,null,null,null,data);
+    }
+
+    public static <T> Result<T> fail(Status status, String message, T data) {
+        return fail(status,message,null,null,data);
+    }
+
+    public static <T> Result<T> fail(Status status, String message) {
+        return fail(status,message,null,null,null);
+    }
+
+    public static <T> Result<T> fail(Status status, String message,Exception ex, Throwable e,T data) {
         Result<T> erResult = new Result<T>();
         erResult.setCode(status.getStatus());
-        erResult.setMessage(status.getMsg());
-        erResult.setException(e.getClass().getName());
+        erResult.setMessage(StringUtils.isBlank(message)?status.getMsg():message);
+        if(ObjectUtil.isNotNull(ex)){
+            erResult.setException(ex.getMessage());
+        } else{
+            if(ObjectUtil.isNotNull(e)){
+                erResult.setException(e.getClass().getName());
+            }
+        }
+        if(ObjectUtil.isNotNull(data)){
+            erResult.setData(data);
+        }
         return erResult;
     }
 
@@ -95,6 +116,7 @@ public class Result<T> implements Serializable {
         erResult.setMessage(message);
         return erResult;
     }
+
 
     public T getData() {
         return data;
