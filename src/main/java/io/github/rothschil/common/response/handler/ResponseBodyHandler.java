@@ -46,16 +46,21 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
      */
     @Override
     public boolean supports(@Nullable MethodParameter returnType, @Nullable Class<? extends HttpMessageConverter<?>> converterType) {
+        // Get the ServletRequestAttributes from the RequestContextHolder
         ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        // Assert that the ServletRequestAttributes is not null
         Assert.notNull(sra, "The ServletRequestAttributes must not be null");
         Assert.notNull(returnType, "The MethodParameter must not be null");
         // 先将 Controller 中含有 的 ResponseBody 注解优先甄别出来
         if (returnType.hasMethodAnnotation(ResponseBody.class)) {
             return true;
         }
+        // Get the HttpServletRequest from the ServletRequestAttributes
         HttpServletRequest request = sra.getRequest();
 
+        // Get the RestController from the HttpServletRequest
         RestController cller = (RestController) request.getAttribute(Constant.RESPONSE_RESULT_ANN);
+        // Return true if the RestController is not null
         return cller != null;
     }
 
