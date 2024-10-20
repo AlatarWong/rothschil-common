@@ -56,7 +56,9 @@ public class AsyncExecutorConfig implements AsyncConfigurer {
         executor.setWaitForTasksToCompleteOnShutdown(WAIT_FOR_TASKS_TO_COMPLETE_ON_SHUTDOWN);
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
-        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.setRejectedExecutionHandler((Runnable r, ThreadPoolExecutor exe) -> {
+            log.error("当前任务线程池队列已满");
+        });
         executor.initialize();
         // return executor;
         // return TtlExecutors.getTtlExecutorService(executor.getThreadPoolExecutor());

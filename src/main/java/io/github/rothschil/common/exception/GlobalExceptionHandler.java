@@ -106,16 +106,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result handleMethodArgumentNotValidException(HttpServletRequest request,MethodArgumentNotValidException e) {
         LOG.error("发生参数校验异常！原因是 ", e);
-        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-        List<String> collect = fieldErrors.stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.toList());
+        // List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+        // List<String> collect = fieldErrors.stream()
+        //         .map(DefaultMessageSourceResolvable::getDefaultMessage)
+        //         .collect(Collectors.toList());
+        StringBuilder errors = new StringBuilder();
+        e.getBindingResult().getAllErrors().forEach(error -> {
+            errors.append(error.getDefaultMessage()).append(";");
+        });
         // BindingResult bindingResult = e.getBindingResult();
         // FieldError firstFieldError = CollectionUtil.getFirst(bindingResult.getFieldErrors());
         // String exceptionStr = Optional.ofNullable(firstFieldError)
         //         .map(FieldError::getDefaultMessage)
         //         .orElse(StrUtil.EMPTY);
         // LOG.error("[{}] {} [ex] {}", request.getMethod(),"URL:", exceptionStr);
-        return Result.fail(Status.API_PARAM_EXCEPTION, collect);
+        return Result.fail(Status.API_PARAM_EXCEPTION, errors.toString());
     }
 }
