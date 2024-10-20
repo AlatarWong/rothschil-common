@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+@EnableAsync
 @Slf4j
 @SpringBootApplication
 public class RothschilApplication {

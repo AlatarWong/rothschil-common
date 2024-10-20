@@ -1,6 +1,5 @@
 package io.github.rothschil.common.config;
 
-import com.alibaba.ttl.threadpool.TtlExecutors;
 import io.github.rothschil.common.utils.thread.CustomThreadPoolTaskExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
@@ -13,8 +12,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.Nonnull;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 /**
  * Alibaba线程池
@@ -40,22 +38,25 @@ public class AsyncExecutorConfig implements AsyncConfigurer {
     private static final String THREAD_NAME_PREFIX = "async-service-";
 
 
-    @Bean("ttlExecutor")
+    @Bean("getAsyncExecutor")
     @Override
     public Executor getAsyncExecutor() {
-        CustomThreadPoolTaskExecutor executor = new CustomThreadPoolTaskExecutor();
+
+        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(1000);
+        CustomThreadPoolTaskExecutor executor = new CustomThreadPoolTaskExecutor(2,10,10, TimeUnit.SECONDS,queue);
         executor.setCorePoolSize(CORE_POOL_SIZE);
-        executor.setMaxPoolSize(MAX_POOL_SIZE);
-        executor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
-        executor.setQueueCapacity(QUEUE_CAPACITY);
-        executor.setThreadNamePrefix(THREAD_NAME_PREFIX);
-        executor.setAwaitTerminationSeconds(AWAIT_TERMINATION);
-        executor.setWaitForTasksToCompleteOnShutdown(WAIT_FOR_TASKS_TO_COMPLETE_ON_SHUTDOWN);
+        // executor.setMaxPoolSize(MAX_POOL_SIZE);
+        // executor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
+        // executor.setQueueCapacity(QUEUE_CAPACITY);
+        // executor.setThreadNamePrefix(THREAD_NAME_PREFIX);
+        // executor.setAwaitTerminationSeconds(AWAIT_TERMINATION);
+        // executor.setWaitForTasksToCompleteOnShutdown(WAIT_FOR_TASKS_TO_COMPLETE_ON_SHUTDOWN);
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        executor.initialize();
-        return TtlExecutors.getTtlExecutorService(executor.getThreadPoolExecutor());
+        // executor.initialize();
+        return executor;
+        // return TtlExecutors.getTtlExecutorService(executor.getThreadPoolExecutor());
     }
 
     /**

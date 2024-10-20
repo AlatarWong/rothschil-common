@@ -11,7 +11,7 @@ import java.util.concurrent.Callable;
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
  * @version 1.0.0
  */
-public class ThreadMdcUtil {
+public final class ThreadMdcUtil {
     private static final String TRACE_ID = "TRACE_ID";
 
     // 获取唯一性标识
@@ -56,7 +56,6 @@ public class ThreadMdcUtil {
      * @return Runnable
      **/
     public static Runnable wrap(final Runnable runnable, final Map<String, String> context) {
-
         return () -> {
             if (context == null) {
                 MDC.clear();

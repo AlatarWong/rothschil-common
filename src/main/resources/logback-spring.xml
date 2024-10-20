@@ -6,7 +6,7 @@
     <property name="LOG_HOME" value="./logs"/>
 
     <!-- 控制台输出 -->
-    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STD_OUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoder 默认配置为PatternLayoutEncoder -->
         <encoder>
             <pattern>[%X{TRACE_ID}]  %d{HH:mm:ss.SSS} [%thread] [%boldYellow(%X{requestId})] %-5level %logger{36} - %msg%n</pattern>
@@ -14,12 +14,12 @@
     </appender>
 
     <!-- 控制台_异步输出 -->
-    <appender name="async_stdout" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="stdout"/>
+    <appender name="ASYNC_STD_OUT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STD_OUT"/>
     </appender>
 
     <!-- 主日志文件 -->
-    <appender name="main_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="MAIN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
             <FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
@@ -35,17 +35,17 @@
 
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{HH:mm:ss.SSS} [%thread] [%boldYellow(%X{requestId})] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>[%X{TRACE_ID}] %d{HH:mm:ss.SSS} [%thread] [%boldYellow(%X{requestId})] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <!-- 主日志文件_异步输出 -->
-    <appender name="async_main_file" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="main_file"/>
+    <appender name="ASYNC_MAIN_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="MAIN_FILE"/>
     </appender>
 
     <!-- sql日志文件 -->
-    <appender name="sql_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="SQL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
             <FileNamePattern>${LOG_HOME}/sql/%d{yyyy-MM-dd/HH}.log.gz</FileNamePattern>
@@ -56,49 +56,49 @@
 
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{mm:ss.SSS} [%thread] [%boldYellow(%X{requestId})] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>[%X{TRACE_ID}] %d{mm:ss.SSS} [%thread] [%boldYellow(%X{requestId})] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <!-- sql日志文件_异步输出 -->
-    <appender name="async_sql_file" class="ch.qos.logback.classic.AsyncAppender">
+    <appender name="ASYNC_SQL_FILE" class="ch.qos.logback.classic.AsyncAppender">
         <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
         <queueSize>1000</queueSize>
 
         <!-- 添加附加的appender,最多只能添加一个 -->
-        <appender-ref ref="sql_file"/>
+        <appender-ref ref="SQL_FILE"/>
     </appender>
 
     <!-- hibernate的sql输出 -->
     <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
-        <appender-ref ref="async_stdout"/>
-        <appender-ref ref="async_sql_file"/>
+        <appender-ref ref="ASYNC_STD_OUT"/>
+        <appender-ref ref="ASYNC_SQL_FILE"/>
     </logger>
 
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" additivity="false">
-        <appender-ref ref="async_stdout"/>
-        <appender-ref ref="async_sql_file"/>
+        <appender-ref ref="ASYNC_STD_OUT"/>
+        <appender-ref ref="ASYNC_SQL_FILE"/>
     </logger>
 
     <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG" additivity="false">
-        <appender-ref ref="async_stdout"/>
-        <appender-ref ref="async_sql_file"/>
+        <appender-ref ref="ASYNC_STD_OUT"/>
+        <appender-ref ref="ASYNC_SQL_FILE"/>
     </logger>
 
     <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" additivity="false">
-        <appender-ref ref="async_stdout"/>
-        <appender-ref ref="async_sql_file"/>
+        <appender-ref ref="ASYNC_STD_OUT"/>
+        <appender-ref ref="ASYNC_SQL_FILE"/>
     </logger>
 
     <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" additivity="false">
-        <appender-ref ref="async_stdout"/>
-        <appender-ref ref="async_sql_file"/>
+        <appender-ref ref="ASYNC_STD_OUT"/>
+        <appender-ref ref="ASYNC_SQL_FILE"/>
     </logger>
 
     <!-- 主日志输出 -->
     <root level="INFO">
-        <appender-ref ref="async_stdout"/>
-        <appender-ref ref="async_main_file"/>
+        <appender-ref ref="ASYNC_STD_OUT"/>
+        <appender-ref ref="ASYNC_MAIN_FILE"/>
     </root>
 
 </configuration>

@@ -1,5 +1,6 @@
 package io.github.rothschil.web.compoent;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
 import io.github.rothschil.common.base.vo.RequestHeaderVo;
 import io.github.rothschil.common.utils.UserTransmittableUtils;
@@ -7,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -23,7 +23,7 @@ public class AsyncTask {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        String tid = UUID.randomUUID().toString().replace("-", "");
+        String tid = DateUtil.now();
         log.info("tid={}",tid);
     }
 }
