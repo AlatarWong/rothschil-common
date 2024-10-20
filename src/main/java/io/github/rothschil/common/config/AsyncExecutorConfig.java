@@ -1,18 +1,22 @@
 package io.github.rothschil.common.config;
 
+import com.alibaba.ttl.threadpool.TtlExecutors;
 import io.github.rothschil.common.utils.thread.CustomThreadPoolTaskExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskDecorator;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.Nonnull;
-import java.util.concurrent.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Alibaba线程池
@@ -21,8 +25,9 @@ import java.util.concurrent.*;
  * @version 1.0.0
  */
 @Slf4j
+@EnableAsync
+@Configuration
 public class AsyncExecutorConfig implements AsyncConfigurer {
-
 
     private static final int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 2;
     private static final int MAX_POOL_SIZE = CORE_POOL_SIZE * 4 < 256 ? 256 : CORE_POOL_SIZE * 4;
@@ -38,25 +43,24 @@ public class AsyncExecutorConfig implements AsyncConfigurer {
     private static final String THREAD_NAME_PREFIX = "async-service-";
 
 
-    @Bean("getAsyncExecutor")
+    @Bean
     @Override
     public Executor getAsyncExecutor() {
-
-        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(1000);
-        CustomThreadPoolTaskExecutor executor = new CustomThreadPoolTaskExecutor(2,10,10, TimeUnit.SECONDS,queue);
+        CustomThreadPoolTaskExecutor executor = new CustomThreadPoolTaskExecutor();
         executor.setCorePoolSize(CORE_POOL_SIZE);
-        // executor.setMaxPoolSize(MAX_POOL_SIZE);
-        // executor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
-        // executor.setQueueCapacity(QUEUE_CAPACITY);
-        // executor.setThreadNamePrefix(THREAD_NAME_PREFIX);
-        // executor.setAwaitTerminationSeconds(AWAIT_TERMINATION);
-        // executor.setWaitForTasksToCompleteOnShutdown(WAIT_FOR_TASKS_TO_COMPLETE_ON_SHUTDOWN);
+        executor.setMaxPoolSize(MAX_POOL_SIZE);
+        executor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
+        executor.setQueueCapacity(QUEUE_CAPACITY);
+        executor.setThreadNamePrefix(THREAD_NAME_PREFIX);
+        executor.setAwaitTerminationSeconds(AWAIT_TERMINATION);
+        executor.setWaitForTasksToCompleteOnShutdown(WAIT_FOR_TASKS_TO_COMPLETE_ON_SHUTDOWN);
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是有调用者所在的线程来执行
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        // executor.initialize();
-        return executor;
+        executor.initialize();
+        // return executor;
         // return TtlExecutors.getTtlExecutorService(executor.getThreadPoolExecutor());
+        return TtlExecutors.getTtlExecutor(executor);
     }
 
     /**

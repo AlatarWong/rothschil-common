@@ -1,0 +1,2 @@
+#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+#  io.github.rothschil.common.config.AsyncExecutorConfig

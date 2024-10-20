@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class AsyncTask {
 
-    @Async
+    @Async("getAsyncExecutor")
     public void async(){
         RequestHeaderVo vo = (RequestHeaderVo) UserTransmittableUtils.get();
         log.info("&& {}", JSONUtil.parse(vo));
