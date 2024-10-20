@@ -30,7 +30,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class AsyncExecutorConfig implements AsyncConfigurer {
 
     private static final int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 2;
-    private static final int MAX_POOL_SIZE = CORE_POOL_SIZE * 4 < 256 ? 256 : CORE_POOL_SIZE * 4;
+    private static final int MAX_POOL_SIZE = Math.max(CORE_POOL_SIZE * 4, 256);
     // 允许线程空闲时间（单位为秒）
     private static final int KEEP_ALIVE_TIME = 10;
     // 缓冲队列数
@@ -66,7 +66,6 @@ public class AsyncExecutorConfig implements AsyncConfigurer {
     /**
      * 异常处理器
      *
-     * @param
      * @return AsyncUncaughtExceptionHandler
      * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
      **/
