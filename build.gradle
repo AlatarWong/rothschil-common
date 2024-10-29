@@ -23,7 +23,7 @@ plugins {
 }
 
 //apply "com.gorylenko.gradle-git-properties"
-//apply from: "$rootDir/version-commit.gradle"
+apply from: "$rootDir/version-commit.gradle"
 apply plugin: 'io.spring.dependency-management'
 version project_version
 group project_group
@@ -94,7 +94,7 @@ dependencies {
 
 	//日志转换
 	implementation group: 'uk.org.lidalia', name: 'sysout-over-slf4j', version: '1.0.2'
-
+	implementation group: 'com.sun.xml.ws', name: 'jaxws-ri', version: '2.3.2'
 	//sftp jsch
 	implementation group: 'com.jcraft', name: 'jsch', version: '0.1.55'
 	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
