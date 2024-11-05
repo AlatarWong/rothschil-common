@@ -6,6 +6,8 @@ spring:
 
 logging:
   config: classpath:logback-spring.xml
+dynamic:
+  enabled: true
 
 mybatis-plus:
   configuration:

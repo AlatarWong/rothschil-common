@@ -16,7 +16,6 @@ plugins {
 	id 'maven-publish'
 	id 'signing'
 	id 'idea'
-//	id 'com.gorylenko.gradle-git-properties'
 	id 'jacoco'
 	id 'org.springframework.boot' version '2.5.10'
 //	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -96,7 +95,9 @@ dependencies {
 	implementation group: 'uk.org.lidalia', name: 'sysout-over-slf4j', version: '1.0.2'
 	implementation group: 'com.sun.xml.ws', name: 'jaxws-ri', version: '2.3.2'
 	//sftp jsch
-	implementation group: 'com.jcraft', name: 'jsch', version: '0.1.55'
+
+
+//	implementation group: 'org.osgi', name: 'org.osgi.resource.locator', version: '1.0.1'
 	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
