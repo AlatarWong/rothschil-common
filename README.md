@@ -17,16 +17,7 @@
 │  └─wrapper
 │          gradle-wrapper.jar           --gradle-wrapper 主题功能
 │          gradle-wrapper.properties    --Gradle当前配置的版本，以及从哪里获取
-|---common-framework    ------------------常用框架模块
-|   │---framework-limit  -----------------用于对请求进行限流
-|---common-utils    ----------------------常用工具包，集成通用基类，供其他模块引入
-|   │---build.gradle  --------------------工具包的构建文件
-|   │---dependencies.gradle   ------------依赖配置，对绝大多数版本号只需修改此处即可
-|---common-persistence  ------------------持久化框架底层封装
-|   │---persistence-elasticsearch  -------Elastic框架读写，可直接引用
-|   │---persistence-jpa  -----------------JPA基本操作封装，可直接引用
-|   │---persistence-mybatis   ------------Mybatis基本操作封装，可直接引用
-|   │---persistence-redis   --------------Redis基本操作封装，可直接引用
+|---src    ------------------常用框架模块
 │  .gitignore           ------------------配置git忽略索要文件
 │  build.gradle         ------------------根目录的构建核心文件
 │  gradle.properties    ------------------根目录的属性文件，这是默认命名
