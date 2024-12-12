@@ -181,7 +181,7 @@ nbdist/
 !.vscode/extensions.json
 ### Maven template
 target/
-*/test/
+# */test/
 
 pom.xml.tag
 pom.xml.releaseBackup
