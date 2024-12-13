@@ -2,6 +2,7 @@ package io.github.rothschil.domain.entity;
 
 
 import io.github.rothschil.common.base.persistence.entity.AbsEntity;
+import io.github.rothschil.common.base.persistence.entity.AbstractEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,13 +14,13 @@ import java.io.Serializable;
 @Table(name = "INTF")
 @Data
 @NoArgsConstructor
-public class Intf extends AbsEntity {
+public class Intf extends AbstractEntity<Long> {
 
 
     @Id
     // 主键生成策略（主键自增）
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
 
     String name;
     String password;
@@ -30,7 +31,7 @@ public class Intf extends AbsEntity {
     }
 
     @Override
-    public void setId(Serializable serializable) {
-
+    public void setId(Long ids) {
+        this.id=ids;
     }
 }

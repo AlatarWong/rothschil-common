@@ -2,8 +2,10 @@ package io.github.rothschil.common.base.persistence.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.github.rothschil.common.constant.Constant;
 import lombok.Getter;
 import lombok.Setter;
+import io.github.rothschil.common.config.prop.Global;
 
 import java.io.Serializable;
 import java.util.Date;
