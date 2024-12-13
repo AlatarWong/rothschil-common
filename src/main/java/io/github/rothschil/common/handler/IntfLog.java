@@ -1,7 +1,7 @@
 package io.github.rothschil.common.handler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.github.rothschil.common.base.entity.BaseEntity;
+import io.github.rothschil.common.base.persistence.entity.BaseEntity;
 import lombok.*;
 
 import java.util.Date;

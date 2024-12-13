@@ -15,6 +15,7 @@ public interface Constant {
 
     String HOST="Host";
 
+    String DB_TYPE ="db.dtype";
 
     /**
      *  标识常量，用于在 {@link Controller} 层面中统一处理 返回值
