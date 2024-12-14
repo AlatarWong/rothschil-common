@@ -2,14 +2,5 @@ server:
   port: 11300
 github:
   active: prod
-mybatis:
-  mapper:
-    #locations: classpath:com/bj/springboot/mapper/*.xml
-    locations: classpath:/mapper/*.xml
-#    配置数据库连接信息
-spring:
-  datasource:
-    username: admin
-    password: 12345678
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:mysql://192.168.12.203:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=UT
+
+

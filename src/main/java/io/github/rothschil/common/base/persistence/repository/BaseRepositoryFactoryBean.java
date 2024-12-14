@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 
 @SuppressWarnings({"rawtypes","unchecked"})
-public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T,I extends Serializable> extends JpaRepositoryFactoryBean<R, T, I> {
+public class BaseRepositoryFactoryBean<R extends JpaRepository<T, ID>, T,ID extends Serializable> extends JpaRepositoryFactoryBean<R, T, ID> {
 
 
     public BaseRepositoryFactoryBean(Class<? extends R> repositoryInterface) {
@@ -47,7 +47,13 @@ public class BaseRepositoryFactoryBean<R extends JpaRepository<T, I>, T,I extend
             Object repository = this.getTargetRepositoryViaReflection(information, entityInformation, entityManager);
             Assert.isInstanceOf(BaseRepositoryImpl.class, repository);
             return (JpaRepositoryImplementation) repository;
+//                return new BaseRepositoryImpl<T, I>((Class<T>) information.getDomainType(), em);
         }
+
+//        @Override
+//        protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
+//            return new BaseRepositoryImpl(information.getDomainType(), em);
+//        }
 
 //        /**
 //         * 设置具体的实现类是BaseRepositoryImpl

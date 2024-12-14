@@ -301,7 +301,6 @@ public class RestUtils {
         entity.setIntfCode(intfConf.getInterfaceName());
         entity.setSource("IVR");
         entity.setTarget(intfConf.getInterfaceName());
-        entity.setRemark(intfConf.getRemark());
         entity.setReqData(json);
         entity.setReqTime(new Date());
         RequestHeaderVo ivrVo = (RequestHeaderVo)UserTransmittableUtils.get();

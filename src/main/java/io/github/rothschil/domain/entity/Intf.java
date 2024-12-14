@@ -1,19 +1,19 @@
 package io.github.rothschil.domain.entity;
 
 
-import io.github.rothschil.common.base.persistence.entity.AbsEntity;
 import io.github.rothschil.common.base.persistence.entity.AbstractEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 
 @Entity
 @Table(name = "INTF")
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 public class Intf extends AbstractEntity<Long> {
 
 
@@ -21,6 +21,17 @@ public class Intf extends AbstractEntity<Long> {
     // 主键生成策略（主键自增）
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id=id;
+    }
 
     String name;
     String password;
@@ -30,8 +41,4 @@ public class Intf extends AbstractEntity<Long> {
         this.password = password;
     }
 
-    @Override
-    public void setId(Long ids) {
-        this.id=ids;
-    }
 }

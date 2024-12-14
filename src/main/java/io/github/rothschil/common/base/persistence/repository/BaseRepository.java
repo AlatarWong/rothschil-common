@@ -1,6 +1,7 @@
 package io.github.rothschil.common.base.persistence.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @NoRepositoryBean
 @Transactional(readOnly=true,rollbackFor = Exception.class)
-public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
+public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
 
     /**
      * 根据主键删除
@@ -47,6 +48,21 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
 
     @Transactional(rollbackFor = Exception.class)
     void updateByHql(String hql,Object...args);
+
+
+    List<T> findByConditions(Map<String, String> tableMap);
+
+
+    void deleteValid(String ids);
+
+    T findOneByAttr(String attr, String condition);
+
+
+    List<T> findByAttr(String attr, String condition);
+
+
+    List<T> findByAttrs(String attr, String conditions);
+
 
 //    Page<T> findCriteria(Specification<T> spec, Pageable pageable);
 

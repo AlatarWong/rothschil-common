@@ -1,24 +1,47 @@
 package io.github.rothschil.common.base.persistence.repository;
 
-import org.springframework.data.domain.*;
+import io.github.rothschil.common.utils.ReflectUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Id;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.io.Serializable;
-import java.util.Collections;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @SuppressWarnings({"unchecked"})
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
+
+	private ReflectUtil reflectUtil = new ReflectUtil();
+
+//	private Utils utils = new Utils();
+
+	private Class<T> clazz;
+
 	//
 	private final EntityManager entityManager;
 
+
+	@Autowired(required = false)
+	public BaseRepositoryImpl(JpaEntityInformation<T, ID> entityInformation, EntityManager em) {
+		super(entityInformation, em);
+		this.clazz = entityInformation.getJavaType();
+		this.entityManager=em;
+	}
+
+	@Autowired(required = false)
 	public BaseRepositoryImpl(Class<T> domainClass, EntityManager em) {
 		super(domainClass, em);
 		this.entityManager=em;
@@ -53,6 +76,79 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 	@Override
 	public List<Object[]> listBySQL(String sql) {
 		return entityManager.createNativeQuery(sql).getResultList();
+	}
+
+
+
+	/**
+	 * @param tableMap 查询条件
+	 * @return List
+	 */
+	@Override
+	public List<T> findByConditions(Map<String, String> tableMap) {
+		//调用省去map参数的方法
+		Specification<T> specification = reflectUtil.createSpecification(tableMap, clazz, null);
+		return this.findAll(specification);
+	}
+
+
+	@Override
+	@Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+	public void deleteValid(String ids) {
+		List<String> strings = Arrays.asList(ids.split(","));
+		if (!CollectionUtils.isEmpty(strings)) {
+			//获取主键
+			List<Field> idAnnoation = reflectUtil.getTargetAnnoation(clazz, Id.class);
+			if (!CollectionUtils.isEmpty(idAnnoation)) {
+				Field field = idAnnoation.get(0);
+				strings.stream().forEach(id -> {
+					T object = this.findOneByAttr(field.getName(), id);
+					if (object != null) {
+                        try {
+                            reflectUtil.setValue(object, "valid", 0);
+                        } catch (NoSuchFieldException | IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
+                        this.save(object);
+					}
+				});
+			}
+		}
+	}
+
+
+	@Override
+	public T findOneByAttr(String attr, String condition) {
+		Specification<T> specification = reflectUtil.createOneSpecification(attr, condition);
+		Optional<T> result = this.findOne(specification);
+
+		if (result.isPresent()) {
+			return result.get();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public List<T> findByAttr(String attr, String condition) {
+		Specification<T> specification = reflectUtil.createOneSpecification(attr, condition);
+		List<T> all = this.findAll(specification);
+		return all;
+	}
+
+	@Override
+	public List<T> findByAttrs(String attr, String conditions) {
+		List<T> results = new ArrayList<>();
+		if (!StringUtils.isEmpty(conditions)) {
+			List<String> cons = Arrays.asList(conditions.split(","));
+			cons.stream().forEach(condition -> {
+				List<T> byAttr = findByAttr(attr, condition);
+				if (byAttr != null) {
+					results.addAll(byAttr);
+				}
+			});
+		}
+		return results;
 	}
 
 

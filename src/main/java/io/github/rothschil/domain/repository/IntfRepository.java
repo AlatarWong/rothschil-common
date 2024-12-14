@@ -2,9 +2,10 @@
 
 
  import io.github.rothschil.common.base.persistence.repository.BaseRepository;
- import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+ import org.springframework.stereotype.Repository;
 
- public interface IntfRepository<Intf> extends BaseRepository<Intf, Long>, JpaSpecificationExecutor<Intf> {
+ @Repository
+ public interface IntfRepository<Intf> extends BaseRepository<Intf, Long> {
 
 
  }

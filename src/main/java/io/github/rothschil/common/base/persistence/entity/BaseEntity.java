@@ -1,13 +1,10 @@
 package io.github.rothschil.common.base.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Entity基类
@@ -15,56 +12,26 @@ import java.util.Map;
  * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
  * @version 1.0.0
  */
-@Setter
-public abstract class BaseEntity<ID extends Serializable> implements Serializable {
+@MappedSuperclass
+public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity<ID> {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 搜索值
-     */
-    @Getter
-    private String searchValue;
 
     /**
-     * 创建者
+     * @Fields serialVersionUID : TODO（用一句话描述这个变量表示什么）
      */
-    @Getter
-    private String createBy;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private ID id;
 
-    /**
-     * 创建时间
-     */
-    @Getter
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    @Override
+    public ID getId() {
+        return id;
+    }
 
-    /**
-     * 更新者
-     */
-    private String updateBy;
-
-    /**
-     * 更新时间
-     */
-    @Getter
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
-
-    /**
-     * 备注
-     */
-    private String remark;
-
-    /**
-     * 请求参数
-     */
-    private Map<String, Object> params;
-
-    public Map<String, Object> getParams() {
-        if (params == null) {
-            params = new HashMap<>();
-        }
-        return params;
+    @Override
+    public void setId(ID id) {
+        this.id = id;
     }
 
 }

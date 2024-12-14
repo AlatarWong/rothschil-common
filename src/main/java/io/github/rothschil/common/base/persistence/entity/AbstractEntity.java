@@ -1,75 +1,70 @@
 package io.github.rothschil.common.base.persistence.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.github.rothschil.common.constant.Constant;
-import lombok.Getter;
-import lombok.Setter;
-import io.github.rothschil.common.config.prop.Global;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.springframework.data.domain.Persistable;
 
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * @author <a>https://github.com/rothschil</a>
- */
-public abstract class AbstractEntity<ID extends Serializable> extends BaseEntity<ID> {
+@SuppressWarnings({})
+@MappedSuperclass
+public abstract class AbstractEntity<ID extends Serializable> implements Persistable<ID> {
 
-    @Setter
-    /*** 数据库类型 */
-    @JSONField(serialize = false)
-    private String dtype;
+	private static final long serialVersionUID = 1L;
+
+
+    @Override
+    public abstract ID getId();
 
     /**
-     * 搜索值
+     * Sets the id of the entity.
+     *
+     * @param id the id to set
      */
-    @Setter
-    @Getter
-    private String searchValue;
-
-    /**
-     * 创建时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Setter
-    @Getter
-    private Date createTime;
-    /**
-     * 创建者
-     */
-    @Setter
-    @Getter
-    private String createBy;
+    public abstract void setId(final ID id);
 
 
-    /**
-     * 更新时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Setter
-    @Getter
-    private Date updateTime;
+    @Override
+    public boolean isNew() {
 
-    /**
-     * 请求参数
-     */
-    private Map<String, Object> params;
-
-    public String getDtype() {
-        return Global.getConfig(Constant.DB_TYPE);
+        return null == getId();
     }
 
-    public Map<String, Object> getParams() {
-        if (params == null) {
-            params = new HashMap<>(6);
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (null == obj) {
+            return false;
         }
-        return params;
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (!getClass().equals(obj.getClass())) {
+            return false;
+        }
+
+        AbstractEntity<?> that = (AbstractEntity<?>) obj;
+
+        return null != this.getId() && this.getId().equals(that.getId());
     }
 
-    public void setParams(Map<String, Object> params) {
-        this.params = params;
+
+    @Override
+    public int hashCode() {
+
+        int hashCode = 17;
+
+        hashCode += null == getId() ? 0 : getId().hashCode() * 31;
+
+        return hashCode;
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 
 }
