@@ -1,5 +1,6 @@
 package io.github.rothschil.common.base.persistence.repository;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -7,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -37,6 +39,14 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      */
     List<Object[]> listBySQL(String sql);
 
+    Page<T> findByPage(Map<String, String> tableMap, List<String> excludeAttr, Map joinField, String sortAttr);
+
+    Page<T> findByPage(Map<String, String> tableMap, List<String> excludeAttr, String sortAttr);
+
+    Page<T> findByPage(Map<String, String> tableMap, List<String> excludeAttr);
+
+    Page<T> findByPage(Map<String, String> tableMap);
+
     /**
      *
      * @param sql
@@ -49,6 +59,12 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
     @Transactional(rollbackFor = Exception.class)
     void updateByHql(String hql,Object...args);
 
+
+    public List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr, Map joinField, String sortAttr);
+
+    List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr, String sortAttr) ;
+
+    List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr);
 
     List<T> findByConditions(Map<String, String> tableMap);
 

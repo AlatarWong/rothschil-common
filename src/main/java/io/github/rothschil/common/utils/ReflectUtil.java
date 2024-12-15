@@ -24,16 +24,31 @@ import java.util.*;
  */
 @Slf4j
 public class ReflectUtil {
+
+
     /**
      * 生成全属性条件查询通用Specification
      *
+     * @param <E>             泛型
      * @param objConditions   属性参数
      * @param clazz           要查询的实体类或vo类
      * @param excludeLikeAttr 不使用模糊搜索的字符串属性
-     * @param <E>             泛型
      * @return Specification
      */
-    public static <E> Specification<E> createSpecification(Map<String, String> objConditions, Class<E> clazz, List<String> excludeLikeAttr) {
+    public static <E> Specification<E> createSpecification(Map<String, String> objConditions, Class<E> clazz, List<String> excludeLikeAttr){
+        return createSpecification(objConditions,clazz,excludeLikeAttr);
+    }
+    /**
+     * 生成全属性条件查询通用Specification
+     *
+     * @param <E>             泛型
+     * @param objConditions   属性参数
+     * @param clazz           要查询的实体类或vo类
+     * @param excludeLikeAttr 不使用模糊搜索的字符串属性
+     * @param joinField
+     * @return Specification
+     */
+    public static <E> Specification<E> createSpecification(Map<String, String> objConditions, Class<E> clazz, List<String> excludeLikeAttr, Map joinField) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 

@@ -1,8 +1,13 @@
 package io.github.rothschil.common.base.persistence.repository;
 
+import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.utils.ReflectUtil;
+import io.github.rothschil.common.utils.SortUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -15,18 +20,11 @@ import javax.persistence.Id;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @SuppressWarnings({"unchecked"})
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
-
-	private ReflectUtil reflectUtil = new ReflectUtil();
-
-//	private Utils utils = new Utils();
 
 	private Class<T> clazz;
 
@@ -73,12 +71,168 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 		query.executeUpdate();
 	}
 
+
 	@Override
 	public List<Object[]> listBySQL(String sql) {
 		return entityManager.createNativeQuery(sql).getResultList();
 	}
 
 
+	/**
+	 * @param tableMap    查询条件
+	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+	 * @param joinField   外键关联查询，可为空
+	 * @param sortAttr    排序，可为空
+	 * @return Page
+	 */
+	@Override
+	public Page<T> findByPage(Map<String, String> tableMap, List<String> excludeAttr, Map joinField, String sortAttr) {
+		int current = Integer.parseInt(tableMap.get(Constant.CURRENT));
+		int pageSize = Integer.parseInt(tableMap.get(Constant.PAGE_SIZE));
+
+		Pageable pageable;
+		if (!StringUtils.isEmpty(sortAttr)) {
+			pageable = PageRequest.of(current - 1, pageSize, SortUtils.sortAttr(tableMap, sortAttr));
+		} else {
+			pageable = PageRequest.of(current - 1, pageSize);
+		}
+
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, excludeAttr, joinField);
+		return this.findAll(specification, pageable);
+	}
+
+
+	/**
+	 * 省去不必要的关联map
+	 *
+	 * @param tableMap    查询条件
+	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+	 * @param sortAttr    排序，可为空
+	 * @return Page
+	 */
+	@Override
+	public Page<T> findByPage(Map<String, String> tableMap, List<String> excludeAttr, String sortAttr) {
+		int current = Integer.parseInt(tableMap.get(Constant.CURRENT));
+		int pageSize = Integer.parseInt(tableMap.get(Constant.PAGE_SIZE));
+
+		Pageable pageable;
+		if (!StringUtils.isEmpty(sortAttr)) {
+			pageable = PageRequest.of(current - 1, pageSize, SortUtils.sortAttr(tableMap, sortAttr));
+		} else {
+			pageable = PageRequest.of(current - 1, pageSize);
+		}
+
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, excludeAttr);
+		return this.findAll(specification, pageable);
+	}
+
+
+	/**
+	 * 省去map以及排序
+	 *
+	 * @param tableMap    查询条件
+	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+	 * @return Page
+	 */
+	@Override
+	public Page<T> findByPage(Map<String, String> tableMap, List<String> excludeAttr) {
+		int current = Integer.parseInt(tableMap.get(Constant.CURRENT));
+		int pageSize = Integer.parseInt(tableMap.get(Constant.PAGE_SIZE));
+
+		Pageable pageable;
+
+		pageable = PageRequest.of(current - 1, pageSize);
+
+		//调用省去map参数的方法
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, excludeAttr);
+		return this.findAll(specification, pageable);
+	}
+
+	/**
+	 * @param tableMap 查询条件
+	 * @return Page
+	 */
+	@Override
+	public Page<T> findByPage(Map<String, String> tableMap) {
+		int current = Integer.parseInt(tableMap.get(Constant.CURRENT));
+		int pageSize = Integer.parseInt(tableMap.get(Constant.PAGE_SIZE));
+
+		Pageable pageable;
+		pageable = PageRequest.of(current - 1, pageSize);
+
+		//调用省去map参数的方法
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, null);
+		return this.findAll(specification, pageable);
+	}
+
+
+//	/**
+//	 * 省去不必要的关联map参数
+//	 *
+//	 * @param tableMap    查询条件
+//	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+//	 * @param sortAttr    排序，可为空
+//	 * @return List
+//	 */
+//	@Override
+//	public List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr, String sortAttr) {
+//		Specification<T> specification = reflectUtil.createSpecification(tableMap, clazz, excludeAttr);
+//
+//		if (!StringUtils.isEmpty(sortAttr)) {
+//			return this.findAll(specification, utils.sortAttr(tableMap, sortAttr));
+//		} else {
+//			return this.findAll(specification);
+//		}
+//	}
+
+	/**
+	 * @param tableMap    查询条件
+	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+	 * @param joinField   外键关联查询，可为空
+	 * @param sortAttr    排序，可为空
+	 * @return List
+	 */
+	@Override
+	public List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr, Map joinField, String sortAttr) {
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, excludeAttr, joinField);
+
+		if (!StringUtils.isEmpty(sortAttr)) {
+			return this.findAll(specification, SortUtils.sortAttr(tableMap, sortAttr));
+		} else {
+			return this.findAll(specification);
+		}
+	}
+
+	/**
+	 * 省去不必要的关联map参数
+	 *
+	 * @param tableMap    查询条件
+	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+	 * @param sortAttr    排序，可为空
+	 * @return List
+	 */
+	@Override
+	public List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr, String sortAttr) {
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, excludeAttr);
+
+		if (!StringUtils.isEmpty(sortAttr)) {
+			return this.findAll(specification, SortUtils.sortAttr(tableMap, sortAttr));
+		} else {
+			return this.findAll(specification);
+		}
+	}
+
+	/**
+	 * @param tableMap    查询条件
+	 * @param excludeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+	 * @return List
+	 */
+	@Override
+	public List<T> findByConditions(Map<String, String> tableMap, List<String> excludeAttr) {
+		//调用省去map参数的方法
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, excludeAttr);
+		return this.findAll(specification);
+	}
 
 	/**
 	 * @param tableMap 查询条件
@@ -87,7 +241,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 	@Override
 	public List<T> findByConditions(Map<String, String> tableMap) {
 		//调用省去map参数的方法
-		Specification<T> specification = reflectUtil.createSpecification(tableMap, clazz, null);
+		Specification<T> specification = ReflectUtil.createSpecification(tableMap, clazz, null);
 		return this.findAll(specification);
 	}
 
@@ -98,14 +252,14 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 		List<String> strings = Arrays.asList(ids.split(","));
 		if (!CollectionUtils.isEmpty(strings)) {
 			//获取主键
-			List<Field> idAnnoation = reflectUtil.getTargetAnnoation(clazz, Id.class);
+			List<Field> idAnnoation = ReflectUtil.getTargetAnnoation(clazz, Id.class);
 			if (!CollectionUtils.isEmpty(idAnnoation)) {
 				Field field = idAnnoation.get(0);
-				strings.stream().forEach(id -> {
+				strings.forEach(id -> {
 					T object = this.findOneByAttr(field.getName(), id);
 					if (object != null) {
                         try {
-                            reflectUtil.setValue(object, "valid", 0);
+                            ReflectUtil.setValue(object, "valid", 0);
                         } catch (NoSuchFieldException | IllegalAccessException e) {
                             throw new RuntimeException(e);
                         }
@@ -119,19 +273,15 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 
 	@Override
 	public T findOneByAttr(String attr, String condition) {
-		Specification<T> specification = reflectUtil.createOneSpecification(attr, condition);
+		Specification<T> specification = ReflectUtil.createOneSpecification(attr, condition);
 		Optional<T> result = this.findOne(specification);
 
-		if (result.isPresent()) {
-			return result.get();
-		} else {
-			return null;
-		}
+        return result.orElse(null);
 	}
 
 	@Override
 	public List<T> findByAttr(String attr, String condition) {
-		Specification<T> specification = reflectUtil.createOneSpecification(attr, condition);
+		Specification<T> specification = ReflectUtil.createOneSpecification(attr, condition);
 		List<T> all = this.findAll(specification);
 		return all;
 	}
@@ -141,7 +291,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 		List<T> results = new ArrayList<>();
 		if (!StringUtils.isEmpty(conditions)) {
 			List<String> cons = Arrays.asList(conditions.split(","));
-			cons.stream().forEach(condition -> {
+			cons.forEach(condition -> {
 				List<T> byAttr = findByAttr(attr, condition);
 				if (byAttr != null) {
 					results.addAll(byAttr);
