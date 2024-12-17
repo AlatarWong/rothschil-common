@@ -41,7 +41,7 @@ gen### MicrosoftOffice template
 
 # User-specific stuff
 .gradle/
-gradle/
+#gradle/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/dictionaries
