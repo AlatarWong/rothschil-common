@@ -2,6 +2,7 @@ package io.github.rothschil.common.interceptor;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.google.common.collect.Maps;
+import io.github.rothschil.common.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.lang.Nullable;
@@ -48,7 +49,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String tid = UUID.randomUUID().toString().replace("-", "");
+        String tid = DateUtils.getTransId();
         //可以考虑让客户端传入链路ID，但需保证一定的复杂度唯一性；如果没使用默认UUID自动生成
         if (!StringUtils.isEmpty(request.getHeader("TRACE_ID"))){
             tid=request.getHeader("TRACE_ID");
