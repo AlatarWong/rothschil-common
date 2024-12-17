@@ -65,8 +65,11 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	// Common工具类
-	implementation 'org.apache.commons:commons-lang3:3.4'
+	implementation 'org.apache.commons:commons-lang3:3.13.0'
 	implementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
 	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 	implementation group: 'commons-collections', name: 'commons-collections', version: '3.2.2'

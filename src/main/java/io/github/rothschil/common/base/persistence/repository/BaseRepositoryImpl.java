@@ -148,6 +148,20 @@ public class BaseRepositoryImpl<T extends AbstractEntity, ID extends Serializabl
 		return this.findAll(specification, pageable);
 	}
 
+
+	@Override
+	public Page<T> findByPage(Map<String, String> objConditions, Integer current, Integer pageSize, List<String> excludeLikeAttr, String sortAttr) {
+		Pageable pageable;
+		if (!StringUtils.isEmpty(sortAttr)) {
+			pageable = PageRequest.of(current - 1, pageSize, SortUtils.sortAttr(objConditions, sortAttr));
+		} else {
+			pageable = PageRequest.of(current - 1, pageSize);
+		}
+
+		Specification<T> specification = ReflectUtil.createSpecification(objConditions, clazz, excludeLikeAttr);
+		return this.findAll(specification, pageable);
+	}
+
 	/**
 	 * @param tableMap 查询条件
 	 * @return Page

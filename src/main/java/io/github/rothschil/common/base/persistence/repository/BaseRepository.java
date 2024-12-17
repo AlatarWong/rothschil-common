@@ -49,6 +49,18 @@ public interface BaseRepository<T extends AbstractEntity, ID extends Serializabl
     Page<T> findByPage(Map<String, String> tableMap);
 
     /**
+     * 分页条件查询
+     *
+     * @param objConditions   查询条件
+     * @param current         当前页条件
+     * @param pageSize        每页条数
+     * @param excludeLikeAttr 是字符串类型，但是不使用模糊查询的字段，可为空
+     * @param sortAttr        排序，可为空
+     * @return Page
+     */
+    Page<T> findByPage(Map<String, String> objConditions, Integer current, Integer pageSize, List<String> excludeLikeAttr, String sortAttr);
+
+    /**
      *
      * @param sql
      * @param args
