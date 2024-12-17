@@ -4,11 +4,10 @@ spring:
   application:
     name: rothschil-common
   datasource:
-#    url： jdbc:h2:file:./data/embedded;DB_CLOSE_DELAY=-1
-    url: jdbc:h2:mem:embedded
+    url: jdbc:h2:mem:./data/memdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE;
     driverClassName: org.h2.Driver
     username: sa
-    password: password
+    password: 123456
   jpa:
     hibernate:
       ddl-auto: none
@@ -20,14 +19,16 @@ spring:
         format_sql: false
         enable_lazy_load_no_trans: true
     generate-ddl: false
+    defer-datasource-initialization: true
   transaction:
     rollback-on-commit-failure: true
   h2:
     console:
       path: /h2-console
-      settings.trace: false
-      settings.web-allow-others: true
-    console.enabled: true
+      settings:
+        trace: false
+        web-allow-others: true
+      enabled: true
 
 logging:
   config: classpath:logback-spring.xml
