@@ -81,7 +81,4 @@ public interface BaseRepository<T extends AbstractEntity, ID extends Serializabl
     List<T> findByAttrs(String attr, String conditions);
 
 
-//    Page<T> findCriteria(Specification<T> spec, Pageable pageable);
-
-//    Page<T> find(Class rootCls, CriteriaQuery<T> criteria, int pageNo, int pageSize);
 }
