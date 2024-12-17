@@ -4,6 +4,7 @@ package io.github.rothschil.common.base.persistence.service;
 import io.github.rothschil.common.base.persistence.entity.AbstractEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,20 +22,19 @@ import java.util.Optional;
  * @date 2017年4月24日
  *
  */
-public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serializable> {
+public abstract class BaseService<R extends JpaRepository<T,ID>, T extends AbstractEntity<?>, ID extends Serializable> {
 
     /**
      * 日志对象
      */
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Autowired
     protected JpaRepository<T, ID> jpaRepository;
 
 
     public BaseService() {
     }
-
-    public abstract void setJpaRepository(JpaRepository<T, ID> jpaRepository);
 
 
 

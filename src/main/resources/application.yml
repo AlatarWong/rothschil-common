@@ -4,7 +4,7 @@ spring:
   application:
     name: rothschil-common
   datasource:
-    url: jdbc:h2:file:D:/Code/Gradle/rothschil-common/Doc/h2/Repertory/memdb
+    url: jdbc:h2:file:D:/Code/Gradle/rothschil-common/Doc/h2/Repertory/memdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE;MODE=PostgreSQL;
 #    url: jdbc:h2:mem:./data/memdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE;
     driverClassName: org.h2.Driver
     username: sa
