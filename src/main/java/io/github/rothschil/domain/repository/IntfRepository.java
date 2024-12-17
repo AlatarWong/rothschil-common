@@ -2,10 +2,10 @@
 
 
  import io.github.rothschil.common.base.persistence.repository.BaseRepository;
- import org.springframework.stereotype.Repository;
+ import io.github.rothschil.domain.entity.Intf;
+ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
- @Repository
- public interface IntfRepository<Intf> extends BaseRepository<Intf, Long> {
+ public interface IntfRepository extends BaseRepository<Intf, Long> , JpaSpecificationExecutor<Intf> {
 
 
  }

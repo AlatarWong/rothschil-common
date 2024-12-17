@@ -1,5 +1,6 @@
 package io.github.rothschil.common.base.persistence.repository;
 
+import io.github.rothschil.common.base.persistence.entity.AbstractEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -23,7 +24,7 @@ import java.util.Map;
  */
 @NoRepositoryBean
 @Transactional(readOnly=true,rollbackFor = Exception.class)
-public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
+public interface BaseRepository<T extends AbstractEntity, ID extends Serializable> extends JpaRepository<T, ID> {
 
     /**
      * 根据主键删除

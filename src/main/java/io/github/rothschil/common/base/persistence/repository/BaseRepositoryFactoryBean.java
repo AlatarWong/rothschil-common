@@ -36,24 +36,29 @@ public class BaseRepositoryFactoryBean<R extends JpaRepository<T, ID>, T,ID exte
         }
 
 
-         /**
-         * 设置具体的实现类是BaseRepositoryImpl
-         * @param information
-         * @return
-         */
-        @Override
-        protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
-            JpaEntityInformation<?, Serializable> entityInformation = this.getEntityInformation(information.getDomainType());
-            Object repository = this.getTargetRepositoryViaReflection(information, entityInformation, entityManager);
-            Assert.isInstanceOf(BaseRepositoryImpl.class, repository);
-            return (JpaRepositoryImplementation) repository;
-//                return new BaseRepositoryImpl<T, I>((Class<T>) information.getDomainType(), em);
-        }
+//         /**
+//         * 设置具体的实现类是BaseRepositoryImpl
+//         * @param information
+//         * @return
+//         */
+//        @Override
+//        protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
+//            JpaEntityInformation<?, Serializable> entityInformation = this.getEntityInformation(information.getDomainType());
+//            Object repository = this.getTargetRepositoryViaReflection(information, entityInformation, entityManager);
+//            Assert.isInstanceOf(BaseRepositoryImpl.class, repository);
+//            return (JpaRepositoryImplementation) repository;
+////                return new BaseRepositoryImpl<T, I>((Class<T>) information.getDomainType(), em);
+//        }
 
 //        @Override
 //        protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
 //            return new BaseRepositoryImpl(information.getDomainType(), em);
 //        }
+
+        @Override
+        protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
+            return new BaseRepositoryImpl((Class<T>) information.getDomainType(), em);
+        }
 
 //        /**
 //         * 设置具体的实现类是BaseRepositoryImpl

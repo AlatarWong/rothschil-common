@@ -1,5 +1,6 @@
 package io.github.rothschil.common.base.persistence.repository;
 
+import io.github.rothschil.common.base.persistence.entity.AbstractEntity;
 import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.utils.ReflectUtil;
 import io.github.rothschil.common.utils.SortUtils;
@@ -23,7 +24,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 @SuppressWarnings({"unchecked"})
-public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
+public class BaseRepositoryImpl<T extends AbstractEntity, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
 
 	private Class<T> clazz;

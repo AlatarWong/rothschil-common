@@ -10,9 +10,18 @@ spring:
     username: sa
     password: password
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
+    #        use_sql_comments: true
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        enable_lazy_load_no_trans: true
+    generate-ddl: false
+  transaction:
+    rollback-on-commit-failure: true
   h2:
     console:
       path: /h2-console
