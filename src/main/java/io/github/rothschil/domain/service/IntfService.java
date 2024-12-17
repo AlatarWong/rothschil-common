@@ -11,15 +11,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true,rollbackFor = NullServiceException.class)
 public class IntfService extends BaseService<IntfRepository,Intf, Long> {
 
-//    private IntfRepository intfRepository;
-//
-//    @Autowired
-//    @Qualifier("intfRepository")
-//    @Override
-//    public void setJpaRepository(JpaRepository<Intf, Long> jpaRepository) {
-//        // TODO Auto-generated method stub
-//        this.jpaRepository=jpaRepository;
-//        this.intfRepository=(IntfRepository)jpaRepository;
-//    }
 
 }
