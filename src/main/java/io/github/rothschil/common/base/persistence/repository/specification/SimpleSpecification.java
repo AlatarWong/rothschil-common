@@ -76,7 +76,6 @@ public class SimpleSpecification<T> implements Specification<T> {
         /*
         * 根据不同的操作符返回特定的查询*/
         if("=".equalsIgnoreCase(op.getOper())) {
-            System.out.println(op.getKey()+","+op.getValue());
             return criteriaBuilder.equal(root.get(op.getKey()),op.getValue());
         } else if(">=".equalsIgnoreCase(op.getOper())) {
             return criteriaBuilder.ge(root.get(op.getKey()), (Number)op.getValue());

@@ -66,7 +66,6 @@ public class BaseRepositoryImpl<T extends AbstractEntity, ID extends Serializabl
 		Query query = entityManager.createQuery(hql);
 		int i = 0;
 		for (Object arg : args) {
-			System.out.println(arg);
 			query.setParameter(++i, arg);
 		}
 		query.executeUpdate();
