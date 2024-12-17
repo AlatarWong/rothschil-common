@@ -1,14 +1,21 @@
 package io.github.rothschil.common.base.persistence.entity;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.hibernate.annotations.Fetch;
 import org.springframework.data.domain.Persistable;
 
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
+/**
+ * JPA实体类基类
+ * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @version 1.0.0
+ */
 @SuppressWarnings({})
 @MappedSuperclass
-public abstract class AbstractEntity<ID extends Serializable> implements Persistable<ID> {
+public abstract class AbstractEntity<ID extends Serializable> implements Persistable<ID>, Serializable {
 
 	private static final long serialVersionUID = 1L;
 

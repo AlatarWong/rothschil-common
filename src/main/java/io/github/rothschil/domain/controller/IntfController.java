@@ -21,6 +21,6 @@ public class IntfController {
 
     @RequestMapping(value = "/findOne/{id}",method = RequestMethod.GET)
     public Intf findOne(@PathVariable(value = "id") Long id){
-        return intfService.findOne(id);
+        return intfService.findById(id);
     }
 }

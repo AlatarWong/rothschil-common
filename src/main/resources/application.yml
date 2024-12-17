@@ -4,11 +4,13 @@ spring:
   application:
     name: rothschil-common
   datasource:
-    url: jdbc:h2:mem:./data/memdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE;
+    url: jdbc:h2:file:D:/Code/Gradle/rothschil-common/Doc/h2/Repertory/memdb
+#    url: jdbc:h2:mem:./data/memdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE;
     driverClassName: org.h2.Driver
     username: sa
     password: 123456
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
     #        use_sql_comments: true
@@ -29,6 +31,13 @@ spring:
         trace: false
         web-allow-others: true
       enabled: true
+  jackson:
+    # json 序列化排除值为 null 的属性
+    default-property-inclusion: non_null
+    # 配置 Date 类的时间格式，如果不涉及可以不加
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 配置 Date 类的时区，如果不涉及可以不加
+    time-zone: GMT+8
 
 logging:
   config: classpath:logback-spring.xml

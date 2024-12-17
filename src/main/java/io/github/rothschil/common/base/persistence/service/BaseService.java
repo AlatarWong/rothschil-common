@@ -12,11 +12,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
- * @ClassName: BaseService
- * @Description: Service基类
+ * Service基类
  * @author WCNGS
  * @date 2017年4月24日
  *
@@ -74,6 +74,17 @@ public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serial
     }
 
 
+    /**
+     * 按照主键查询
+     *
+     * @param id 主键
+     * @return 返回id对应的实体
+     */
+    public T findById(ID id) {
+        Optional<T> optional= jpaRepository.findById(id);
+        return optional.orElse(null);
+    }
+
 
     /**
      * 按照主键查询
@@ -81,6 +92,7 @@ public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serial
      * @param id 主键
      * @return 返回id对应的实体
      */
+    @Deprecated
     public T findOne(ID id) {
         return jpaRepository.getOne(id);
     }
@@ -88,29 +100,20 @@ public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serial
 
     /**
      * 实体是否存在
-     * @method      exists
      * @author      WCNGS@QQ.COM
-     * @version
-     * @see
      * @param id                id 主键
      * @return      boolean   存在 返回true，否则false
-     * @exception
      * @date        2018/7/3 22:08
      */
     public boolean exists(ID id) {
-        return findOne(id)==null?true:false;
+        return findOne(id) == null;
     }
 
 
     /**
      * 统计实体总数
-     * @method      count
      * @author      WCNGS@QQ.COM
-     * @version
-     * @see
-     * @param
      * @return      long
-     * @exception
      * @date        2018/7/3 22:07
      */
     public long count() {
@@ -120,13 +123,8 @@ public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serial
 
     /**
      * 查询所有实体
-     * @method      findAll
      * @author      WCNGS@QQ.COM
-     * @version
-     * @see
-     * @param
      * @return      java.util.List<T>
-     * @exception
      * @date        2018/7/3 22:07
      */
     public List<T> findAll() {
@@ -135,13 +133,9 @@ public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serial
 
     /**
      * 按照顺序查询所有实体
-     * @method      findAll
      * @author      WCNGS@QQ.COM
-     * @version
-     * @see
-     * @param sort
+     * @param sort  排序
      * @return      java.util.List<T>
-     * @exception
      * @date        2018/7/3 22:06
      */
     public List<T> findAll(Sort sort) {
@@ -153,7 +147,8 @@ public abstract class BaseService<T extends AbstractEntity<?>, ID extends Serial
      * 分页及排序查询实体
      *
      * @param pageable 分页及排序数据
-     * @return
+     * @return Page<T>
+     * @date        2018/7/3 22:06
      */
     public Page<T> findAll(Pageable pageable) {
         return jpaRepository.findAll(pageable);
