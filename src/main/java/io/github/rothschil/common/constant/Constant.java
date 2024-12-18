@@ -187,7 +187,7 @@ public interface Constant {
             "blob=BLOB\n" +
             "longblob=LONGBLOB\n";
 
-    HashMap<String, String> GENERATE_FFILE_MAP = new HashMap() {
+    HashMap<String, String> GENERATE_FFILE_MAP = new HashMap<String, String>() {
         {
             put("api.ts.vm", "import request from '@/router/axios'\n" +
                     "\n" +
