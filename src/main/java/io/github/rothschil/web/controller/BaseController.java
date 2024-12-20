@@ -8,6 +8,6 @@ public class BaseController {
 
     @RequestMapping("/")
     public String index(){
-        return "redirect:/iserv/index";
+        return "redirect:/swagger-ui.html";
     }
 }

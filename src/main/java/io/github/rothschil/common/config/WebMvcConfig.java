@@ -86,9 +86,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(logInterceptor());
-        registry.addInterceptor(responseBodyInterceptor).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**","/mock/test/**","/iserv/**","/cache/**");
-        registry.addInterceptor(requestHeaderContextInterceptorAdapter).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**");
+        registry.addInterceptor(logInterceptor()).excludePathPatterns("/swagger-resources/**"
+                ,"/webjars/**"
+                ,"/v2/**"
+                ,"/swagger-ui.html/**");
+        registry.addInterceptor(responseBodyInterceptor).addPathPatterns("/**").excludePathPatterns("/webjars/**", "/static/**","/mock/test/**","/iserv/**","/cache/**","/swagger-resources/**"
+                ,"/webjars/**"
+                ,"/v2/**"
+                ,"/swagger-ui.html/**");
+        registry.addInterceptor(requestHeaderContextInterceptorAdapter).addPathPatterns("/**").excludePathPatterns("/static/**","/webjars/**","/swagger-resources/**"
+                ,"/webjars/**"
+                ,"/v2/**"
+                ,"/swagger-ui.html/**");
     }
 
     @Bean
@@ -101,6 +110,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**") .addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/favicon.ico");
+        registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/doc.html");
     }
 
     // /** 注册过滤器
