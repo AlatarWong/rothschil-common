@@ -1,4 +1,4 @@
-package io.github.rothschil;
+package io.github.rothschil.poi;
 
 import lombok.Data;
 

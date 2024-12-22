@@ -1,4 +1,4 @@
-package io.github.rothschil;
+package io.github.rothschil.poi;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;

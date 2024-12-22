@@ -1,4 +1,4 @@
-package io.github.rothschil;
+package io.github.rothschil.poi;
 
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.ss.usermodel.*;
