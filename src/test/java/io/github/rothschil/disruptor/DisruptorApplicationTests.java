@@ -1,7 +1,6 @@
 package io.github.rothschil.disruptor;
 
 import com.google.common.collect.ImmutableMap;
-import io.github.rothschil.BaseTestUnit;
 import io.github.rothschil.disruptor.service.DisruptorCommServiceImpl;
 import io.github.rothschil.disruptor.service.DisruptorIndServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 @DisplayName("线程测试")
 @Slf4j
-public class DisruptorApplicationTests extends BaseTestUnit {
+//public class DisruptorApplicationTests extends BaseTestUnit {
+    public class DisruptorApplicationTests{
 
     @Autowired
     private DisruptorCommServiceImpl disruptorCommService;
