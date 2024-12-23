@@ -38,8 +38,8 @@ public class Knife4jConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .description("接口测试文档")
-                .contact(new Contact("WONGS", "https://blog.csdn.net/qq_27535933", "310857864@qq.com"))
+                .description("Rothschil接口测试文档")
+                .contact(new Contact("WONGS", "https://blog.csdn.net/rothchil", "WCNGS@QQ.COM"))
                 .version("v1.0")
                 .title("API测试文档")
                 .build();
