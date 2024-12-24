@@ -41,11 +41,11 @@ public class GlobalExceptionHandler {
      * @author <a href="https://github.com/rothschil">Sam</a>
      **/
     @ExceptionHandler(Exception.class)
-    @ResponseBody
     public Result globalException(HttpServletRequest request, HandlerMethod handlerMethod,Exception ex) {
         String urlStr = request.getRequestURI().replaceAll(".*//([^//]*:{0,1}[0-9])", "");
         String params = "";
         LOG.error("[URI]:\n{}\n[params]:\n{}\n[exception]:{}", urlStr, params, ex.getMessage());
+        ex.printStackTrace();
         return Result.fail(Status.EXCEPTION, ex);
     }
 
@@ -57,7 +57,6 @@ public class GlobalExceptionHandler {
      * @author <a href="https://github.com/rothschil">Sam</a>
      **/
     @ExceptionHandler(NullPointerException.class)
-    @ResponseBody
     public Result nullPointerException(HttpServletRequest request, NullPointerException ex) {
         String urlStr = request.getRequestURI().replaceAll(".*//([^//]*:{0,1}[0-9])", "");
         String params = "";
@@ -73,7 +72,6 @@ public class GlobalExceptionHandler {
      * @author <a href="https://github.com/rothschil">Sam</a>
      **/
     @ExceptionHandler(CommonException.class)
-    @ResponseBody
     public Result handleWeathertopException(CommonException ex) {
         LOG.error("code:{},msg:{}", ex.getStatus(), ex.getMessage());
         return Result.fail(ex.getStatus(), ex.getMessage());

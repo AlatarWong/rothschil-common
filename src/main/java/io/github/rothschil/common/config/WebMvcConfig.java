@@ -97,6 +97,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(requestHeaderContextInterceptorAdapter).addPathPatterns("/**").excludePathPatterns("/static/**","/webjars/**","/swagger-resources/**"
                 ,"/webjars/**"
                 ,"/v2/**"
+                ,"**/test/**"
                 ,"/swagger-ui.html/**");
     }
 

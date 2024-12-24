@@ -1,6 +1,7 @@
 package io.github.rothschil.common.response.handler;
 
 
+import com.alibaba.fastjson.JSON;
 import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.response.Result;
 import io.github.rothschil.common.response.interceptor.ResponseBodyInterceptor;
@@ -80,6 +81,9 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, @Nullable MethodParameter returnType, @Nullable MediaType selectContentType, @Nullable Class<? extends HttpMessageConverter<?>> selectConverterType, @Nullable ServerHttpRequest request, @Nullable ServerHttpResponse response) {
         if (vail(body)) {
             return body;
+        }
+        if(body instanceof String){
+            return JSON.toJSONString(Result.success(body));
         }
         return Result.success(body);
     }
