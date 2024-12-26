@@ -1,7 +1,6 @@
 package io.github.rothschil.common.response.handler;
 
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.rothschil.common.constant.Constant;
