@@ -2,6 +2,8 @@ package io.github.rothschil.common.response.handler;
 
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.rothschil.common.constant.Constant;
 import io.github.rothschil.common.response.Result;
 import io.github.rothschil.common.response.interceptor.ResponseBodyInterceptor;
@@ -83,7 +85,14 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
             return body;
         }
         if(body instanceof String){
-            return JSON.toJSONString(Result.success(body));
+
+            try {
+                return new ObjectMapper().writeValueAsString(Result.success(body));
+//                return JSON.toJSONString(Result.success(body));
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+//
         }
         return Result.success(body);
     }
