@@ -103,6 +103,17 @@ dependencies {
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 
 
+	//Cache Redis
+	implementation('org.springframework.boot:spring-boot-starter-cache')
+	implementation('org.redisson:redisson-spring-boot-starter:3.10.6')
+//	implementation('org.redisson:redisson-spring-boot-starter:3.10.6')
+
+//	implementation('org.springframework.boot:spring-boot-starter-data-redis'){
+//		exclude  group:"io.lettuce"
+//	}
+
+	implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine'
+
 	testImplementation(platform('org.junit:junit-bom:5.7.2'))
 	testImplementation('org.junit.jupiter:junit-jupiter')
 }

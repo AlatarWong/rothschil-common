@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * //todo 添加类描述
+ * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
+ * @version 1.0.0
+ */
 @RestController
 public class ValidationController {
 

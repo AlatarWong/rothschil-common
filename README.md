@@ -215,4 +215,17 @@ We welcome contributions and suggestions for improvement. Please follow these st
 - Create a new branch: git checkout -b feature/new-feature.
 - Commit your changes: git commit -m 'Add new feature'.
 - Push your branch: git push origin feature/new-feature.
-- Open a pull request.
+- Open a pull request
+
+## 7. Caffeine、Redis实现双重缓存方式
+
+### 7.1. 解决问题
+
+单纯使用 `Redis` 缓存，会有大量业务的请求到 `Redis` ，但每次请求来回都同样的数据，假如将此类数据存在应用服务器本身，那么理论上，将节省请求 `Redis` 的网络开销，响应速度就会提升.
+而如果只使用应用服务器那优先的内存实现 `Caffeine` 来做本地缓存，在运营后期单独为缓存去扩展应用服务器，成本太高。
+
+![20250102143725](https://abram.oss-cn-shanghai.aliyuncs.com/abram/vscode/20250102143725.png)
+
+- 先从一级缓存（ `Caffeine`-本地应用内）中查找数据；
+- 数据不存在，则从二级缓存（ `Redis` -内存）中查找数据；
+- 数据仍然不存在，再从数据库（数据库-磁盘）中查找数据。

@@ -23,4 +23,12 @@ public class UserVo {
     @NotNull(message = "用户邮箱不能为空")
     @Email(message = "邮箱格式不正确")
     private String email;
+
+    @NotNull(message = "哪一年")
+    @Email(message = "哪一年")
+    private int whichYear;
+
+    @NotNull(message = "哪一月")
+    @Email(message = "哪一月")
+    private int whichMonth;
 }

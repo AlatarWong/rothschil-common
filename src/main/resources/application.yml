@@ -38,6 +38,12 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     # 配置 Date 类的时区，如果不涉及可以不加
     time-zone: GMT+8
+  redis:
+    host: 192.168.88.130
+    port: 6379
+    password:
+    #配置jedis客户端，这里也可以jedis替换为lettuce客户端，下级配置都一样
+    timeout: 3000
 
 logging:
   config: classpath:logback-spring.xml
