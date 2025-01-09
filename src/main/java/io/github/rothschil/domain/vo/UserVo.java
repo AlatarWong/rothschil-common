@@ -1,11 +1,13 @@
 package io.github.rothschil.domain.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Builder
 @Data
 public class UserVo {
 

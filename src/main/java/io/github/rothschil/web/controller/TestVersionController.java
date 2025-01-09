@@ -1,6 +1,8 @@
 package io.github.rothschil.web.controller;
 
 import io.github.rothschil.common.annotation.ApiVersion;
+import io.github.rothschil.domain.vo.UserVo;
+import io.github.rothschil.web.compoent.TestCompoent;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @ApiVersion
 @RequestMapping(value = "/{version}/test")
 public class TestVersionController {
+    TestCompoent testCompoent;
+
+    protected TestVersionController(TestCompoent testCompoent){
+        this.testCompoent=testCompoent;
+    }
 
     @GetMapping(value = "one")
-    public String query(){
-        return "test api default";
+    public UserVo query(){
+        return testCompoent.get();
     }
 
     @GetMapping(value = "one")

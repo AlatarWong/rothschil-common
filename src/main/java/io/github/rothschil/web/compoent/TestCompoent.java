@@ -5,19 +5,18 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidationUserCompoent {
+public class TestCompoent {
 
 
-    private static final String KEY_PREFIX = "zoe:asset:";
 
-    @Cacheable(value = "queryWarningResult")
-    public UserVo queryWarningResult(UserVo vo) {
+    @Cacheable(value = "get")
+    public UserVo get() {
         // 模拟耗时操作
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return null;
+        return UserVo.builder().email("wongs@qq.com").id(2L).build();
     }
 }

@@ -19,4 +19,6 @@ public class ValidationController {
     public String addUser(@RequestBody @Validated UserVo user) {
         return Constant.NUM_1;
     }
+
+
 }
