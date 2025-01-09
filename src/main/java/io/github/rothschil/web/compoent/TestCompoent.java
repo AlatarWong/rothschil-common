@@ -1,19 +1,22 @@
 package io.github.rothschil.web.compoent;
 
 import io.github.rothschil.domain.vo.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class TestCompoent {
 
 
 
-    @Cacheable(value = "get")
-    public UserVo get() {
+    @Cacheable(cacheNames = {"user","user"},key = "#userVo.account")
+    public UserVo get(UserVo userVo) {
         // 模拟耗时操作
         try {
             Thread.sleep(1000);
+            log.info(userVo.getAccount());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

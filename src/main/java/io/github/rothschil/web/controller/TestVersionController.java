@@ -18,10 +18,7 @@ public class TestVersionController {
         this.testCompoent=testCompoent;
     }
 
-    @GetMapping(value = "one")
-    public UserVo query(){
-        return testCompoent.get();
-    }
+
 
     @GetMapping(value = "one")
     @ApiVersion("1.1")

@@ -48,6 +48,9 @@ spring:
       port: 6379
       password:
       timeout: 5000
+  redis:
+    redisson:
+      file: classpath:redisson.yml
 logging:
   config: classpath:logback-spring.xml
 dynamic:

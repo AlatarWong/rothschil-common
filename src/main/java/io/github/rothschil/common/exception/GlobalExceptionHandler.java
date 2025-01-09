@@ -33,21 +33,21 @@ public class GlobalExceptionHandler {
     private static final Logger LOG = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 
-    /**
-     * 拦截抛出的异常，兜底异常
-     *
-     * @param ex 异常
-     * @return ErR 异常响应
-     * @author <a href="https://github.com/rothschil">Sam</a>
-     **/
-    @ExceptionHandler(Exception.class)
-    public Result globalException(HttpServletRequest request, HandlerMethod handlerMethod,Exception ex) {
-        String urlStr = request.getRequestURI().replaceAll(".*//([^//]*:{0,1}[0-9])", "");
-        String params = "";
-        LOG.error("[URI]:\n{}\n[params]:\n{}\n[exception]:{}", urlStr, params, ex.getMessage());
-        ex.printStackTrace();
-        return Result.fail(Status.EXCEPTION, ex);
-    }
+//    /**
+//     * 拦截抛出的异常，兜底异常
+//     *
+//     * @param ex 异常
+//     * @return ErR 异常响应
+//     * @author <a href="https://github.com/rothschil">Sam</a>
+//     **/
+//    @ExceptionHandler(Exception.class)
+//    public Result globalException(HttpServletRequest request, HandlerMethod handlerMethod,Exception ex) {
+//        String urlStr = request.getRequestURI().replaceAll(".*//([^//]*:{0,1}[0-9])", "");
+//        String params = "";
+//        LOG.error("[URI]:\n{}\n[params]:\n{}\n[exception]:{}", urlStr, params, ex.getMessage());
+//        ex.printStackTrace();
+//        return Result.fail(Status.EXCEPTION, ex);
+//    }
 
     /**
      * NullPointerException 拦截抛出的异常

@@ -10,7 +10,7 @@ public class ValidationUserCompoent {
 
     private static final String KEY_PREFIX = "zoe:asset:";
 
-    @Cacheable(value = "queryWarningResult")
+    @Cacheable
     public UserVo queryWarningResult(UserVo vo) {
         // 模拟耗时操作
         try {

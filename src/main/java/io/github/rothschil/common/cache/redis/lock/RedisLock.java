@@ -5,7 +5,6 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Random;
 
@@ -39,11 +38,8 @@ public class RedisLock {
 
     private static Logger logger = LoggerFactory.getLogger(RedisLock.class);
 
-    protected RedissonClient redissonClient;
+    protected static RedissonClient REDISSON_CLIENT=RedisUtils.getClient();
 
-
-    @Autowired
-    RedisUtils redisUtils;
 
     /**
      * 将key 的值设为value ，当且仅当key 不存在，等效于 SETNX。
@@ -100,48 +96,43 @@ public class RedisLock {
     /**
      * 使用默认的锁过期时间和请求锁的超时时间
      *
-     * @param redissonClient
      * @param lockKey       锁的key（Redis的Key）
      */
-    public RedisLock(RedissonClient redissonClient, String lockKey) {
-        this.redissonClient = redissonClient;
+    public RedisLock(String lockKey) {
         this.lockKey = lockKey + "_lock";
     }
 
     /**
      * 使用默认的请求锁的超时时间，指定锁的过期时间
      *
-     * @param redissonClient
      * @param lockKey       锁的key（Redis的Key）
      * @param expireTime    锁的过期时间(单位：秒)
      */
-    public RedisLock(RedissonClient redissonClient, String lockKey, int expireTime) {
-        this(redissonClient, lockKey);
+    public RedisLock( String lockKey, int expireTime) {
+        this(lockKey);
         this.expireTime = expireTime;
     }
 
     /**
      * 使用默认的锁的过期时间，指定请求锁的超时时间
      *
-     * @param redissonClient
      * @param lockKey       锁的key（Redis的Key）
      * @param timeOut       请求锁的超时时间(单位：毫秒)
      */
-    public RedisLock(RedissonClient redissonClient, String lockKey, long timeOut) {
-        this(redissonClient, lockKey);
+    public RedisLock( String lockKey, long timeOut) {
+        this(lockKey);
         this.timeOut = timeOut;
     }
 
     /**
      * 锁的过期时间和请求锁的超时时间都是用指定的值
      *
-     * @param redissonClient
      * @param lockKey       锁的key（Redis的Key）
      * @param expireTime    锁的过期时间(单位：秒)
      * @param timeOut       请求锁的超时时间(单位：毫秒)
      */
-    public RedisLock(RedissonClient redissonClient, String lockKey, int expireTime, long timeOut) {
-        this(redissonClient, lockKey, expireTime);
+    public RedisLock(String lockKey, int expireTime, long timeOut) {
+        this(lockKey, expireTime);
         this.timeOut = timeOut;
     }
 
@@ -152,7 +143,7 @@ public class RedisLock {
      * @return 是否成功获得锁
      */
     public boolean lock(String lockKey) {
-        RLock rLock = redissonClient.getLock(lockKey);
+        RLock rLock = REDISSON_CLIENT.getLock(lockKey);
         rLock.lock();
         return rLock.isLocked();
     }
@@ -168,7 +159,7 @@ public class RedisLock {
      * 这两个改动可以防止持有过期锁的客户端误删现有锁的情况出现。
      */
     public Boolean unlock(String lockKey) {
-        RLock rLock = redissonClient.getLock(lockKey);
+        RLock rLock = REDISSON_CLIENT.getLock(lockKey);
         boolean flag = rLock.isLocked();
         if(!flag){
             rLock.unlock();
@@ -191,7 +182,7 @@ public class RedisLock {
      * @param seconds 过去时间（秒）
      */
     private void set(final String key, final String value, final long seconds) {
-        redisUtils.setStr(key,value,seconds);
+        RedisUtils.setStr(key,value,seconds);
     }
 
     /**
