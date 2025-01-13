@@ -11,15 +11,16 @@ public class ToolUtils {
     /**
      * @author <a href="mailto:WCNGS@QQ.COM">Sam</a>
      * @param cacheable
+     * @param pattern
      * @return String
      **/
-    public static String buildContent(Cacheable cacheable) {
-        String content = cacheable.key();
-        String pattern = "\\w+\\.\\w+";
-        if(ToolUtils.operation(content, pattern)){
-            return "{#"+content+"}";
+    public static String buildContent(Cacheable cacheable,String pattern) {
+        String keyOirgin = cacheable.key();
+//        String pattern = "\\w+\\.\\w+";
+        if(ToolUtils.operation(keyOirgin, pattern)){
+            return "{"+keyOirgin+"}";
         }
-        return content;
+        return keyOirgin;
     }
 
     /**
@@ -29,7 +30,6 @@ public class ToolUtils {
      * @return boolean
      **/
     public static boolean operation(String content,String pattern){
-        //String pattern = "[^{\\w+\\S}$]";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(content);
         return m.matches();

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class TestCompoent {
 
 
-
+//    @Cacheable(cacheNames = {"user","user"},key = "userVo:account")
     @Cacheable(cacheNames = {"user","user"},key = "#userVo.account")
     public UserVo get(UserVo userVo) {
         // 模拟耗时操作
@@ -20,6 +20,6 @@ public class TestCompoent {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return UserVo.builder().email("wongs@qq.com").id(2L).build();
+        return UserVo.builder().email("wongs@qq.com").account("张三").password("取你狗命").id(2L).build();
     }
 }

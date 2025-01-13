@@ -47,12 +47,13 @@ public class CacheAspect {
         // 从Caffeine缓存中获取数据
         String key = getKey(joinPoint);
         Object obj = caffeineCache.getIfPresent(key);
+        log.info("[ Cache Class=Method] [Key] {}={}\n{} Cache Value ={}", className,methodName,key, obj);
         if (!ObjectUtil.isNull(obj)) {
             log.warn("[Hit First Cache Class=Method] [Key] {}={}\n{}={}", className,methodName,key, obj);
             return obj;
         }
         String cacheResult = RedisUtils.getStr(key);
-        if(!StringUtils.isNoneBlank(cacheResult)){
+        if(StringUtils.isNotBlank(cacheResult)){
             assert caffeineCache != null;
             log.warn("[Hit Second Cache Class=Method] [Key] {}={}\n{}={}", className,methodName,key, cacheResult);
             Object obect = structure(methodSignature,cacheResult);
@@ -86,22 +87,20 @@ public class CacheAspect {
         MethodSignature methodSignature = (MethodSignature) point.getSignature();
         Method method = methodSignature.getMethod();
         boolean flag = false;
-        //缓存key获取
-        String key = null;
         //缓存key表达式、前缀获取
         String keyExpression = null;
-        String pattern = "^\\{#\\w+\\.\\w+\\}$";
+        String pattern = "^#\\w*\\.\\w*";
         //获取Cacheable注解缓存key表达式、前缀
         if (method.isAnnotationPresent(Cacheable.class)) {
             Cacheable cacheable = method.getAnnotation(Cacheable.class);
-            String content = ToolUtils.buildContent(cacheable);
-            if (ToolUtils.operation(content, pattern)) {
+            String keyOrigin = cacheable.key();
+            if (ToolUtils.operation(keyOrigin, pattern)) {
                 flag = true;
             }
-            String value = getAnnnotationValue(cacheable, point);
-            keyExpression = !StrUtil.isEmpty(cacheable.key()) ? cacheable.key() : value;
+             keyExpression = getAnnnotationValue(cacheable, point,pattern);
         }
 
+        String key = null;
         //缓存key缺省为方法签名
         if (StrUtil.isEmpty(keyExpression) || point.getArgs().length == 0) {
             key = methodSignature.toString();
@@ -137,12 +136,13 @@ public class CacheAspect {
      * @param joinPoint
      * @return String
      **/
-    protected String getAnnnotationValue(Cacheable annotation, ProceedingJoinPoint joinPoint) {
-        String content = ToolUtils.buildContent(annotation);
-        List<String> templates = Lists.newArrayList(content);
+    protected String getAnnnotationValue(Cacheable annotation, ProceedingJoinPoint joinPoint,String pattern) {
+        String keyOirgin = ToolUtils.buildContent(annotation,pattern);
+//        String content = annotation.key();
+        List<String> templates = Lists.newArrayList(keyOirgin);
         templates = templates.stream().filter(StringUtils::isNotBlank).collect(Collectors.toList());
         HashMap<String, String> processMap = aopSpelProcess.processBeforeExec(templates, joinPoint);
-        return processMap.get(content);
+        return processMap.get(keyOirgin);
     }
 
 //    protected String getKey(String key){
