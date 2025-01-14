@@ -7,6 +7,7 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import io.github.rothschil.common.annotation.Cacheable;
 import io.github.rothschil.common.handler.AopSpelProcess;
 import io.github.rothschil.common.utils.RedisUtils;
 import io.github.rothschil.common.utils.ToolUtils;
@@ -17,7 +18,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -38,26 +38,33 @@ public class CacheAspect {
     @Autowired
     com.github.benmanes.caffeine.cache.Cache<String, Object> caffeineCache;
 
-    @Around("@annotation(org.springframework.cache.annotation.Cacheable) && execution(* io.github.rothschil..*.*(..)))")
+    @Around("@annotation(io.github.rothschil.common.annotation.Cacheable) && execution(* io.github.rothschil..*.*(..)))")
     public Object aroundCacheable(ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
         String methodName = method.getName();
         String className = joinPoint.getTarget().getClass().getName();
+
+        Cacheable cacheable = method.getAnnotation(Cacheable.class);
+        boolean enableCaffeine = cacheable.enableCaffeine();
         // 从Caffeine缓存中获取数据
         String key = getKey(joinPoint);
-        Object obj = caffeineCache.getIfPresent(key);
-        log.info("[ Cache Class=Method] [Key] {}={}\n{} Cache Value ={}", className,methodName,key, obj);
-        if (!ObjectUtil.isNull(obj)) {
-            log.warn("[Hit First Cache Class=Method] [Key] {}={}\n{}={}", className,methodName,key, obj);
-            return obj;
+        if(enableCaffeine){
+            Object obj = caffeineCache.getIfPresent(key);
+            log.info("[ Cache Class=Method] [Key] {}={}\n{} Cache Value ={}", className,methodName,key, obj);
+            if (!ObjectUtil.isNull(obj)) {
+                log.warn("[Hit First Cache Class=Method] [Key] {}={}\n{}={}", className,methodName,key, obj);
+                return obj;
+            }
         }
         String cacheResult = RedisUtils.getStr(key);
         if(StringUtils.isNotBlank(cacheResult)){
             assert caffeineCache != null;
             log.warn("[Hit Second Cache Class=Method] [Key] {}={}\n{}={}", className,methodName,key, cacheResult);
             Object obect = structure(methodSignature,cacheResult);
-            caffeineCache.put(key, cacheResult);
+            if(enableCaffeine){
+                caffeineCache.put(key, cacheResult);
+            }
             return obect;
         }
 
@@ -66,9 +73,11 @@ public class CacheAspect {
 
         // 将结果放入Caffeine和Redis缓存
         if (caffeineCache != null) {
-            caffeineCache.put(key, result);
+            if(enableCaffeine){
+                caffeineCache.put(key, result);
+            }
             String val = JSONObject.toJSONString(result);
-            RedisUtils.setStr(key,val,600);
+            RedisUtils.setStr(key,val,20);
         }
         return result;
     }

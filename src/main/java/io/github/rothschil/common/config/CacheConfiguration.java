@@ -29,7 +29,7 @@ public class CacheConfiguration {
 
     @Bean
     public Cache<String, Object> caffeineCache() {
-        return Caffeine.newBuilder().expireAfterWrite(600, TimeUnit.SECONDS).initialCapacity(100).maximumSize(1000).build();
+        return Caffeine.newBuilder().expireAfterWrite(40, TimeUnit.SECONDS).initialCapacity(100).maximumSize(1000).build();
     }
 
     /**

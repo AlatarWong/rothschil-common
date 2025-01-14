@@ -43,6 +43,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	public static final String TRANS_DAY_PATTERN = "yyyyMMdd";
 	public static final String TRANS_MONTH_PATTERN = "yyyyMM";
 
+	public static final String TRANS_PATTERN_MM = "yyyyMMddHHMM";
 	public static final String TRANS_PATTERN = "yyyyMMddHHmmss";
 	public static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 	public static final String STAND_OS_PATTERN = "yyyy/MM/dd";

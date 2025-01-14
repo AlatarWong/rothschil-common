@@ -1,6 +1,7 @@
 package io.github.rothschil.common.utils;
 
-import org.springframework.cache.annotation.Cacheable;
+
+import io.github.rothschil.common.annotation.Cacheable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +15,7 @@ public class ToolUtils {
      * @param pattern
      * @return String
      **/
-    public static String buildContent(Cacheable cacheable,String pattern) {
+    public static String buildContent(Cacheable cacheable, String pattern) {
         String keyOirgin = cacheable.key();
 //        String pattern = "\\w+\\.\\w+";
         if(ToolUtils.operation(keyOirgin, pattern)){

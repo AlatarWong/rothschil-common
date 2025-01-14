@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class UserVo {
 
     @NotNull(message = "用户id不能为空")
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "用户账号不能为空")
     @Size(min = 6, max = 11, message = "账号长度必须是6-11个字符")
