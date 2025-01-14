@@ -1,4 +1,4 @@
-package io.github.rothschil.common.cache.manager;
+package io.github.rothschil.common.cache;
 
 import io.github.rothschil.common.utils.RedisUtils;
 import org.redisson.api.RMap;
@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentMap;
 
 
 /**
- * A {@link org.springframework.cache.CacheManager} implementation
+ * A {@link CacheManager} implementation
  * backed by Redisson instance.
  * <p>
  * 修改 RedissonSpringCacheManager 源码
