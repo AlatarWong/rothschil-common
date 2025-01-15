@@ -3,16 +3,11 @@ package io.github.rothschil.common.config;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import io.github.rothschil.common.cache.PlusSpringCacheManager;
-import org.redisson.Redisson;
-import org.redisson.api.RedissonClient;
-import org.redisson.config.Config;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,11 +19,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CacheConfiguration {
 
-
-    @Bean
-    public RedissonClient redissonClient() throws IOException {
-        return Redisson.create(Config.fromYAML(new ClassPathResource("redisson.yml").getInputStream()));
-    }
 
     @Bean
     public Cache<String, Object> caffeineCache() {

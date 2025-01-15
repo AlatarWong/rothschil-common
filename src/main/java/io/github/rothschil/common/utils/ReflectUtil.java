@@ -61,7 +61,7 @@ public class ReflectUtil {
                     predicates.add(cb.equal(root.get(Constant.VALID), 1));
                 }
             } catch (NoSuchFieldException e) {
-                log.warn("没有找到属性：valid");
+                log.warn("[This attribute does not exist in the instance] valid");
             }
 
             Field[] declaredFields = clazz.getDeclaredFields();

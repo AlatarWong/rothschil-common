@@ -3,7 +3,9 @@ package io.github.rothschil.domain.controller;
 import io.github.rothschil.common.annotation.SelectorDataSource;
 import io.github.rothschil.common.constant.DataSourceNamesConstant;
 import io.github.rothschil.domain.entity.Intf;
+import io.github.rothschil.domain.entity.TblCdmaHlr;
 import io.github.rothschil.domain.service.IntfService;
+import io.github.rothschil.domain.service.TblCdmaHlrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,6 +28,9 @@ public class IntfController {
     @Autowired
     private IntfService intfService;
 
+    @Autowired
+    private TblCdmaHlrService tblCdmaHlrService;
+
     @RequestMapping(value = "/findOne/{id}",method = RequestMethod.GET)
     public Intf findOne(@PathVariable(value = "id") Long id){
         return intfService.findById(id);
@@ -45,5 +50,19 @@ public class IntfController {
     @RequestMapping(value = "/exists/{id}",method = RequestMethod.GET)
     public Boolean exists(@PathVariable(value = "id") Long id){
         return intfService.exists(id);
+    }
+
+    /**
+     * @param prefix 前缀
+     * @return TblCdmaHlr
+     **/
+    @SelectorDataSource(value=DataSourceNamesConstant.TWO)
+    @ApiOperation(value = "前缀", notes = "前缀")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "prefix", value = "前缀", required = true)
+    })
+    @RequestMapping(value = "/hlr/{prefix}",method = RequestMethod.GET)
+    public TblCdmaHlr hlr(@PathVariable(value = "prefix") String prefix){
+        return tblCdmaHlrService.findOneByAttr("phoneprefix",prefix);
     }
 }
