@@ -1,4 +1,4 @@
-package io.github.rothschil.common.cache;
+package io.github.rothschil.common.aspect;
 
 
 import cn.hutool.core.bean.BeanPath;

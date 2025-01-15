@@ -1,6 +1,6 @@
 package io.github.rothschil.common.annotation;
 
-import io.github.rothschil.common.cache.CacheAspect;
+import io.github.rothschil.common.aspect.CacheAspect;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
